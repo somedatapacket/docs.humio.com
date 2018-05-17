@@ -101,8 +101,9 @@ text and as numbers.
 |`user = "Alan Turing"` | The `user` field equals `Alan Turing`.
 |`user != "Alan Turing"` | The `user` field does not equal `Alan Turing`.
 |`url != *login*` | The `url` field does not contain `login`.
-|`user = *` | Find all events that have the field `user`.
-|`user != *` | Find all events that do not have the field `user`.
+|`user = *` | Match events that have the field `user`.
+|`user != *` | Match events that do not have the field `user`.
+|`name = ""` | Match events that have a field called `name` but with the empty string as value.
 |`user="Alan Turing"` | You do not need to put spaces around operators (for example, `=` or `!=`).
 
 **Regex filters**
@@ -111,9 +112,9 @@ In addition to globbing (`*` appearing in match strings) you can match fields us
 
 | Query | Description |
 |-------|-------------|
-|`url = /login/` | The `url` field contains `login`. 
+|`url = /login/` | The `url` field contains `login`.
 |`user = /Turing$/` | The `user` field ends with `Turing`.
-|`loglevel = /error/i` | The `loglevel` field matches `error` case insensitively, i.e. it could be `Error`, `ERROR` or `error`. 
+|`loglevel = /error/i` | The `loglevel` field matches `error` case insensitively, i.e. it could be `Error`, `ERROR` or `error`.
 
 
 **Comparison operators on numbers**
@@ -197,7 +198,7 @@ to find the entries that have less than 1000 free disk space:
 Since regular expressions do need some computing power, it is best to do as much simple filtering as possible earlier in the query chain before applying the regex function.
 {{% /notice %}}
 
-You can also use regex expressions to extract new fields. So the above could also 
+You can also use regex expressions to extract new fields. So the above could also
 be written
 
 ```
@@ -259,7 +260,7 @@ rather than
 
 This also works well with e.g. `regex` and `replace`.  It's just a shorthand but very convenient.
 
-### Backticks 
+### Backticks
 Backticks work in `eval` and the `:=` shorthand for eval only and provides one level of indirection of the name of the field.
 The assignment happens to the field with the name that is the value of the backticked field.
 
@@ -351,7 +352,7 @@ $"saved query name"() | $filterOutFalsePositive() | ...
 ```
 
 <!---
-Saved queries can also have arguments.  These are identified as 
+Saved queries can also have arguments.  These are identified as
 `?{arg="foo"}` which gives the query parameter `arg` the default value `foo`.
 Arguments can be used anywhere a string, number or identifier is allowed.
 
