@@ -4,6 +4,16 @@ weight: 9
 pre: "<b>9. </b>"
 ---
 
+## 2018-05-22
+Minor update release.  
+Data migrations: No  
+Configuration Changes: No  
+Version: 1.0.65
+
+- Fixed bug: Importing a dataspace from another Humio instance did not handle multi-node cluster properly
+- Search performance improvement: Reduce GC-pressure from reading files.
+- Reduced default thread pool sizes.
+
 ## 2018-05-15
 Minor update release.  
 Data migrations: No  
