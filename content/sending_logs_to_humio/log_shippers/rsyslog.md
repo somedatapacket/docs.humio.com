@@ -48,4 +48,7 @@ Finally restart rsyslog
 
 ## Verifying
 
-By now, your logs should start rolling into your dataspace, but should you want to product
+By now, your logs should start rolling into your dataspace and can be found with a simple search like
+```
+syslogtag=*
+```
