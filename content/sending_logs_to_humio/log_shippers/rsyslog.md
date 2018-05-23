@@ -5,6 +5,10 @@ title: "Rsyslog"
 The [Rsyslog](https://www.rsyslog.com) log processor is very popular and is being shipped with some very popular Linux distributions, including Ubuntu and Centos.
 Rsyslog provides [a long list of plugins](https://www.rsyslog.com/plugins/), most importantly the [Elastic search output plugin](https://www.rsyslog.com/doc/v8-stable/configuration/modules/omelasticsearch.html), which is supported by Humio.
 
+{{% notice note %}}
+On-prem users will have to enable the Elasticsearch bulk endpoint on port 9200. See `ELASTIC_PORT` in [configuration options](/operation/installation/configuration_options/#example-configuration-file-with-comments)
+{{% /notice %}}
+
 ## Minimal configuration
 We recommend the following minimal configuration for forwarding all logs to Humio
 
