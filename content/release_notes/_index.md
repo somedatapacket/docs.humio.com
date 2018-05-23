@@ -4,6 +4,15 @@ weight: 9
 pre: "<b>9. </b>"
 ---
 
+## 2018-05-23
+Minor update release.  
+Data migrations: No  
+Configuration Changes: No  
+Version: 1.0.66
+
+- Added "prune replicas" method on on-premises HTTP API to remove extra copies when reuducing replica count in cluster.
+- Increased default thread pool sizes a bit, but still only 1/4 of what the were before 1.0.65
+
 ## 2018-05-22
 Minor update release.  
 Data migrations: No  

@@ -22,6 +22,7 @@ Note, this API is still very much *work-in-progress*.
 |`/api/v1/clusterconfig/segments/partitions`| [GET, POST](#querying-and-assigning-storage-partitions-to-hosts) | Querying and assigning storage partitions to hosts 
 |`/api/v1/clusterconfig/segments/partitions/set-replication-defaults`| [POST](#assigning-default-storage-partitions-to-hosts) | Assigning default storage partitions to hosts
 |`/api/v1/clusterconfig/segments/distribute-evenly`| [POST](#moving-existing-segments-between-hosts) | Moving existing segments between hosts
+|`/api/v1/clusterconfig/segments/prune-replicas`| [POST](#pruning-replicas-when-reducing-replica-setting) | Pruning replicas when reducing replica setting
 |`/api/v1/clusterconfig/segments/distribute-evenly-reshuffle-all`| [POST](#moving-existing-segments-between-hosts) | Moving existing segments between hosts
 |`/api/v1/clusterconfig/segments/distribute-evenly-to-host/$HOST`| [POST](#moving-existing-segments-between-hosts) | Moving existing segments between hosts
 |`/api/v1/clusterconfig/segments/distribute-evenly-from-host/$HOST`| [POST](#moving-existing-segments-between-hosts) | Moving existing segments between hosts
@@ -195,6 +196,18 @@ Example:
 ``` bash
 echo '{ "partitionCount": 7, "replicas": 2 }' > settings.json
 curl -XPOST -d @settings.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/partitions/set-replication-defaults"
+```
+
+## Pruning replicas when reducing replica setting
+
+If the number of replicas has been reduced, existing segments in the cluster do not get their replica count reduced. In order to reduce the number of replicas on existing segments, invoke this:
+
+``` text
+POST   /api/v1/clusterconfig/segments/prune-replicas
+```
+
+``` bash
+curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/prune-replicas"
 ```
 
 ## Moving existing segments between hosts
