@@ -87,8 +87,15 @@ graph LR;
 
 ### Example use-cases {#examples}
 
-Here are some examples to give you an idea of what kinds of things you can use
-views for.
+View are powerful and you can model all kinds of things like:
+
+- Restrict access to a subset of data based on the user
+- Fine-grained retention strategies
+- Redacting sensitive information
+- Consolidating different log formats
+
+Here are some examples of how you can use views.
+Hopefully you an idea of what kinds of things you can use views for.
 
 #### A repo per service {#per-service}
 
