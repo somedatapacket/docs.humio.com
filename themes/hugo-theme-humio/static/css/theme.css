@@ -476,31 +476,88 @@ blockquote cite {
     color: #666;
     font-size: 1.2rem;
 }
-.notices {
-    padding: 1px 1px 1px 30px;
-    margin: 15px 0;
+div.notices {
+    margin: 2rem 0;
+    position: relative;
 }
-.notices p {
+div.notices p {
+    padding: 15px;
+    display: block;
+    font-size: 1rem;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    color: #666;
 }
-.notices.info {
-    border-left: 10px solid #f0ad4e;
-    background: #fcf8f2;
-    color: #df8a13;
+div.notices p:first-child:before {
+    position: absolute;
+    top: 2px;
+    color: #fff;
+    font-family: FontAwesome;
+    content: '';
+    left: 10px;
 }
-.notices.warning {
-    border-left: 10px solid #d9534f;
-    background: #fdf7f7;
-    color: #b52b27;
+div.notices p:first-child:after {
+    position: absolute;
+    top: 2px;
+    color: #fff;
+    left: 2rem;
 }
-.notices.note {
-    border-left: 10px solid #5bc0de;
-    background: #f4f8fa;
-    color: #28a1c5;
+div.notices.info p {
+    border-top: 30px solid #F0B37E;
+    background: #FFF2DB;
 }
-.notices.tip {
-    border-left: 10px solid #5cb85c;
+div.notices.info p:first-child:after {
+    content: 'Info';
+}
+div.notices.warning p {
+    border-top: 30px solid rgba(217, 83, 79, 0.8);
+    background: #FAE2E2;
+}
+div.notices.warning p:first-child:after {
+    content: 'Warning';
+}
+div.notices.note p {
+    border-top: 30px solid #6AB0DE;
+    background: #E7F2FA;
+}
+div.notices.note p:first-child:after {
+    content: 'Note';
+}
+div.notices.tip p {
+    border-top: 30px solid rgba(92, 184, 92, 0.8);
+    background: #E6F9E6;
+}
+div.notices.tip p:first-child:after {
+    content: 'Tip';
+}
+div.notices.cloud {
     background: #f1f9f1;
     color: #3d8b3d;
+}
+
+div.notices.cloud p:first-child::before {
+    position: absolute;
+    top: 2px;
+    color: #fff;
+    font-family: FontAwesome;
+    content: '';
+    left: 10px;
+}
+
+div.notices.cloud p:first-child::after {
+    position: absolute;
+    top: 2px;
+    color: #fff;
+    left: 2rem;
+}
+
+div.notices.cloud p {
+    border-top: 30px solid rgba(92, 184, 92, 0.8);
+    background: #E6F9E6;
+}
+
+div.notices.cloud p:first-child::after {
+    content: 'Free Humio Cloud Users';
 }
 
 /* attachments shortcode */

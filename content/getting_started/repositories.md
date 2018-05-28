@@ -33,8 +33,13 @@ You can read more about views in the [view documentation]({{< relref "views.md">
 
 ## The Sandbox
 
-All accounts have a special _private_ repository called __the sandbox__ that that is.
+All accounts have a special _private_ repository called [the sandbox]({{< relref "the_sandbox.md" >}}) that that is. Unlike other
+repositories you cannot add additional users or change retention. You can use for testing things out
+or as the your main repo if your needs are simple.
 
-{% notice tip %}
-Hello
-{% /notice %}
+{{% notice cloud %}}
+If you are using a the free version of [Humio Cloud](https://cloud.humio.com) the sandbox
+is your main storage repository and is where you send all your logs and events. You can
+[use views to make your data easier to navigate]({{< relref "views.md#per-service" >}})
+if you have logs from several sources.
+{{% /notice %}}

@@ -79,7 +79,7 @@ searches and streamed back to you.
 Here are some examples to give you an idea of what kinds of things you can use
 views for.
 
-#### A repo per service
+#### A repo per service {#per-service}
 
 Say you have a micro-service setup and you store all logs from all applications
 in a single physical repository, let's call it `acme-project`. It can
