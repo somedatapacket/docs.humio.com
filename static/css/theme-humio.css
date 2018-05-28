@@ -102,6 +102,21 @@ a:hover {
     border-color: var(--MENU-SECTION-HR-color);
 }
 
+.mermaid {
+  display: none;
+}
+
+.mermaid[data-processed="true"] {
+  display: block;
+}
+
+figcaption {
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: italic;
+  text-align: center;
+}
+
 h1 {
   text-align: left;
   font-size: 40px;
@@ -129,6 +144,6 @@ h2 {
 }
 
 h3 {
-  font-size: 17px;
+  font-size: 1.8rem;
   color: rgb(128, 126, 127)
 }
