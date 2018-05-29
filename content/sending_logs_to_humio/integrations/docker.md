@@ -23,10 +23,7 @@ Docker host. Then, you hook up all the containers for which you want
 logs using the fluentd log-driver.
 
 {{% notice tip %}}
-***Log Types***
-
-You should set the log types for your containers so Humio can parse the logs.
-
+You should set the __log types__ for your containers so Humio can parse the logs.  
 Humio can accept logs even when it does not know their type. So just start sending logs to Humio, and then create and enhance the relevant parsers afterwards.
 {{% /notice %}}
 
@@ -43,8 +40,7 @@ To do this, you can either use a built-in parser, or create new ones for your lo
 types.  For more details on creating parsers, see the [parsing page](/sending_logs_to_humio/parsers/parsing/).
 
 {{% notice tip %}}
-In terms of log management, Docker is just a transport layer.
-
+In terms of log management, Docker is just a transport layer.  
 Before writing a custom parser, see the [built in parsers](/sending_logs_to_humio/parsers/built_in_parsers/) page to see if Humio already supports your log type.
 {{% /notice %}}
 

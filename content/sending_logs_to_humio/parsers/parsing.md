@@ -6,9 +6,7 @@ When sending data to Humio, you can specify a parser.
 Humio uses parsers to extract fields and add structure to the data that you send to it.
 
 {{% notice note %}}
-***Example***
-
-When sending data with [Filebeat](/sending_logs_to_humio/log_shippers/beats/filebeat/) you specify a parser to parse data
+When sending data with [Filebeat](/sending_logs_to_humio/log_shippers/beats/filebeat/) you specify a parser to parse data.
 {{% /notice %}}
 
 Humio comes with a set of [built-in parsers](/sending_logs_to_humio/parsers/built_in_parsers/) for
@@ -24,14 +22,12 @@ Go to the **Parsers** subpage in your data space to see all the available parser
 
 ![Parsers List`](/images/parsers.png)
 
-{{% notice note %}}
-***Built-in parsers***
+### Built-in parsers
 
 The first part of the list contains [built-in parsers](/sending_logs_to_humio/parsers/built_in_parsers/).
 
 You cannot delete the built-in parsers, but you can overwrite them if you want.
 You can also copy existing parsers to use as a starting point for creating new parsers.
-{{% /notice %}}
 
 ## The Parser User Interface
 
@@ -114,7 +110,7 @@ Humio uses re2j regular expressions, which are very close to Java's regular expr
 
 Refer to the [re2j regular expression documentation](https://github.com/google/re2/wiki/Syntax) for more details on this syntax.
 {{% /notice %}}
-    
+
 -->
 
 When creating a regex parser, you must always extract the timestamp in a named group called `@timestamp`.
@@ -202,7 +198,7 @@ This feature is planned for a future release of Humio. Stay tuned!
 {{% /notice %}}
 
 ## Adding tags
-Humio saves data in Data Sources. You can provide a set of Tags to specify which Data Source the data is saved in. 
+Humio saves data in Data Sources. You can provide a set of Tags to specify which Data Source the data is saved in.
 Using tags can significantly speed up searches. Tags are described [here](/glossary/#tags)
 
 When using a parser, its name is added as the `#type` tag.  
@@ -213,7 +209,7 @@ When creating a parser it is possible to add other tags, by specifying which fie
 When a parser fails, Humio adds fields to the event:
 
  > `@error=true`
- 
+
  > `@event_parsed=false`
 
  > `@error_msg`: contains the error

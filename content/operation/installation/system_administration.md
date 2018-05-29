@@ -71,8 +71,7 @@ BACKUP_KEY=mysecretkey-myhost-+R+q(AB9QG86xZMCKGyj
 ```
 
 {{% notice note %}}
-Humio encrypts all backups with a secret key. This means that you can safely store backups on an unencrypted disk, or send them over the Internet.
-
+Humio encrypts all backups with a secret key. This means that you can safely store backups on an unencrypted disk, or send them over the Internet.  
 Keep the secret key safe, and store it in another place. You cannot recover it if you lose access to it.
 {{% /notice %}}
 

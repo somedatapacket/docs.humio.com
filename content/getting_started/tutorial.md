@@ -10,5 +10,5 @@ transforming data and making visualizations.
 
 {{% notice cloud %}}
 If you are using Humio Cloud you visit [https://cloud.humio.com/tutorial](https://cloud.humio.com/tutorial) directly
-to start the tutorial. 
+to start the tutorial.
 {{% /notice %}}

@@ -140,10 +140,14 @@ body #chapter h1 {
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 2.4rem;
 }
 
 h3 {
   font-size: 1.8rem;
   color: rgb(128, 126, 127)
+}
+
+.query-function h3 {
+  font-size: 1.3rem;
 }

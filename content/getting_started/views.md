@@ -69,8 +69,8 @@ Under the hood two separate searches are executed:
 
 | Repository         | Executed Query                                        |
 |--------------------|-------------------------------------------------------|
-| accesslogs         | `method = GET \| ip = 158.191.19.12`                   |
-| analytics          | `loglevel = INFO \| ip = 158.191.19.12`                |
+| accesslogs         | <code>method=GET \| ip = 158.191.19.12</code>                   |
+| analytics          | <code>loglevel=INFO \| ip = 158.191.19.12</code>                |
 
 The `groupBy` (the aggregation) only happens after results of individual
 searches are joined. Here is a flow diagram of the process:
@@ -127,7 +127,7 @@ __Virtual Repo: PostgreSQL Logs__
 
 __Virtual Repo: iOS App Analytics__
 
-| Source Repository  | Filter                                  |
+| Repository  | Filter                                  |
 |--------------------|-----------------------------------------|
 | `acme-project`       | `#service=app and eventType=analytics`  |
 
@@ -145,7 +145,7 @@ help desk workers to be able to see these. You can redact them by overriding
 the field (e.g. `socialSecurityNo`) that contains the sensitive info in the
 filter expression:
 
-| Source Repository  | Filter                                 |
+| Repository  | Filter                                 |
 |--------------------|----------------------------------------|
 | `hospital-logs`    | `socialSecurityNo := "REDACTED"`       |
 
@@ -157,7 +157,7 @@ have search access should only be able to see logs for their respective region.
 It is easy to select a subset of the logs by filtering the results before they
 reach the user.  in this case limiting access to logs Germany :
 
-| Source Repository  | Filter                                 |
+| Repository  | Filter                                 |
 |--------------------|----------------------------------------|
 | `website`          | `region = "UK" or region = "DE"`       |
 | `db`               | `ip.geo = "UK" or ip.geo = "DE"`       |
@@ -179,10 +179,10 @@ region = "UK" or ip.geo = "UK"
 This is repetitive and clumsy. Instead we can define a new field as part of the
 filter expressions:
 
-| Source Repository  | Filter                                              |
-|--------------------|-----------------------------------------------------|
-| website            | `region = "UK" or region = "DE"`                    |
-| db                 | `ip.geo = "UK" or ip.geo = "DE" \| region := ip.geo` |
+| Repository         | Filter                                                         |
+|--------------------|----------------------------------------------------------------|
+| website            | `region = "UK" or region = "DE"`                               |
+| db                 | <code>ip.geo = "UK" or ip.geo = "DE" | region := ip.geo</code> |
 
 Now you can just write:
 

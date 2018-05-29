@@ -24,7 +24,7 @@ However, some systems also support sending logs directly to a log management
 system like [Humio](http://www.humio.com).
 
 
-## Shipping
+## Sending Logs
 
 In most situations, it's necessary to add a 'log shipping' layer to your system.  A 'log shipper' is an application that can take logs from a file on disk and send them directly to a log management system.
 
@@ -34,14 +34,15 @@ We are really fond of the Elastic
 [Beats](https://www.elastic.co/products/beats). These are small,
 lightweight programs that can ship a large (and growing) number of
 different logs and metric types.
-
+<br>
+<br>
 In general, Humio is compatible with the Elastic ingest APIs. So if your
 favorite log shipper can send it to Elastic, there is a good chance it can ship to Humio as well. If you have questions or aren't sure, we are always here to support you.
 {{% /notice %}}
 
 An important aspect shipping is how faults are handled. When evaluating a log shipper, examine what situations will cause the loss of log lines, or duplications. Also check which kinds of failures it can tolerate.
 
-## Parsing
+## Parsing Incoming Data
 
 Because most log formats are unique, at some point you'll need to parse
 your logs.  Parsing let's you take logs that are essentially just lines of text, and extract their structure in order to incorporate a more in depth analysis.
@@ -57,7 +58,7 @@ Humio integrates well with both of these shipping frameworks. Neat!
 {{% /notice %}}
 
 
-## Querying logs
+## Searching
 
 Querying is where you will feel the real benefit of deploying a log management
 tool like Humio. The system creates value by letting you ask a variety of questions about the data in ways it might not be possible to with a raw data log.
