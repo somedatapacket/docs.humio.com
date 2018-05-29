@@ -2,8 +2,7 @@
 title: The Sandbox
 weight: 3
 ---
-
-In Humio all users have a private [Repository]({{< "repositories.md" >}}) called __The Sandbox__.
+In Humio all users have a private [Repository]({{< relref "repositories.md" >}}) called __The Sandbox__.
 
 The sandbox has the following limitations compared to normal repositories:
 

@@ -133,7 +133,7 @@ __Virtual Repo: iOS App Analytics__
 
 In this example we create three views that all draw their data from
 a single physical repository. If you are using a free cloud account this physical
-repository could be you [Sandbox]({{< relref "sandbox.md" >}})
+repository could be you [Sandbox]({{< relref "the_sandbox.md" >}})
 
 #### Redacting sensitive information {#sensitive}
 

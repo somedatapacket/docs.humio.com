@@ -12,8 +12,8 @@ very based on your data volume, and many other factors.
 On a physical repository you can control retention and assign
 [parsers]({{ ref "parsers.md" }}) that define how data is stored.
 
-When [sending data to humio]({{< ref "sending_data_to_humio" >}}) you always
-specify a repository and a [parser]({{< relref "parsers.md" >}}) as the target.
+When [sending data to humio]({{< ref "sending_data_to_humio/_index.md" >}}) you always
+specify a repository and a [parser]({{< ref "sending_data_to_humio/parsers/_index.md" >}}) as the target.
 
 ## Views
 
