@@ -7,6 +7,8 @@ Humio supports the following authentication types:
 * [__None__ (Default)](#no-authentication)  
    Humio can run without authentication at all, and with only a single user account named _developer_.
    This is the default if authentication is not configured, but is __not recommended__ for production systems.
+* [__Single user__](#single-user)  
+   Single-user mode is similar to running with no authentication except that it enables login using a password.
 * [__LDAP__](#ldap)  
    Humio can connect to an LDAP server an authenticate users
 * [__By-Proxy__](#by-proxy)  
@@ -62,6 +64,32 @@ When using LDAP, `$EMAIL` is the username the user must enter to login, and need
 
 Once that user has been added, you can log on using that user and see your own API token, as described
 in [API token](/sending_logs_to_humio/transport/http_api/#api-token).
+
+
+
+## Single User {#single-user}
+
+Single user authentication is an easy way to get started with Humio,
+but with added security compared to the no-authentication mode, in
+that you need a password to login to Humio. The login user is
+_developer_.
+
+{{% notice note %}}
+Be adviced that the password is stored in clear-text in the Humio
+configuration file and thus anybody with read-permissions to that file
+will have access to the password. The single user authentication
+method is meant as a quick way to get started, but for productions
+systems you should use some of the multi-user authentication methods.
+{{% /notice %}}
+
+To start Humio in single-user mode you need to specify the following
+two configuration settings:
+
+    AUTHENTICATION_METHOD=single-user
+    SINGLE_USER_PASSWORD=<your-password>
+
+You login with the _developer_ user account and the password speficied
+in the configuration file.
 
 ## By-Proxy {#by-proxy}
 Make Humio use the username provided by a HTTP proxy.
