@@ -24,7 +24,7 @@ Contact us if you need this feature, we can add another way of authenticating ag
 ### Worker.properties
 The worker properties for the connector could look like below. It uses JSON for Serialization and does not use schemas.
 
-``` properties
+```bash
 bootstrap.servers=$SERVER1:9092,$SERVER2:9092
 offset.flush.interval.ms=1000
 
@@ -69,7 +69,7 @@ A replication factor of 1 is only put in the configuration file to make it work 
 
 The JSON with connector properties could look like below:
 
-``` JSON
+```json
 {
   "name": "humio-sink",
   "config" : {
@@ -115,9 +115,9 @@ In this example, we assume Humio and Kafka is already running. We will use Docke
 
 We start out by defining a `worker.properties` file:
 
-```  properties
+```bash
 # use below property when running in standalone mode
-#offset.storage.file.filename=/tmp/connect.offsets
+# offset.storage.file.filename=/tmp/connect.offsets
 
 # use section when running in distributed
 group.id=humio-connector
@@ -151,7 +151,7 @@ plugin.path=/usr/share/java
 
 The following bash script can start the Connector setup:
 
-``` bash
+```bash
 docker run -i -t \
   -p 10082:10082 \
   --name=humio-kafka-connect \
@@ -167,7 +167,7 @@ Insert the ip address of a Kafka server in `$KAFKA` and the above script will st
 If the Kafka topics to reaad data from does not already exist we need to create them. That can be done using the `kafka-topics` script in the  in the bin directory of the kafka installation. It is also possible to do using the
 `humio-kafka-connect` Docker container we have just started to run our connector.
 
-``` bash
+```bash
 docker exec -i -t humio-kafka-connect kafka-topics --zookeeper kafka:2181 --create --topic logs --partitions 1 --replication-factor 1
 ```
 
@@ -176,7 +176,7 @@ Above we created the topic `logs`. It can be replaced with the topic name you wa
 
 Now the Elasticsearch connector is ready to be started. But first we will create the JSON configuration:
 
-```  json
+```json
 {
   "name": "humio-sink",
   "config" : {
@@ -203,18 +203,18 @@ Save the above JSON to a file called `humio-connect.json`
 Make sure Humio is running, otherwise the connector will complain.
 Now we can start the connector with the above configuration with the following Curl commands
 
-```  bash
+```bash
 curl -v -X POST -H "Content-Type: application/json" --data-binary "@humio-connect.json" http://localhost:10082/connectors
 ```
 
 If you need to reconfigure. the connector can be removed using:
-``` bash
+```bash
 curl -XDELETE http://localhost:10082/connectors/humio-sink
 ```
 
 Now we have all the different pieces running. We can add data to our Kafka topic and check it is send to Humio:
 
-```
+```bash
 echo '{"@timestamp": "2018-06-03T20:53:23Z", "message": "hello world"}' | docker exec -i  humio-kafka-connect kafka-console-producer --broker-list kafka:9092 --topic logs
 ```
 
