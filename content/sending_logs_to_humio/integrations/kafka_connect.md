@@ -4,7 +4,7 @@ title: "Kafka connect"
 
 [Kafka Connect](https://kafka.apache.org/documentation/#connect) is a framework for connecting Kafka with other systems such as Humio. If you have your data in Kafka consider this approach for sending data to Humio.
 
-As Humio supports ingesting data using the Elasticsearch bulk api, data can be send to Humio using the [Elasticsearch Connector] (https://docs.confluent.io/current/connect/connect-elasticsearch/docs/elasticsearch_connector.html) by Confluent.
+As Humio supports ingesting data using the Elasticsearch bulk api, data can be send to Humio using the [Elasticsearch Connector](https://docs.confluent.io/current/connect/connect-elasticsearch/docs/elasticsearch_connector.html) by Confluent.
 
 The Kafka Connect framework is part of the standard Kafka download but the Confluent Elasticsearch Connector must be downloaded separately. It is available in the Docker image [confluentinc/cp-kafka-connect](https://hub.docker.com/r/confluentinc/cp-kafka-connect/).
 
