@@ -1,3 +1,5 @@
+![Build status](https://drone.internal.humio.com/api/badges/humio/docs.humio.com/status.svg?branch=master)
+
 # docs.humio.com
 Official documentation for Humio
 
