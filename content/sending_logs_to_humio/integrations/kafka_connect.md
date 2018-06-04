@@ -165,7 +165,7 @@ docker exec -it humio-kafka-connect kafka-topics --zookeeper kafka:2181 --create
 
 Above we created the topic `logs`. It can be replaced with the topic name you want to use and you can change other configurations as well.
 
-Now the Elasticsearch connector is ready to be started so first we will create the JSON configuration:
+Now the Elasticsearch connector is ready to be started so first we will create the JSON configuration (`humio-connect.json`):
 ```json
 {
   "name": "humio-sink",
@@ -185,7 +185,7 @@ Now the Elasticsearch connector is ready to be started so first we will create t
 ```
 
 `<topics>` should be replaced with a comma-separated list of topics to read data from.  
-`connection.url` takes a comma-separated list of URLs. In this example we use only one url. Replace `<Humio host?` with the base URLs for the Humio server, for example `http://localhost:8080`. `<Humio dataspace>` should be replaced with the name of the dataspace you want to send all your messages to.
+`connection.url` takes a comma-separated list of URLs. In this example we use only one url. Replace `<Humio host>` with the base URLs for the Humio server, for example `http://localhost:8080`. `<Humio dataspace>` should be replaced with the name of the dataspace you want to send all your messages to.
 
 Save the above JSON to a file named `humio-connect.json`.
 
