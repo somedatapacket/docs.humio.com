@@ -193,7 +193,9 @@ Make sure Humio is running, otherwise the connector will fail during start up.
 Now we can initiate the connector with the above configuration with the following Curl commands:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" --data-binary "@humio-connect.json" http://localhost:10082/connectors
+curl -X POST -H "Content-Type: application/json" \
+  --data-binary "@humio-connect.json" \
+  http://localhost:10082/connectors
 ```
 
 If you need to reconfigure, the connector can be removed using:
@@ -204,7 +206,10 @@ curl -XDELETE http://localhost:10082/connectors/humio-sink
 Now we have all the different pieces running. We can add data to our Kafka topic and check it is sent to Humio:
 
 ```bash
-echo '{"@timestamp": "2018-06-03T20:53:23Z", "message": "hello world"}' | docker exec -i  humio-kafka-connect kafka-console-producer --broker-list kafka:9092 --topic logs
+echo '{"@timestamp": "2018-06-03T20:53:23Z", "message": "hello world"}' \
+ | docker exec -i  humio-kafka-connect kafka-console-producer \
+                     --broker-list kafka:9092 \
+                     --topic logs
 ```
 
 Go to Humio and find the event in the dataspace you configured. Remember to set the search time interval enough back in time to find the above event.
