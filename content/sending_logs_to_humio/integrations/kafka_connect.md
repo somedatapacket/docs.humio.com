@@ -144,10 +144,9 @@ plugin.path=/usr/share/java
 Start the Connector with the following command
 
 ```bash
-docker run -i -t \
+docker run -it -d \
   -p 10082:10082 \
   --name=humio-kafka-connect \
-  --rm \
   -v $(pwd):/config \
   --add-host kafka:<Kafka server> \
   confluentinc/cp-kafka-connect:4.1.1-2 connect-distributed /config/worker.properties
@@ -159,51 +158,48 @@ Replace `<Kafka server>` with the IP of your one your kafka servers. <!--TODO: f
 `humio-kafka-connect` Docker container we have just started to run our connector.
 
 ```bash
-docker exec -i -t humio-kafka-connect kafka-topics --zookeeper kafka:2181 --create --topic logs --partitions 1 --replication-factor 1
+docker exec -it humio-kafka-connect kafka-topics --zookeeper kafka:2181 --create --topic logs --partitions 1 --replication-factor 1
 ```
 
 Above we created the topic `logs`. It can be replaced with the topic name you want to use and you can change other configurations as well.
 
-
-Now the Elasticsearch connector is ready to be started. But first we will create the JSON configuration:
-
+Now the Elasticsearch connector is ready to be started so first we will create the JSON configuration:
 ```json
 {
   "name": "humio-sink",
   "config" : {
     "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
     "tasks.max": 1,
-    "topics": "$TOPICS",
+    "topics": "<topics>",
     "key.ignore": true,
     "schema.ignore": true,
     "behavior.on.malformed.documents": "warn",
     "drop.invalid.message": true,
-    "connection.url": "$HUMIO_HOST/api/v1/dataspaces/DATASPACE/ingest/elasticsearch",
+    "connection.url": "<Humio host>/api/v1/dataspaces/<Humio dataspace>/ingest/elasticsearch",
     "type.name": "mytype",
     "max.retries": 1000
   }
 }
 ```
 
-`$TOPICS` should be replaced with a comma-separated list of topics to read data from.  
-`connection.url` takes a comma-separated list of URLs. In this example we use just one. Replace `$HUMIO_HOST` with the base URLs for the Humio server, for example http://localhost:8080. `$DATASPACE` should be replaced with a dataspace name.
+`<topics>` should be replaced with a comma-separated list of topics to read data from.  
+`connection.url` takes a comma-separated list of URLs. In this example we use only one url. Replace `<Humio host?` with the base URLs for the Humio server, for example `http://localhost:8080`. `<Humio dataspace>` should be replaced with the name of the dataspace you want to send all your messages to.
 
-Save the above JSON to a file called `humio-connect.json`
+Save the above JSON to a file named `humio-connect.json`.
 
-
-Make sure Humio is running, otherwise the connector will complain.
-Now we can start the connector with the above configuration with the following Curl commands
+Make sure Humio is running, otherwise the connector will fail during start up.
+Now we can initiate the connector with the above configuration with the following Curl commands:
 
 ```bash
-curl -v -X POST -H "Content-Type: application/json" --data-binary "@humio-connect.json" http://localhost:10082/connectors
+curl -X POST -H "Content-Type: application/json" --data-binary "@humio-connect.json" http://localhost:10082/connectors
 ```
 
-If you need to reconfigure. the connector can be removed using:
+If you need to reconfigure, the connector can be removed using:
 ```bash
 curl -XDELETE http://localhost:10082/connectors/humio-sink
 ```
 
-Now we have all the different pieces running. We can add data to our Kafka topic and check it is send to Humio:
+Now we have all the different pieces running. We can add data to our Kafka topic and check it is sent to Humio:
 
 ```bash
 echo '{"@timestamp": "2018-06-03T20:53:23Z", "message": "hello world"}' | docker exec -i  humio-kafka-connect kafka-console-producer --broker-list kafka:9092 --topic logs
