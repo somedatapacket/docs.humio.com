@@ -1,0 +1,17 @@
+pipeline:
+  hugo:
+    image: cbrgm/drone-hugo:latest
+    validate: true
+  docker-build:
+    image: plugins/docker
+    secrets: [ docker_username, docker_password ]
+    repo: humio/docs
+    tags:
+      - latest
+      - ${DRONE_COMMIT}
+#  deploy:
+#    image: e20co/drone-marathon
+#    server: http://marathon.mesos:8080
+#    marathonfile: marathon.json
+#    values:
+#      - drone_commit
