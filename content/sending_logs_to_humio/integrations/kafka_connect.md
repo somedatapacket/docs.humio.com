@@ -1,6 +1,5 @@
 ---
 title: "Kafka connect"
-draft: true
 ---
 
 [Kafka Connect](https://kafka.apache.org/documentation/#connect) is a framework for connecting Kafka with other systems such as Humio. If you have your data in Kafka consider this approach for sending data to Humio.
@@ -23,6 +22,8 @@ Contact us if you need this feature, we can add another way of authenticating ag
 ## Configuring the kafka connector
 <!-- Some intro about what to do with the following -->
 
+This section shows how to configure the Kafka connector to send data to Humio. Configuration is done in 2 parts. A `worker.properties` properties file and a JSON request with the `connector properties` starting the connector.
+
 ### Worker.properties
 The worker properties for the connector could look like below. It uses JSON for Serialization and does not use schemas.
 
@@ -31,9 +32,7 @@ bootstrap.servers=<Kafka server 1>:9092,<Kafka server 2>:9092,<Kafka server n>:9
 offset.flush.interval.ms=1000
 
 rest.port=10082
-rest.host.name=<Kafka server 1>
-rest.advertised.port=10082
-rest.advertised.host.name=<Kafka server 1>
+rest.host.name=<hostname>
 
 internal.key.converter=org.apache.kafka.connect.json.JsonConverter
 internal.value.converter=org.apache.kafka.connect.json.JsonConverter
@@ -60,9 +59,10 @@ offset.storage.replication.factor=1
 status.storage.replication.factor=1
 ```
 
-Please see the [Kafka Connect properties documentation](https://kafka.apache.org/documentation/#connectconfigs) for a detailed explanation of the properties.  
 All `<key>` placeholders in the above configuration example will have to be replaced with concrete values. Also the last section, describing replication factor etc., should be configured to match your Kafka cluster and your requirements.
 A replication factor of 1 is only put in the configuration file to make it work on a single node. the Elasticsearch Connector must be available in the `plugin.path`.
+
+Please see the [Kafka Connect properties documentation](https://kafka.apache.org/documentation/#connectconfigs) for a detailed explanation of the properties.  
 
 ### Connector properties
 
@@ -85,7 +85,8 @@ The JSON with connector properties could look like below:
   }
 }
 ```
-`topics` specifies the topics data are read from. `connection.url` must point to the Humio ingest endpoint and specify a dataspace. In our experience setting `max.retries` high is important, as the connector will stop when reaching `max.retries` without success. The documentation [describes](https://docs.confluent.io/current/connect/connect-elasticsearch/docs/elasticsearch_connector.html#automatic-retries) how an exponential backup technique is used.
+`topics` specifies the topics data is read from. `connection.url` must point to the Humio ingest endpoint and specify a dataspace. `connection.url` can be a list of comma-separated urls, and supports loadbalancing.  
+In our experience setting `max.retries` high is important, as the connector will stop when reaching `max.retries` without success. The documentation [describes](https://docs.confluent.io/current/connect/connect-elasticsearch/docs/elasticsearch_connector.html#automatic-retries) how an exponential backup technique is used.
 Also check out the documentation, for setting batch size, buffering, flushing etc.
 
 Please refer to the [Elastcisearch Connector properties documentation](https://docs.confluent.io/current/connect/connect-elasticsearch/docs/configuration_options.html) for an explanation of the properties in the above example.  
@@ -103,7 +104,8 @@ This way it is possible (to some extend) to transform data before inserting it i
 The Elasticsearch Connector documents it guarantees exactly once delivery. This is not the case when used with Humio.
 Elastcicsearch supports idempotent writes, if a document ID is supplied by the client. The Connector commits back to Kafka the highest offset for which events has been written successfully. In the case of failures, it restarts from the last committed offset. By supporting idempotent writes, exactly once semantics can be supported.
 Humio is not designed like a traditionally database where you write a record with an ID, it is more of a append system and we do not support idempotent writes yet.
-This is one of the features we plan to improve in Humio.
+This is one of the features we plan to improve.
+To minimize the problem, the interval between committing the offset can be set low. this is done using the [`offset.flush.interval.ms` configuration](https://kafka.apache.org/documentation/#connectconfigs).
 
 ## Example running a Connector sending data to Humio
 In this example we assume Humio and Kafka are already running. We will use the [confluentinc/cp-kafka-connect](https://hub.docker.com/r/confluentinc/cp-kafka-connect/) Docker image as it has the [Confluent Elasticsearch connector](https://docs.confluent.io/current/connect/connect-elasticsearch/docs/index.html) installed.
@@ -205,4 +207,4 @@ Now we have all the different pieces running. We can add data to our Kafka topic
 echo '{"@timestamp": "2018-06-03T20:53:23Z", "message": "hello world"}' | docker exec -i  humio-kafka-connect kafka-console-producer --broker-list kafka:9092 --topic logs
 ```
 
-Go to Humio and find the event in the dataspace you configured. Remember to set the search time interval enough back to find the above event.
+Go to Humio and find the event in the dataspace you configured. Remember to set the search time interval enough back in time to find the above event.
