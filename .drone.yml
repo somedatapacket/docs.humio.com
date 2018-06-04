@@ -1,6 +1,6 @@
 pipeline:
   hugo:
-    image: humio/drone-hugo
+    image: mwldk/drone-hugo
     validate: true
   docker-build:
     image: plugins/docker
