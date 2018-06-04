@@ -15,3 +15,5 @@ pipeline:
     marathonfile: marathon.json
     values:
       - drone_commit
+    when:
+      branch: master
