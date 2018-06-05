@@ -68,15 +68,14 @@ in [API token](/sending_logs_to_humio/transport/http_api/#api-token).
 
 
 ## Single User {#single-user}
-
 Single user authentication is an easy way to get started with Humio,
 but with added security compared to the no-authentication mode, in
-that you need a password to login to Humio. The login user is
-_developer_.
+that you need a password to login to Humio. The login username is
+`developer`.
 
 {{% notice note %}}
-Be adviced that the password is stored in clear-text in the Humio
-configuration file and thus anybody with read-permissions to that file
+Be adviced that the **password is stored in clear-text in the Humio
+configuration file** and thus anybody with read-permissions to that file
 will have access to the password. The single user authentication
 method is meant as a quick way to get started, but for productions
 systems you should use some of the multi-user authentication methods.
@@ -85,10 +84,12 @@ systems you should use some of the multi-user authentication methods.
 To start Humio in single-user mode you need to specify the following
 two configuration settings:
 
-    AUTHENTICATION_METHOD=single-user
-    SINGLE_USER_PASSWORD=<your-password>
+```bash
+AUTHENTICATION_METHOD=single-user
+SINGLE_USER_PASSWORD=<your-password>
+```
 
-You login with the _developer_ user account and the password speficied
+You login with the `developer` user account and the password specified
 in the configuration file.
 
 ## By-Proxy {#by-proxy}
