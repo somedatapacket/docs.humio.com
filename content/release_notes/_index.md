@@ -4,6 +4,16 @@ weight: 9
 pre: "<b>9. </b>"
 ---
 
+## 2018-06-01
+Regular update release.  
+Data migrations: No  
+Configuration Changes: No  
+Version: 1.0.67
+
+- Support for GDPR: Hardened [audit logging](/operation/installation/audit_logs)
+- Improved search performance when reading data from spinning disk
+
+
 ## 2018-05-23
 Minor update release.  
 Data migrations: No  
