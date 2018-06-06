@@ -2,11 +2,12 @@
 title: "Kubernetes"
 ---
 
-Take advantage of Humio with our Kubernetes setup!
+Take advantage of Humio with your Kubernetes setup!
 
-To do this we’ll need to be sure the package manager for Kubernetes is installed - Helm. Directions for installing Helm for your particular OS flavor can be found on the [Helm Github page](https://github.com/kubernetes/helm).
+We'll start with Helm, the Kubernetes package manager. Directions for installing Helm for your particular OS flavor can be found on the [Helm Github page](https://github.com/kubernetes/helm).
 
-Once Helm is setup, create a file named `humio-agent.yaml` with the following content:
+Next, create a file named `humio-agent.yaml` with the following content:
+
 ```yaml
 backend:
   type: "es"
@@ -43,7 +44,7 @@ Take your ingest token from your Humio Dataspace page…
 
 ![Humio Data Space](/images/token.png)
 
-…and replace `<ingest-token>` with the ingest token. 
+…and replace `<ingest-token>` with the ingest token.
 
 Finally, we run a simple Helm command to get the logs rolling:
 
