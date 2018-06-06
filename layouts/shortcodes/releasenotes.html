@@ -1,0 +1,13 @@
+{{ $releaseNotes := getJSON "https://repo.humio.com/repository/maven-releases/com/humio/server/1.0.67/server-1.0.67.releases.json" }}
+{{ range $releaseNotes }}
+{{ $releaseName := .timestamp | dateFormat "2006-01-02"}}
+<h2 id="{{ $releaseName }}">{{ $releaseName }}</h2>
+<p>
+    {{ .title }}<br/>
+    Version: {{ .version}}<br/>
+    Data migrations: {{ .data_migrations }}<br/>
+    Configuration changes: {{ .configuration_changes | markdownify }}<br/>
+    {{ if .brief }}{{ .brief }}<br/> {{ end }}
+</p>
+{{if .changelog }}<div>{{ .changelog | markdownify }}</div>{{ end }}
+{{ end }}
