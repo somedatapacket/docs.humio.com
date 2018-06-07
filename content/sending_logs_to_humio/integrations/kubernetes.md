@@ -2,6 +2,12 @@
 title: "Kubernetes"
 ---
 
+When it comes to managing microservices in a Kubernetes cluster, Humio is a great way to get insights into your applications. While other log shippers are supported we mainly focus on using [Fluent Bit](https://fluentbit.io) for forwarding log messages to Humio. 
+
+If you're relatively new to Kubernetes, we recommend using the [Helm](#helm) method of installation. If you want more control we recommend the [advanced installation](#advanced-installation) method
+
+## Helm
+
 Take advantage of Humio with your Kubernetes setup!
 
 We'll start with Helm, the Kubernetes package manager. Directions for installing Helm for your particular OS flavor can be found on the [Helm Github page](https://github.com/kubernetes/helm).
@@ -53,3 +59,115 @@ $ helm install stable/fluent-bit --name=humio-agent -f humio-agent.yaml
 ```
 
 Once this is in place, your logs should be up and running.
+
+### Uninstall Chart
+
+Should you want to uninstall the pod, it can be done with the following command
+
+```bash
+$ helm delete --purge humio-agent
+```
+
+## Advanced installation
+
+The fine guys at Fluent has gone ahead a written a very handy guide for [installing Fluent Bit on Kubernetes](https://github.com/fluent/fluent-bit-kubernetes-logging), but a few deviations to the guide are required to make it work with Humio.
+
+{{% notice info %}}
+Make sure that you have [uninstalled the Chart](#uninstall-chart) if you went through the Helm installation method. 
+{{% /notice %}}
+
+Start by creating a namespace and configure service accounts, roles etc.
+
+```bash
+$ kubectl create namespace logging
+$ kubectl create -f https://raw.githubusercontent.com/fluent/fluent-bit-kubernetes-logging/master/fluent-bit-service-account.yaml
+$ kubectl create -f https://raw.githubusercontent.com/fluent/fluent-bit-kubernetes-logging/master/fluent-bit-role.yaml
+$ kubectl create -f https://raw.githubusercontent.com/fluent/fluent-bit-kubernetes-logging/master/fluent-bit-role-binding.yaml
+$ kubectl create -f https://docs.humio.com/kubernetes-files/fluent-bit-configmap.yaml
+``` 
+
+Create a new file, named `fluent-bit-ds.yaml` with the following content
+```yaml
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: fluent-bit
+  namespace: logging
+  labels:
+    k8s-app: fluent-bit-logging
+    version: v1
+    kubernetes.io/cluster-service: "true"
+spec:
+  template:
+    metadata:
+      labels:
+        k8s-app: fluent-bit-logging
+        version: v1
+        kubernetes.io/cluster-service: "true"
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "2020"
+        prometheus.io/path: /api/v1/metrics/prometheus
+    spec:
+      containers:
+      - name: fluent-bit
+        image: fluent/fluent-bit:0.13.2
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 2020
+        env:
+        - name: FLUENT_ELASTICSEARCH_HOST
+          value: "<humio-host>"
+        - name: FLUENT_ELASTICSEARCH_PORT
+          value: "9200"
+        - name:  FLUENT_ELASTICSEARCH_TLS
+          value: "On"
+        - name: HUMIO_INGEST_TOKEN
+          value: "<humio-ingest-token>"
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+        - name: fluent-bit-config
+          mountPath: /fluent-bit/etc/
+      terminationGracePeriodSeconds: 10
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+      - name: fluent-bit-config
+        configMap:
+          name: fluent-bit-config
+      serviceAccountName: fluent-bit
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
+```
+
+Don't forget to replace `<humio-host>` with the hostname of your Humio instance, i.e. `cloud.humio.com` and `<ingest-token>` with your [Humio ingest-token](/sending_logs_to_humio/ingest_token/).
+
+{{% notice note %}}
+Remember if you're an on-prem solution without TLS, the `FLUENT_ELASTICSEARCH_TLS` property should be switched to `Off`.
+{{% /notice %}}
+
+Finally, you need to install the daemonset
+
+```bash
+$ kubectl create -f fluent-bit-ds.yaml
+```
+
+Your container logs should now start to roll into Humio
+
+### Uninstall
+
+Since everything is installed in a namespace, uninstalling Fluent Bit is pretty simple
+
+```bash
+$ kubectl delete namespace logging
+```
