@@ -164,10 +164,33 @@ $ kubectl create -f fluent-bit-ds.yaml
 
 Your container logs should now start to roll into Humio
 
+### Additional filters
+In some cases you might want to make some changes to the Fluent Bit configuration. Easiest way to do that is changing the configmap by opening it in an editor with the following command
+
+```bash
+$ kubectl -n logging edit Configmap fluent-bit-config
+```
+
+Make your changes, for instance adding another filter, which will rename the `log` field to `rawstring`. Add the following to the bottom of the `data.filter-kubernetes.conf` section.
+```
+    [FILTER]
+        Name                Modify
+        Match               *
+        Rename              log rawstring
+```
+
+Save and exit your editor and restart Fluent Bit with
+
+```bash
+$ kubectl -n logging delete pod -l k8s-app=fluent-bit-logging
+```
+
 ### Uninstall
 
 Since everything is installed in a namespace, uninstalling Fluent Bit is pretty simple
 
 ```bash
 $ kubectl delete namespace logging
+$ kubectl delete clusterrole fluent-bit-read
+$ kubectl delete clusterrolebindings fluent-bit-read
 ```
