@@ -2,7 +2,7 @@ clean:
 	rm -rf public test data/releases.yml
 
 data/releases.yml:
-	curl -s https://repo.humio.com/repository/maven-releases/com/humio/server/1.0.67/server-1.0.67.releases.json > data/releases.yml
+	curl -s https://repo.humio.com/repository/maven-releases/com/humio/server/1.0.68/server-1.0.68.releases.json > data/releases.yml
 
 public: data/releases.yml
 	hugo

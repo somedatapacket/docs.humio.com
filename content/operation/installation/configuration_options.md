@@ -37,6 +37,9 @@ EXTERNAL_URL=https://humio01.example.com
 # It is important to set this property when using OAuth authentication or alerts
 PUBLIC_URL=https://humio.mycompany.com
 
+# Specify the replication factor for the Kafka ingest queue
+#INGEST_QUEUE_REPLICATION_FACTOR=2
+
 # Kafka bootstrap servers list. Used as `bootstrap.servers` towards kafka.
 # should be set to a comma separated host:port pairs string.
 # Example: `my-kafka01:9092` or `kafkahost01:9092,kafkahost02:9092`
