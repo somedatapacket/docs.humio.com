@@ -1,4 +1,8 @@
 pipeline:
+  make:
+    image: golang
+    commands:
+      - make data/releases.yml
   hugo:
     image: mwldk/drone-hugo
     validate: true
