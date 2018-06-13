@@ -33,8 +33,8 @@ Note, this API is still very much *work-in-progress*.
 |`/api/v1/clusterconfig/kafka-queues/partition-assignment/set-replication-defaults`| [POST](#managing-kafka-queue-settings) | Managing kafka queue settings
 |`/api/v1/listeners`| [GET,POST](#adding-a-ingest-listener-endpoint) | Add tcp listener (used for Syslog)
 |`/api/v1/listeners/$ID`| [GET,DELETE](#adding-a-ingest-listener-endpoint) | Add tcp listener (used for Syslog)
-|`/api/v1/dataspace/$DATASPACE/shardingrules`| [GET,POST](#setup-sharding-for-tags) | Setup sharding for tags
-|`/api/v1/dataspaces/$DATASPACE/datasources/$DATASOURCEID/autotagging`| [GET,POST,DELETE](#auto-tagging-high-volume-datasources) | Configure auto-tagging for high-volume datasources.
+|`/api/v1/dataspace/$DATASPACE/taggrouping`| [GET,POST](#setup-grouping-of-tags) | Setup grouping of tags
+|`/api/v1/dataspaces/$DATASPACE/datasources/$DATASOURCEID/autosharding`| [GET,POST,DELETE](#configure-auto-sharding-for-high-volume-datasources) | Configure auto-sharding for high-volume datasources.
 
 
 ## API token for local root access
@@ -365,35 +365,35 @@ Humio will try to increase the buffer to up to 128MB, but will accept whatever t
 sudo sysctl net.core.rmem_max=16777216
 ```
 
-## Setup sharding for tags
+## Setup grouping of tags
 
 ``` text
-GET    /api/v1/dataspaces/$DATASPACE/shardingrules
-POST   /api/v1/dataspaces/$DATASPACE/shardingrules
+GET    /api/v1/dataspaces/$DATASPACE/taggrouping
+POST   /api/v1/dataspaces/$DATASPACE/taggrouping
 ```
 
-Please note that this is a BETA feature for advanced users only.
+Please note that this is a feature for advanced users only.
 
 Humio recommends most users to only use the parser as a tag, in the field "#type". This is usually sufficient.
 
 Using more tags may speed up queries on large data volumes, but only works on a bounded value-set for the tag fields.
 The speed-up only affects queries prefixed with `#tag=value` pairs that significantly filter out input events.
 
-Tags are the fields with a prefix of `#` that are used internally to do sharding of data.
+Tags are the fields with a prefix of `#` that are used internally to do sharding of data into smaller streams
 A `datasource` is is created for every unique combination of tag values set by the clients (e.g. logshippers)
 Humio will reject ingested events once a certain number of datasources get created. The limit is currently 10.000 pr. dataspace.
 
 For some use cases, such as having the "client IP" from an accesslog as a tag, too many different tags will arise.
-For such a case, it is necessary to either stop having the field as a tag, or create a sharding rule on the tag field.
-Existing data is not re-written when sharding rules are added or changed.
-Changing the sharding rules will thus in it-self create more datasources.
+For such a case, it is necessary to either stop having the field as a tag, or create a grouping rule on the tag field.
+Existing data is not re-written when grouping rules are added or changed.
+Changing the gruping rules will thus in it-self create more datasources.
 
-Example setting the sharding rules for dataspace $DATASPACE
+Example setting the grouping rules for dataspace $DATASPACE
 to hash the field `#host` into 8 buckets, and `#client_ip` into 10 buckets.
 Note how the field names do not include the `#` prefix in the rules.
 
 ```bash
-curl http://localhost:8080/api/v1/dataspaces/$DATASPACE/shardingrules \
+curl http://localhost:8080/api/v1/dataspaces/$DATASPACE/taggrouping \
   -X POST \
   -H "Authorization: Bearer $TOKEN" \
   -H 'Content-Type: application/json' \
@@ -404,18 +404,18 @@ Adding a new set of rules using POST replaces the current set.
 The previous sets are kept, and if a previous one matches, then the previous one is reused.
 The previous rules are kept in the system, but may be deleted by Humio once all datasources referring them has been deleted (through retention settings)
 
-When using sharded tags in the query field, you can expect to get a speed-up of approximately the modulus compared to not including the tags in the query,
-provided you use an exact match on the field. If you use a wildcard (`*`) in the value for the sharded tag, the implementation currently scans all
+When using grouped tags in the query field, you can expect to get a speed-up of approximately the modulus compared to not including the tags in the query,
+provided you use an exact match on the field. If you use a wildcard (`*`) in the value for the grouped tag, the implementation currently scans all
 datasources that have a non-empty value for that field and filter the events to only get the results the match the wilcard pattern.
 
-For non-sharded tag fields, using a wildcard at either end of the value string to match is efficient.
+For non-grouped tag fields, using a wildcard at either end of the value string to match is efficient.
 
-Humio also suport auto-sharding of tags using the configuration variables MAX_DISTINCT_TAG_VALUES and TAG_HASHING_BUCKETS.
+Humio also suport auto-grouping of tags using the configuration variables MAX_DISTINCT_TAG_VALUES (Default is 1000) and TAG_HASHING_BUCKETS (default is 16).
 When an event arrive with a tag field with a new value, the number of distinct values for the tag is checked against MAX_DISTINCT_TAG_VALUES.
-It this threshold is exeeded, a new shardingrule is added with the modulus set to the value set in TAG_HASHING_BUCKETS.
+It this threshold is exeeded, a new grouping rule is added with the modulus set to the value set in TAG_HASHING_BUCKETS.
 
-Since sharding rules is a BETA feature, feedback is welcome. IF you happen to read this and is using a hosted Humio instance, please contact support
-if you wish to add sharding rules to your dataspace.
+IF you happen to read this and is using a hosted Humio instance, please contact support
+if you wish to add grouping rules to your dataspace.
 
 
 ## Importing a dataspace from another Humio instance (BETA)
@@ -462,7 +462,7 @@ datafiles at first, but get all the metadata. When you rerun the POST,
 the metadata is inserted/updated again, if it no longer matches
 only. The new dataspace files will get copied at that point in time.
 
-## Auto tagging high-volume datasources
+## Configure auto-sharding for high-volume datasources
 
 A datasource is ultimately bounded by the volume that one CPU thread can manage to compress and write to the filesystem. This is typically in the 1-4 TB/day range.
 To handle more ingest traffic from a spefific data source, you ned to provide more variability in the set of tags. But in some cases it may not be possible or desirable to adjust
@@ -475,12 +475,14 @@ The API requires root access.
 Examples:
 
 ``` bash
-curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$DATASPACE/datasources/$DATASOURCEID/autotagging"
-curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$DATASPACE/datasources/$DATASOURCEID/autotagging"
-curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$DATASPACE/datasources/$DATASOURCEID/autotagging?number=7"
-curl -XDELETE -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$DATASPACE/datasources/$DATASOURCEID/autotagging"
+curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$DATASPACE/datasources/$DATASOURCEID/autosharding"
+curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$DATASPACE/datasources/$DATASOURCEID/autosharding"
+curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$DATASPACE/datasources/$DATASOURCEID/autosharding?number=7"
+curl -XDELETE -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$DATASPACE/datasources/$DATASOURCEID/autosharding"
 ```
 
-Humio also supports detecting if there is high load on a datasource, and automatically trigger this autotagging on the datasources.
-This is configured through the settings AUTOSHARDING_TRIGGER_SPEED, which is compared to the ingest speed in bytes/second on each datasource.
-The comparison is done on a 5-minute window of ingest. The default value is AUTOSHARDING_TRIGGER_SPEED=(6 * 1024 * 1024) = 6 MB/s ≃ 0.5 TB/day.
+Humio also supports detecting if there is high load on a datasource, and automatically trigger this auto-sharding on the datasources.
+This is configured through the settings AUTOSHARDING_TRIGGER_DELAY_MS, which is compared to the time an even spends in the ingest pipeline inside Humio.
+
+When the delay threshold is exceeded, the number of shards on that datasource (combination of tags) is doubled.
+The default value for AUTOSHARDING_TRIGGER_DELAY_MS is 60000 millies (60 seconds.)
