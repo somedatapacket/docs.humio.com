@@ -517,8 +517,10 @@ div.notices.warning p:first-child:after {
     content: 'Warning';
 }
 div.notices.note p {
+  background: #E7F2FA;
+}
+div.notices.note p:first-child {
     border-top: 30px solid #6AB0DE;
-    background: #E7F2FA;
 }
 div.notices.note p:first-child:after {
     content: 'Note';

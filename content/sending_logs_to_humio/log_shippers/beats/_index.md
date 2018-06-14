@@ -51,14 +51,11 @@ You can use the following `elasticsearch` output configuration template:
 ``` yaml
 output:
   elasticsearch:
-    hosts: ["https://<humio-host>:443/api/v1/dataspaces/<dataspace>/ingest/elasticsearch"]
-    username: <ingest-token>
+    hosts: ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+    username: $INGEST_TOKEN
 ```
-Where:
 
-* `<humio-host>` - is the name of your Humio server
-* `<dataspace>` - is the name of your dataspace on your server
-* `<ingest-token>` - is the [ingest token](/sending_logs_to_humio/ingest_tokens/) for your dataspace
+{{< partial "common-rest-params" >}}
 
 {{% notice note %}}
 To optimize performance for the data volumes you want to send, and to keep shipping latency down, change the default settings for `compression_level`, `bulk_max_size` and `flush_interval`.

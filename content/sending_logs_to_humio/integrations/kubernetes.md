@@ -2,7 +2,7 @@
 title: "Kubernetes"
 ---
 
-When it comes to managing microservices in a Kubernetes cluster, Humio is a great way to get insights into your applications. While other log shippers are supported we mainly focus on using [Fluent Bit](https://fluentbit.io) for forwarding log messages to Humio. 
+When it comes to managing microservices in a Kubernetes cluster, Humio is a great way to get insights into your applications. While other log shippers are supported we mainly focus on using [Fluent Bit](https://fluentbit.io) for forwarding log messages to Humio.
 
 If you're relatively new to Kubernetes, we recommend using the [Helm](#helm) method of installation. If you want more control we recommend the [advanced installation](#advanced-installation) method
 
@@ -73,7 +73,7 @@ $ helm delete --purge humio-agent
 The fine guys at Fluent has gone ahead a written a very handy guide for [installing Fluent Bit on Kubernetes](https://github.com/fluent/fluent-bit-kubernetes-logging), but a few deviations to the guide are required to make it work with Humio.
 
 {{% notice info %}}
-Make sure that you have [uninstalled the Chart](#uninstall-chart) if you went through the Helm installation method. 
+Make sure that you have [uninstalled the Chart](#uninstall-chart) if you went through the Helm installation method.
 {{% /notice %}}
 
 Start by creating a namespace and configure service accounts, roles etc.
@@ -84,7 +84,7 @@ $ kubectl create -f https://raw.githubusercontent.com/fluent/fluent-bit-kubernet
 $ kubectl create -f https://raw.githubusercontent.com/fluent/fluent-bit-kubernetes-logging/master/fluent-bit-role.yaml
 $ kubectl create -f https://raw.githubusercontent.com/fluent/fluent-bit-kubernetes-logging/master/fluent-bit-role-binding.yaml
 $ kubectl create -f https://docs.humio.com/kubernetes-files/fluent-bit-configmap.yaml
-``` 
+```
 
 Create a new file, named `fluent-bit-ds.yaml` with the following content
 ```yaml
@@ -172,11 +172,11 @@ $ kubectl -n logging edit Configmap fluent-bit-config
 ```
 
 Make your changes, for instance adding another filter, which will rename the `log` field to `rawstring`. Add the following to the bottom of the `data.filter-kubernetes.conf` section.
-```
-    [FILTER]
-        Name                Modify
-        Match               *
-        Rename              log rawstring
+```ini
+[FILTER]
+Name     Modify
+Match    *
+Rename   log rawstring
 ```
 
 Save and exit your editor and restart Fluent Bit with
