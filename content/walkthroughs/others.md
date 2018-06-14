@@ -9,7 +9,7 @@ space) and then use [Filebeat](/sending_logs_to_humio/log_shippers/beats/) to sh
 to Humio.
 
 {{% notice note %}}
-If you are using Docker for your own application, go to the [Docker Containers documentation](/sending_logs_to_humio/integrations/docker/)
+If you are using Docker for your own application, go to the [Docker Containers documentation]({{ relref "docker.md" }})
 {{% /notice %}}
 
 
@@ -24,13 +24,13 @@ Example Filebeat configuration with a custom log type:
 ```yaml
 filebeat.prospectors:
 - paths:
-    - <path-to-your-application-log>
+    - $PATH_TO_APPLICATION_LOG
   fields:
-    "@type": <name-of-your-application-log-parser>
+    "@type": $PARSER_NAME
 
 output.elasticsearch:
-  hosts: ["https://<humio-host>:443/api/v1/dataspaces/<dataspace>/ingest/elasticsearch"]
-  username: <ingest-token>
+  hosts: ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+  username: $INGEST_TOKEN
 ```
 
-See the detailed [documentation for Filebeat](/sending_logs_to_humio/log_shippers/beats/filebeat/)
+See the detailed [documentation for Filebeat]({{< relref "filebeat.md" >}})

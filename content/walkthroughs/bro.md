@@ -151,8 +151,8 @@ To see data flowing into Humio in realtime, select a time interval of "1m window
 
 With everything in place, Bro data is streaming into Humio.  
 
-In the above Filebeat configuration events are given a `#path` tag describing from which file they originate.
-To search for data from the `http.log`:
+In the above Filebeat configuration events are given a `#path` tag describing
+from which file they originate. To search for data from the `http.log`:
 
 ```
 #path=http
@@ -164,7 +164,8 @@ Or search data from the `conn.log`
 #path=conn
 ```
 
-Just leave out the `#path` filter to search across all files. For example we could count how many events we have in the different files:
+Just leave out the `#path` filter to search across all files. For example we
+could count how many events we have in the different files:
 
 ```
 groupBy(#path, function=count())
