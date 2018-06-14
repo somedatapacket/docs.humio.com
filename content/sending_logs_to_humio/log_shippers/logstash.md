@@ -10,7 +10,7 @@ together. In this scenario, you use Logstash as the log collection and
 parsing agent, and instruct it to send the data to Humio.
 
 {{% notice tip %}}
-__Humio supports the Elasticsearch bulk insertion API__  Just [point the Elastic outputter to Humio](#configuration).
+__Humio supports the ElasticSearch bulk insertion API__  Just [point the Elastic outputter to Humio](#configuration).
 {{% /notice %}}
 
 
@@ -34,7 +34,7 @@ You can find the complete documentation for Logstash at [the Reference page of t
 
 ## Configuration
 
-Because Humio supports parts of the Elasticsearch insertion API, you
+Because Humio supports parts of the ElasticSearch insertion API, you
 can use the built-in `elasticsearch` output in the Logstash
 configuration.
 
@@ -69,7 +69,7 @@ five seconds. It passes the output from this command to Humio.
 
 ### Field mappings
 
-When you use the Elasticsearch output, Logstash outputs JSON
+When you use the ElasticSearch output, Logstash outputs JSON
 objects. The JSON for an event sent to Humio with the above
 configuration looks like this:
 

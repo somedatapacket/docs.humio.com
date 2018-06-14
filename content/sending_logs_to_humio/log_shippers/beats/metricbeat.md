@@ -36,9 +36,9 @@ You can find installation documentation for Metricbeat at [the Installation page
 
 ## Configuration
 
-Because Humio supports parts of the Elasticsearch insertion API, you can send
+Because Humio supports parts of the ElasticSearch insertion API, you can send
 data from Metricbeat to Humio by configuring Metricbeat to use the built-in
-Elasticsearch output.
+ElasticSearch output.
 
 {{% notice note %}}
 ***Configuration documentation***

@@ -85,7 +85,7 @@ filebeat.prospectors:
   fields:
     type: bro-json
 
-#-------------------------- Elasticsearch output ------------------------------
+#-------------------------- ElasticSearch output ------------------------------
 output.elasticsearch:
   hosts: ["http://${HUMIO_HOST}:8080/api/v1/dataspaces/${DATASPACE}/ingest/elasticsearch"]
   username: "${INGEST_TOKEN}"

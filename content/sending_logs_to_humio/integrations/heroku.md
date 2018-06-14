@@ -21,8 +21,8 @@ heroku drains:add https://$INGEST_TOKEN@$HOST/api/v1/dataspaces/$REPOSITORY_NAME
 ## Extra: Parsing Heroku Logs
 
 You can configure a parser to deal with the contents of your specific logs.
-In the example below, the logplex ingester only deals with the log up to the `-` in the middle.  Anything
-after that is specific to the particular kind of log.
+In the example below, the logplex ingester only deals with the log up to the `-` in the middle.
+Anything after that is specific to the particular kind of log.
 
 ```
 <40>1 2012-11-30T06:45:29+00:00 host app web.3 - State changed from starting to up

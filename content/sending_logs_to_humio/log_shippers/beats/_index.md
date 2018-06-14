@@ -41,9 +41,9 @@ These [Community Beats](https://www.elastic.co/guide/en/beats/libbeat/current/co
 ## General Output Configuration
 
 All beats are built using the [libbeat library](https://github.com/elastic/beats) and
-share output configuration.  Humio supports parts of the Elasticsearch
+share output configuration.  Humio supports parts of the ElasticSearch
 ingest API, so to send data from Beats to Humio, you just use the
-[Elasticsearch output](https://www.elastic.co/guide/en/beats/filebeat/current/elasticsearch-output.html)
+[ElasticSearch output](https://www.elastic.co/guide/en/beats/filebeat/current/elasticsearch-output.html)
 (the documentation is identical for all Beats).
 
 You can use the following `elasticsearch` output configuration template:

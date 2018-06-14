@@ -54,7 +54,7 @@ KAFKA_SERVERS=kafkahost01:9092,kafkahost02:9092
 
 # Select the TCP port to listen for http.
 #HUMIO_PORT=8080
-# Select the TCP port for Elasticsearch Bulk API
+# Select the TCP port for ElasticSearch Bulk API
 #ELASTIC_PORT=9200
 
 # Select the IP to bind the udp/tcp/http listening sockets to.

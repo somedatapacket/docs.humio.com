@@ -37,7 +37,7 @@ You can find installation documentation for Filebeat at [the Filebeat Installati
 
 ## Configuration
 
-Humio supports parts of the Elasticsearch bulk ingest API.
+Humio supports parts of the ElasticSearch bulk ingest API.
 Data can be sent to Humio by configuring Filebeat to use the built in Elastic Search output.
 
 {{% notice note %}}
@@ -76,7 +76,7 @@ It is possible to insert a prospector configuration (with `paths` and `fields` e
 * Specify the type of the events. Humio will use the type field to decide which parser it will use to parse the incoming events.
 This is done by specifying the `type` field in the fields section. See the Parsing Data section below.
 * Add other fields in the fields section. These fields, and their values, will be added to each event.
-* Insert the URL containing the Humio host in the `hosts` field in the Elasticsearch output. For example `https://cloud.humio.com:443`
+* Insert the URL containing the Humio host in the `hosts` field in the ElasticSearch output. For example `https://cloud.humio.com:443`
 Note that the URL specifies the Data Space that Humio sends events to. 
 In the example, the URL points to Humio in the cloud, which is fine if you are using our hosted service.  
 It is important to specify the port number in the URL otherwise Filebeat defaults to using 9200.
