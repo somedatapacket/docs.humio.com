@@ -10,7 +10,7 @@ which is supported by Humio.
 
 {{% notice note %}}
 On-prem users will have to enable the ElasticSearch bulk endpoint on port 9200. See `ELASTIC_PORT` in
-[configuration options]({{< relref "operation/installation/configuration_options.md#example-configuration-file-with-comments" }})
+[configuration options]({{< relref "configuration_options.md#example-configuration-file-with-comments" >}})
 {{% /notice %}}
 
 ## Minimal configuration
@@ -42,7 +42,7 @@ template(name="humiotemplate"
 ```
 
 Remember to replace `$HOST` with your Humio host, i.e. `cloud.humio.com`
-and `$INGEST_TOKEN` with an [ingest token]({{< relref "sending_logs_to_humio/ingest_tokens.md" >}})
+and `$INGEST_TOKEN` with an [ingest token]({{< relref "ingest_tokens.md" >}})
 for your repository.
 
 Furthermore `bulkmode` and `usehttps` _has_ to be set to `on` for
