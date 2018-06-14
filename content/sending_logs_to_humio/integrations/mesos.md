@@ -16,19 +16,19 @@ forwarded to Humio
 At this point two ways of deploying the framework is supported
  * Universe package
  * Marathon config
- 
-### Universe<a name="universe"></a>
+
+### Universe {#universe}
 Configuration parameters for user of the dcos CLI tool
 
-| Property            | Description                                                                 |
-|---------------------|-----------------------------------------------------------------------------|
+| Property            | Description                                                                    |
+|---------------------|--------------------------------------------------------------------------------|
 | `humio.host`        | Hostname of Humio instance, i.e. `cloud.humio.com`                             |
-| `humio.dataspace`   | Dataspace on Humio instance                                                 |
-| `humio.ingestToken` | Ingest Token of dataspace                                                   |
-| `service.name`      | DC/OS service name                                                          |
-| `node.cpus`         | Amount of CPUs allocated to Humio agents on each node                       |
-| `node.mem`          | Amount of memory allocated to Humio agents on each node                     |
-| `node.datadir`      | Directory path for storing state on each node. Default is `/var/humio/data` |
+| `humio.dataspace`   | Repository on Humio instance (Repositories where previously called Dataspaces) |
+| `humio.ingestToken` | Ingest Token of Repository                                                     |
+| `service.name`      | DC/OS service name                                                             |
+| `node.cpus`         | Amount of CPUs allocated to Humio agents on each node                          |
+| `node.mem`          | Amount of memory allocated to Humio agents on each node                        |
+| `node.datadir`      | Directory path for storing state on each node. Default is `/var/humio/data`    |
 
 ### Marathon
 The minimum recommended Marathon configuration should look something like this.
@@ -88,9 +88,10 @@ The minimum recommended Marathon configuration should look something like this.
 }
 ```
 
-Don't forget to replace `{{humio.[host|dataspace|ingestToken]}}` as explained in [Universe](#Universe)
+Don't forget to replace `{{humio.[host|dataspace|ingestToken]}}` as explained in [Universe](#universe)
 
-## Task configuration<a name="taskconfiguration"></a>
+## Task configuration {#taskconfiguration}
+
 Configuration of tasks is managed via Mesos Task Labels. All labels are optional.
 
 | Label name                | Allowed value    | Description                                     |
@@ -101,7 +102,8 @@ Configuration of tasks is managed via Mesos Task Labels. All labels are optional
 | `HUMIO_MULTILINE_NEGATE`  | `true`,`false`   | Label for the `multiline.negate`                |
 | `HUMIO_MULTILINE_MATCH`   | `before`,`after` | Label for the `multiline.match`                 |
 
-For multiline configuration see the multiline section in the Filebeat documentation, https://www.elastic.co/guide/en/beats/filebeat/current/configuration-filebeat-options.html#multiline
+For multiline configuration see the multiline section in the [Filebeat documentation](https://www.elastic.co/guide/en/beats/filebeat/current/configuration-filebeat-options.html#multiline).
+
 
 ## Log fields
 
