@@ -3,8 +3,7 @@ title: "Audit Log"
 ---
 
 {{% notice warning %}}
-__BETA__  
-Audit logging is currently being implemented as is as such considered "BETA".
+Audit logging is currently being implemented as is as such considered in __Beta__.
 {{% /notice %}}
 
 Humio emits audit log events on many users actions.
@@ -52,7 +51,7 @@ The default retention settings for this dataspace is to keep the log for ever. P
 * Query. Every time a query is submitted on behalf of the user, either trough the UI or API using the API-token of a user.
   Note: Read-only dashboards are not logged here.
 
-# Permissions and ENFORCE_AUDITABLE mode
+## Permissions and `ENFORCE_AUDITABLE` mode
 
 Users with Humio `root role` by default has both `admin permissions` and `delete permissions` in all dataspaces, being able to query the data stored in the dataspace, add and remove users, and delete data.
 the `delete permission` also allows setting retention settings on a dataspace. This allows users with Humio `root role` unrestricted access to all data in the Humio cluster.

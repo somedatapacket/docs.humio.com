@@ -15,9 +15,7 @@ you don't run out of disk space.
 {{% /notice %}}
 
 {{% notice note %}}
-***Docker***
-
-If you are using Docker for your application, see the [Docker Containers documentation](/sending_logs_to_humio/integrations/docker/)
+If you are using __Docker__ for your application, see the [Docker Containers documentation](/sending_logs_to_humio/integrations/docker/)
 {{% /notice %}}
 
 

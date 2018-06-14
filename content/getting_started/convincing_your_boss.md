@@ -3,20 +3,18 @@ title: "Convincing your boss"
 weight: 3
 ---
 
+If you've already tried in-app [tutorial](/getting_started/tutorial/), you should already be convinced of Humio's power!
 
-## Overview
-
-If you've already tried our [tutorial](/getting_started/tutorial/), you are already be convinced you need to get Humio into your organization!
-
-This section explains the benefits Humio provides in business-friendly terms.
+This section explains the benefits Humio provides in business-friendly terms, so you can convince your boss that it is the
+right observability platform for your organization.
 
 ## Humio is **flexible**
 
-Regardless of the log management challenge, chances are Humio can fit in with your existing infrastructure. Humio supports a wide variety of sources for log ingestion, including Logstash (and its 100+ compatible log readers), Filebeat, Fluentd, NetFlow, and direct ingest using our built-in HTTP API.
+Regardless of the log management challenge, chances are Humio can fit in with your existing infrastructure. Humio supports a wide variety of sources for data ingestion, including Logstash (and its 100+ compatible log readers), Filebeat, Fluentd, NetFlow, and direct ingest using our built-in HTTP API.
 
-If there isn't an existing way to parse your data, then the Humio team can easily write a custom parser for you as part of the onboarding process.
+If there isn't an existing way to parse your data, then the Humio team can easily write a custom parser for you as part of the on-boarding process.
 
-When everything is ready to go, you can deploy Humio easily on your own servers or cloud infrastructure. Alternatively, you can let the Humio team take care of the infrastructure in a secure hosted solution. We make as many options as possible to ensure you get the log management solution you are looking for.
+When everything is ready to go, you can deploy Humio easily on your own servers or cloud infrastructure. Alternatively, you can let the Humio team take care of the infrastructure in a secure hosted solution. We make as many options available as possible to ensure you get the log management solution you are looking for.
 
 ## Humio is **real time**
 
@@ -36,7 +34,6 @@ Humio also let's you create simple dashboards you can publish key metrics in a w
 
 Humio is also easy to deploy. We provide self-contained Docker images for deployment on your on-premises or cloud infrastructure, or your can let the Humio team take care of the hosting and management in a hosted solution.
 
-<!--
 ## Humio is **scalable**
 
 We designed Humio to scale to deal with huge volumes of data without breaking a sweat (or your wallet).
@@ -44,7 +41,6 @@ We designed Humio to scale to deal with huge volumes of data without breaking a 
 Our licensing model lets you choose the scale of solution that fits your needs. We price the system using an annual subscription rate based on the amount of data that you plan to ingest per day.
 
 The Humio team stands behind the product, and can advise on the best deployment model for your use case.
--->
 
 ## Humio is **smart**
 

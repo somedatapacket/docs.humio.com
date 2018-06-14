@@ -10,19 +10,13 @@ When shipping data to Humio, check if there is a built-in parser for the logs be
 The built-in parsers are also a good starting point when creating custom parsers.
 
 {{% notice note %}}
-***About Parsers***
-
-See the [Parsing logs](/sending_logs_to_humio/parsers/parsing/) page for an overview of how parsers work.
+See the [Parsing Logs](/sending_logs_to_humio/parsers/parsing/) page for an overview of how parsers work.
 {{% /notice %}}
 
-{{% notice note %}}
-You can try out each of the built-in parsers directly in the Humio interface.
-
-To try a parser, open its page and check the supported regular expression and timestamp formats. When you paste in test data, Humio shows the result of parsing.
-{{% /notice %}}
-
+You can examine each of the built-in parsers directly in the Humio UI. Just open its page and check the supported regular expression and timestamp formats. When you paste in test data Humio shows the result of parsing.
 
 ## accesslog
+
 This parser can handle the `accesslog` format. This format is the default log format used by Apache and Nginx.
 
 The parser also supports putting the response time at the end of the log line.

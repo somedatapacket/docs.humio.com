@@ -33,6 +33,7 @@ License. The source code of jersey can be found at https://github.com/jersey/jer
 
 License | Dependency | Attribution
 --- | --- | ---
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | # net.java.dev.jna # jna # 4.5.1 | Copyright by the authors.
 [Apache License, Version 2.0](https://github.com/lomigmegard/akka-http-cors/blob/master/LICENSE) | ch.megard # akka-http-cors_2.12 # 0.2.2 | Copyright (c) Lomig Mégard
 [Apache License, Version 2.0](https://github.com/spray/spray-json/blob/master/LICENSE) | io.spray # spray-json_2.12 # 1.3.3 | Copyright (c) 2009-2011 Debasish Ghosh & Mathias Doenitz
 [Apache License, Version 2.0](https://github.com/dropwizard/metrics/blob/master/LICENSE) | com.yammer.metrics # metrics-core # 2.2.0 | Copyright 2010-2013 Coda Hale and Yammer, Inc. [NOTICE](https://github.com/dropwizard/metrics/blob/4.0-development/NOTICE)

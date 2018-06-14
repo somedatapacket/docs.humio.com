@@ -10,9 +10,7 @@ together. In this scenario, you use Logstash as the log collection and
 parsing agent, and instruct it to send the data to Humio.
 
 {{% notice tip %}}
-***Humio supports the Elasticsearch bulk insertion API*** 
-
-Just point the Elastic outputter to Humio as described [here](#configuration)
+__Humio supports the Elasticsearch bulk insertion API__  Just [point the Elastic outputter to Humio](#configuration).
 {{% /notice %}}
 
 
@@ -21,7 +19,6 @@ extensible architecture of Logstash to parse many kinds of data:
 
 * You can install one of the many available plugins that can parse
   many well-known data formats.
-
 * You can use the Grok language to build custom parsers for unusual
   data formats. Grok has many built-in patterns to help parse your
   data.

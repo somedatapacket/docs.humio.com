@@ -38,8 +38,7 @@ For example, the following query has these components:
 ```
 
 {{% notice tip %}}
-To chain query expressions, use the 'pipe' character, (`|`), between each of the query expressions.
-
+To chain query expressions, use the 'pipe' character, (`|`), between each of the query expressions.  
 This causes Humio to pass the output from one expression into the next expression.
 {{% /notice %}}
 
@@ -92,7 +91,7 @@ text and as numbers.
 
 ### Examples
 
-**Text fields**
+#### Text fields
 
 | Query | Description |
 |-------|-------------|
@@ -106,7 +105,7 @@ text and as numbers.
 |`name = ""` | Match events that have a field called `name` but with the empty string as value.
 |`user="Alan Turing"` | You do not need to put spaces around operators (for example, `=` or `!=`).
 
-**Regex filters**
+#### Regex filters
 
 In addition to globbing (`*` appearing in match strings) you can match fields using regular expressions.
 
@@ -117,7 +116,7 @@ In addition to globbing (`*` appearing in match strings) you can match fields us
 |`loglevel = /error/i` | The `loglevel` field matches `error` case insensitively, i.e. it could be `Error`, `ERROR` or `error`.
 
 
-**Comparison operators on numbers**
+#### Comparison operators on numbers
 
 | Query | Description |
 |-------|-------------|
@@ -129,8 +128,6 @@ In addition to globbing (`*` appearing in match strings) you can match fields us
 | `statuscode > 400` | Greater than|
 | `400 = statuscode` | (!) The attribute '400' is equal to `statuscode`.|
 | `400 > statuscode` | This comparison generates an error. You can only perform a comparison between numbers. In this example, `statuscode` is not a number, and `400` is the name of an attribute.|
-
-
 
 {{% notice note %}}
 The left-hand-side of the operator is interpreted an attribute name. If you write `200 = statuscode`, Humio tries to find an attribute named `200` and test if its value is `"statuscode"`.
@@ -147,6 +144,7 @@ You can use this behavior to match events that do not have a given field, using 
 
 You can combine filters using the `and`, `or`, `not` Boolean operators, and group them with parentheses.
 
+
 ### Examples
 
 | Query | Description |
@@ -161,7 +159,6 @@ You can combine filters using the `and`, `or`, `not` Boolean operators, and grou
 | `foo not statuscode=200` | This query is equivalent to the query `foo and statuscode!=200`.
 
 
-
 ## Composing queries
 
 You can build advanced queries can by combining small queries using pipes.
@@ -172,12 +169,11 @@ Humio introduces events into each query pipeline, and filters, transforms, and a
 
 The following example shows a typical query pipeline:
 
-| Query | Description |
-|-------|-------------|
+| Query                                         | Description                                                          |
+|-----------------------------------------------|----------------------------------------------------------------------|
 | <code>statuscode != 200 &#124; count()</code> | Count the number of `statuscode` values that are not equal to `200`. |
 
 <!-- ^^ Workaround to get pipe-in-code-in-table. -->
-
 
 {{% notice note %}}
 Queries can be built by combining filters and functions. You can find out more about [Query Functions](/searching_logs/query_functions/).
@@ -195,7 +191,8 @@ to find the entries that have less than 1000 free disk space:
 `regex("disk_free=(?<space>[0-9]+)") | space < 1000`
 
 {{% notice tip %}}
-Since regular expressions do need some computing power, it is best to do as much simple filtering as possible earlier in the query chain before applying the regex function.
+Since regular expressions do need some computing power, it is best to do as much
+simple filtering as possible earlier in the query chain before applying the regex function.
 {{% /notice %}}
 
 You can also use regex expressions to extract new fields. So the above could also
@@ -215,8 +212,10 @@ type=FOO or /disk_free=(?<space>[0-9]+)/ | space < 1000
 ## Assigning new attributes from functions
 
 Attributes can also get a value as the output of many functions.
-Most functions set their result in a field that has the function name prefixed qith a "_" as name by default. E.g. the "count" function outputs to "_count" by default.
-The name of the target field can be set using the parameter "as" on most functions. E.g. "count(as=cnt)" assigns the result of the count to the field named "cnt"
+Most functions set their result in a field that has the function name prefixed
+with a '\_' as name by default. E.g. the "count" function outputs to `_count` by default.
+The name of the target field can be set using the parameter `as` on most functions.
+E.g. `count(as=cnt)` assigns the result of the count to the field named `cnt`.
 
 ### Eval syntax
 
@@ -265,26 +264,28 @@ Backticks work in `eval` and the `:=` shorthand for eval only and provides one l
 The assignment happens to the field with the name that is the value of the backticked field.
 
 An example on events with the following fields, which is e.g. the outcome of `top(key)`.:
+
 ```
-  { key="foo", value="2" }
-  { key="bar", value="3" }
-  ...
+{ key="foo", value="2" }
+{ key="bar", value="3" }
+...
 ```
+
 Using
 ```
-  ... | `key`:=value | ...
+... | `key`:=value | ...
 ```
 will get you events with
 ```
-  { key="foo", value="2", foo="2" }
-  { key="bar", value="3", bar="3" }
-  ...
+{ key="foo", value="2", foo="2" }
+{ key="bar", value="3", bar="3" }
+...
 ```
 
 Then you can time chart them by doing
 
 ```
-    timechart( function={ top(key) | `key` := _count } )
+timechart( function={ top(key) | `key` := _count } )
 ```
 
 <!-- TODO:  But maybe we should have an alternative function to do the transpose, such as `transpose([key,value])` which takes a `Seq[{ key=k, value=v }]` and turns it onto a single event, with `{ k1=v1, k2=v2, ... }`. -->
@@ -297,6 +298,7 @@ But there are several ways to accomplish conditional evaluation
 Often you just want a default value for a field that some events may be missing.
 You can achieve this by using the fact that a function that assign an attribute (such as `eval`) only assigns the field if the input fields exists.
 You can thus set a default value if some other value is not present. Here we set `foo` to `missing` if there is no `bar` field, and otherwise set `foo` to the value of the `bar` field.
+
 ```
 ... | eval(foo="missing") | eval(foo=bar) | ..."
 ```
@@ -379,7 +381,6 @@ to add some description:
 #type=accesslog   // choose the type
 | groupby(url)    // count urls
 | sort(limit=20)  // choose the most frequently used
-
 ```
 
 The Humio query language supports `// single line` and `/* multi line */`
