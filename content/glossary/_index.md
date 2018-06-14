@@ -27,12 +27,16 @@ If you need more combinations, then we recommend that you use attributes on indi
 
 ### Repositories
 
-Humio organizes data into 'Repositories'. Each Repository has its own set of users, and a single directory on disk.
+Humio organizes data into [Repositories]({{< relref "getting_started/repositories.md" >}}).
+Each Repository has its own set of users, and a single directory on disk.
 
 When you set up data quotas and retention policies, you configure them for each Repository.
 
 {{% notice note %}}
-Queries cannot span more than one Repository. But you can create 'Virtual Repositores' that do span multiple Repositories to achive a cross-repostitory search. See [Repositories](/repositories).
+Queries cannot span more than one Repository. But you can create
+[Virtual Repositories]({{< relref "getting_started/virtual_repositories.md" >}})
+that do span multiple Repositories to achieve a cross-repostitory search.
+See [Repositories]({{< relref "getting_started/repositories.md" >}}).
 {{% /notice %}}
 
 ### Events
@@ -46,6 +50,9 @@ You can configure a parser to extract the attributes and timestamp of Events fro
 
 For JSON data, you can specify what the `@rawstring` represents. By default, this is the original JSON data string.
 The timestamp of an Event is represented in the `@timestamp` attribute
+
+Events also have a special `@repo` meta-field that denotes the repository the event comes from.
+This is useful in cross-repository searches when using [Virtual Repositories]({{< relref "getting_started/virtual_repositories.md" >}}).
 
 Events can also have [Tags](#tags) associated with them.
 The Data Source manages and stores Tags related to Events. This means that Tags do not add to the storage requirements of individual Events.
@@ -65,24 +72,32 @@ Tags are an advanced option in Humio. It can be used to separate data into diffe
 We, at Humio (support@humio.com), are ready to help you in using tags.
 {{% /notice %}}
 
-In Humio tags always start with a #. When turning a field into a tag it will be prepended with `#`.
-If fields start with an `@` or `_` , the character is removed before prepending the #
+In Humio tags always start with a #. When turning a field into a tag it will be
+prepended with `#`.
+If fields start with an `@` or `_` , the character is removed before prepending
+the `#`.
 
 {{% notice warning %}}
 You should use Tags for the aspects that you want to search for most often.
 
-Do not create more distinct dynamic Tags than you need. This reduces system performance and increases resource usage.
+Do not create more distinct dynamic Tags than you need. This reduces system
+performance and increases resource usage.
 
-You should set dynamic values, such as names that include dates, as Event attributes, not Tags. Attributes are individual key/values that are associated with an individual Event.
+You should set dynamic values, such as names that include dates, as Event
+attributes, not Tags. Attributes are individual key/values that are associated
+with an individual Event.
 {{% /notice %}}
 
 ### Users
 
 You can configure Humio to run either with or without user authentication.
-If user authentication is disabled, then everyone with access to the site can access everything.
+If user authentication is disabled, then everyone with access to the site can
+access everything.
 
 When you run Humio with authentication enabled, each Repository has its own set of users.
-Humio identifies users by their email address. It validates each email address using an OAuth identity provider - either Google, Github, or Bitbucket. Humio can also check usernames and password using your local LDAP service.
+Humio identifies users by their email address. It validates each email address
+using an OAuth identity provider - either Google, Github, or Bitbucket. Humio
+can also check usernames and password using your local LDAP service.
 
 There are three levels of users: 'normal', 'administrator', and 'root':
 
@@ -115,24 +130,29 @@ In contrast _filter queries_ can start streaming the response as soon as Events 
 
 
 ### Filter Queries
-_Filter queries_, or _non-aggregate queries_, are queries that only filter Events, or add or remove attributes on each Event.
+_Filter queries_, or _non-aggregate queries_, are queries that only filter
+Events, or add or remove attributes on each Event.
 
-These queries can only contain filters and transformation functions (see [functions](/searching_logs/query_functions/))
+These queries can only contain filters and transformation functions
+(see [functions](/searching_logs/query_functions/))
 
 
 ### Live Queries
 
 Live queries provide a way to run searches that are continuously
-updated as new Events arrive. Live queries are important for creating dashboards, and many other uses.
+updated as new Events arrive. Live queries are important for creating dashboards,
+and many other uses.
 
 Humio uses an efficient streaming implementation to provide this feature.
 
 In a live query, the time interval is a time window relative to 'now', such
 as 'the last 5 minutes' or 'the last day'.
 
-Humio sets the `groupby` attribute of a live query automatically. It bases the grouping on buckets that each represent a part of the given time interval.
+Humio sets the {{% function "groupBy" %}} attribute of a live query automatically.
+It bases the grouping on buckets that each represent a part of the given time interval.
 
-Aggregate queries run live inside each bucket as Events arrive. Whenever the current response is selected, it runs the aggregations for the query across the buckets.
+Aggregate queries run live inside each bucket as Events arrive. Whenever the current
+response is selected, it runs the aggregations for the query across the buckets.
 
 {{% notice note %}}
 Humio purges live queries if no client has checked their status for 60 minutes.
