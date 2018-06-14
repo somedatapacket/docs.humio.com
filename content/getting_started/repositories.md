@@ -3,7 +3,7 @@ title: Repositories
 ---
 
 Humio organizes data into _Repositories_ (or _Repos_). Each repository has its
-own set of users, dashboard, saved queries etc.
+own set of users, dashboards, saved queries, parsers, etc.
 
 A repository is container for data with associated storage.
 Often you will have one physical repository per project or system. But the use-cases
@@ -15,13 +15,17 @@ On a physical repository you can control retention and assign
 When [sending data to humio]({{< ref "sending_data_to_humio/_index.md" >}}) you always
 specify a repository and a [parser]({{< ref "sending_data_to_humio/parsers/_index.md" >}}) as the target.
 
-## Views
+## Virtual Repositories
 
-The repository has a close cousin called a [View]({{< relref "views.md">}}).
-You can think of a view as a kind of a _virtual repository_, and is works similarly
-to the views you may know from SQL databases.
+The repository has a close cousin called a [Virtual Repositories]({{< relref "views.md">}}).
+Virtual Repositories works similarly to the views you may know from SQL databases.
 
-While a you can search directly in a repository, doing search through a view
+{{< notice tip >}}
+Non-Virtual repositories are sometimes referred to as "physical" repositories,
+due to the fact that they have associated storage and to distinguish when needed.
+{{< /notice >}}
+
+While a you can search directly in a physical repository, doing search through a view
 gives you some added benefits, e.g.:
 
 - Joining logs from multiple repositories in a single search
@@ -29,7 +33,7 @@ gives you some added benefits, e.g.:
 - Redacting sensitive fields
 - Keeping find-grained control of data retention
 
-You can read more about views in the [view documentation]({{< relref "views.md">}}).  
+You can read more about virtual repositories in their [doc section]({{< relref "views.md">}}).  
 
 ## The Sandbox
 
@@ -40,6 +44,6 @@ or as the your main repo if your needs are simple.
 {{% notice cloud %}}
 If you are using a the free version of [Humio Cloud](https://cloud.humio.com) the sandbox
 is your main storage repository and is where you send all your logs and events. You can
-[use views to make your data easier to navigate]({{< relref "views.md#per-service" >}})
+[use virtual repositories to make your data easier to navigate]({{< relref "virtual_repositories.md#per-service" >}})
 if you have logs from several sources.
 {{% /notice %}}
