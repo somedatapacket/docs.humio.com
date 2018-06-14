@@ -21,7 +21,9 @@ Humio supports the following authentication types:
 * [__Auth0 Integration__](#auth0)  
   [Auth0](https://auth0.com/) is a cloud service making it possible to login with many different OAuth identity providers e.g. Google and Facebook. You can also create your own database of users in Auth0.
 
-Users are authenticated (logged in) using one of the above integrations. But the authorisation is done in Humio. Which dataspaces a user can access is specified in Humio.
+Users are authenticated (logged in) using one of the above integrations.
+But the authorisation is done in Humio.
+Which repositories a user can access is specified in Humio.
 
 
 {{% notice warning %}}
@@ -36,7 +38,7 @@ If you have SSH access to the machine running Humio, you can always perform API 
 the special API token for root access. The token is re-created every time the server starts, and placed in the file
 `/data/humio-data/local-admin-token.txt`. The token allows root access on the API for anyone able to read this file.
 
-The root token can be used for creating initial setup and configuration e.g. setting up users and data spaces.
+The root token can be used for creating initial setup and configuration e.g. setting up users and repositories.
 It's also useful for running scripts/integrations on the local server, for provisioning or daily maintenance purposes.
 
 {{% notice note %}}

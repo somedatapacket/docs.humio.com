@@ -18,16 +18,16 @@ The three types of retention are independent - data gets deleted when any one of
 ### By Compressed Size
 
 The "compressed" setting is designed allow the administrator to prevent the file system from overflowing.
-Configure the "compressed" settings for each dataspace so that the sum of all compressed sizes is less than the space available on the disk.
+Configure the "compressed" settings for each repository so that the sum of all compressed sizes is less than the space available on the disk.
 
 The compressed size calculation deletes data based on the amount of disk space consumed taking replicas into account
 until the amount on disk is below the setting. Replicas are handled by counting copies in excess of the segment-replication settings as "extra".
 
 An example: In a cluster of 3 humio-instances, a segment-replication of 5, and a CompressedSize of 50 GB,
-the total disk usage on those three machines for this dataspace would be 150 GB. This lets the users see 50 GB of compressed data.
+the total disk usage on those three machines for this repository would be 150 GB. This lets the users see 50 GB of compressed data.
 
 If the segment replication setting is then changed to 2, the allowed disk usage drops to 100 GB in total on the three machines.
-The retentionjob will then delete the oldest segments, leaving approximately 33 GB of searchable data at first.
+The retention-job will then delete the oldest segments, leaving approximately 33 GB of searchable data at first.
 When more data flows in through ingest, the user will get back to having 50 GB of searchable compressed data in the 100 GB on disk.
 
 ### By Uncompressed Size
