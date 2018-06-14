@@ -1,36 +1,40 @@
 ---
-title: Views
+title: Virtual Repositories
 weight: 4
 ---
 
-A view is virtual [repository]({{< relref "repositories.md" >}}) defined by a set of connections to
-real repositories and queries that filter or modify their data.
+In most respects a virtual repository is just like an ordinary (or physical) repository.
+They can be searched, they have their own dashboards, users, queries, etc.
+But unlike ordinary [repositories]({{< relref "repositories.md" >}}), a virtual one contains no data of its own
+and cannot be have parsers.
+Instead virtual repositories get data from one or more repositories similar to a JOIN in a SQL database.
+In that sense you can think of a Virtual Repository like the View concept from SQL databases.
 
-Just like real repositories they have their own dashboards, users, etc.
-But unlike [repositories]({{< relref "repositories.md" >}}), a view contains no data of its own.
-Instead views reads data from one or more repositories similar to a JOIN in a SQL database.
+A virtual repository is defined as a set of connections to physical repositories
+and a associated queries that filter or modify the data as it is read.
 
-There are many use-cases for views and you can see [a list of examples later on this page]({{< relref "#examples" >}}).
+There are many use-cases for virtual repositories and you can see
+[a list of examples later on this page]({{< relref "#examples" >}}).
 
 ### Searching across multiple repositories
 
-The main function of views is joining repositories and allowing you to search
-across multiple repositories.
+The main role of a virtual repository is joining data from other repositories
+and allowing you to search across multiple their data.
 
-When creating a new view you connect repos and write a filter query specifying a
-subset of the data the view should include.
+When creating a new view you connect repositories and write a filter query
+specifying the subset of the data that should be include:
 
 <figure>
 {{<mermaid align="center">}}
 graph TD;
-    A[Repo 1] --> B("View 1")
+    A[Repo 1] --> B("Virtual Repo 1")
     C[Repo 2] --> B
     D[Repo 3] --> B
 {{< /mermaid >}}
-<figcaption>A view that joins data from three connected repositories.</figcaption>
+<figcaption>A virtual repository that joins data from three connected physical repositories.</figcaption>
 </figure>
 
-When searching a view all events will include a `@repo` meta-field with the name
+When searching all events include a special `@repo` meta-field with the name
 of the repository they where read from.
 
 {{% notice tip %}}
@@ -40,14 +44,14 @@ based on which repository they come from.
 
 #### Filtering {#filtering}
 
-By default views will contain all data from their connected repositories.
+By default virtual repositories contain all data from their connected physical repositories.
 This is not always what you want and that is why you can apply a filter to each connection.
 
 A filter will reduce (or transform) the data before it produces the final search result.
 
 A filter is a normal query expression and you can use the same functions that you use
 when writing queries. The only thing you can't do is use aggregate functions
-like e.g. `groupBy` or `count`.
+like e.g. {{% function "groupBy" %}} or {{% function "count" %}}.
 
 Here is an example view with two connections with a filter applied to each:
 
@@ -72,7 +76,7 @@ Under the hood two separate searches are executed:
 | accesslogs         | <code>method=GET \| ip = 158.191.19.12</code>                   |
 | analytics          | <code>loglevel=INFO \| ip = 158.191.19.12</code>                |
 
-The `groupBy` (the aggregation) only happens after results of individual
+The {{% function "groupBy" %}} (the aggregation) only happens after results of individual
 searches are joined. Here is a flow diagram of the process:
 
 <figure>
@@ -82,7 +86,7 @@ graph LR;
     C[Repo: analytics] -->|"loglevel = INFO | ip = 158.191.19.12"| B
     B -->|"groupBy(url)"| D{Client}
 {{< /mermaid >}}
-<figcaption>Query Execution across multiple repositories: Data flows from repos to the view and the `groupBy`-aggregation is executed on the joined events.</figcaption>
+<figcaption>Query Execution across multiple repositories: Data flows from repos to the view and the {{% function "groupBy" %}}-aggregation is executed on the joined events.</figcaption>
 </figure>
 
 ### Example use-cases {#examples}
