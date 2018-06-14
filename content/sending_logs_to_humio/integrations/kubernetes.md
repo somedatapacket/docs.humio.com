@@ -46,7 +46,7 @@ backend:
       -----END CERTIFICATE-----
 ```
 Replace `<humio-host>` with the hostname of your Humio installation (i.e. `cloud.humio.com`). For on-prem installation don't forget to enable the [`ELASTIC_PORT` property](/operation/installation/configuration_options.md).
-Take your ingest token from your Humio Dataspace page…
+Take your ingest token from your Humio Repository page…
 
 ![Humio Data Space](/images/token.png)
 

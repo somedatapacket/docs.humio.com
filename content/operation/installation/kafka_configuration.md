@@ -6,7 +6,7 @@ title: "Kafka Configuration"
 
 When running Humio in a cluster setup it uses Kafka as part of the infrastructure.
 
-In this section, we briefly describe how Humio uses Kafka. Then we discuss how to konfigure Kafka.
+In this section, we briefly describe how Humio uses Kafka. Then we discuss how to configure Kafka.
 
 
 ### Queues
@@ -17,7 +17,7 @@ Humio creates the following queues in Kafka:
 * humio-ingest
 * transientChatter-events
 
-You can set the environment variable "HUMIO_KAFKA_TOPIC_PREFIX" to add that prefix to the topic names in kafka.
+You can set the environment variable "HUMIO_KAFKA_TOPIC_PREFIX" to add that prefix to the topic names in Kafka.
 Adding a prefix is recommended if you share the Kafka installation with applications other than Humio.
 The default is not to add a prefix.
 

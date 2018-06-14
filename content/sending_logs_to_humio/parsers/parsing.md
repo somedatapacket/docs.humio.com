@@ -21,7 +21,7 @@ parser.
 
 Go to the **Parsers** subpage in your data space to see all the available parsers:
 
-![Parsers List`](/images/parsers.png)
+![Parsers List`](/images/parsersx.png)
 
 ### Built-in parsers
 
@@ -32,10 +32,9 @@ You can also copy existing parsers to use as a starting point for creating new p
 
 ## The Parser User Interface
 
-The following screenshots shows the **Parser** page testing the built-in
-[`accesslog` parser]({{< relref "sending_logs_to_humio/parsers/built_in_parsers.md#accesslog" >}}):
+The following screenshots shows the **Parser** page with a custom parser called `humio`:
 
-![Accesslog Parser`](/images/accesslog-parser.png)
+![Custom Parser`](/images/custom-parser.png)
 
 The **Parser** page lets you define and test parsers.
 
@@ -45,15 +44,16 @@ Click the tooltips ('?') next to each field for information on their purpose.
 
 Let's walk through the different steps in creating a parser:
 
-<h2>Parser Types</h2>
+## Parser Types
+
 Humio supports two types of parsers:
 
-* [JSON Parsers]({{< relref "sending_logs_to_humio/parsers/parsing.md#json-parser" >}})
-* [Regular expressions parsers]({{< relref "sending_logs_to_humio/parsers/parsing.md#regular-expression-parser" >}})
+* [JSON Parsers]({{< relref "#json-parser" >}})
+* [Regular expressions parsers]({{< relref "#regular-expression-parser" >}})
 
 At the top of the page, select the type of parser you want to create.
 
-## JSON Parser
+### JSON Parser {#json-parser}
 
 JSON data is already structured. Humio turns it into key-value fields as shown below:
 
@@ -81,18 +81,17 @@ The reason we need JSON parsers in Humio is to parse the timestamp from the JSON
 The parser specifies the timestamp field and its format.
 
 Specify the field containing the timestamp on the **Parser** page.
-You can find out how to parse timestamps at the [Parsing Timestamps section below]({{< relref "sending_logs_to_humio/parsers/parsing.md#parsing-timestamps" >}}).
+You can find out how to parse timestamps at the [Parsing Timestamps section below]({{< relref "#parsing-timestamps" >}}).
 
 
 {{% notice tip %}}
 ***Testing***  
 You can test the parser on the **Parser** page by adding some test data. This offers an interactive way to refine the parser.
-
-See the section on [Testing the Parser]({{< relref "sending_logs_to_humio/parsers/parsing.md#testing-parsers" >}}) section below.
+See the section on [Testing the Parser]({{< relref "#testing-parsers" >}}) section below.
 {{% /notice %}}
 
 
-## Regular expression parser
+### Regular expression parser {#regular-expression-parser}
 
 The regular expression (regex) parser lets you parse incoming data using a
 regular expression. Humio extracts fields using named capture groups.
@@ -123,18 +122,17 @@ Some patterns often used for extracting timestamps are:
 > `(?<@timestamp>\S+\s\S+)` date followed by whitespace followed by timestamp
 
 You must also specify a timestamp format. Humio uses this to parse the extracted timestamp.
-See the section below on [parsing timestamps](/sending_logs_to_humio/parsers/parsing/#parsing-timestamps).
+See the section below on [parsing timestamps]({{< relref "#parsing-timestamps" >}}).
 
 Have a look at some of the built-in parsers to get started.
 
 {{% notice tip %}}
 ***Testing***  
 You can test the parser on the **Parser** page by adding some test data. This offers an interactive way to refine the parser.
-
-See the section on [Testing the Parser](/sending_logs_to_humio/parsers/parsing/#testing-parsers) section below.
+See the section on [Testing the Parser]({{< relref "#testing-parsers" >}}) section below.
 {{% /notice %}}
 
-## Parsing Timestamps
+## Parsing Timestamps {#parsing-timestamps}
 
 The default timestamp format is [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601),
 with the format `yyyy-MM-dd'T'HH:mm:ss[.SSS]XXX`. Milliseconds are optional, and `XXX` specifies the timezone offset.
@@ -173,7 +171,7 @@ So for a log line like this:
 
 As developers start to use Humio, they can start to use the key-value pattern when logging. This gives a lot of structure to the logs in Humio.
 
-## Testing Parsers
+## Testing Parsers {#testing-parsers}
 
 The parser page supports testing the parser. Paste a snippet of your logs and run the parser.
 
@@ -188,7 +186,6 @@ Events are colored red if they could not be parsed and the first error message i
 {{% notice note %}}
 ***Testing the `timestamp` field***  
 The `@timestamp` field displays in milliseconds (UTC). This makes it hard to determine if the timestamp is parsed correctly.
-
 A formatted timestamp is shown on the gray bar at the top of the details for the event.
 {{% /notice %}}
 
@@ -213,7 +210,6 @@ When a parser fails, Humio adds fields to the event:
  * `@event_parsed=false`
  * `@error_msg`: contains the error
 
-{{% notice note %}}
 
 ### Finding all parsing failures in a repository
 
@@ -234,5 +230,3 @@ Or by group results by error message:
 ```
 @event_parsed=false | groupBy(@error_msg)
 ```
-
-{{% /notice %}}

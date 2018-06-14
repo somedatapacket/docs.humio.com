@@ -8,7 +8,7 @@ set the `--env-file=` flag and keep your configuration in a file.
 For a quick intro to setting configuration options see the [installation overview page](/operation/installation).
 
 
-## Example configuration file with comments
+## Example configuration file with comments {#example-configuration-file-with-comments}
 
 ```bash
 # The stacksize should be at least 2M.

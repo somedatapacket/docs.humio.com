@@ -9,25 +9,26 @@ This page provides information about the HTTP API that Humio provides.
 
 ### Variables
 
-This documentation uses the following variables to show places where you should replace the data in each example request with your own data:
+This documentation uses the following variables to show
+places where you should replace the data in each example request with your own data:
 
-* `$DATASPACE`: The identifier of a specific data space, for example `github` or `myapplication`.
+* `$REPOSITORY_NAME`: The identifier of a specific data space, for example `github` or `myapplication`.
 * `$API_TOKEN`: Your [API token](#api-token).
 * `$PARSER`: The identifier of a specific parser.
 
 ### Available Endpoints
 
 | Endpoint | Method | Description
-|-----------|---------|------------
-|`/api/v1/dataspaces/$DATASPACE/query`|[POST](#query)| Run a streaming query
-|`/api/v1/dataspaces/$DATASPACE/queryjobs`| [POST](#create) | Run a poll-based query
-|`/api/v1/dataspaces/$DATASPACE/queryjobs/$ID`| [GET](#poll)<br><br>[DELETE](#delete) | Poll a poll-based query<br><br>Delete a poll-based query
-|`/api/v1/dataspaces/$DATASPACE/ingest-messages`| [POST](#ingest) | Put data into Humio
-|`/api/v1/dataspaces/$DATASPACE/ingest`| [POST](#ingest) | Put data into Humio
-|`/api/v1/dataspaces/$DATASPACE/files`| [POST](#files) | Upload CSV or JSON data to use with `lookup()` function
-|`/api/v1/dataspaces/$DATASPACE/parsers`| [GET](#list-parsers) | List all parsers
-|`/api/v1/dataspaces/$DATASPACE/parsers/$PARSER`| [PUT](#create-or-update-parser) | Add a new parser
-|`/api/v1/dataspaces/$DATASPACE/parsers/$PARSER`| [DELETE](#delete-parser) | Delete a parser
+|----------------------------------------------------------|---------|------------
+|`/api/v1/dataspaces/$REPOSITORY_NAME/query`               |[POST](#query)| Run a streaming query
+|`/api/v1/dataspaces/$REPOSITORY_NAME/queryjobs`           | [POST](#create) | Run a poll-based query
+|`/api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID`       | [GET](#poll)<br><br>[DELETE](#delete) | Poll a poll-based query<br><br>Delete a poll-based query
+|`/api/v1/dataspaces/$REPOSITORY_NAME/ingest-messages`     | [POST](#ingest) | Put data into Humio
+|`/api/v1/dataspaces/$REPOSITORY_NAME/ingest`              | [POST](#ingest) | Put data into Humio
+|`/api/v1/dataspaces/$REPOSITORY_NAME/files`               | [POST](#files) | Upload CSV or JSON data to use with `lookup()` function
+|`/api/v1/dataspaces/$REPOSITORY_NAME/parsers`             | [GET](#list-parsers) | List all parsers
+|`/api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER`     | [PUT](#create-or-update-parser) | Add a new parser
+|`/api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER`     | [DELETE](#delete-parser) | Delete a parser
 
 
 ### HTTP Headers
@@ -36,14 +37,12 @@ This documentation uses the following variables to show places where you should 
 This section describes the HTTP headers that you can use with the Humio API.
 
 
-### API token
-
+### API Token
 
 To use the HTTP API, you must provide an API token using the `Authorization` header.
 
 {{% notice note %}}
 You can find your API token on the web application's front page (after login) by clicking the 'Account', then the 'Show' button.
-
 ![API Token](/images/api-token.png)
 {{% /notice %}}
 
@@ -127,7 +126,7 @@ the table below.  -->
 To start a query, POST the query to:
 
 ``` text
-POST /api/v1/dataspaces/$DATASPACE/query
+POST /api/v1/dataspaces/$REPOSITORY_NAME/query
 ```
 
 The JSON request body has the following attributes:
@@ -227,7 +226,7 @@ This live query returns an empty search, finding all events in a time window goi
 Notice the `ACCEPT` header. This tells the server to stream data as [Newline Delimited JSON](http://specs.frictionlessdata.io/ndjson/).
 
 ```bash
-curl https://demo.humio.com/api/v1/dataspaces/$DATASPACE/query \
+curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/query \
   -X POST \
   -H "Authorization: Bearer $API_TOKEN" \
   -H 'Content-Type: application/json' \
@@ -241,7 +240,7 @@ curl https://demo.humio.com/api/v1/dataspaces/$DATASPACE/query \
 This query groups results by service and counts the number of events for each service. The query blocks until it is complete and returns events as a JSON array:
 
 ``` bash
-curl https://demo.humio.com/api/v1/dataspaces/$DATASPACE/query \
+curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/query \
   -X POST \
   -H "Authorization: Bearer $API_TOKEN" \
   -H 'Content-Type: application/json' \
@@ -270,7 +269,7 @@ of the Query Jobs poll endpoint).
 To start a Query Job, POST the query to:
 
 ``` text
-POST /api/v1/dataspaces/$DATASPACE/queryjobs
+POST /api/v1/dataspaces/$REPOSITORY_NAME/queryjobs
 ```
 
 The request body is similar to the [request body](#request) in the query endpoint.
@@ -291,7 +290,7 @@ using the HTTP GET method (see [below](#poll)).
 #### Example
 
 ``` bash
-curl https://demo.humio.com/api/v1/dataspaces/$DATASPACE/queryjobs \
+curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/queryjobs \
  -X POST \
  -H 'Authorization: Bearer $API_TOKEN' \
  -H 'Content-Type: application/json' \
@@ -312,7 +311,7 @@ To poll a running Query Job, make an HTTP GET request to the job.
 In the following example request, replace `$ID` with the ID from the response of the [Query Job create request](#create):
 
 ``` text
-GET     /api/v1/dataspaces/$DATASPACE/queryjobs/$ID
+GET     /api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID
 ```
 
 
@@ -352,7 +351,7 @@ Live queries keep running for an hour without being polled.
 #### Example
 
 ```bash
-curl https://demo.humio.com/api/v1/dataspaces/$DATASPACE/queryjobs/$ID \
+curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID \
   -H "Authorization: Bearer $API_TOKEN"
 ```
 
@@ -365,7 +364,7 @@ Stops running Query Jobs.
 To stop a Query Job, you can issue a `DELETE` request to the URL of the Query Job:
 
 ``` text
-DELETE     /api/v1/dataspaces/$DATASPACE/queryjobs/$ID
+DELETE     /api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID
 ```
 
 #### Response
@@ -375,7 +374,7 @@ Standard HTTP response codes.
 #### Example
 
 ```bash
-curl https://demo.humio.com/api/v1/dataspaces/$DATASPACE/queryjobs/$ID \
+curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID \
  -X DELETE \
  -H "Authorization: Bearer $API_TOKEN"
 ```
@@ -386,9 +385,9 @@ curl https://demo.humio.com/api/v1/dataspaces/$DATASPACE/queryjobs/$ID \
 There are different ways of getting data into Humio. This page show how to send data using the HTTP API.
 
 There are 2 endpoints. [One for sending data that will be parsed using a specified parser.](#ingest-data-using-a-parser) And another [endpoint for sending data that is already structured and does not need parsing.](#ingest-structured-data)  
-When parsing text logs like syslogs, accesslogs or logs from applications you typically use the endpoint where a parser is specified. 
- 
- 
+When parsing text logs like syslogs, accesslogs or logs from applications you typically use the endpoint where a parser is specified.
+
+
 ### Ingest data using a parser
 
 This API should be used, when a parser should be applied to the data. It is possible to create [parsers](/sending_logs_to_humio/parsers/parsing/) in Humio
@@ -398,11 +397,11 @@ This API should be used, when a parser should be applied to the data. It is poss
 
 Another option, that is related to this API is to use [Filebeat](/sending_logs_to_humio/log_shippers/beats/filebeat/).  
 Filebeat is a lightweight open source agent that can monitor files and ship data to Humio. When using filebeat it is also possible to specify a parser for the data.
-Filebeat can handle many problems like network problems, retrying, batching, spikes in data etc. 
+Filebeat can handle many problems like network problems, retrying, batching, spikes in data etc.
 {{% /notice %}}
 
 ``` text
-POST	/api/v1/dataspaces/$DATASPACE/ingest-messages
+POST	/api/v1/dataspaces/$REPOSITORY_NAME/ingest-messages
 ```
 
 Example sending 4 accesslog lines to Humio
@@ -412,7 +411,7 @@ Example sending 4 accesslog lines to Humio
   {
     "type": "accesslog",
     "fields": {
-      "host": "webhost1" 
+      "host": "webhost1"
     },
     "messages": [
        "192.168.1.21 - user1 [02/Nov/2017:13:48:26 +0000] \"POST /humio/api/v1/dataspaces/humio/ingest HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.015 664 0.015",
@@ -425,7 +424,7 @@ Example sending 4 accesslog lines to Humio
 ```
 
 The above example sends 4 accesslog lines to Humio. the parser is specified using the `type` field and is set to `accesslog`.   
-The parser accesslog should be specified in the dataspace. See [parsing](/sending_logs_to_humio/parsers/parsing/) for details.  
+The parser accesslog should be specified in the repository. See [parsing](/sending_logs_to_humio/parsers/parsing/) for details.  
 The `fields` section is used to specify fields that should be added to each of the events when they are parsed. In the example all the accesslog events will get a host field telling the events came from webhost1.  
 It is possible to send events of different types in the same request. That is done by adding a new element to the outer array in the example above.
 Tags can be specified in the parser pointed to by the `type` field
@@ -453,7 +452,7 @@ curl -v -X POST localhost:8080/api/v1/dataspaces/developer/ingest-messages/ \
   {
     "type": "accesslog",
     "fields": {
-      "host": "webhost1" 
+      "host": "webhost1"
     },
     "messages": [
        "192.168.1.21 - user1 [02/Nov/2017:13:48:26 +0000] \"POST /humio/api/v1/dataspaces/humio/ingest HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.015 664 0.015",
@@ -466,7 +465,7 @@ curl -v -X POST localhost:8080/api/v1/dataspaces/developer/ingest-messages/ \
 EOF
 ```
 
-Shorter example using the built-in kv parser 
+Shorter example using the built-in kv parser
 
 ``` bash
 curl -v -X POST localhost:8080/api/v1/dataspaces/developer/ingest-messages/ \
@@ -487,7 +486,7 @@ EOF
 This API should be used when data is well structured and no extra parsing is needed. (Except for the optional extra key-value parsing)
 
 ``` text
-POST	/api/v1/dataspaces/$DATASPACE/ingest
+POST	/api/v1/dataspaces/$REPOSITORY_NAME/ingest
 ```
 
 The following example request contains two events. Both these events share the same tags:
@@ -633,7 +632,7 @@ Standard HTTP response codes.
 #### Example
 
 ``` bash
-curl https://demo.humio.com/api/v1/dataspaces/$DATASPACE/ingest \
+curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/ingest \
  -X POST \
  -H "Content-Type: application/json" \
  -H "Authorization: Bearer $API_TOKEN" \
@@ -659,7 +658,7 @@ The file should be in a part named `file`.
 Replace `myfile.csv` with the path to your file.
 
 ``` bash
-curl https://demo.humio.com/api/v1/dataspaces/$DATASPACE/files \
+curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/files \
  -H "Authorization: Bearer $API_TOKEN" \
  -F "file=@myfile.csv"
 ```
@@ -718,7 +717,7 @@ web servers. It also allows for custom parsers.
 To list all parsers for a given Data Space:
 
 ``` text
-GET     /api/v1/dataspaces/$DATASPACE/parsers
+GET     /api/v1/dataspaces/$REPOSITORY_NAME/parsers
 ```
 
 ##### Response
@@ -751,7 +750,7 @@ The output format is similar to the input format in [Add Parser](#add-parser).
 ##### Example
 
 ``` bash
-curl https://demo.humio.com/api/v1/dataspaces/$DATASPACE/parsers \
+curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers \
  -H "Authorization: Bearer $API_TOKEN"
 ```
 
@@ -763,11 +762,11 @@ curl https://demo.humio.com/api/v1/dataspaces/$DATASPACE/parsers \
 To create a parser for a given data space:
 
 ``` text
-POST     /api/v1/dataspaces/$DATASPACE/parsers/$PARSER_ID
+POST     /api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_ID
 ```
 or to updated an existing parser use
 ``` text
-PUT     /api/v1/dataspaces/$DATASPACE/parsers/$PARSER_ID
+PUT     /api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_ID
 ```
 
 
@@ -776,7 +775,7 @@ The JSON request body has the following attributes:
 
 Name           | Type   | Required     | Description
 -------------- | ------ | ------------ | -------------
-`kind`           | String | Yes          | Controls which parser kind to create. You can set this to `regex`, or `json`. 
+`kind`           | String | Yes          | Controls which parser kind to create. You can set this to `regex`, or `json`.
 `parser`         | String | Yes          | The parser specification.<br /><br />The contents of this field vary depending on the type of parser you are creating. See the details [below](#humio-parsers)
 `parseKeyValues` | Boolean|  No          | Sets whether you want the parser to parse 'key=value' pairs in the log line. <br /><br />The default value is `false`.
 `dateTimeFields` | Array  | Yes          | Specifies the fields which contain the timestamp of the event. <br /><br />You can specify multiple fields, for example, a date field and a time field. The values of these fields are concatenated with whitespaces. <br /> <br /> Humio parses these fields  with the format that you specify in the `dateTimeFormat` attribute.
@@ -792,7 +791,7 @@ Standard HTTP response codes.
 ##### Example
 
 ``` bash
-curl https://demo.humio.com/api/v1/dataspaces/$DATASPACE/parsers/$PARSER_NAME \
+curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_NAME \
  -XPUT \
  -H "Authorization: Bearer $API_TOKEN" \
  -H "Content-Type: application/json" \
@@ -822,7 +821,7 @@ field has the timestamp.
 **Example**
 
 ``` bash
-curl https://demo.humio.com/api/v1/dataspaces/$DATASPACE/parsers/$PARSER_NAME \
+curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_NAME \
  -XPUT \
  -H "Authorization: Bearer $API_TOKEN" \
  -H "Content-Type: application/json" \
@@ -853,7 +852,7 @@ This example shows how to parse Nginx access logs with regular expressions.  Not
 To delete a parser from a given Data Space, make the following request:
 
 ``` text
-DELETE     /api/v1/dataspaces/$DATASPACE/parsers/$PARSER_NAME
+DELETE     /api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_NAME
 ```
 
 ##### Response
@@ -863,7 +862,7 @@ Standard HTTP response codes.
 ##### Example
 
 ``` bash
-curl https://demo.humio.com/api/v1/dataspaces/$DATASPACE/parsers/$PARSER_NAME \
+curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_NAME \
  -XDELETE \
  -H "Authorization: Bearer $API_TOKEN"
 ```

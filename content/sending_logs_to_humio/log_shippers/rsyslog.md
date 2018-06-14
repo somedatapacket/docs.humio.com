@@ -2,11 +2,15 @@
 title: "Rsyslog"
 ---
 
-The [Rsyslog](https://www.rsyslog.com) log processor is very popular and is being shipped with some very popular Linux distributions, including Ubuntu and Centos.
-Rsyslog provides [a long list of plugins](https://www.rsyslog.com/plugins/), most importantly the [Elastic search output plugin](https://www.rsyslog.com/doc/v8-stable/configuration/modules/omelasticsearch.html), which is supported by Humio.
+The [Rsyslog](https://www.rsyslog.com) log processor is very popular and is
+being shipped with most popular Linux distributions, including Ubuntu and CentOS.
+Rsyslog provides [a long list of plugins](https://www.rsyslog.com/plugins/),
+most importantly the [Elastic search output plugin](https://www.rsyslog.com/doc/v8-stable/configuration/modules/omelasticsearch.html),
+which is supported by Humio.
 
 {{% notice note %}}
-On-prem users will have to enable the ElasticSearch bulk endpoint on port 9200. See `ELASTIC_PORT` in [configuration options](/operation/installation/configuration_options/#example-configuration-file-with-comments)
+On-prem users will have to enable the ElasticSearch bulk endpoint on port 9200. See `ELASTIC_PORT` in
+[configuration options]({{< relref "operation/installation/configuration_options.md#example-configuration-file-with-comments" }})
 {{% /notice %}}
 
 ## Minimal configuration
@@ -29,26 +33,32 @@ template(name="humiotemplate"
            constant(value="}")
          }
 *.* action(type="omelasticsearch"
-           server="<Humio server>"
+           server="$HOST"
            template="humiotemplate"
-           uid="<ingest token>"
+           uid="$INGEST_TOKEN"
            pwd="none"
            bulkmode="on"
            usehttps="on")
 ```
 
-Remember to replace `<Humio server>` with your Humio host, i.e. `cloud.humio.com` and `<ingest token>` with the [ingest token](/sending_logs_to_humio/ingest_tokens/) for your dataspace.
+Remember to replace `$HOST` with your Humio host, i.e. `cloud.humio.com`
+and `$INGEST_TOKEN` with an [ingest token]({{< relref "sending_logs_to_humio/ingest_tokens.md" >}})
+for your repository.
 
-Furthermore `bulkmode` and `usehttps` _has_ to be set to `on` for `cloud.humio.com` and on-prem installations where Humio is serviced behind a https proxy.
+Furthermore `bulkmode` and `usehttps` _has_ to be set to `on` for
+`cloud.humio.com` and on-prem installations where Humio is serviced
+behind a https proxy.
 
-Finally restart rsyslog
+Finally restart rsyslog:
+
 ```bash
-# systemctl restart rsyslog.service
+$ systemctl restart rsyslog.service
 ```
 
 ## Verifying
 
-By now, your logs should start rolling into your dataspace and can be found with a simple search like
+By now, your logs should start rolling into your repository and can be found with a simple search like
+
 ```
 syslogtag=*
 ```
