@@ -3,17 +3,27 @@ title: "Ingest Tokens"
 weight: 1
 ---
 
-When communicating with Humio, you must provide an API authorization token. All users have an API token.
+Humio has two kinds of API tokens. The _Personal API Tokens_ and _Ingest Tokens_.
 
-Humio also provides **ingest tokens** that you can use for sending data into Humio.
-These tokens are write-only authorizations. You cannot query Humio, log in, or read any data using an ingest token.
+# Personal API Token
 
-{{% notice note %}}
-__Why use ingest tokens?__ Ingest tokens are tied to a dataspace, instead of individual users. This provides an alternative way of managing authorization that is more convenient for some use cases. For example, if a user leaves the organization or project, then you do not need to reprovision all agents that send data with a new token.
-{{% /notice %}}
+All users have a Personal API Token, you can find it in your account settings page.
+This is used for accessing the management API, e.g. creating new repositories.
+These tokens should NOT be used for sending data to Humio, even though this is strictly
+possible. That is where ingest tokens come in.
 
-You can manage your ingest tokens in the **Settings** tab:
 
-![managing ingest-tokens](/images/ingest-tokens.png)
+# Ingest Tokens
 
-Click the 'eye' button (3) next to the token you want to view.
+Unlike Personal API Tokens you cannot use Ingest Tokens to manage Humio.
+Ingest tokens are a per-repository token that allows you to send data to a specific repository.
+They are also write-only meaning you cannot query Humio, log in, or read any data.
+
+Ingest tokens are tied to a repository instead of a user. This provides an
+better way of managing access control and is more convenient for most use cases.
+
+For example if a user leaves the organization or project, you do not need to
+re-provision all agents that send data with a new token. You also don't have to
+create fake "Bot" user accounts.
+
+You can manage your ingest tokens in the **Settings** tab in each repository.

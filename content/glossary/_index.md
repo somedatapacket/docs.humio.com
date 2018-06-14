@@ -10,7 +10,7 @@ This section introduces the core concepts of Humio. It also describes how Humio 
 ### Data Sources
 
 A Data Source is a set of Events that have the same [Tags](#tags).
-Humio divides each [Data Space](#data-spaces) into more than one Data Source.
+Humio divides each [Respository](#repos) into more than one Data Source.
 
 Humio creates Data Sources automatically when it encounters a new combination of Tags. Users cannot create Data Sources directly.
 
@@ -25,7 +25,7 @@ We recommend that you do not create more than 1,000 separate Tags, or combinatio
 If you need more combinations, then we recommend that you use attributes on individual Events to differentiate them, and let you select them separately.
 {{% /notice %}}
 
-### Repositories
+### Repositories {#repos}
 
 Humio organizes data into [Repositories]({{< relref "getting_started/repositories.md" >}}).
 Each Repository has its own set of users, and a single directory on disk.
@@ -39,7 +39,7 @@ that do span multiple Repositories to achieve a cross-repostitory search.
 See [Repositories]({{< relref "getting_started/repositories.md" >}}).
 {{% /notice %}}
 
-### Events
+### Events {#events}
 
 Events are data items that represent a particular message, incident, or logging item from a system. They are the most important data type in Humio.
 
@@ -57,7 +57,7 @@ This is useful in cross-repository searches when using [Virtual Repositories]({{
 Events can also have [Tags](#tags) associated with them.
 The Data Source manages and stores Tags related to Events. This means that Tags do not add to the storage requirements of individual Events.
 
-### Tags
+### Tags {#tags}
 
 Humio saves data in Data Sources. You can provide a set of Tags to specify which Data Source the data is saved in.  
 You can add Tags to [Events](#events) that you ingest into Humio.
