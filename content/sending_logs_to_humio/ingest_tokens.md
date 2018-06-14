@@ -5,7 +5,7 @@ weight: 1
 
 Humio has two kinds of API tokens. The _Personal API Tokens_ and _Ingest Tokens_.
 
-# Personal API Token
+# Personal API Token {#personal}
 
 All users have a Personal API Token, you can find it in your account settings page.
 This is used for accessing the management API, e.g. creating new repositories.
@@ -13,7 +13,7 @@ These tokens should NOT be used for sending data to Humio, even though this is s
 possible. That is where ingest tokens come in.
 
 
-# Ingest Tokens
+# Ingest Tokens {#ingest}
 
 Unlike Personal API Tokens you cannot use Ingest Tokens to manage Humio.
 Ingest tokens are a per-repository token that allows you to send data to a specific repository.
