@@ -17,7 +17,7 @@ specify a repository and a [parser]({{< ref "sending_data_to_humio/parsers/_inde
 
 ## Virtual Repositories
 
-The repository has a close cousin called a [Virtual Repositories]({{< relref "views.md">}}).
+The repository has a close cousin called a [Virtual Repositories]({{< relref "virtual_repositories.md">}}).
 Virtual Repositories works similarly to the views you may know from SQL databases.
 
 {{< notice tip >}}
@@ -25,15 +25,15 @@ Non-Virtual repositories are sometimes referred to as "physical" repositories,
 due to the fact that they have associated storage and to distinguish when needed.
 {{< /notice >}}
 
-While a you can search directly in a physical repository, doing search through a view
-gives you some added benefits, e.g.:
+While a you can search directly in a physical repository, doing search through a
+virtual repository gives you some added benefits, e.g.:
 
 - Joining logs from multiple repositories in a single search
 - You can restrictions results to a subset of a repository's data
 - Redacting sensitive fields
 - Keeping find-grained control of data retention
 
-You can read more about virtual repositories in their [doc section]({{< relref "views.md">}}).  
+You can read more about virtual repositories in their [doc section]({{< relref "virtual_repositories.md">}}).  
 
 ## The Sandbox
 
