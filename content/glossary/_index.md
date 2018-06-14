@@ -17,7 +17,7 @@ Humio creates Data Sources automatically when it encounters a new combination of
 Data Sources are the smallest unit of data that you can delete.
 You cannot delete individual Events in a Data Source beyond expiration.<!--GRW: I'm not sure what 'beyond expiration' means. -->
 
-Humio represents each Data Source internally as a dedicated directory within the Data Space directory.
+Humio represents each Data Source internally as a dedicated directory within the Repository directory.
 
 {{% notice note %}}
 We recommend that you do not create more than 1,000 separate Tags, or combinations of Tags.
@@ -25,14 +25,14 @@ We recommend that you do not create more than 1,000 separate Tags, or combinatio
 If you need more combinations, then we recommend that you use attributes on individual Events to differentiate them, and let you select them separately.
 {{% /notice %}}
 
-### Data Spaces
+### Repositories
 
-Humio organizes data into 'Data Spaces'. Each Data Space has its own set of users, and a single directory on disk.
+Humio organizes data into 'Repositories'. Each Repository has its own set of users, and a single directory on disk.
 
-When you set up data quotas and retention policies, you configure them for each Data Space.
+When you set up data quotas and retention policies, you configure them for each Repository.
 
 {{% notice note %}}
-Queries cannot span more than one Data Space.
+Queries cannot span more than one Repository. But you can create 'Virtual Repositores' that do span multiple Repositories to achive a cross-repostitory search. See [Repositories](/repositories).
 {{% /notice %}}
 
 ### Events
@@ -81,23 +81,21 @@ You should set dynamic values, such as names that include dates, as Event attrib
 You can configure Humio to run either with or without user authentication.
 If user authentication is disabled, then everyone with access to the site can access everything.
 
-When you run Humio with authentication enabled, each Data Space has its own set of users.
-Humio identifies users by their email address. It validates each email address using an OAuth identity provider - either Google or Github.
+When you run Humio with authentication enabled, each Repository has its own set of users.
+Humio identifies users by their email address. It validates each email address using an OAuth identity provider - either Google, Github, or Bitbucket. Humio can also check usernames and password using your local LDAP service.
 
 There are three levels of users: 'normal', 'administrator', and 'root':
 
-* Normal users can only access and query data.<!-- GRW: this is just an educated guess :) -->
-* Administrators can also add and remove other users to a Data Space and make them administrators of the Data Space.
-* 'Root' users can add Data Spaces and create new root users.
+* Normal users can only access and query data, including managing dashboards an dsaved queries
+* Administrators can also add and remove other users to a Repository and make them administrators of the Repository.
+* 'Root' users can add Repositories and create new root users.
 
-  There is a default root user called 'developer'. You can use this user to create more root users. You can only connect to Humio with this user when you access it from the machine that hosts Humio.
+  You can create your initial users with 'Root' acces through the HTTP API. See [how to gain root access using root access token](/operation/installation/authentication/#root-token)
 
-  You can only create 'root' users through the HTTP User API.
-
-You can manage Users and their rights using the 'Data Space' web page in Humio.
+You can manage Users and their rights using the 'Repository' web page in Humio. Root users (apart from the initial one) can get added through the 'Administration' page when you are logged in as a root user.
 
 {{% notice note %}}
-You can add the same user ID to more than one Data Space.
+You can add the same user ID to more than one Repository.
 {{% /notice %}}
 
 
@@ -148,5 +146,5 @@ Humio uses to select the data that it scans to produce the query result.
 The query boundary consists of a time interval and a set of Tags.
 
 In the Humio interface, you can set the time interval using a special selector.
-The Tags must be the first elements of the query string.
+The Tags should preferably be at the start of the query string.
 For example, `#tagname=value`.
