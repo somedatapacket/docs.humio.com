@@ -4,10 +4,9 @@ weight: 7
 pre: "<b>7. </b>"
 ---
 
-### What happened to "dataspaces"
+### What happened to "Dataspaces"
 
 "Repository" is the new term. What used to be a "dataspace" in Humio is now a "Repository".
 
 The HTTP API includes the path "/api/v1/dataspaces/$DATASPACE/" to be compatible with existing clients.
-In this context, the $DATASPACE variable is the name of the repository. It used to be the name of the dataspace.
-
+In this context, the $DATASPACE variable is the name of the repository. (It used to be the name of the dataspace).
