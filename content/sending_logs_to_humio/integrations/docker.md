@@ -24,7 +24,8 @@ logs using the fluentd log-driver.
 
 {{% notice tip %}}
 You should set the __log types__ for your containers so Humio can parse the logs.  
-Humio can accept logs even when it does not know their type. So just start sending logs to Humio, and then create and enhance the relevant parsers afterwards.
+Humio can accept logs even when it does not know their type. So just start sending
+logs to Humio, and then create and enhance the relevant parsers afterwards.
 {{% /notice %}}
 
 Go to the [`docker2humio` container page](https://hub.docker.com/r/pmech/docker2humio/)

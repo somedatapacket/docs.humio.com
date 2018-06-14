@@ -12,7 +12,8 @@ Metricbeat collects a large set of valuable system metrics, including:
 * Per-process statistics
 * Network and socket statistics
 
-On top of the system-level statistics, Metricbeat comes with modules that offer integrations to many well-known services like `Docker`, `MongoDB`, and `MySQL`.
+On top of the system-level statistics, Metricbeat comes with modules that offer
+integrations to many well-known services like `Docker`, `MongoDB`, and `MySQL`.
 Check out [the Modules page at the official Metricbeat documentation](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html) for more details on these integrations and how they work.
 
 
@@ -35,8 +36,9 @@ You can find installation documentation for Metricbeat at [the Installation page
 
 ## Configuration
 
-
-Because Humio supports parts of the Elasticsearch insertion API, you can send data from Metricbeat to Humio by configuring Metricbeat to use the built-in Elasticsearch output.
+Because Humio supports parts of the Elasticsearch insertion API, you can send
+data from Metricbeat to Humio by configuring Metricbeat to use the built-in
+Elasticsearch output.
 
 {{% notice note %}}
 ***Configuration documentation***
@@ -47,7 +49,7 @@ You can find configuration documentation for Metricbeat at [the Metricbeat confi
 
 The following example shows a simple Metricbeat configuration collecting host metrics and sending them to Humio:
 
-``` yaml
+```yaml
 metricbeat.modules:
   - module: system
     enabled: true
@@ -62,15 +64,11 @@ metricbeat.modules:
       - socket # linux only
 
 output.elasticsearch:
-  hosts: ["https://<humio-host>:443/api/v1/dataspaces/<dataspace>/ingest/elasticsearch"]
-  username: <ingest-token>
+  hosts: ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+  username: $INGEST_TOKEN
 ```
 
-Where:
-
-* `<humio-host>` - is the name of your Humio server
-* `<dataspace>` - is the name of your dataspace on your server
-* `<ingest-token>` - is the [ingest token](/sending_logs_to_humio/ingest_tokens/) for your dataspace
+{{< partial "common-rest-params.html" >}}
 
 {{% notice note %}}
 ***Configuration file***
@@ -79,22 +77,29 @@ The Metricbeat configuration file is located at `/etc/metricbeat/metricbeat.yml`
 {{% /notice %}}
 
 ## Running Metricbeat
+
 Run Metricbeat as a service on Linux with the following commands
+
 ```
 sudo systemctl enable metricbeat
-sudo systemctl restart metricbeat 
+sudo systemctl restart metricbeat
 ```
 
 ## Adding fields
-You can add fields with static values using the `fields` section. These fields will be added to the each event.
+
+You can add fields with static values using the `fields` section. These fields
+will be added to the each event.
 
 ### Default fields
-Metricbeat automatically sends the host name of the system along with the data. Humio adds the host name in the `@host` field to each event. It uses this field name to try not to collide with other fields in the event.
 
+Metricbeat automatically sends the host name of the system along with the data.
+Humio adds the host name in the `@host` field to each event. It uses this field
+name to try not to collide with other fields in the event.
 
-## Host metrics example queries
+## Host metrics example queries {#host-metrics-example-queries}
 
-Once you have data from Metricbeat in Humio, you can run some interesting queries, such as the following examples:
+Once you have data from Metricbeat in Humio, you can run some interesting
+queries, such as the following examples:
 
 * Show CPU load for each host:
 ```

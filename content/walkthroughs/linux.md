@@ -2,7 +2,6 @@
 title: "Linux"
 ---
 
-
 Getting system logs and host metrics from a Linux systems enables you
 to monitor a large array of issue.  Here as a small list of some of
 the things you could do:
@@ -28,9 +27,9 @@ metrics the system module is of interest.
 Metricbeat can provide a lot of metrics (many per process for example).  Experiment with finding the level you need.
 {{% /notice %}}
 
-<h3>Example Metricbeat Configuration</h3>
+### Example Metricbeat Configuration
 
-``` yaml
+```yaml
 metricbeat.modules:
   - module: system
     enabled: true
@@ -44,21 +43,17 @@ metricbeat.modules:
       - network
 
 output.elasticsearch:
-  hosts: ["https://<humio-host>:443/api/v1/dataspaces/<dataspace>/ingest/elasticsearch"]
-  username: <ingest-token>
+  hosts: ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+  username: $INGEST_TOKEN
 ```
 
-Where
+{{< partial "common-rest-params.html" >}}
 
-* `<humio-host>` - is the name of your Humio server
-* `<dataspace>` - is the name of your dataspace on your server
-* `<ingest-token>` - is the [ingest token](/sending_logs_to_humio/ingest_tokens/) for your dataspace
-
-See the page on [Metricbeat](/sending_logs_to_humio/log_shippers/beats/metricbeat/) for more information.
+See the page on [Metricbeat]({{< relref "sending_logs_to_humio/log_shippers/beats/metricbeat.md" >}}) for more information.
 
 {{% notice note %}}
 ***Example queries***
-check out the these [queries](/sending_logs_to_humio/log_shippers/beats/metricbeat/#host-metrics-example-queries) on host metrics
+check out the these [queries]({{< relref "sending_logs_to_humio/log_shippers/beats/metricbeat.md" >}}) on host metrics
 {{% /notice %}}
 
 ## System Logs (syslog)
@@ -66,9 +61,9 @@ check out the these [queries](/sending_logs_to_humio/log_shippers/beats/metricbe
 To ship the interesting system logs from `/var/log/` to Humio use
 [Filebeat](https://www.elastic.co/guide/en/beats/filebeat/current/index.html).
 
-<h3>Example Filebeat Configuration</h3>
+### Example Filebeat Configuration
 
-``` yaml
+```yaml
 filebeat.prospectors:
 - paths:
     - /var/log/syslog
@@ -77,31 +72,29 @@ filebeat.prospectors:
     "@type": syslog-utc
 
 output.elasticsearch:
-  hosts: ["https://<humio-host>:443/api/v1/dataspaces/<dataspace>/ingest/elasticsearch"]
-  username: <ingest-token>
+  hosts: ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+  username: $INGEST_TOKEN
 ```
-Where
 
-* `<humio-host>` - is the name of your Humio server
-* `<dataspace>` - is the name of your dataspace on your server
-* `<ingest-token>` - is the [ingest token](/sending_logs_to_humio/ingest_tokens/) for your dataspace
+{{< partial "common-rest-params.html" >}}
 
 Notice the type is `syslog-utc`, which points to the built in syslog parser, expecting the timestamp to be in UTC time.
 Often syslog timestamps are in local time. Go ahead and create a new parser with another timezone in Humio if necessary.
 You can copy the built in syslog-utc and just change the timezone.
-See [Parsing](/sending_logs_to_humio/parsers/parsing/) for details.
+See [Parsing]({{< relref "sending_logs_to_humio/parsers/parsing.md" >}}) for details.
 
 
-Check out the [Filebeat](/sending_logs_to_humio/log_shippers/beats/filebeat/) page for more
+Check out the [Filebeat]({{< relref "sending_logs_to_humio/log_shippers/beats/filebeat.md" >}}) page for more
 information.
 
 ## Custom Logs or Metrics
 
-If you have custome logs or metrics you want to ship we suggest one of
+If you have custom logs or metrics you want to ship we suggest one of
 these strategies:
 
-1. Append the logs/metrics to a logfile and use
+1. Append the logs/metrics to a log file and use
    [Filebeat](https://www.elastic.co/guide/en/beats/filebeat/current/index.html)
    to ship them similarly to the System logs above.
 
-1. Use cron to run a script that send data to Humio via it [Ingest API](/sending_logs_to_humio/transport/http_api/#ingest).
+1. Use cron to run a script that send data to Humio via it
+   [Ingest API]({{< relref "sending_logs_to_humio/transport/http_api.md#ingest" >}}).
