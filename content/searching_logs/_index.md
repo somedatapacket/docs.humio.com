@@ -5,24 +5,32 @@ pre: "<b>3. </b>"
 ---
 This section describes the Humio query language.
 
-The Humio query language is the syntax that lets you compose queries to retrieve, process, and analyze business data in your system.
+The Humio query language is the syntax that lets you compose queries to retrieve,
+process, and analyze business data in your system.
 
-Before reading this section, we recommend that you read the [tutorial](/getting_started/tutorial/). The tutorial introduces you to queries in Humio, and lets you try out some sample queries that demonstrate the basic principles.
+Before reading this section, we recommend that you read the
+[tutorial]({{< relref "tutorial.md" >}}). The tutorial introduces you to queries
+in Humio, and lets you try out some sample queries that demonstrate the basic principles.
 
 
 ## Principles
 
-We built the Humio query language around a 'chain' of data processing commands linked together. Each expression passes its result to the next expression in sequence. In this way, you can create complex queries by combining query expressions together.
+We built the Humio query language around a 'chain' of data processing commands
+linked together. Each expression passes its result to the next expression in sequence.
+In this way, you can create complex queries by combining query expressions together.
 
 This architecture is similar to the idea of [command
-pipes](https://en.wikipedia.org/wiki/Pipeline_(Unix)) in Unix and Linux shells. This idea has proven to be a powerful and flexible mechanism for advanced data analysis.
+pipes](https://en.wikipedia.org/wiki/Pipeline_(Unix)) in Unix and Linux shells.
+This idea has proven to be a powerful and flexible mechanism for advanced data analysis.
 
 ## Basic Query Components
 
 The basic model of a query in Humio is that data arrives at the
-left of the query, and the result comes out at the right of the query. When Humio executes the query, it passes the data through from the left to the right.
+left of the query, and the result comes out at the right of the query.
+When Humio executes the query, it passes the data through from the left to the right.
 
-As the data passes through the query, Humio filters, transforms, and aggregates it according to the query expressions.
+As the data passes through the query, Humio filters, transforms, and aggregates
+it according to the query expressions.
 
 For example, the following query has these components:
 
@@ -44,25 +52,31 @@ This causes Humio to pass the output from one expression into the next expressio
 
 ## Tag filters
 
-Tag filters always start with a `#` character. They behave in the same way as regular [attribute filters](#attribute-filters).
+Tag filters always start with a `#` character. They behave in the same way as
+regular [attribute filters]({{< relref "#attribute-filters" >}}).
 
-In the example shown in the previous section ([Basic Query Components](#basic-query-components)),
+In the example shown in the previous section ([Basic Query Components]({{< relref "#basic-query-components" >}})),
 we have separated the tag filters from the rest of the query by a pipe character (`|`).
 
-We recommend that you include the pipe character before tag filters in your queries to improve the readability of your queries.
+We recommend that you include the pipe character before tag filters in your
+queries to improve the readability of your queries.
 
-However, these pipe characters are not mandatory. The Humio query engine can recognize tag filters
-when they are at the front of the query, and use this information to narrow down the number of data sources to search. This feature decreases query time.
+However, these pipe characters are not mandatory. The Humio query engine can
+recognize tag filters when they are at the front of the query, and use this
+information to narrow  down the number of data sources to search.
+This feature decreases query time.
 
-For more information on tags, see the [glossary](/glossary/#tags) page.
+For more information on tags, see the [glossary]({{< relref "glossary/_index.md#tags" >}}) page.
 
 
-## Rawstring filters
+## @rawstring filters
 
-The most basic query in Humio is to search for a particular string in the `@rawstring` attribute of events.  See [glossary](/glossary/#events) for more details on `@rawstring`.
+The most basic query in Humio is to search for a particular string in the `@rawstring` attribute of events.
+See [glossary]({{< relref "glossary/_index.md#events" >}}) for more details on `@rawstring`.
 
 {{% notice note %}}
-You can perform more complex regular expression searches on the `@rawstring` attribute of an event by using the [regex](/searching_logs/query_functions/#regex) function.
+You can perform more complex regular expression searches on the `@rawstring`
+attribute of an event by using the {{% function "regex" %}} function.
 {{% /notice %}}
 
 
@@ -130,19 +144,24 @@ In addition to globbing (`*` appearing in match strings) you can match fields us
 | `400 > statuscode` | This comparison generates an error. You can only perform a comparison between numbers. In this example, `statuscode` is not a number, and `400` is the name of an attribute.|
 
 {{% notice note %}}
-The left-hand-side of the operator is interpreted an attribute name. If you write `200 = statuscode`, Humio tries to find an attribute named `200` and test if its value is `"statuscode"`.
+The left-hand-side of the operator is interpreted an attribute name.
+If you write `200 = statuscode`, Humio tries to find an attribute
+named `200` and test if its value is `"statuscode"`.
 {{% /notice %}}
 
 {{% notice warning %}}
 If the specified attribute is not present in an event, then the comparison always fails.
-You can use this behavior to match events that do not have a given field, using either `not (foo=*)` or the equivalent `foo!=*` to find events that do not have the attribute `foo`.
+You can use this behavior to match events that do not have a given field,
+using either `not (foo=*)` or the equivalent `foo!=*` to find events
+that do not have the attribute `foo`.
 {{% /notice %}}
 
 <!-- TODO: State explicitly which comparison operators will yield positive for missing attributes, and which ones won't. Especially: "!=" -->
 
 ## Combining Filter Expressions
 
-You can combine filters using the `and`, `or`, `not` Boolean operators, and group them with parentheses.
+You can combine filters using the `and`, `or`, `not` Boolean operators,
+and group them with parentheses.
 
 
 ### Examples
@@ -182,7 +201,9 @@ Queries can be built by combining filters and functions. You can find out more a
 
 ## Extracting new attributes
 
-You can extract new attributes from your text data using regular expressions and then test their values. This lets you access data that Humio did not parse when it indexed the data.
+You can extract new attributes from your text data using regular expressions
+and then test their values. This lets you access data that Humio did not parse
+when it indexed the data.
 
 For example, if your log entries contain text such as
 `"... disk_free=2000 ..."`, then you can use a query like the following
@@ -219,7 +240,8 @@ E.g. `count(as=cnt)` assigns the result of the count to the field named `cnt`.
 
 ### Eval syntax
 
-The function [eval](/searching_logs/query_functions/#eval) can assign fields while doing numeric computations on the input.
+The function [eval](/searching_logs/query_functions/#eval) can assign fields
+while doing numeric computations on the input.
 
 The ":=" syntax is short for eval. Use "|" between assignments.
 
@@ -233,7 +255,9 @@ is short for
 ... | eval(foo = a + b) | eval(bar = a / b) | ...
 ```
 
-When what's on the right hand side of the assignment is a function call, the assignment is rewritten to specify the `as=` argument which, by convention, is the output attribute name i.e.,
+When what's on the right hand side of the assignment is a function call, the
+assignment is rewritten to specify the `as=` argument which, by convention, is
+the output attribute name i.e.,
 
 ```
 ... | foo := min(x) | bar := max(x) |  ...
@@ -245,7 +269,8 @@ is short for
 ... | min(x, as=foo) | max(x, as=bar) | ...
 ```
 
-Similarly, you can use `attr =~ fun()` to designate the `field=attr` argument.  This lets you write
+Similarly, you can use `attr =~ fun()` to designate the `field=attr` argument.
+This lets you write:
 
 ```
 ... | ip_addr =~ cidr("127.0.0.1/24") | ...
@@ -259,9 +284,11 @@ rather than
 
 This also works well with e.g. `regex` and `replace`.  It's just a shorthand but very convenient.
 
-### Backticks
-Backticks work in `eval` and the `:=` shorthand for eval only and provides one level of indirection of the name of the field.
-The assignment happens to the field with the name that is the value of the backticked field.
+### Back-ticks
+
+Back-ticks work in `eval` and the `:=` shorthand for eval only and provides one
+level of indirection of the name of the field.
+The assignment happens to the field with the name that is the value of the back-ticked field.
 
 An example on events with the following fields, which is e.g. the outcome of `top(key)`.:
 
@@ -291,13 +318,17 @@ timechart( function={ top(key) | `key` := _count } )
 <!-- TODO:  But maybe we should have an alternative function to do the transpose, such as `transpose([key,value])` which takes a `Seq[{ key=k, value=v }]` and turns it onto a single event, with `{ k1=v1, k2=v2, ... }`. -->
 
 ## Conditional / Alternate Function Calls
-There is no direct "if-then-else" syntax in humio, as the "streaming events" style is not well-suited for procedural-style conditions.
+There is no direct "if-then-else" syntax in humio, as the "streaming events"
+style is not well-suited for procedural-style conditions.
 But there are several ways to accomplish conditional evaluation
 
 ### Using side-effects
 Often you just want a default value for a field that some events may be missing.
-You can achieve this by using the fact that a function that assign an attribute (such as `eval`) only assigns the field if the input fields exists.
-You can thus set a default value if some other value is not present. Here we set `foo` to `missing` if there is no `bar` field, and otherwise set `foo` to the value of the `bar` field.
+You can achieve this by using the fact that a function that assign an attribute
+(such as `eval`) only assigns the field if the input fields exists.
+You can thus set a default value if some other value is not present.
+Here we set `foo` to `missing` if there is no `bar` field, and otherwise
+set `foo` to the value of the `bar` field.
 
 ```
 ... | eval(foo="missing") | eval(foo=bar) | ..."
@@ -305,12 +336,19 @@ You can thus set a default value if some other value is not present. Here we set
 
 ### Using `case`
 
-`case` describes alternative flows (as in `case` or `cond` in other languages).  You write a sequence (`;` separated) of pipe lines, and the first of these to emit a value ends the selection.  You can add `case { ... ; * }` to let all events through.
+`case` describes alternative flows (as in `case` or `cond` in other languages).
+You write a sequence (`;` separated) of pipe lines, and the first of these to
+emit a value ends the selection.  You can add `case { ... ; * }` to let all events through.
 
-In effect, it is kind of an if-then-if-then-else construct for events streams.  An alternative cannot be syntactically empty, you must put in an explicit `*` to match all.
+In effect, it is kind of an if-then-if-then-else construct for events streams.
+An alternative cannot be syntactically empty, you must put in an explicit `*` to match all.
 
-An example: We have logs from multiple sources that all have a "time" field, and we want to get percentiles of the time fields, but one for each kind of source.
-To distinguish the lines, we need to match a text, then set a field ("type") that we can then group by.
+An example: We have logs from multiple sources that all have a "time" field,
+and we want to get percentiles of the time fields, but one for each kind of source.
+
+To distinguish the lines, we need to match a text, then set a field ("type")
+that we can then group by.
+
 ```
 time=*
 | case { "client-side" | type:="client";
@@ -321,14 +359,18 @@ time=*
 
 ## Composite Function Calls
 
-See [Query Functions](/searching_logs/query_functions/).
+See [Query Functions]({{< relref "query_functions.md" >}}).
 
 Whenever a function accepts a function as an argument, there are some
-special rules.  For all variations of groupby (bucket and timechart), that
+special rules.  For all variations of {{% function "groupBy" %}}
+({{% function "bucket" %}} and {{% function "timechart" %}}), that
 take a `function=` argument, you can also use a composite function.
 Composite functions take the form `{ f1(..) | f2(..) }` which works
-like the composition of `f1` and `f2`.  For example, you can do
-`groupBy(type, function={ avgFoo := avg(foo) | outFoo := round(avgFoo) })`
+like the composition of `f1` and `f2`.  For example, you can do:
+
+```
+groupBy(type, function={ avgFoo := avg(foo) | outFoo := round(avgFoo) })
+```
 
 You can also use filters inside such composite function calls, but not
 macros.
