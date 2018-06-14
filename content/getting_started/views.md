@@ -163,10 +163,10 @@ reach the user.  in this case limiting access to logs Germany :
 
 | Repository  | Filter                                 |
 |--------------------|----------------------------------------|
-| `website`          | `region = "UK" or region = "DE"`       |
-| `db`               | `ip.geo = "UK" or ip.geo = "DE"`       |
+| `website`          | `country = "DE"`       |
+| `db`               | `ip.geo = "DE"`       |
 
-In this example we are dealing with two repositories. In
+In this example we are dealing with two repositories.
 
 
 #### Field Aliases
@@ -177,7 +177,7 @@ the logging format. That would mean in order
 to search for all events from the "UK"-region we would have to write a query like:
 
 ```
-region = "UK" or ip.geo = "UK"
+country = "UK" or ip.geo = "UK"
 ```
 
 This is repetitive and clumsy. Instead we can define a new field as part of the
@@ -185,8 +185,8 @@ filter expressions:
 
 | Repository         | Filter                                                         |
 |--------------------|----------------------------------------------------------------|
-| website            | `region = "UK" or region = "DE"`                               |
-| db                 | <code>ip.geo = "UK" or ip.geo = "DE" | region := ip.geo</code> |
+| website            | `region := country`                                            | 
+| db                 | `region := ip.geo`                                             |
 
 Now you can just write:
 
