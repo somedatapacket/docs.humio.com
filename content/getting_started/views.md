@@ -21,7 +21,7 @@ There are many use-cases for virtual repositories and you can see
 The main role of a virtual repository is joining data from other repositories
 and allowing you to search across multiple their data.
 
-When creating a new view you connect repositories and write a filter query
+When creating a new virtual repository you connect repositories and write a filter query
 specifying the subset of the data that should be include:
 
 <figure>
@@ -53,7 +53,7 @@ A filter is a normal query expression and you can use the same functions that yo
 when writing queries. The only thing you can't do is use aggregate functions
 like e.g. {{% function "groupBy" %}} or {{% function "count" %}}.
 
-Here is an example view with two connections with a filter applied to each:
+Here is an example virtual repository with two connections with a filter applied to each:
 
 | Repository         | Filter           |
 |--------------------|------------------|
@@ -71,8 +71,8 @@ and then groups the joined result each repository by the field `url` .
 
 Under the hood two separate searches are executed:
 
-| Repository         | Executed Query                                        |
-|--------------------|-------------------------------------------------------|
+| Repository         | Executed Query                                                  |
+|--------------------|-----------------------------------------------------------------|
 | accesslogs         | <code>method=GET \| ip = 158.191.19.12</code>                   |
 | analytics          | <code>loglevel=INFO \| ip = 158.191.19.12</code>                |
 
@@ -82,26 +82,28 @@ searches are joined. Here is a flow diagram of the process:
 <figure>
 {{<mermaid align="center">}}
 graph LR;
-    A[Repo: accesslogs] -->|"method = GET | ip = 158.191.19.12"| B("View")
+    A[Repo: accesslogs] -->|"method = GET | ip = 158.191.19.12"| B("Virtual Repository")
     C[Repo: analytics] -->|"loglevel = INFO | ip = 158.191.19.12"| B
     B -->|"groupBy(url)"| D{Client}
 {{< /mermaid >}}
-<figcaption>Query Execution across multiple repositories: Data flows from repos to the view and the {{% function "groupBy" %}}-aggregation is executed on the joined events.</figcaption>
+<figcaption>Query Execution across multiple repositories: Data flows from the
+physical repositories to the virtual repositories and the
+{{% function "groupBy" %}}-aggregation is executed on the joined events.</figcaption>
 </figure>
 
 ### Example use-cases {#examples}
 
-View are powerful and you can model all kinds of things like:
+Virtual repositories are a powerful tool and you can achieve many things, like:
 
 - Restrict access to a subset of data based on the user
 - Fine-grained retention strategies
 - Redacting sensitive information
 - Consolidating different log formats
 
-Here are some examples of how you can use views.
-Hopefully you an idea of what kinds of things you can use views for.
+Here are some examples of how you can use virtual repositories to give you an
+idea of their power.
 
-#### A repo per service {#per-service}
+#### A repository per service {#per-service}
 
 Say you have a micro-service setup and you store all logs from all applications
 in a single physical repository, let's call it `acme-project`. It can
@@ -115,7 +117,7 @@ target service and write something like:
 ```
 
 And you would have to do it at the beginning of every single query.
-Instead you can create a specialized views for each service:
+Instead you can create a specialized virtual repository for each service:
 
 __Virtual Repo: Nginx Logs__
 
@@ -135,14 +137,14 @@ __Virtual Repo: iOS App Analytics__
 |--------------------|-----------------------------------------|
 | `acme-project`       | `#service=app and eventType=analytics`  |
 
-In this example we create three views that all draw their data from
+In this example we create three virtual repositories that all draw their data from
 a single physical repository. If you are using a free cloud account this physical
 repository could be you [Sandbox]({{< relref "the_sandbox.md" >}})
 
 #### Redacting sensitive information {#sensitive}
 
 Your data may contain information that not everyone should have access to.
-You can use views to implement security restrictions and censoring.
+You can use virtual repository to implement security restrictions and censoring.
 
 Let's say your logs contain social security numbers and you don't want your
 help desk workers to be able to see these. You can redact them by overriding
@@ -185,7 +187,7 @@ filter expressions:
 
 | Repository         | Filter                                                         |
 |--------------------|----------------------------------------------------------------|
-| website            | `region := country`                                            | 
+| website            | `region := country`                                            |
 | db                 | `region := ip.geo`                                             |
 
 Now you can just write:
