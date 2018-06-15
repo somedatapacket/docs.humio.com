@@ -98,5 +98,5 @@ may have special needs for your custom application logs. If that is the case you
 
 - [Query Function Reference]({{< relref "query_functions.md" >}})
 - [Creating Custom Parsers]({{< relref "parsing.md" >}})
-- [Virtual Repositories]({{< relref "virtual_repositories.md" >}})
+- [Virtual Repositories]({{< relref "views.md" >}})
 - [Controlling Retention]({{< relref "system_administration.md#setting-retention" >}})

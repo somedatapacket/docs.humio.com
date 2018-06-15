@@ -25,7 +25,7 @@ Go to the **Parsers** subpage in your data space to see all the available parser
 
 ### Built-in parsers
 
-The first part of the list contains [built-in parsers]({{< relref "sending_logs_to_humio/parsers/built_in_parsers.md" >}}).
+The first part of the list contains [built-in parsers]({{< relref "built_in_parsers.md" >}}).
 
 You cannot delete the built-in parsers, but you can overwrite them if you want.
 You can also copy existing parsers to use as a starting point for creating new parsers.
@@ -55,7 +55,9 @@ At the top of the page, select the type of parser you want to create.
 
 ### JSON Parser {#json-parser}
 
-JSON data is already structured. Humio turns it into key-value fields as shown below:
+Humio has a special class of parser, called JSON parsers. Since
+JSON data is already structured, you do not need to extract fields manually.
+Humio turns JSON properties into fields as shown below:
 
 ```json
 {
@@ -69,18 +71,24 @@ JSON data is already structured. Humio turns it into key-value fields as shown b
 }
 ```
 
-```text
-"timestamp": "2017-02-22T11:04:17.000+01:00"
-"loglevel": "INFO"
-"thread": "TimerThread"
-"timing.name": "service1"
-"timing.time": 42
-```
+Resulting Fields:
 
-The reason we need JSON parsers in Humio is to parse the timestamp from the JSON data.
-The parser specifies the timestamp field and its format.
+| field      | value                           |
+|------------|---------------------------------|
+|timestamp   | "2017-02-22T11:04:17.000+01:00" |
+|loglevel    | "INFO"                          |
+|thread      | "TimerThread"                   |
+|timing.name | "service1"                      |
+|timing.time | 42                              |
 
-Specify the field containing the timestamp on the **Parser** page.
+
+The reason we sometimes need to define custom JSON parsers is to parse the timestamp.
+The build-in JSON parser ([json]({{< relref "built_in_parsers.md#json" >}})) expects
+a field called `@timestamp`, but this will not always exist for arbitrary JSON logs.
+
+When defining a JSON parser you specify which JSON property should be used as timestamp,
+and how that field should be parsed.
+
 You can find out how to parse timestamps at the [Parsing Timestamps section below]({{< relref "#parsing-timestamps" >}}).
 
 
@@ -91,40 +99,34 @@ See the section on [Testing the Parser]({{< relref "#testing-parsers" >}}) secti
 {{% /notice %}}
 
 
-### Regular expression parser {#regular-expression-parser}
+### Regular Expression Parsers {#regular-expression-parser}
 
-The regular expression (regex) parser lets you parse incoming data using a
-regular expression. Humio extracts fields using named capture groups.
+Regular expression (regex) parsers lets you parse incoming data using a
+regular expression. Humio extracts fields using _named capture groups_ -
+feature of regular expressions that allows you to name sub-matches, e.g:
 
-<!--
-{{% notice note %}}
-***Regular expression syntax***
+```regex
+(?<firstname>\S+)\s(?<lastname>\S+)
+```
 
-Humio uses Java regular expressions. [Refer to the Java documentation for syntax details](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html).    
-{{% /notice %}}
--->
+This defines a parser that expects input to contain names, first and last. It then extracts
+the first and last names into two fields `firstname` and `lastname`. The `\S` of course means
+any character that is not a whitespace and `\s` is a whitespace character.
 
-<!--
-{{% notice note %}}
-***Regular expression syntax***
-Humio uses re2j regular expressions, which are very close to Java's regular expression syntax
+When creating a regex parser you always have to extract a field called `@timestamp`.
+Here is an example:
 
-Refer to the [re2j regular expression documentation](https://github.com/google/re2/wiki/Syntax) for more details on this syntax.
-{{% /notice %}}
+```regex
+(?<@timestamp>\S+\s\S+)\s(?<rest>.*)
+```
 
--->
-
-When creating a regex parser, you must always extract the timestamp in a named group called `@timestamp`.
-Some patterns often used for extracting timestamps are:
-
-> `(?<@timestamp>\S+)`
-
-> `(?<@timestamp>\S+\s\S+)` date followed by whitespace followed by timestamp
+This creates two fields `@timestamp` and `rest`.
 
 You must also specify a timestamp format. Humio uses this to parse the extracted timestamp.
 See the section below on [parsing timestamps]({{< relref "#parsing-timestamps" >}}).
 
-Have a look at some of the built-in parsers to get started.
+It is a good idea to reference some of the built-in parsers when creating your first regex parser,
+to see who they are defined.
 
 {{% notice tip %}}
 ***Testing***  
