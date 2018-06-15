@@ -34,7 +34,7 @@ When you set up data quotas and retention policies, you configure them for each 
 
 {{% notice note %}}
 Queries cannot span more than one Repository. But you can create
-[Virtual Repositories]({{< relref "getting_started/virtual_repositories.md" >}})
+[Views]({{< relref "getting_started/views.md" >}})
 that do span multiple Repositories to achieve a cross-repostitory search.
 See [Repositories]({{< relref "getting_started/repositories.md" >}}).
 {{% /notice %}}
@@ -52,7 +52,7 @@ For JSON data, you can specify what the `@rawstring` represents. By default, thi
 The timestamp of an Event is represented in the `@timestamp` attribute
 
 Events also have a special `@repo` meta-field that denotes the repository the event comes from.
-This is useful in cross-repository searches when using [Virtual Repositories]({{< relref "getting_started/virtual_repositories.md" >}}).
+This is useful in cross-repository searches when using [Views]({{< relref "getting_started/views.md" >}}).
 
 Events can also have [Tags](#tags) associated with them.
 The Data Source manages and stores Tags related to Events. This means that Tags do not add to the storage requirements of individual Events.
