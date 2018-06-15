@@ -1,7 +1,6 @@
 ---
 title: "Glossary"
 weight: 10
-pre: "<b>10. </b>"
 ---
 This section introduces the core concepts of Humio. It also describes how Humio organizes data.
 

@@ -2,7 +2,7 @@
 title: "Kubernetes"
 ---
 
-When it comes to managing microservices in a Kubernetes cluster, Humio is a great way to get insights into your applications. While other log shippers are supported we mainly focus on using [Fluent Bit](https://fluentbit.io) for forwarding log messages to Humio.
+When it comes to managing microservices in a Kubernetes cluster, Humio is a great way to get insights into your applications. While other data shippers are supported we mainly focus on using [Fluent Bit](https://fluentbit.io) for forwarding log messages to Humio.
 
 If you're relatively new to Kubernetes, we recommend using the [Helm](#helm) method of installation. If you want more control we recommend the [advanced installation](#advanced-installation) method
 

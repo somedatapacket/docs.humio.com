@@ -1,0 +1,7 @@
+---
+title: "Query Functions"
+
+---
+
+
+foo

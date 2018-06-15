@@ -1,7 +1,6 @@
 ---
 title: "Searching Humio"
 weight: 3
-pre: "<b>3. </b>"
 ---
 This section describes the Humio query language.
 

@@ -15,9 +15,9 @@
     --MENU-SEARCH-BOX-ICONS-color: rgb(214, 204, 255); /* Override search field icons color */
 
     --MENU-SECTIONS-ACTIVE-BG-color:#20272b; /* Background color of the active section and its childs */
-    --MENU-SECTIONS-BG-color:#252c31; /* Background color of other sections */
-    --MENU-SECTIONS-LINK-color: #ccc; /* Color of links in menu */
-    --MENU-SECTIONS-LINK-HOVER-color: #e6e6e6;  /* Color of links in menu, when hovered */
+    --MENU-SECTIONS-BG-color:#ffffff; /* Background color of other sections */
+    --MENU-SECTIONS-LINK-color: #000; /* Color of links in menu */
+    --MENU-SECTIONS-LINK-HOVER-color: rgb(110, 26, 156);  /* Color of links in menu, when hovered */
     --MENU-SECTION-ACTIVE-CATEGORY-color: #777; /* Color of active category text */
     --MENU-SECTION-ACTIVE-CATEGORY-BG-color: #fff; /* Color of background for the active category (only) */
 
@@ -68,6 +68,7 @@ a:hover {
 }
 #sidebar {
 	background-color: var(--MENU-SECTIONS-BG-color);
+  border-right: solid 1px rgb(221, 221, 221);
 }
 #sidebar #header-wrapper {
     background: var(--MENU-HEADER-BG-color);
@@ -78,9 +79,16 @@ a:hover {
 	border-color: var(--MENU-SEARCH-BOX-color);
     background: var(--MENU-SEARCH-BG-color);
 }
-#sidebar ul.topics > li.parent, #sidebar ul.topics > li.active {
-    background: var(--MENU-SECTIONS-ACTIVE-BG-color);
+
+#sidebar ul.topics  li.parent > a {
+  color: rgb(157, 59, 191);
 }
+
+#sidebar ul.topics  li.active:not(.parent) > a {
+  color: #000;
+  font-weight: 600;
+}
+
 #sidebar .searchbox * {
     color: var(--MENU-SEARCH-BOX-ICONS-color);
 }
@@ -91,11 +99,6 @@ a:hover {
 
 #sidebar a:hover {
     color: var(--MENU-SECTIONS-LINK-HOVER-color);
-}
-
-#sidebar ul li.active > a {
-    background: var(--MENU-SECTION-ACTIVE-CATEGORY-BG-color);
-    color: var(--MENU-SECTION-ACTIVE-CATEGORY-color) !important;
 }
 
 #sidebar hr {

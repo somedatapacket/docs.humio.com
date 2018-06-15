@@ -1,7 +1,6 @@
 ---
 title: "Third party licenses"
 weight: 8
-pre: "<b>8. </b>"
 ---
 
 ## Docker Images
@@ -68,7 +67,7 @@ License | Dependency | Attribution
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.fasterxml.jackson.core # jackson-databind # 2.8.4 | Copyright (c) 2007- Tatu Saloranta, tatu.saloranta@iki.fi
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.googlecode.java-ipv6 # java-ipv6 # 0.16 | Copyright 2013 Jan Van Besien [NOTICE](https://github.com/janvanbesien/java-ipv6/blob/master/NOTICE)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.tdunning # t-digest # 3.1 | The code for the t-digest was originally authored by Ted Dunning
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.yahoo.datasketches # sketches-core # 0.10.3 | 
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.yahoo.datasketches # sketches-core # 0.10.3 |
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.lz4 # lz4-java # 1.4 |  Copyright Adrien Grand.  LZ4 is Copyright (c) 2011-2014, Yann Collet [NOTICE](https://github.com/lz4/lz4-java/blob/master/src/lz4/LICENSE)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.kafka # kafka-clients # 1.0.0 | Copyright 2017 The Apache Software Foundation.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.kafka # kafka_2.12 # 1.0.0 |  Copyright 2017 The Apache Software Foundation. [NOTICE](https://github.com/apache/kafka/blob/trunk/NOTICE)

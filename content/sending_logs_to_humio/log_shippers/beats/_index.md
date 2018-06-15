@@ -1,5 +1,7 @@
 ---
-title: "Beats"
+title: "Elastic Beats"
+category_title: "Overview"
+heading: "Humio & Elastic Beats"
 ---
 
 The [Elastic Beats](https://www.elastic.co/products/beats) are a

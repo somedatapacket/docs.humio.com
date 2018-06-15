@@ -5,7 +5,7 @@ title: "Documentation Overview"
 # Documentation Overview
 
 Humio is a fast and flexible logging platform. It is available for self-hosting or as SaaS.
-Humio is compatible with most popular open-source log shippers (Fluentd, Rsyslog, FileBeat, etc.)
+Humio is compatible with most popular open-source data shippers (Fluentd, Rsyslog, FileBeat, etc.)
 so it is easy to adopt or migrate to from other platforms like ElasticSearch ELK.
 The simple yet powerful query language feels familiar to most developers,
 and works on any data format - structured or unstructured.
