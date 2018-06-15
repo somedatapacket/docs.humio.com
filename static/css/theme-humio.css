@@ -140,7 +140,7 @@ body #chapter h1 {
 }
 
 h2 {
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 
 h3 {
@@ -150,4 +150,15 @@ h3 {
 
 .query-function h3 {
   font-size: 1.3rem;
+}
+
+/* ADDED */
+
+.keybinding {
+  display: inline-block;
+  background-color: rgb(80, 80, 80);
+  color: white;
+  padding: 4px 4px;
+  border-radius: 3px;
+  line-height: 1;
 }

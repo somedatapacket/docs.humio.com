@@ -29,53 +29,16 @@ will help you get to grips with the core concepts is and where Humio fits in to 
 
 ## Getting Started with Humio
 
-
-You have two option for getting started with Humio, [downloading](https://www.humio.com/download/)
+Before we can get started you need to have access to a running Humio instance.
+You have two option. You can [download](https://www.humio.com/download/)
 and running it yourself, or creating a free account in [Humio Cloud](https://cloud.humio.com/).
 
 {{< figure src="pages/welcome/eggs.svg" width="180px" >}}
 
-### 1. Working with Logs
+<p align="center" style="margin-bottom: 40px;">
+{{% button href="https://www.humio.com/download/" icon="fa fa-download" %}}Download Humio{{% /button %}}
+{{% button href="https://cloud.humio.com/" icon="fa fa-cloud" %}}Free Cloud Account{{% /button %}}
+</p>
 
-The first thing you should do once you have a running instance we recommend you go through the in-app tutorial
-that teaches you the basics of searching. You can find the tutorial in the _Help_ menu at the top of the UI.
-The tutorial simulates log data from a web server and steps you through searching and visualizing the logs.
-
-### 2. Pick a Repository
-
-While simulated data is all well and good, you only feel the real power of Humio once
-you can work with your own data. It is time to start sending logs to Humio.
-There are several options for getting data into Humio.
-
-#### 2.1 Choose a Repository
-
-No matter what you choose, you will first need to pick which [repository]({{< relref "repositories.md" >}})
-to store the data in. If you are on a free Cloud account you will use your [sandbox repository]({{< relref "the_sandbox.md" >}}).
-If you are running Humio yourself, you can either use your sandbox or create a new dedicated repository.
-
-#### 2.2 Find your Ingest Token
-
-Once you have chosen a repository you need get an access token called an [ingest token]({{< relref "ingest_tokens.md" >}}).
-You can find the _default_ ingest token generated for your repository by going to:
-
-`Repository` __→__ `Settings` __→__ `Ingest Tokens`
-
-and copying the default token (or creating a new one).
-
-#### 2.3 Send Logs
-
-Now you are all set, choose one of the following options:
-
-- Configure a log-shipper (Rsyslog, FileBeat, Logstash, etc.),
-- Use one of our platform integration (Kubernetes, Docker, DC/OS, etc.)
-- or ingest through Humio's REST API
-
-_Tip: If you are already using ElasticSearch ELK you can also take a look at how easy it is to
-[migrate from an Elastic Stack]({{< relref "moving_from_elastic_stack.md" >}}) to Humio._
-
-### 3. Next Steps
-
-- [Query Function Reference]({{< relref "query_functions.md" >}})
-- [Creating Custom Parsers]({{< relref "" >}})
-- [Virtual Repositories]({{< relref "" >}})
-- [Controlling Retention]({{< relref "" >}})
+Once you have access to running Humio instance, you can head over to
+the [Hello World]({{< relref "hello-world.md" >}}) tutorial.

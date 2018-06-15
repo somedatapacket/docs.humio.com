@@ -449,18 +449,12 @@ body {
     line-height: 1.6;
     font-size: 18px !important;
 }
-h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
     font-family: "Open Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     text-rendering: optimizeLegibility;
     color: #5e5e5e;
     font-weight: 300;
     letter-spacing: -1px;
-}
-h1, h2 {
-    font-family: "Novacento Sans Wide", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
-    text-transform: uppercase;
-    color: #222;
-    font-weight: 200;
 }
 h1 {
     text-align: center;
