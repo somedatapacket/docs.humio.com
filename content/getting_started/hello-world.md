@@ -61,7 +61,22 @@ and copying the default token (or creating a new one).
 
 {{< figure src="/pages/hello-world/ingest-token.png" title="Getting the default ingest token from your repository." >}}
 
-### 3. Sending Data to Humio
+
+### 3. Choosing a Parser
+
+When data arrive at Humio they need to be parsed. Therefore you have to specify
+which parser should be used to interpret your data. Which one your need depends
+your data format. A safe bet is the `kv` (Key-Value) parser.
+
+It looks at incoming events and finds `key=value` pairs - producing a field `key`
+with the value `"value"` on the stored event.
+
+You can go to the "Parsers" menu item in the top menu of the UI to explore. But
+for now, it is a good idea to stick with one of the built-in parsers for your first
+experiments with Humio.
+
+
+### 4. Sending Data
 
 Now you are all set, choose one of the following guides:
 
@@ -72,8 +87,14 @@ Now you are all set, choose one of the following guides:
 _Tip: If you are already using ElasticSearch ELK you can also take a look at how easy it is to
 [migrate from an Elastic Stack]({{< relref "moving_from_elastic_stack.md" >}}) to Humio._
 
+#### 4.1 Extra: Custom Parsers
 
-## 4. Next Steps
+While Humio has build-in support for the most popular logging formats (e.g. AccessLog, JSON)
+and can rip out almost anything with the `kv` <!-- TODO: Missing Link --> parser, you still
+may have special needs for your custom application logs. If that is the case you need to
+[create your own custom parser]({{ relref "parsing.md" }}).
+
+## 5. Next Steps
 
 - [Query Function Reference]({{< relref "query_functions.md" >}})
 - [Creating Custom Parsers]({{< relref "parsing.md" >}})

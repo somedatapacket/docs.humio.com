@@ -32,9 +32,7 @@ There are currently five official Beats. The Elastic documentation site and Humi
 
 {{% notice note %}}
 ***Community Beats***
-
-In addition, the Elastic community has created many other Beats that you can download and use.
-
+In addition, the Elastic community has created many other Beats that you can download and use.  
 These [Community Beats](https://www.elastic.co/guide/en/beats/libbeat/current/community-beats.html) cover many less common use cases.
 {{% /notice %}}
 
