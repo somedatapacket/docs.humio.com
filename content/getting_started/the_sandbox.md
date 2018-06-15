@@ -26,7 +26,7 @@ Free Humio Cloud users use the sandbox as their primary storage.
 It is perfectly suited for smaller projects with low retention requirements
 and no need for multiple user access.
 
-By creating [Virtual Repositories]({{< relref "virtual_repositories.md" >}})
+By creating [Views]({{< relref "views.md" >}})
 that read from the Sandbox, you can easily create specialized repositories for
 each of your services and systems.
 
