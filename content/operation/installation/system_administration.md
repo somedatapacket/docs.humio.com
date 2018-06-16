@@ -54,7 +54,7 @@ Currently, this is the only backup strategy. However, Humio is designed to suppo
 
 1. Create an empty directory on the host machine to store data for Humio:
 
-```bash
+```shell
 mkdir /humio-backups-on-host
 ```
 
@@ -65,7 +65,7 @@ We recommend creating the backup directory on a different disk from the main Hum
 2. Edit the Humio configuration file to set the backup parameters. Add the following lines:
 
 
-```bash
+```shell
 BACKUP_NAME=humio-backup
 BACKUP_KEY=mysecretkey-myhost-+R+q(AB9QG86xZMCKGyj
 ```
@@ -77,7 +77,7 @@ Keep the secret key safe, and store it in another place. You cannot recover it i
 
 3. Run Humio using the Docker run command. Add the following argument to the command. It maps the backups directory on the host (here, `/humio-backups-on-host`) to the `/backup` directory in the container:
 
-```bash
+```shell
 -v /humio-backups-on-host:/backup
 ```
 

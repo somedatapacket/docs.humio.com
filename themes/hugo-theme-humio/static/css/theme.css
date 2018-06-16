@@ -660,6 +660,7 @@ table code {
     border-color: rgb(228, 228, 228);
 }
 code + .copy-to-clipboard {
+    background-color: rgba(0,0,0,0.1);
     margin-left: -1px;
     border-left: 0 !important;
     font-size: inherit !important;
@@ -668,21 +669,17 @@ code + .copy-to-clipboard {
     top: 0;
 }
 pre {
-    padding: 1rem;
     margin: 2rem 0;
-    background: #1d1f21;
-    border: 0;
-    border-radius: 2px;
-    line-height: 1.15;
+    background: white;
+    border: solid 1px rgb(156, 156, 156);
 }
 pre code {
-    color: whitesmoke;
-    background: inherit;
-    white-space: inherit;
     border: 0;
     padding: 0;
     margin: 0;
     font-size: 15px;
+    white-space: pre-wrap;
+    background-color: inherit;
 }
 hr {
     border-bottom: 4px solid #F0F2F4;
@@ -1102,12 +1099,11 @@ pre .copy-to-clipboard {
     position: absolute;
     right: 4px;
     top: 4px;
-    background-color: #4d5257;
     color: #ccc;
     border-radius: 2px;
 }
 pre .copy-to-clipboard:hover {
-    background-color: #656c72;
+    background-color: rgb(244, 222, 255);
     color: #fff;
 }
 .parent-element {

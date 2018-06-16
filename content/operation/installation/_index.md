@@ -18,7 +18,7 @@ You can use this file to pass on JVM arguments to the Humio Java process.
 
 1. Enter the following settings into the configuration file:
 
-```bash
+```shell
 HUMIO_JVM_ARGS=-Xss2M -XX:MaxDirectMemorySize=4G
 ```
 
@@ -30,19 +30,19 @@ These settings are for a machine with 8GB of RAM or more.
 
 1. Create an empty directory on the host machine to store data for Humio:
 
-```bash
+```shell
 mkdir humio-data
 ```
 
 1. Pull the latest Humio image:
 
-```bash
+```shell
 docker pull humio/humio
 ```
 
 1. Run the Humio Docker image as a container:
 
-```bash
+```shell
 docker run -v $HOST_DATA_DIR:/data --net=host --name=humio --env-file=$PATH_TO_CONFIG_FILE humio/humio
 ```
 
@@ -68,7 +68,7 @@ Updating Humio is described in the [upgrade section](/operation/installation/sys
 The Docker container can be started as a service using Docker's [restart policies](https://docs.docker.com/engine/reference/run/#restart-policies-restart).  
 An example is adding `--detach --restart=always` to the above docker run:
 
-```bash
+```shell
 docker run ... --detach --restart=always
 ```
 

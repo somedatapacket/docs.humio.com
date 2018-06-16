@@ -1,14 +1,15 @@
 ---
-title: "On-Prem HTTP API"
+title: "Cluster Management API"
 ---
 
 This page provides information about the HTTP API for managing
 on-premises installations of Humio. The general aspect of this API is
-the same a the regular [HTTP API](/sending_logs_to_humio/transport/http_api/)
+the same a the regular [HTTP API]({{< relref "http_api.md" >}})
 
-All requests require `root` level access. See [API token for local root access](#api-token-for-local-root-access).
+All requests require **root-level access**. See [API token for local root access]({{< relref "authentication.md#root-token" >}}).
 
 Note, this API is still very much _work-in-progress_.
+
 
 ## Available Endpoints
 
@@ -36,9 +37,6 @@ Note, this API is still very much _work-in-progress_.
 | `/api/v1/dataspace/$REPOSITORY_NAME/taggrouping`                                   | [GET,POST](#setup-grouping-of-tags)                                     | Setup grouping of tags                               |
 | `/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding`       | [GET,POST,DELETE](#configure-auto-sharding-for-high-volume-datasources) | Configure auto-sharding for high-volume datasources. |
 
-## API token for local root access
-
-See [Root User Setup](/operation/installation/authentication/#root-user).
 
 ## Manage your cluster
 
@@ -55,6 +53,7 @@ When data arrives at humio ("being ingested") it is routed to the host that hand
 That host then collects data from that input stream into a segment. Once the segment is full, the host selects a set of hosts, through the storage partitions, to hold the completed segment.
 
 Humio hosts may be added to, or removed from, a running cluster.
+
 
 ## Add a host to your cluster
 
@@ -84,13 +83,13 @@ Assuming you have a cluster of one or more humio nodes, add a with these steps:
 
 ## List cluster members
 
-```text
+```
 GET    /api/v1/clusterconfig/members
 ```
 
 Example:
 
-```bash
+```shell
 curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/members"
 ```
 
@@ -99,21 +98,21 @@ curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconf
 You can fetch / re-post the object representing the host in the cluster using GET/PUT requests.
 $HOST is the integer-id of the new host.
 
-```text
+```
 GET    /api/v1/clusterconfig/members/$HOST
 PUT    /api/v1/clusterconfig/members/$HOST
 ```
 
 Example:
 
-```bash
+```shell
 curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/members/1" > host-1.json
 curl -XPUT -d @host-1.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/members/1"
 ```
 
 outputs:
 
-```text
+```json
 {"vhost":1,"uuid":"7q2LwHv6q3C5jmdGj3EYL1n56olAYcQy","internalHostUri":"http://localhost:8080","displayName":"host-1"}
 ```
 
@@ -123,13 +122,13 @@ You can edit the fields internalHostUri and displayName in this structure and PO
 
 If the host does not have any segments files, and no assigned partitions, there is no data loss when deleting a host.
 
-```text
+```
 DELETE    /api/v1/clusterconfig/members/$HOST
 ```
 
 Example:
 
-```bash
+```shell
 curl -XDELETE -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/members/1"
 ```
 
@@ -141,7 +140,7 @@ This silently drops your data.
 
 Example:
 
-```bash
+```shell
 curl -XDELETE -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/members/1?accept-data-loss=true"
 ```
 
@@ -149,13 +148,13 @@ curl -XDELETE -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/cl
 
 This is a shortcut to getting all members of a cluster to have the same share of the load on both ingest and storage partitions.
 
-```text
+```
 POST   /api/v1/clusterconfig/partitions/setdefaults
 ```
 
 Example:
 
-```bash
+```shell
 curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/partitions/setdefaults"
 ```
 
@@ -170,14 +169,14 @@ There is no gain in having a large number of partitions.
 
 Existing segments are not moved when re-assigning partitions. Partitions only affect segments completed after they are POST'ed.
 
-```text
+```
 GET    /api/v1/clusterconfig/segments/partitions
 POST   /api/v1/clusterconfig/segments/partitions
 ```
 
 Example:
 
-```bash
+```shell
 curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/partitions" > segments-partitions.json
 curl -XPOST -d @segments-partitions.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/partitions"
 ```
@@ -192,13 +191,13 @@ There is no gain in having a large number of partitions.
 
 The number of replicas must be at least one, and at most the number of hosts in the cluster. The replicas selects how many hosts should keep a copy of each completed segment.
 
-```text
+```
 POST   /api/v1/clusterconfig/segments/partitions/set-replication-defaults
 ```
 
 Example:
 
-```bash
+```shell
 echo '{ "partitionCount": 7, "replicas": 2 }' > settings.json
 curl -XPOST -d @settings.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/partitions/set-replication-defaults"
 ```
@@ -207,11 +206,11 @@ curl -XPOST -d @settings.json -H "Content-Type: application/json" -H "Authorizat
 
 If the number of replicas has been reduced, existing segments in the cluster do not get their replica count reduced. In order to reduce the number of replicas on existing segments, invoke this:
 
-```text
+```
 POST   /api/v1/clusterconfig/segments/prune-replicas
 ```
 
-```bash
+```shell
 curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/prune-replicas"
 ```
 
@@ -227,7 +226,7 @@ There is API for taking the actions moving the eixsting segments between hosts.
 
 1.  If a new host is added, and you want it to take its fair share of the current stored data, use the "distribute-evenly-to-host" variant.
 
-```text
+```
 POST   /api/v1/clusterconfig/segments/distribute-evenly
 POST   /api/v1/clusterconfig/segments/distribute-evenly-reshuffle-all
 POST   /api/v1/clusterconfig/segments/distribute-evenly-to-host/$HOST
@@ -237,7 +236,7 @@ Optional; Add a "percentage=[0..100]" query parameter to only apply the action t
 
 Examples:
 
-```bash
+```shell
 curl -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/distribute-evenly"
 curl -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/distribute-evenly-reshuffle-all?percentage=3"
 curl -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/distribute-evenly-to-host/1"
@@ -259,7 +258,7 @@ Ingest traffic does not start before all hosts are ready, thus if a host is fail
 
 1.  Invoke "distribute-evenly-from-host" to reassign partitions currently assigned to $HOST to the other hosts in the cluster.
 
-```text
+```
 GET    /api/v1/clusterconfig/ingestpartitions
 POST   /api/v1/clusterconfig/ingestpartitions
 POST   /api/v1/clusterconfig/ingestpartitions/setdefaults
@@ -268,7 +267,7 @@ POST   /api/v1/clusterconfig/ingestpartitions/distribute-evenly-from-host/$HOST
 
 Example:
 
-```bash
+```shell
 curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/ingestpartitions" > ingest-partitions.json
 curl -XPOST -d @ingest-partitions.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/ingestpartitions"
 ```
@@ -279,7 +278,7 @@ The ingest queues are partitions of the Kafka queue named "humio-ingest".
 Humio offers an API for editing the Kafka partition to broker assignments this queue.
 Note that changes to these settings are applied asynchronously, thus you can get the previous settings, or a mix with the latest settings, for a few seconds after applying a new set.
 
-```text
+```
 GET    /api/v1/clusterconfig/kafka-queues/partition-assignment
 POST   /api/v1/clusterconfig/kafka-queues/partition-assignment
 POST   /api/v1/clusterconfig/kafka-queues/partition-assignment/set-replication-defaults
@@ -287,7 +286,7 @@ POST   /api/v1/clusterconfig/kafka-queues/partition-assignment/set-replication-d
 
 Example:
 
-```bash
+```shell
 curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/kafka-queues/partition-assignment" > kafka-ingest-partitions.json
 curl -XPOST -d @kafka-ingest-partitions.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/kafka-queues/partition-assignment"
 
@@ -302,7 +301,7 @@ not match, perhaps you can supply a stream of events on TCP, separated by line f
 This API allows you to create and configure a TCP listener for such events.
 Use cases include accepting "rsyslogd forward format" and similar plain-text event streams.
 
-```text
+```
 GET    /api/v1/listeners
 POST   /api/v1/listeners
 GET    /api/v1/listeners/$ID
@@ -312,14 +311,14 @@ DELETE /api/v1/listeners/$ID
 If you use [rsyslog for transport of logs](http://www.rsyslog.com/doc/v8-stable/configuration/templates.html#standard-template-for-forwarding-to-a-remote-host-rfc3164-mode)
 then this example serves as a starting point:
 
-```text
+```
 # Example input line on the wire:
 <14>2017-08-07T10:57:04.270540-05:00 mgrpc kernel: [   17.920992] Bluetooth: Core ver 2.22
 ```
 
 Creating a parser accepting rsyslogd forward format: [(How to add a parser)](#create-or-update-parser)
 
-```bash
+```shell
 cat << EOF > create-rsyslogd-rfc3339-parser.json
 { "parser": "^<(?<pri>\\\\d+)>(?<datetimestring>\\\\S+) (?<host>\\\\S*) (?<syslogtag>\\\\S*): ?(?<message>.*)",
   "kind": "regex",
@@ -337,7 +336,7 @@ curl -XPOST \
 
 Example setting up a listener using the rsyslogd forward format added above:
 
-```bash
+```shell
 cat << EOF > create-rsyslogd-listener.json
 { "listenerPort": 7777,
   "kind": "tcp",
@@ -370,14 +369,14 @@ This can be done by setting `"tagFields": ["fielda", "fieldb"]` when creating a 
 To reduce packet loss in bursts of UDP traffic, please increase the maximum allowed receive buffer size for UDP.
 Humio will try to increase the buffer to up to 128MB, but will accept whatever the system sets as maximum.
 
-```bash
+```shell
 # To set to 16MB.
 sudo sysctl net.core.rmem_max=16777216
 ```
 
 ## Setup grouping of tags
 
-```text
+```
 GET    /api/v1/dataspaces/$REPOSITORY_NAME/taggrouping
 POST   /api/v1/dataspaces/$REPOSITORY_NAME/taggrouping
 ```
@@ -406,7 +405,7 @@ Example: Setting the grouping rules for repository `$REPOSITORY_NAME`
 to hash the field `#host` into 8 buckets, and `#client_ip` into 10 buckets.
 Note how the field names do not include the `#` prefix in the rules.
 
-```bash
+```shell
 curl http://localhost:8080/api/v1/dataspaces/$REPOSITORY_NAME/taggrouping \
   -X POST \
   -H "Authorization: Bearer $TOKEN" \
@@ -457,7 +456,7 @@ done with them, one at a time.
 
 Example:
 
-```bash
+```shell
 NAME="my-repository-name"
 sudo mkdir /data/humio-data/ready_for_import_dataspaces
 sudo mv /data/dataspaces-from-elsewhere/dataspace_$NAME /data/humio-data/ready_for_import_dataspaces
@@ -496,7 +495,7 @@ The API requires root access.
 
 ### Examples
 
-```bash
+```shell
 curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding"
 curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding"
 curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding?number=7"

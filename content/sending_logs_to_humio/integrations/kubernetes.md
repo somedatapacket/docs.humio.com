@@ -54,7 +54,7 @@ Take your ingest token from your Humio Repository page…
 
 Finally, we run a simple Helm command to get the logs rolling:
 
-```bash
+```shell
 $ helm install stable/fluent-bit --name=humio-agent -f humio-agent.yaml
 ```
 
@@ -64,7 +64,7 @@ Once this is in place, your logs should be up and running.
 
 Should you want to uninstall the pod, it can be done with the following command
 
-```bash
+```shell
 $ helm delete --purge humio-agent
 ```
 
@@ -78,7 +78,7 @@ Make sure that you have [uninstalled the Chart](#uninstall-chart) if you went th
 
 Start by creating a namespace and configure service accounts, roles etc.
 
-```bash
+```shell
 $ kubectl create namespace logging
 $ kubectl create -f https://raw.githubusercontent.com/fluent/fluent-bit-kubernetes-logging/master/fluent-bit-service-account.yaml
 $ kubectl create -f https://raw.githubusercontent.com/fluent/fluent-bit-kubernetes-logging/master/fluent-bit-role.yaml
@@ -158,7 +158,7 @@ Remember if you're an on-prem solution without TLS, the `FLUENT_ELASTICSEARCH_TL
 
 Finally, you need to install the daemonset
 
-```bash
+```shell
 $ kubectl create -f fluent-bit-ds.yaml
 ```
 
@@ -167,7 +167,7 @@ Your container logs should now start to roll into Humio
 ### Additional filters
 In some cases you might want to make some changes to the Fluent Bit configuration. Easiest way to do that is changing the configmap by opening it in an editor with the following command
 
-```bash
+```shell
 $ kubectl -n logging edit Configmap fluent-bit-config
 ```
 
@@ -181,7 +181,7 @@ Rename   log rawstring
 
 Save and exit your editor and restart Fluent Bit with
 
-```bash
+```shell
 $ kubectl -n logging delete pod -l k8s-app=fluent-bit-logging
 ```
 
@@ -189,7 +189,7 @@ $ kubectl -n logging delete pod -l k8s-app=fluent-bit-logging
 
 Since everything is installed in a namespace, uninstalling Fluent Bit is pretty simple
 
-```bash
+```shell
 $ kubectl delete namespace logging
 $ kubectl delete clusterrole fluent-bit-read
 $ kubectl delete clusterrolebindings fluent-bit-read

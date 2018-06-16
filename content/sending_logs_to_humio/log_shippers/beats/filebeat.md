@@ -2,7 +2,8 @@
 title: "Filebeat"
 ---
 
-[Filebeat](https://www.elastic.co/products/beats/filebeat) is a lightweight, open source program that can monitor log files and send data to servers like Humio.
+[Filebeat](https://www.elastic.co/products/beats/filebeat) is a lightweight,
+open source program that can monitor log files and send data to servers like Humio.
 
 Filebeat has some properties that make it a great tool for sending file data to Humio:
 
@@ -16,7 +17,9 @@ Filebeat has some properties that make it a great tool for sending file data to 
 
 * **It handles network problems gracefully.**
 
-    When Filebeat reads a file, it keeps track of the last point that it has read to. If there is no network connection, then Filebeat waits to retry data transmission. It continues data transmission when the connection is working again.
+    When Filebeat reads a file, it keeps track of the last point that it has read to.
+    If there is no network connection, then Filebeat waits to retry data transmission.
+    It continues data transmission when the connection is working again.
 
 
 {{% notice note %}}
@@ -95,7 +98,7 @@ You must make the following changes to the sample configuration:
 
 Run Filebeat as a service on Linux with the following commands
 
-```
+``` shell
 sudo systemctl enable filebeat
 sudo systemctl restart filebeat
 ```
@@ -148,8 +151,11 @@ To avoid having the `@host` and `@source` fields, specify `@host` and `@source` 
 
 Humio saves data in Data Sources. You can provide a set of Tags to specify which Data Source the data is saved in.  
 See [glossary](/glossary/#tags) for more information about tags and Data Sources.  
-The `type` configured in Filebeat is always used as tag. Other fields can be used as tags as well by defining the fields as `tagFields` in the [parser](/sending_logs_to_humio/parsers/parsing/) pointed to by the `type`.  
-In Humio tags always start with a #. When turning a field into a tag it will be prepended with #.
+The `type` configured in Filebeat is always used as tag. Other fields can be used
+as tags as well by defining the fields as `tagFields` in the
+[parser](/sending_logs_to_humio/parsers/parsing/) pointed to by the `type`.  
+In Humio tags always start with a #. When turning a field into a tag it will
+be prepended with `#`.
 
 
 ## Multiline events
@@ -162,16 +168,18 @@ You can specify multiline settings in the Filebeat configuration.
 {{% notice note %}}
 ***Multiline documentation***
 
-[See Filebeats official multiline configuration documentation](https://www.elastic.co/guide/en/beats/filebeat/master/multiline-examples.html)
+[See Filebeat's official multiline configuration documentation](https://www.elastic.co/guide/en/beats/filebeat/master/multiline-examples.html)
 {{% /notice %}}
 
 Often a log event starts with a timestamp and we want to read all lines until we see a new line starting with a timestamp.
-In filebeat that can be done like this:
-```
+In Filebeat that can be done like this:
+
+```yaml
 multiline.pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}'
 multiline.negate: true
 multiline.match: after
 ```
+
 The `multiline.pattern` should match your timestamp format
 
 ## Full configuration example

@@ -15,11 +15,11 @@ or thought a API call.
 If you are running Humio in a cluster setup, you only have to the they key
 on a single node, it will be automatically propagated all cluster nodes.
 
-## Using the Administration Interface
+## Managing your license in the UI
 
 From the account menu in the top right corner of the UI select:
 
-"Administration" > "License"
+`Administration` __→__ `License`
 
 In the view you can paste in the license key.
 
@@ -27,19 +27,13 @@ In the view you can paste in the license key.
 
 Here is an example of updating the license key using CURL:
 
-```bash
+```shell
 curl -v -X POST -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' \
   -d "{ \"query\": \"mutation { updateLicenseKey(license: \\\"$LICENSE_KEY\\\") { expiresAt } }\" }" \
   https://$HUMIO_HOST/graphql
 ```
 
 This will return status 200 and date when your license expires.
-
-## License Properties
-
-Admins can inspect the license properties from the admin interface under:
-
-"Administration" > "License"  
 
 ## Expired Licenses
 

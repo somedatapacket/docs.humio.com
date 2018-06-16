@@ -51,7 +51,7 @@ behind a https proxy.
 
 Finally restart rsyslog:
 
-```bash
+```shell
 $ systemctl restart rsyslog.service
 ```
 

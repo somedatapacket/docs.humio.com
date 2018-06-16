@@ -61,10 +61,10 @@ Humio turns JSON properties into fields as shown below:
 
 ```json
 {
-  "timestamp": "2017-02-22T11:04:17.000+01:00",
-  "loglevel": "INFO",
-  "thread": "TimerThread",
-  "timing": {
+  "ts": "2017-02-22T11:04:17.000+01:00",  
+  "loglevel": "INFO",  
+  "thread": "TimerThread",  
+  "timing": {  
     "name": "service1",
     "time": 42
   }
@@ -75,7 +75,7 @@ Resulting Fields:
 
 | field      | value                           |
 |------------|---------------------------------|
-|timestamp   | "2017-02-22T11:04:17.000+01:00" |
+|ts          | "2017-02-22T11:04:17.000+01:00" |
 |loglevel    | "INFO"                          |
 |thread      | "TimerThread"                   |
 |timing.name | "service1"                      |
@@ -217,18 +217,18 @@ When a parser fails, Humio adds fields to the event:
 
 You can search for all events that were not parsed correctly:
 
-```
+``` humio
 @event_parsed=false
 ```
 
 You can extend the query in different ways. For example, you can display a time chart:
 
-```
+``` humio
 @event_parsed=false | timechart()
 ```
 
 Or by group results by error message:
 
-```
+``` humio
 @event_parsed=false | groupBy(@error_msg)
 ```

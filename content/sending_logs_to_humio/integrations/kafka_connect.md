@@ -35,7 +35,7 @@ JSON request with the `connector properties` starting the connector.
 ### Worker.properties
 The worker properties for the connector could look like below. It uses JSON for Serialization and does not use schemas.
 
-```bash
+```shell
 bootstrap.servers=<Kafka server 1>:9092,<Kafka server 2>:9092,<Kafka server n>:9092
 offset.flush.interval.ms=1000
 
@@ -139,7 +139,7 @@ We will use the [confluentinc/cp-kafka-connect](https://hub.docker.com/r/conflue
 
 We start out by defining a `worker.properties` file:
 
-```bash
+```shell
 # use below property when running in standalone mode
 # offset.storage.file.filename=/tmp/connect.offsets
 
@@ -172,7 +172,7 @@ plugin.path=/usr/share/java
 
 Start the Connector with the following command
 
-```bash
+```shell
 docker run -it -d \
   -p 10082:10082 \
   --name=humio-kafka-connect \
@@ -186,7 +186,7 @@ Replace `$KAFKA_SERVER` with the address of your one your kafka servers. <!--TOD
 <!--TODO: Reread this sentence--> If the Kafka topics to read data from does not already exist we need to create them. That can be done using the `kafka-topics` script in the  in the bin directory of the kafka installation. It is also possible to do using the
 `humio-kafka-connect` Docker container we have just started to run our connector.
 
-```bash
+```shell
 docker exec -it humio-kafka-connect kafka-topics \
   --zookeeper kafka:2181 \
   --create \
@@ -229,7 +229,7 @@ Make sure Humio is running, otherwise the connector will fail during start up.
 Now we can initiate the connector with the above configuration with the
 following Curl commands:
 
-```bash
+```shell
 curl -X POST -H "Content-Type: application/json" \
   --data-binary "@humio-connect.json" \
   http://localhost:10082/connectors
@@ -237,14 +237,14 @@ curl -X POST -H "Content-Type: application/json" \
 
 If you need to reconfigure, the connector can be removed using:
 
-```bash
+```shell
 curl -XDELETE http://localhost:10082/connectors/humio-sink
 ```
 
 Now we have all the different pieces running. We can add data to our Kafka
 topic and check it is sent to Humio:
 
-```bash
+```shell
 echo '{"@timestamp": "2018-06-03T20:53:23Z", "message": "hello world"}' \
  | docker exec -i  humio-kafka-connect kafka-console-producer \
                      --broker-list kafka:9092 \

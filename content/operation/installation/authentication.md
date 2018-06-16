@@ -50,7 +50,7 @@ Since the token is re-generated on every server startup, it is not suitable as a
 You can use the root token to create root users in Humio.
 To create a user with root privileges on the server, run:
 
-```bash
+```shell
 TOKEN=`cat /data/humio-data/local-admin-token.txt`
 curl http://localhost:8080/api/v1/users \
  -X POST \
@@ -86,7 +86,7 @@ systems you should use some of the multi-user authentication methods.
 To start Humio in single-user mode you need to specify the following
 two configuration settings:
 
-```bash
+```shell
 AUTHENTICATION_METHOD=single-user
 SINGLE_USER_PASSWORD=<your-password>
 ```
@@ -139,7 +139,7 @@ If LDAP/AD requires login with the exact DN, then it is possible to first do a s
 a low-priviledge bind username, and then successively do the login with the correct DN.  
 To enable this, use this alternative property set:
 
-```bash
+```shell
 AUTHENTICATION_METHOD=ldap-search
 LDAP_AUTH_PROVIDER_URL=your-url       (example: ldap://ldap.forumsys.com:389)
 LDAP_SEARCH_DOMAIN_NAME=your-domain   (example: example.com)
@@ -209,7 +209,7 @@ Once your app is created you can configure Humio to use authenticate with Google
 
 #### Configuration Properties
 
-```bash
+```shell
 AUTHENTICATION_METHOD=oauth
 PUBLIC_URL=$YOUR_SERVERS_BASE_URL
 GOOGLE_OAUTH_CLIENT_ID=$CLIENT_ID #The client_id from your Google OAuth App
@@ -233,7 +233,7 @@ Once your app is created you can configure Humio to use authenticate with GitHub
 
 #### Configuration Properties
 
-```bash
+```shell
 AUTHENTICATION_METHOD=oauth
 PUBLIC_URL=$YOUR_SERVERS_BASE_URL
 GITHUB_OAUTH_CLIENT_ID=$CLIENT_ID # The client_id from your GitHub OAuth App
@@ -262,7 +262,7 @@ Once your consumer is created you can configure Humio to use authenticate with B
 
 #### Configuration Properties
 
-```bash
+```shell
 AUTHENTICATION_METHOD=oauth
 PUBLIC_URL=$YOUR_SERVERS_BASE_URL
 BITBUCKET_OAUTH_CLIENT_ID=$CLIENT_ID # The Key from your BitBucket OAuth Consumer
@@ -303,7 +303,7 @@ Under the application's _Settings_ page find:
 We will need these for Humio's settings, you will also have to set the
 `AUTHENTICATION_METHOD` option to `auth0`, e.g.:
 
-```bash
+```shell
 AUTHENTICATION_METHOD=auth0
 AUTH0_CLIENT_ID=$YOUR_CLIENT_ID
 AUTH0_CLIENT_SECRET=$YOUR_CLIENT_SECRET

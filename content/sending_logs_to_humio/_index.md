@@ -1,8 +1,8 @@
 ---
-title: "Sending logs to Humio"
+title: "Sending Data"
 weight: 2
+category_title: "Overview"
 ---
-# Sending logs to Humio
 
 Sending logs to Humio is most probably the most important part of any log management system and at Humio it's something
 we rate *very* high.

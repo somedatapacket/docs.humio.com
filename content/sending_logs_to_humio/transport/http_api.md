@@ -48,7 +48,7 @@ You can find your API token on the web application's front page (after login) by
 
 Example:
 
-```bash
+```shell
 curl https://demo.humio.com/api/v1/dataspaces/github/query \
  -X POST \
  -H 'Content-Type: application/json' \
@@ -64,7 +64,7 @@ All API calls support compression using deflate and GZIP.
 
 Example:
 
-```bash
+```shell
 curl https://demo.humio.com/api/v1/dataspaces/github/query \
  -X POST \
  -H 'Content-Type: application/json' \
@@ -225,7 +225,7 @@ This live query returns an empty search, finding all events in a time window goi
 
 Notice the `ACCEPT` header. This tells the server to stream data as [Newline Delimited JSON](http://specs.frictionlessdata.io/ndjson/).
 
-```bash
+```shell
 curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/query \
   -X POST \
   -H "Authorization: Bearer $API_TOKEN" \
@@ -350,7 +350,7 @@ Live queries keep running for an hour without being polled.
 
 #### Example
 
-```bash
+```shell
 curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID \
   -H "Authorization: Bearer $API_TOKEN"
 ```
@@ -373,7 +373,7 @@ Standard HTTP response codes.
 
 #### Example
 
-```bash
+```shell
 curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID \
  -X DELETE \
  -H "Authorization: Bearer $API_TOKEN"
