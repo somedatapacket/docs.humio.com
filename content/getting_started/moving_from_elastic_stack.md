@@ -51,4 +51,4 @@ If your repository is still empty your a dialog on the search page will contain 
 If you cannot find it there, you can always go to _Settings_ for your repository
 and create a new Ingest Token from there.
 
-For more information about the Beats data shippers, please take a look at [Beats section](/sending_logs_to_humio/log_shippers/beats/).
+For more information about the Beats data shippers, please take a look at [Beats section](/sending-data/log_shippers/beats/).

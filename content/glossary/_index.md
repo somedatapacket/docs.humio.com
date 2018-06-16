@@ -62,7 +62,7 @@ Humio saves data in Data Sources. You can provide a set of Tags to specify which
 You can add Tags to [Events](#events) that you ingest into Humio.
 Tags provide an important way to speed up searching. They allow Humio to select which Data Sources to search through.     
 For example, you can add Tags to Events that represent host names, file names, service names, or the kind of service.  
-Tags can be configured in [parsers](/sending_logs_to_humio/parsers/parsing/) or specified in the APIs for data ingestion.
+Tags can be configured in [parsers](/sending-data/parsers/parsing/) or specified in the APIs for data ingestion.
 
 {{% notice note %}}
 Tags are an advanced option in Humio. It can be used to separate data into different datasources and thereby improve query performance.

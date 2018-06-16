@@ -6,11 +6,11 @@ When sending data to Humio, you can specify a parser.
 Humio uses parsers to extract fields and add structure to the data that you send to it.
 
 {{% notice note %}}
-When sending data with [Filebeat]({{< relref "sending_logs_to_humio/log_shippers/beats/filebeat.md" >}})
+When sending data with [Filebeat]({{< relref "sending-data/log_shippers/beats/filebeat.md" >}})
 you specify a parser to parse data.
 {{% /notice %}}
 
-Humio comes with a set of [built-in parsers]({{< relref "sending_logs_to_humio/parsers/built_in_parsers.md" >}}) for
+Humio comes with a set of [built-in parsers]({{< relref "sending-data/parsers/built_in_parsers.md" >}}) for
 common log formats.
 
 If no built-in parsers match your needs, then you can create your own.
@@ -193,7 +193,7 @@ A formatted timestamp is shown on the gray bar at the top of the details for the
 
 {{% notice note %}}
 At the moment, the parser page cannot handle multiline events. You will have to rely on external log-shippers to handle this,
-e.g. [filebeat]({{< relref "sending_logs_to_humio/log_shippers/beats/filebeat.md" >}}). Built-in multiline parsing is planned for a future release of Humio - So stay tuned!
+e.g. [filebeat]({{< relref "sending-data/log_shippers/beats/filebeat.md" >}}). Built-in multiline parsing is planned for a future release of Humio - So stay tuned!
 {{% /notice %}}
 
 ## Adding tags

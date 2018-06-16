@@ -17,7 +17,7 @@ is happening in Nginx in great detail. For example, you can:
 ## Logs
 
 To ship the Nginx access logs to Humio, use
-[Filebeat]({{< relref "sending_logs_to_humio/log_shippers/beats/filebeat.md" >}}).
+[Filebeat]({{< relref "sending-data/log_shippers/beats/filebeat.md" >}}).
 
 {{% notice note %}}
 On Linux, the access log is in `/var/log/nginx/access.log`
@@ -39,11 +39,11 @@ output.elasticsearch:
 
 {{< partial "common-rest-params.html" >}}
 
-See the page on [Filebeat](/sending_logs_to_humio/log_shippers/beats/filebeat/) for further details.
+See the page on [Filebeat](/sending-data/log_shippers/beats/filebeat/) for further details.
 
-The above Filebeat configuration uses the [built-in parser `accesslog`](/sending_logs_to_humio/parsers/built_in_parsers/#accesslog).
+The above Filebeat configuration uses the [built-in parser `accesslog`](/sending-data/parsers/built_in_parsers/#accesslog).
 The parser can parse logs formatted in the default Nginx log configuration.
-If your log Nginx configuration is modified, create a [custom parser](/sending_logs_to_humio/parsers/parsing/), by copying the accesslog parser and modifying it.
+If your log Nginx configuration is modified, create a [custom parser](/sending-data/parsers/parsing/), by copying the accesslog parser and modifying it.
 Then replace the parser name in the Filebeat configuration.
 
 {{% notice note %}}
@@ -152,5 +152,5 @@ output.elasticsearch:
 
 {{< partial "common-rest-params.html" >}}
 
-See also the page on [Metricbeat](/sending_logs_to_humio/log_shippers/beats/metricbeat/) for more
+See also the page on [Metricbeat](/sending-data/log_shippers/beats/metricbeat/) for more
 information.

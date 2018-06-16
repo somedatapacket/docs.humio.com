@@ -49,11 +49,11 @@ output.elasticsearch:
 
 {{< partial "common-rest-params.html" >}}
 
-See the page on [Metricbeat]({{< relref "sending_logs_to_humio/log_shippers/beats/metricbeat.md" >}}) for more information.
+See the page on [Metricbeat]({{< relref "sending-data/log_shippers/beats/metricbeat.md" >}}) for more information.
 
 {{% notice note %}}
 ***Example queries***
-check out the these [queries]({{< relref "sending_logs_to_humio/log_shippers/beats/metricbeat.md" >}}) on host metrics
+check out the these [queries]({{< relref "sending-data/log_shippers/beats/metricbeat.md" >}}) on host metrics
 {{% /notice %}}
 
 ## System Logs (syslog)
@@ -81,10 +81,10 @@ output.elasticsearch:
 Notice the type is `syslog-utc`, which points to the built in syslog parser, expecting the timestamp to be in UTC time.
 Often syslog timestamps are in local time. Go ahead and create a new parser with another timezone in Humio if necessary.
 You can copy the built in syslog-utc and just change the timezone.
-See [Parsing]({{< relref "sending_logs_to_humio/parsers/parsing.md" >}}) for details.
+See [Parsing]({{< relref "sending-data/parsers/parsing.md" >}}) for details.
 
 
-Check out the [Filebeat]({{< relref "sending_logs_to_humio/log_shippers/beats/filebeat.md" >}}) page for more
+Check out the [Filebeat]({{< relref "sending-data/log_shippers/beats/filebeat.md" >}}) page for more
 information.
 
 ## Custom Logs or Metrics
@@ -97,4 +97,4 @@ these strategies:
    to ship them similarly to the System logs above.
 
 1. Use cron to run a script that send data to Humio via it
-   [Ingest API]({{< relref "sending_logs_to_humio/transport/http_api.md#ingest" >}}).
+   [Ingest API]({{< relref "sending-data/transport/http_api.md#ingest" >}}).

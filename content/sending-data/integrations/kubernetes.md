@@ -150,7 +150,7 @@ spec:
         effect: NoSchedule
 ```
 
-Don't forget to replace `<humio-host>` with the hostname of your Humio instance, i.e. `cloud.humio.com` and `<ingest-token>` with your [Humio ingest-token](/sending_logs_to_humio/ingest_token/).
+Don't forget to replace `<humio-host>` with the hostname of your Humio instance, i.e. `cloud.humio.com` and `<ingest-token>` with your [Humio ingest-token](/sending-data/ingest_token/).
 
 {{% notice note %}}
 Remember if you're an on-prem solution without TLS, the `FLUENT_ELASTICSEARCH_TLS` property should be switched to `Off`.

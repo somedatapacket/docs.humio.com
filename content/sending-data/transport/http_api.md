@@ -390,12 +390,12 @@ When parsing text logs like syslogs, accesslogs or logs from applications you ty
 
 ### Ingest data using a parser
 
-This API should be used, when a parser should be applied to the data. It is possible to create [parsers](/sending_logs_to_humio/parsers/parsing/) in Humio
+This API should be used, when a parser should be applied to the data. It is possible to create [parsers](/sending-data/parsers/parsing/) in Humio
 
 {{% notice note %}}
 ***Filebeat is another option for sending data that needs a parser***
 
-Another option, that is related to this API is to use [Filebeat](/sending_logs_to_humio/log_shippers/beats/filebeat/).  
+Another option, that is related to this API is to use [Filebeat](/sending-data/log_shippers/beats/filebeat/).  
 Filebeat is a lightweight open source agent that can monitor files and ship data to Humio. When using filebeat it is also possible to specify a parser for the data.
 Filebeat can handle many problems like network problems, retrying, batching, spikes in data etc.
 {{% /notice %}}
@@ -424,7 +424,7 @@ Example sending 4 accesslog lines to Humio
 ```
 
 The above example sends 4 accesslog lines to Humio. the parser is specified using the `type` field and is set to `accesslog`.   
-The parser accesslog should be specified in the repository. See [parsing](/sending_logs_to_humio/parsers/parsing/) for details.  
+The parser accesslog should be specified in the repository. See [parsing](/sending-data/parsers/parsing/) for details.  
 The `fields` section is used to specify fields that should be added to each of the events when they are parsed. In the example all the accesslog events will get a host field telling the events came from webhost1.  
 It is possible to send events of different types in the same request. That is done by adding a new element to the outer array in the example above.
 Tags can be specified in the parser pointed to by the `type` field
@@ -436,7 +436,7 @@ When sending events, you can set the following standard fields:
 Name            | Required      | Description
 ------------    | ------------- |------------
 `messages`      | yes           | The raw strings representing the events. Each string will be parsed by the parser specified by `type`.
-`type`          | yes           | The [parser](/sending_logs_to_humio/parsers/parsing/) Humio will use to parse the `messages`
+`type`          | yes           | The [parser](/sending-data/parsers/parsing/) Humio will use to parse the `messages`
 `fields`        | no            | Annotate each of the `messages` with these key-values. Values must be strings.
 `tags`          | no            | Annotate each of the `messages` with these key-values as Tags. Please see other documentation on tags before using.
 
@@ -704,7 +704,7 @@ For example, a standard web server log has the status code, method, and URL
 fields for each log line.
 
 When sending data to Humio, for example using
-[Filebeat](/sending_logs_to_humio/log_shippers/beats/filebeat/), you must specify a parser telling
+[Filebeat](/sending-data/log_shippers/beats/filebeat/), you must specify a parser telling
 Humio how to parse the incoming data.
 
 Humio has some built-in parsers for common formats like access logs from Apache and Nginx

@@ -97,6 +97,7 @@
  {{with .sect}}
   {{if .IsSection}}
     {{safeHTML .Params.head}}
+    {{ $showChildren := or (.IsAncestor $currentNode) (eq .UniqueID $currentNode.UniqueID)}}
     <li data-nav-id="{{.URL}}" title="{{.Title}}" class="dd-item
         {{if .IsAncestor $currentNode }}parent{{end}}
         {{if eq .UniqueID $currentNode.UniqueID}}active{{end}}
@@ -109,7 +110,7 @@
           {{ end }}
       </a>
       {{ $numberOfPages := (add (len .Pages) (len .Sections)) }}
-      {{ if ne $numberOfPages 0 }}
+      {{ if (and (ne $numberOfPages 0) $showChildren) }}
         <ul>
           {{ template "menu-item" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "categoryTitle" .Params.category_title }}
 

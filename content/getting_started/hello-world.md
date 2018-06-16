@@ -80,8 +80,8 @@ experiments with Humio.
 
 Now you are all set, choose one of the following guides:
 
-- [Configure a log-shipper (Rsyslog, FileBeat, Logstash, etc.)]({{< relref "sending_logs_to_humio/log_shippers/_index.md" >}}),
-- [Use one of our platform integration (Kubernetes, Docker, DC/OS, etc.)]({{< relref "sending_logs_to_humio/integrations/_index.md" >}}),
+- [Configure a log-shipper (Rsyslog, FileBeat, Logstash, etc.)]({{< relref "sending-data/log_shippers/_index.md" >}}),
+- [Use one of our platform integration (Kubernetes, Docker, DC/OS, etc.)]({{< relref "sending-data/integrations/_index.md" >}}),
 - [or ingest through Humio's REST API]({{< relref "http_api.md#ingest" >}})
 
 _Tip: If you are already using ElasticSearch ELK you can also take a look at how easy it is to
