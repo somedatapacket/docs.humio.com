@@ -51,7 +51,7 @@ You can configure a parser to extract the attributes and timestamp of Events fro
 For JSON data, you can specify what the `@rawstring` represents. By default, this is the original JSON data string.
 The timestamp of an Event is represented in the `@timestamp` attribute
 
-Events also have a special `@repo` meta-field that denotes the repository the event comes from.
+Events also have a special `#repo` meta-field that denotes the repository the event comes from.
 This is useful in cross-repository searches when using [Views]({{< relref "getting_started/views.md" >}}).
 
 Events can also have [Tags](#tags) associated with them.
