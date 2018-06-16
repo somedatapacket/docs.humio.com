@@ -199,7 +199,7 @@ e.g. [filebeat]({{< relref "sending-data/log_shippers/beats/filebeat.md" >}}). B
 ## Adding tags
 
 Humio saves data in Data Sources. You can provide a set of Tags to specify which Data Source the data is saved in.
-Using tags can significantly speed up searches. Tags are described [here]({{< relref "glossary/_index.md#tags" >}})
+Using tags can significantly speed up searches. Tags are described [here]({{< relref "glossary.md#tags" >}})
 
 When using a parser, its name is added as the `#type` tag.  
 For example using the `accesslog` parser for parsing web server logs will result in events with the tag `#type=accesslog`.   

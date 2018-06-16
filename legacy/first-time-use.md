@@ -4,7 +4,8 @@ Welcome to Humio!
 Humio is a log management system, so you need to put some logs
 into it in order to make use of it.
 
-If you want to get a little more context around what log management is, please read the [brief overview of log management](log-management-overview.md).
+If you want to get a little more context around what log management is,
+please read the [brief overview of log management](log-management-overview.md).
 
 ## Get logs into Humio
 
@@ -31,10 +32,10 @@ can find the integretion you need. For example, if what you want is:
 ## Start using Humio
 
 The best way to start is to head
-over to our [online tutorial](/getting_started/tutorial/).
+over to our [online tutorial](/getting-started/tutorial/).
 
 Afterwards, you can learn about the [query language](/searching_logs/query_language/) and its
-[functions](/searching_logs/query_language/query_functions/).
+[functions]({{< relref "query-functions/_index.md >}}).
 
 
 **Have fun!**

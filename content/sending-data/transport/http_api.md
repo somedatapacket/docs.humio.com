@@ -643,7 +643,7 @@ curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/ingest \
 ### Files
 
 You can use this endpoint to upload files that can be used by the
-[lookup](/searching_logs/query_functions/#lookup) function.
+{{% function "lookup" %}} function.
 
 You can upload files in CSV or JSON format.
 

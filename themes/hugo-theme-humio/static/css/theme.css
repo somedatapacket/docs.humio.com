@@ -651,10 +651,17 @@ code {
     border-radius: 2px;
     white-space: nowrap;
     color: #3b3939;
-    background: #eeddff;
-    border: 1px solid #e3cbfb;
+    background: #f6f6f7;
+    border: 1px solid #e9e9eb;
     padding: 1px 3px;
 }
+
+code.language-humio {
+  background: white;
+  border: 1px solid rgb(236, 236, 236);
+  padding-top: 3px;
+}
+
 table code {
     background: rgb(250, 250, 250);
     border-color: rgb(228, 228, 228);
@@ -674,7 +681,7 @@ pre {
     border: solid 1px rgb(156, 156, 156);
 }
 pre code {
-    border: 0;
+    border: 0 !important;
     padding: 0;
     margin: 0;
     font-size: 15px;

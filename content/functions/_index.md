@@ -1,7 +1,0 @@
----
-title: "Query Functions"
-
----
-
-
-foo

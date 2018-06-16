@@ -1,6 +1,6 @@
 ---
-title: "Release notes"
-weight: 9
+title: "Release Notes"
+weight: 1000
 ---
 
 {{% releasenotes %}}

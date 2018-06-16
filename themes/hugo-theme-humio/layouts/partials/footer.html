@@ -74,7 +74,7 @@
       "json": "application/json"
     };
 
-    $('pre > code[class^="language-"]').each(function(i, code) {
+    $('code[class^="language-"]').each(function(i, code) {
       var language = [].slice.apply(code.classList)
         .filter(function(c) { return c.startsWith("language-"); })
         .map(function(c) { return c.split("-")[1]; })[0];

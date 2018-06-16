@@ -7,7 +7,7 @@ To get logs from Heroku, you need to follow the guide lines to set up a
 
 First you need to make sure you have a repository ready to send your logs to.
 Either create a dedicated repository or if you are on a Free Humio Cloud account
-use your [Sandbox Repository]({{< relref "getting_started/the_sandbox.md" >}}).
+use your [Sandbox Repository]({{< relref "getting-started/the_sandbox.md" >}}).
 
 
 The command to set up logging for your Heroku app is then:
