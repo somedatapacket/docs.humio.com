@@ -9,7 +9,7 @@ This feature is in beta!
 {{% /notice %}}
 
 It is possible to send NetFlow data directly to Humio over UDP using ingest listeners. 
-Ingest listeners are configured under settings in a data space.  
+Ingest listeners are configured under settings in a repository.  
 Setting up an ingest listener will let Humio listen for NetFlow traffic on a specified port. 
 Then you need to configure the network equipment (firewall, switch, ...) to send NetFlow data directly to Humio.
 

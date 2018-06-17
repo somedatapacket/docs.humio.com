@@ -34,7 +34,7 @@ graph BT;
 <figcaption>A view that joins data from three connected physical repositories.</figcaption>
 </figure>
 
-When searching, all events include a special `#repo` meta-tag-field with the name
+When searching, all events include a build-in `#repo` tag with the name
 of the repository they where read from.
 
 {{% notice tip %}}
@@ -57,8 +57,8 @@ Here is an example view having two connections with a filter applied to each:
 
 | Repository         | Filter           |
 |--------------------|------------------|
-| accesslogs         | `method=GET`     |
-| analytics          | `loglevel=INFO`  |
+| accesslogs         | {{< query >}}method=GET{{< /query >}}     |
+| analytics          | {{< query >}}loglevel=INFO{{< /query >}}  |
 
 now, if you run the following query:
 
@@ -73,8 +73,8 @@ Under the hood two separate searches are executed:
 
 | Repository         | Executed Query                                                  |
 |--------------------|-----------------------------------------------------------------|
-| accesslogs         | <code>method=GET \| ip = 158.191.19.12</code>                   |
-| analytics          | <code>loglevel=INFO \| ip = 158.191.19.12</code>                |
+| accesslogs         | {{< query >}}method=GET | ip = 158.191.19.12{{< /query >}}                   |
+| analytics          | {{< query >}}loglevel=INFO | ip = 158.191.19.12{{< /query >}}                |
 
 The {{% function "groupBy" %}} (the aggregation) only happens after results of individual
 searches are joined. Here is a flow diagram of the process:
@@ -123,19 +123,19 @@ __View: Nginx Logs__
 
 | Repository         | Filter             |
 |--------------------|--------------------|
-| `acme-project`     | `#service=nginx`   |
+| `acme-project`     | {{< query >}}#service=nginx{{< /query >}}   |
 
 __View: PostgreSQL Logs__
 
 | Repository           | Filter              |
 |----------------------|---------------------|
-| `acme-project`       | `#service=postgres` |
+| `acme-project`       | {{< query >}}#service=postgres{{< /query >}} |
 
 __View: iOS App Analytics__
 
 | Repository           | Filter                                  |
 |----------------------|-----------------------------------------|
-| `acme-project`       | `#service=app and eventType=analytics`  |
+| `acme-project`       | {{< query >}}#service=app and eventType=analytics{{< /query >}}  |
 
 In this example we create three views that all draw their data from
 a single repository. If you are using a free cloud account the
@@ -153,7 +153,7 @@ filter expression:
 
 | Repository         | Filter                                 |
 |--------------------|----------------------------------------|
-| `hospital-logs`    | `socialSecurityNo := "REDACTED"`       |
+| `hospital-logs`    | {{< query >}}socialSecurityNo := "REDACTED"{{< /query >}}       |
 
 #### Restricting access to a subset of a repository {#subset}
 
@@ -165,8 +165,8 @@ reach the user.  in this case limiting access to logs Germany :
 
 | Repository  | Filter                                        |
 |--------------------|----------------------------------------|
-| `website`          | `country = "DE"`                       |
-| `db`               | `ip.geo = "DE"`                        |
+| `website`          | {{< query >}}country = "DE"{{< /query >}}                       |
+| `db`               | {{< query >}}ip.geo = "DE"{{< /query >}}                        |
 
 In this example we are dealing with two repositories.
 
@@ -187,8 +187,8 @@ filter expressions:
 
 | Repository         | Filter                                                         |
 |--------------------|----------------------------------------------------------------|
-| website            | `region := country`                                            |
-| db                 | `region := ip.geo`                                             |
+| website            | {{< query >}}region := country{{< /query >}}                                            |
+| db                 | {{< query >}}region := ip.geo{{< /query >}}                                            |
 
 Now you can just write:
 

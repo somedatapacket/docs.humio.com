@@ -11,22 +11,22 @@ please read the [brief overview of log management](log-management-overview.md).
 
 First, decide which log data sources you want to put into Humio.
 
-Second, find or create an [ingest token](/sending-data/ingest_tokens/).
+Second, find or create an [ingest token]({{< relref "ingest_tokens.md" >}}).
 
 Third, go through the [Integrations](index.md#integrations) and see if you
 can find the integretion you need. For example, if what you want is:
 
 * **Logs from a Docker container**, then:
     1. Start [here](integrations/platforms/docker.md), then
-    2. Get information about [how Humio parses logs](/sending-data/parsers/parsing/).
+    2. Get information about [how Humio parses logs]({{< relref "parsing.md" >}}).
 
 * **Logs that an application writes to a file**, then:
     1. Read an overview of the [Filebeat](integrations/log-shippers/beats.md) log shipper, then
-    2. Get information about parsing [here](/sending-data/parsers/parsing/)
+    2. Get information about parsing [here]({{< relref "parsing.md" >}})
 
 * **Metrics from platforms or applications**, then:
     1. Read the [Metricbeat](integrations/log-shippers/beats.md) topic, then
-    2. Get information about parsing [here](/sending-data/parsers/parsing/)
+    2. Get information about parsing [here]({{< relref "parsing.md" >}})
 
 
 ## Start using Humio

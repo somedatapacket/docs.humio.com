@@ -1,6 +1,7 @@
 ---
-title: "Alerting"
+title: "Alerts"
 weight: 600
+category_title: Overview
 ---
 
 Humio has the ability to reach out on various channels under some user configured circumstances.
@@ -46,7 +47,7 @@ Alerts trigger whenever there's one or more events in the search result.
 For instance an Alarm can be configured to trigger whenever there's more than 5
 status 500s in the accesslog.  
 
-```
+```humio
 #type=accesslog statuscode=500
 | count(as=internal_server_errors)
 | internal_server_errors > 5

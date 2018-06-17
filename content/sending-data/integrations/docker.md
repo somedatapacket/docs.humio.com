@@ -38,11 +38,11 @@ Since Docker just handles log lines from `stdout` as text blobs, you must parse
 the lines to get the full value from them.
 
 To do this, you can either use a built-in parser, or create new ones for your log
-types. For more details on creating parsers, see the [parsing page]({{< relref "sending-data/parsers/parsing" >}}).
+types. For more details on creating parsers, see the [parsing page]({{< relref "parsing.md" >}}).
 
 {{% notice tip %}}
 In terms of log management, Docker is just a transport layer.  
-Before writing a custom parser, see the [built in parsers]({{< relref "sending-data/parsers/built_in_parsers" >}}) page to see if Humio already supports your log type.
+Before writing a custom parser, see the [built in parsers]({{< relref "built_in_parsers.md" >}}) page to see if Humio already supports your log type.
 {{% /notice %}}
 
 ## 3. Metrics
@@ -70,6 +70,6 @@ Where:
 
 * `$HOST` - is the name of your Humio server.
 * `$REPOSITORY_NAME` - is the name of your repository on your server.
-* `$INGEST_TOKEN` - is the [ingest token]({{< relref "sending-data/ingest_tokens" >}}) for your repository.
+* `$INGEST_TOKEN` - is the [ingest token]({{< relref "ingest_tokens.md" >}}) for your repository.
 
-See also the page on [Beats]({{< relref "sending-data/log_shippers/beats" >}}) for more information.
+See also the page on [Beats]({{< relref "sending_data/log_shippers/beats/_index.md" >}}) for more information.

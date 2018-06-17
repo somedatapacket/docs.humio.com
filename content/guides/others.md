@@ -17,7 +17,7 @@ If you are using Docker for your own application, go to the [Docker Containers d
 
 Filebeat ship logs as unstructured text. To parse these logs, you need
 to set a log type using the `@type` field.  Humio will use the parser specified by `@type` to parse the data.  
-See [Parsing Logs](/sending-data/parsers/parsing/) for more information on parsing log data.
+See [Parsing Logs]({{< relref "parsing.md" >}}) for more information on parsing log data.
 
 Example Filebeat configuration with a custom log type:
 

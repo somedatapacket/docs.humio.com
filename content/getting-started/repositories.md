@@ -12,15 +12,15 @@ vary based on your data volume, user permissions and many other factors.
 On a repository you can control retention and create
 [parsers]({{ ref "parsers.md" }}) to parse incoming data.
 
-When [sending data to humio]({{< ref "sending_data_to_humio/_index.md" >}}) it will end up in a repository.
+When [sending data to humio]({{< relref "sending-data/_index.md" >}}) it will end up in a repository.
 
 ## Views
 
 The repository has a close cousin called [Views]({{< relref "views.md">}}).
 Views are similarly to the views you may know from SQL databases.
 
-Views lets you search across multiple repositories. They also have user management and search filters, making it possible to define which users can see what data. 
-This is how fine grained access controls is implemented in Humio 
+Views lets you search across multiple repositories. They also have user management and search filters, making it possible to define which users can see what data.
+This is how fine grained access controls is implemented in Humio
 
 You can search directly in a repository, or search through a
 view.

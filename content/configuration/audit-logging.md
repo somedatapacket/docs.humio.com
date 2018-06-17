@@ -12,7 +12,7 @@ These events are designed with GDPR requirements in mind and come in two variant
 The purpose of the separation into these two groups is to make the audit trail trustworthy by making the sensitive actions not mutable through Humio.
 
 The sensitive kind is assignment of roles to users on repositories, changing retention settings on repositories,
-and deleting data spaces and data sources and similar actions. See the list of all logged events below.
+and deleting repositories and data sources and similar actions. See the list of all logged events below.
 
 Sensitive events are tagged with `#sensitive="true"`, non-sensitive as `#sensitive="false"`.
 
@@ -25,7 +25,7 @@ The repository `humio-audit` has special retention rules that depends on the `se
 Sensitive logs are deleted by retention only when they are too old, controlled by the system configuration option `AUDITLOG_SENSITIVE_RETENTION_DAYS`. The default is 200 years.
 Changing this setting requires a systems operator to change the configuration of the servers running Humio and restart Humio.
 
-Non-sensitive logs are deleted according to the regular retention settings for the data space.
+Non-sensitive logs are deleted according to the regular retention settings for the repository.
 The default retention settings for this repository is to keep the log for ever. Please configure according to your requirements.
 
 ## Sensitive events logged

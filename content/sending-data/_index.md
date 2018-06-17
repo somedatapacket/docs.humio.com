@@ -8,10 +8,10 @@ Sending logs to Humio is most probably the most important part of any log manage
 we rate *very* high.
 
 In this section we will cover everything about how to send your logs to Humio. The section is divided into
-[integrations](/sending-data/integrations/), which a great starting point if an integration for your platform is
-offered, and [data shippers](/sending-data/log_shippers/), which should cover all other use cases.
+[integrations]({{< relref "integrations/_index.md" >}}), which a great starting point if an integration for your platform is
+offered, and [data shippers]({{< relref "log_shippers/_index.md" >}}), which should cover all other use cases.
 
-It's very important you understand how the [parsers](/sending-data/parsers/) and
-[ingest tokens](/sending-data/ingest_tokens) work.
+It's very important you understand how the [parsers]({{< relref "parsers/_index.md" >}}) and
+[ingest tokens]({{< relref "ingest_tokens.md" >}}) work.
 
-Finally, we have a section about how our [Humio HTTP API](/sending-data/transport/http_api/) works.
+Finally, we have a section about how our [Ingest API]({{< relref "ingest-api.md" >}}) works.

@@ -56,7 +56,7 @@ Replace `$HOST` with the hostname of your Humio installation (i.e. `cloud.humio.
 For on-prem installation don't forget to enable the [`ELASTIC_PORT` property]({{< relref "configuration_options.md" >}}).
 Take your ingest token from your Humio Repository page…
 
-![Humio Data Space](/images/token.png)
+![Humio repository](/images/token.png)
 
 …and replace `$INGEST_TOKEN` with the ingest token.
 

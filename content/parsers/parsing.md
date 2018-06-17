@@ -6,11 +6,11 @@ When sending data to Humio, you can specify a parser.
 Humio uses parsers to extract fields and add structure to the data that you send to it.
 
 {{% notice note %}}
-When sending data with [Filebeat]({{< relref "sending-data/log_shippers/beats/filebeat.md" >}})
+When sending data with [Filebeat]({{< relref "filebeat.md" >}})
 you specify a parser to parse data.
 {{% /notice %}}
 
-Humio comes with a set of [built-in parsers]({{< relref "sending-data/parsers/built_in_parsers.md" >}}) for
+Humio comes with a set of [built-in parsers]({{< relref "built_in_parsers.md" >}}) for
 common log formats.
 
 If no built-in parsers match your needs, then you can create your own.
@@ -19,7 +19,7 @@ parser.
 
 ## List of Parsers
 
-Go to the **Parsers** subpage in your data space to see all the available parsers:
+Go to the **Parsers** subpage in your repository to see all the available parsers:
 
 ![Parsers List`](/images/parsersx.png)
 

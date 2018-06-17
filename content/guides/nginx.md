@@ -43,7 +43,7 @@ See the page on [Filebeat](/sending-data/log_shippers/beats/filebeat/) for furth
 
 The above Filebeat configuration uses the [built-in parser `accesslog`](/sending-data/parsers/built_in_parsers/#accesslog).
 The parser can parse logs formatted in the default Nginx log configuration.
-If your log Nginx configuration is modified, create a [custom parser](/sending-data/parsers/parsing/), by copying the accesslog parser and modifying it.
+If your log Nginx configuration is modified, create a [custom parser]({{< relref "parsing.md" >}}), by copying the accesslog parser and modifying it.
 Then replace the parser name in the Filebeat configuration.
 
 {{% notice note %}}
