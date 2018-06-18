@@ -117,7 +117,11 @@
           {{ $currentNode.Scratch.Set "pages" .Pages }}
           {{ if .Sections}}
             {{ $currentNode.Scratch.Set "pages" (.Pages | union .Sections) }}
-          {{end}}
+          {{ end }}
+          {{ if .Params.show_functions_as_pages }}
+            {{ $functions := getJSON "https://repo.humio.com/repository/maven-releases/com/humio/docs/queryfunctions/1.0.69/queryfunctions-1.0.69.json" }}
+            {{ $currentNode.Scratch.Set "pages" ($currentNode.Scratch.Get "pages" | union $functions ) }}
+          {{ end }}
           {{ $pages := ($currentNode.Scratch.Get "pages") }}
 
         {{if eq .Site.Params.ordersectionsby "title"}}

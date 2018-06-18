@@ -17,7 +17,7 @@ is happening in Nginx in great detail. For example, you can:
 ## Logs
 
 To ship the Nginx access logs to Humio, use
-[Filebeat]({{< relref "sending-data/log_shippers/beats/filebeat.md" >}}).
+[Filebeat]({{< relref "sending-data/data-shippers/beats/filebeat.md" >}}).
 
 {{% notice note %}}
 On Linux, the access log is in `/var/log/nginx/access.log`
@@ -39,7 +39,7 @@ output.elasticsearch:
 
 {{< partial "common-rest-params.html" >}}
 
-See the page on [Filebeat](/sending-data/log_shippers/beats/filebeat/) for further details.
+See the page on [Filebeat](/sending-data/data-shippers/beats/filebeat/) for further details.
 
 The above Filebeat configuration uses the [built-in parser `accesslog`](/sending-data/parsers/built_in_parsers/#accesslog).
 The parser can parse logs formatted in the default Nginx log configuration.
@@ -152,5 +152,5 @@ output.elasticsearch:
 
 {{< partial "common-rest-params.html" >}}
 
-See also the page on [Metricbeat](/sending-data/log_shippers/beats/metricbeat/) for more
+See also the page on [Metricbeat](/sending-data/data-shippers/beats/metricbeat/) for more
 information.

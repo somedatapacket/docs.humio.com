@@ -14,9 +14,7 @@ We start with an outline of how to configure the Connector to send data to Humio
 After the configuration section a longer example will follow showing how to get a Kafka connector installed and running.
 
 {{% notice note %}}
-
-***Authentication***
-
+***Authentication***  
 The ElasticSearch Connector does not yet support Basic Authentication.
 Because of that the connector cannot be used to send data to a Humio
 installation that's configured with authentication.
@@ -35,7 +33,7 @@ JSON request with the `connector properties` starting the connector.
 ### Worker.properties
 The worker properties for the connector could look like below. It uses JSON for Serialization and does not use schemas.
 
-```shell
+```properties
 bootstrap.servers=<Kafka server 1>:9092,<Kafka server 2>:9092,<Kafka server n>:9092
 offset.flush.interval.ms=1000
 
@@ -139,7 +137,7 @@ We will use the [confluentinc/cp-kafka-connect](https://hub.docker.com/r/conflue
 
 We start out by defining a `worker.properties` file:
 
-```shell
+```properties
 # use below property when running in standalone mode
 # offset.storage.file.filename=/tmp/connect.offsets
 

@@ -3,7 +3,7 @@ title: GraphQL
 weight: 2
 ---
 
-Humio has decided to use GraphQL for our main API because it offers significantly
+Humio has chosen GraphQL for our main API because it offers significantly
 more flexibility for API clients. GraphQL allows you to precisely specify the
 data you require, which allows you to call a single endpoint to get everything
 you need. This makes creating integrations and clients for Humio much easier.

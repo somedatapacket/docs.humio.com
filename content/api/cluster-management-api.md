@@ -4,8 +4,7 @@ weight: 500
 ---
 
 This page provides information about the HTTP API for managing
-on-premises installations of Humio. The general aspect of this API is
-the same a the regular [HTTP API]({{< relref "http_api.md" >}})
+on-premises installations of Humio.
 
 All requests require **root-level access**. See [API token for local root access]({{< relref "login.md#root-token" >}}).
 
@@ -391,7 +390,7 @@ Using more tags may speed up queries on large data volumes, but only works on a 
 The speed-up only affects queries prefixed with `#tag=value` pairs that significantly filter out input events.
 
 Tags are the fields with a prefix of `#` that are used internally to do sharding of data into smaller streams
-A `datasource` is is created for every unique combination of tag values set by the clients (e.g. log-shippers)
+A `datasource` is is created for every unique combination of tag values set by the clients (e.g. data-shippers)
 Humio will reject ingested events once a certain number of datasources get created.
 The limit is currently 10.000 pr. repository.
 

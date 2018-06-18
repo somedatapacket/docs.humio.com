@@ -1,6 +1,6 @@
 ---
 title: "Ingest API"
-weight: 200
+weight: 300
 ---
 
 There are different ways of getting data into Humio.
@@ -14,17 +14,19 @@ typically use the endpoint where a parser is specified.
 
 ### Ingest data using a parser {#parser}
 
-This API should be used, when a parser should be applied to the data. It is possible to create [parsers]({{< relref "parsing.md" >}}) in Humio
+This API should be used, when a parser should be applied to the data.
+It is possible to create [parsers]({{< relref "parsing.md" >}}) in Humio
 
 {{% notice note %}}
 ***Filebeat is another option for sending data that needs a parser***
 
-Another option, that is related to this API is to use [Filebeat](/sending-data/log_shippers/beats/filebeat/).  
-Filebeat is a lightweight open source agent that can monitor files and ship data to Humio. When using filebeat it is also possible to specify a parser for the data.
+Another option, that is related to this API is to use [Filebeat]({{< relref "filebeat.md" >}}).  
+Filebeat is a lightweight open source agent that can monitor files and ship
+data to Humio. When using filebeat it is also possible to specify a parser for the data.
 Filebeat can handle many problems like network problems, retrying, batching, spikes in data etc.
 {{% /notice %}}
 
-``` text
+```
 POST	/api/v1/dataspaces/$REPOSITORY_NAME/ingest-messages
 ```
 
@@ -107,9 +109,10 @@ EOF
 ```
 
 ### Ingest structured data {#structured-data}
-This API should be used when data is well structured and no extra parsing is needed. (Except for the optional extra key-value parsing)
+This API should be used when data is well structured and no extra parsing
+is needed. (Except for the optional extra key-value parsing)
 
-``` text
+```
 POST	/api/v1/dataspaces/$REPOSITORY_NAME/ingest
 ```
 

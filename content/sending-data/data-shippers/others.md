@@ -15,7 +15,7 @@ Humio is compatible with the [ElasticSearch Bulk ingest API](https://www.elastic
 
 If you have a log shipper that supports the ElasticSearch Bulk API,
 there is a good change that you can use this to send logs to Humio.
-See the [Beats documentation](/sending-data/log_shippers/beats/) for an example of
+See the [Beats documentation](/sending-data/data-shippers/beats/) for an example of
 configuration options.
 
 Contact us if you have trouble getting this working.

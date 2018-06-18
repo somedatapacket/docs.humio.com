@@ -2,8 +2,8 @@
 title: "Relative Time Syntax"
 ---
 
-In many places in Humio, you must specify a time. For example,
-when [specifying the time interval for a query]({{< relref "http_api.md#time" >}})
+In many places in Humio you have to specify a time interval. For example
+when [specifying the time interval for a query]({{< relref "search-api.md#query" >}})
 or when using the {{% function "timechart" %}} query function.
 
 To make specifying a time more flexible, Humio supports a relative time syntax.

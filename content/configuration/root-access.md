@@ -37,4 +37,4 @@ When using LDAP, `$EMAIL` is the username the user must enter to login,
 and need not be an actual email address.
 
 Once that user has been added, you can log on using that user and see your own API token, as described
-in [API token]({{< relref "http_api.md#api-token" >}}).
+in [API token]({{< relref "api_tokens.md" >}}).

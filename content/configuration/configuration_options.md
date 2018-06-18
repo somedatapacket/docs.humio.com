@@ -10,7 +10,7 @@ For a quick intro to setting configuration options see the [installation overvie
 
 ## Example configuration file with comments {#example-configuration-file-with-comments}
 
-```shell
+```properties
 # The stacksize should be at least 2M.
 # We suggest setting MaxDirectMemory to 50% of physical memory. At least 2G required.
 HUMIO_JVM_ARGS=-Xss2M -XX:MaxDirectMemorySize=32G
@@ -77,7 +77,7 @@ KAFKA_SERVERS=kafkahost01:9092,kafkahost02:9092
 You can specify Java virtual machine parameters to pass to Humio using the
 property `HUMIO_JVM_ARGS`. The defaults are:
 
-```shell
+```properties
 HUMIO_JVM_ARGS=-XX:+PrintFlagsFinal -Xss2M
 ```
 

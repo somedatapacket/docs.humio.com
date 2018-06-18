@@ -72,4 +72,4 @@ Where:
 * `$REPOSITORY_NAME` - is the name of your repository on your server.
 * `$INGEST_TOKEN` - is the [ingest token]({{< relref "ingest_tokens.md" >}}) for your repository.
 
-See also the page on [Beats]({{< relref "sending_data/log_shippers/beats/_index.md" >}}) for more information.
+See also the page on [Beats]({{< relref "sending_data/data-shippers/beats/_index.md" >}}) for more information.

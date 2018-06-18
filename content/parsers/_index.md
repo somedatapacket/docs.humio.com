@@ -24,4 +24,4 @@ Humio supports two types of parsers:
 * RegExp Parsers
 
 To find out how to configure parsers, see the
-[Parsers section of the HTTP API document]({{< relref "http_api.md#parsers" >}}).
+[Parsers API documentation]({{< relref "parser-api.md" >}}).

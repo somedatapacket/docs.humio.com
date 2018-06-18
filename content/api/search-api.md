@@ -1,5 +1,6 @@
 ---
 title: Search API
+weight: 200
 ---
 
 
@@ -52,7 +53,7 @@ the table below.  -->
 
 To start a query, POST the query to:
 
-``` text
+```
 POST /api/v1/dataspaces/$REPOSITORY_NAME/query
 ```
 
@@ -199,7 +200,7 @@ of the Query Jobs poll endpoint).
 
 To start a Query Job, POST the query to:
 
-``` text
+```
 POST /api/v1/dataspaces/$REPOSITORY_NAME/queryjobs
 ```
 
@@ -241,7 +242,7 @@ To poll a running Query Job, make an HTTP GET request to the job.
 
 In the following example request, replace `$ID` with the ID from the response of the [Query Job create request](#create):
 
-``` text
+```
 GET     /api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID
 ```
 
@@ -291,7 +292,7 @@ Stops running Query Jobs.
 
 To stop a Query Job, you can issue a `DELETE` request to the URL of the Query Job:
 
-``` text
+```
 DELETE     /api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID
 ```
 

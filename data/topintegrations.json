@@ -1,7 +1,7 @@
 [
   {
     "name": "Filebeat",
-    "url": "/sending-data/log_shippers/beats/filebeat",
+    "url": "/sending-data/data-shippers/beats/filebeat",
     "imgUrl": "/images/filebeat.svg"
   },
   {

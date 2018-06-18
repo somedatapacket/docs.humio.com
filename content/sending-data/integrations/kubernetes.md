@@ -63,7 +63,7 @@ Take your ingest token from your Humio Repository page…
 Finally, we run a simple Helm command to get the logs rolling:
 
 ```shell
-$ helm install stable/fluent-bit --name=humio-agent -f humio-agent.yaml
+helm install stable/fluent-bit --name=humio-agent -f humio-agent.yaml
 ```
 
 Once this is in place, your logs should be up and running.
@@ -74,7 +74,7 @@ Once this is in place, your logs should be up and running.
 Should you want to uninstall the pod, it can be done with the following command
 
 ```shell
-$ helm delete --purge humio-agent
+helm delete --purge humio-agent
 ```
 
 
@@ -173,7 +173,7 @@ Remember if you're an on-prem solution without TLS, the
 Finally, you need to install the daemonset
 
 ```shell
-$ kubectl create -f fluent-bit-ds.yaml
+kubectl create -f fluent-bit-ds.yaml
 ```
 
 Your container logs should now start to roll into Humio
@@ -183,7 +183,7 @@ In some cases you might want to make some changes to the Fluent Bit configuratio
 Easiest way to do that is changing the configmap by opening it in an editor with the following command
 
 ```shell
-$ kubectl -n logging edit Configmap fluent-bit-config
+kubectl -n logging edit Configmap fluent-bit-config
 ```
 
 Make your changes, for instance adding another filter, which will rename the
@@ -200,7 +200,7 @@ Rename   log rawstring
 Save and exit your editor and restart Fluent Bit with
 
 ```shell
-$ kubectl -n logging delete pod -l k8s-app=fluent-bit-logging
+kubectl -n logging delete pod -l k8s-app=fluent-bit-logging
 ```
 
 ### Uninstall
@@ -208,7 +208,7 @@ $ kubectl -n logging delete pod -l k8s-app=fluent-bit-logging
 Since everything is installed in a namespace, uninstalling Fluent Bit is pretty simple:
 
 ```shell
-$ kubectl delete namespace logging
-$ kubectl delete clusterrole fluent-bit-read
-$ kubectl delete clusterrolebindings fluent-bit-read
+kubectl delete namespace logging
+kubectl delete clusterrole fluent-bit-read
+kubectl delete clusterrolebindings fluent-bit-read
 ```

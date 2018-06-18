@@ -10,7 +10,7 @@ Often you will have one physical repository per project or system. But use-cases
 vary based on your data volume, user permissions and many other factors.
 
 On a repository you can control retention and create
-[parsers]({{ ref "parsers.md" }}) to parse incoming data.
+[parsers]({{< relref "parsers/_index.md" >}}) to parse incoming data.
 
 When [sending data to humio]({{< relref "sending-data/_index.md" >}}) it will end up in a repository.
 

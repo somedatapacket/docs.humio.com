@@ -5,11 +5,11 @@ title: "Others"
 So you are developing your own application and want to ship its logs
 to Humio?  The easiest is to just log to a file on disk (remember to
 set a limit on its size and rotate it so you don't run out of disk
-space) and then use [Filebeat](/sending-data/log_shippers/beats/) to ship it
+space) and then use [Filebeat]({{< relref "filebeat.md" >}}) to ship it
 to Humio.
 
 {{% notice note %}}
-If you are using Docker for your own application, go to the [Docker Containers documentation]({{ relref "docker.md" }})
+If you are using Docker for your own application, go to the [Docker Containers documentation]({{< relref "docker.md" >}})
 {{% /notice %}}
 
 
@@ -17,7 +17,7 @@ If you are using Docker for your own application, go to the [Docker Containers d
 
 Filebeat ship logs as unstructured text. To parse these logs, you need
 to set a log type using the `@type` field.  Humio will use the parser specified by `@type` to parse the data.  
-See [Parsing Logs]({{< relref "parsing.md" >}}) for more information on parsing log data.
+See [Parsing Logs]({{< relref "parsers/_index.md" >}}) for more information on parsing log data.
 
 Example Filebeat configuration with a custom log type:
 

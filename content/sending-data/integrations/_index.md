@@ -1,8 +1,7 @@
 ---
 title: "Integrations"
-chapter: true
+category_title: Overview
 ---
-# Integrations
 
 Humio offers a list a pre baked integrations for a number of platforms. We always strive to make these integrations as
 close to the platforms as possible.

@@ -192,8 +192,8 @@ A formatted timestamp is shown on the gray bar at the top of the details for the
 {{% /notice %}}
 
 {{% notice note %}}
-At the moment, the parser page cannot handle multiline events. You will have to rely on external log-shippers to handle this,
-e.g. [filebeat]({{< relref "sending-data/log_shippers/beats/filebeat.md" >}}). Built-in multiline parsing is planned for a future release of Humio - So stay tuned!
+At the moment, the parser page cannot handle multiline events. You will have to rely on external data-shippers to handle this,
+e.g. [filebeat]({{< relref "filebeat.md" >}}). Built-in multiline parsing is planned for a future release of Humio - So stay tuned!
 {{% /notice %}}
 
 ## Adding tags
