@@ -91,7 +91,7 @@ to get the number of CPU cores.
 ### Configuring Authentication
 
 Humio supports different ways of authentication users. Read more in the
-dedicated [Authentication Documentation]({{< relref "login.md" >}}).
+dedicated [Authentication Documentation]({{< relref "authentication.md" >}}).
 
 ### Run Humio behind a (reverse) proxy server
 It is possible to put Humio behind a proxy server.
@@ -161,8 +161,8 @@ These settings apply to the next login of the Humio user, not to any running pro
 Leave out trailing slashes.
 
 This property is only important if you plan to use
-[OAuth Federated Login]({{< relref "login.md#oauth">}}),
-[Auth0 Login]({{< relref "login.md#auth0">}}) or if you want to be able
+[OAuth Federated Login]({{< relref "authentication.md#oauth">}}),
+[Auth0 Login]({{< relref "authentication.md#auth0">}}) or if you want to be able
 to have Alert Notifications have consistent links back to the Humio UI.
 
 The URL might only be reachable behind a VPN but that is no problem, as the user's

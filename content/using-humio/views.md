@@ -3,17 +3,17 @@ title: Views
 weight: 4
 ---
 
-In most respects a view is just like an ordinary repository.
+A view is a special kind of repository. In most respects a view is just like an ordinary repository.
 They can be searched, they have their own dashboards, users, queries, etc.
-But unlike [repositories]({{< relref "repositories.md" >}}), a view contains no data of its own.
-Instead views read data from one or more repositories.
-In that sense you can think of a view like the view concept from a SQL databases.
+But unlike [repositories]({{< ref "repositories.md" >}}), a view contains no data of its own.
+Instead views read data from one or more other repositories.
+In that sense you can think of a view like the views concept from a SQL databases.
 
-A view is defined having a set of connections to repositories
+A view is defined as a set of connections to repositories
 and associated queries that filter or modify the data as it is read.
 
 There are many use-cases for views and you can see
-[a list of examples later on this page]({{< relref "#examples" >}}).
+[a list of examples later on this page]({{< ref "#examples" >}}).
 
 ### Searching across multiple repositories
 
@@ -139,7 +139,7 @@ __View: iOS App Analytics__
 
 In this example we create three views that all draw their data from
 a single repository. If you are using a free cloud account the
-repository could be you [Sandbox]({{< relref "the_sandbox.md" >}})
+repository could be you [Sandbox]({{< relref "the-sandbox.md" >}})
 
 #### Redacting sensitive information {#sensitive}
 

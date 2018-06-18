@@ -185,7 +185,7 @@ Or show the event distribution over time
 timechart(#path, unit="1/minute")
 ```
 
-If you are new to Humio and its search capabilities, try the online tutorial.  
+If you are new to Humio and its search capabilities, try the [online tutorial]({{< ref "tutorial/_index.md">}}).  
 There is a link to the tutorial in the top right corner of the Humio UI.
 
 ## Bro Dashboards

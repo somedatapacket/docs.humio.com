@@ -12,11 +12,11 @@ Humio are very easy.
 
 ## Setting up Humio
 
-First of all you will need to have access to a [repository]({{< relref "getting-started/repositories.md" >}}) in Humio.
+First of all you will need to have access to a [repository]({{< ref "repositories.md" >}}) in Humio.
 
 The quickest way to get started using Humio is to create an account
 in [Humio Cloud](https://cloud.humio.com), where you will get a personal
-[Sandbox Repository]({{< relref "getting-started/the_sandbox.md" >}}) for free.
+[Sandbox Repository]({{< ref "the-sandbox.md" >}}) for free.
 
 Alternatively you can choose to run our [Docker image]({{< relref "installation/_index.md" >}}) on your own infrastructure.
 

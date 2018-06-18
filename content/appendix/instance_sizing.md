@@ -1,8 +1,9 @@
 ---
 title: "Instance Sizing"
+weight: 1
 ---
 
-This document describes how to choose hardware and size a Humio installation.
+This page describes how to choose hardware and size a Humio installation.
 
 Sizing depends on your usage patterns, so we recommend first doing an example setup to see how Humio works
 with your data.  The following provides some examples.
@@ -23,7 +24,7 @@ data files which are optimized for querying; this way you will typically observe
 is faster to query.
 
 Data is typically compressed 5-10x, depending on what it is.  Your mileage may wary, but short log lines
-(http access logs, syslogs, etc.) compress better than longish JSON logs (such as those coming from metricbeat).
+(http access logs, syslog, etc.) compress better than longish JSON logs (such as those coming from [Metricbeat]({{< ref "metricbeat.md" >}})).
 
 For data available as compressed data in the OS-level cache, Humio generally provides query speed at 1GB/s/vCPU,
 or 1GB/s/hyperthread.  So, on a `m4.4xlarge` instance with 16 vCPUs, you observe ~16GB/s queries.  If your compression
@@ -60,7 +61,7 @@ EBS storage. But it will work.
 
 For AWS, we recommend starting with these instance types.  This represents
 setups that can hold 48h compressed ingest data in RAM; powerful enough to
-do a full tablescan of ~24h data in less than 10 seconds.
+do a full table scan of ~24h data in less than 10 seconds.
 
 | Instance Type | Daily Ingest | RAM | vCPUs | Notes |
 |---------------|--------------|-----|-------|-------|
@@ -92,7 +93,7 @@ For instance an `i3.4xlarge` would be suitable for 150GB/day ingest, holding 5 d
 of data in cache, and because of the SSDs this would be avoiding the "cliff" when
 the cache runs full.  The 3.8TB SSD would hold ~150 days of ingest data.
 
-With ephemeral SSD storage, you'd want to setup EBS instances for live backup (and kafka's storage),
+With ephemeral SSD storage, you'd want to setup EBS instances for live backup (and Kafka's storage),
 so that you can load the Humio data onto a fresh machine quickly.  Humio live backup live-replicates all data
 to a separate network drive such that data loss is prevented even for ephemeral disks.
 

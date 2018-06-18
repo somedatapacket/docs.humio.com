@@ -199,7 +199,7 @@ matching its tags. If no data source with the exact tags exists it is created.
 Tags are used as query boundaries when searching
 Tags are provided as a JSON object containing key-value pairs. Keys and values
 must be strings, and at least one tag must be specified.
-See the [Glossary]({{< relref "glossary.md#tags" >}}) for more information.
+See the [tags documentation]({{< ref "tags.md" >}}) for more information.
 
 #### Events
 

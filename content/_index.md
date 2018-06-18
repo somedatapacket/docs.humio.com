@@ -41,4 +41,4 @@ and running it yourself, or creating a free account in [Humio Cloud](https://clo
 </p>
 
 Once you have access to running Humio instance, you can head over to
-the [Hello World]({{< relref "hello-world.md" >}}) tutorial.
+the [Hello World]({{< ref "tutorial/_index.md" >}}) tutorial.

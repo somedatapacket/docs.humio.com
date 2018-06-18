@@ -198,8 +198,8 @@ e.g. [filebeat]({{< relref "filebeat.md" >}}). Built-in multiline parsing is pla
 
 ## Adding tags
 
-Humio saves data in Data Sources. You can provide a set of Tags to specify which Data Source the data is saved in.
-Using tags can significantly speed up searches. Tags are described [here]({{< relref "glossary.md#tags" >}})
+Humio saves data in Data Sources. You can provide a set of [tags]({{< ref "tags.md" >}}) to specify which Data Source the data is saved in.
+Using tags can significantly speed up searches.
 
 When using a parser, its name is added as the `#type` tag.  
 For example using the `accesslog` parser for parsing web server logs will result in events with the tag `#type=accesslog`.   

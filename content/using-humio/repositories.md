@@ -35,7 +35,7 @@ You can read more about views in [their doc section]({{< relref "views.md">}}).
 
 ## The Sandbox
 
-All accounts have a special _private_ repository called [the sandbox]({{< relref "the_sandbox.md" >}}). Unlike other
+All accounts have a special _private_ repository called [the sandbox]({{< relref "the-sandbox.md" >}}). Unlike other
 repositories you cannot add additional users or change retention. You can use the sandbox for testing things out
 or as the your main repo if your needs are simple.
 

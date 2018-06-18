@@ -1,8 +1,10 @@
 ---
-title: "Hello World"
-weight: -100
+title: "Tutorial"
+category_title: "Hello World"
+weight: 95
 ---
 
+This tutorial will teach you search and send data to Humio.
 Before we get started make sure you have a running installation of Humio or
 a free Humio Cloud account:
 
@@ -27,7 +29,7 @@ from a web server and steps you through searching and visualizing the logs.
 
 {{< figure src="/pages/hello-world/docs-hello-world-tutorial.png" >}}
 
-Once you have completed the tutorial move on to [step 2]({{< relref "#step-2" >}}).
+Once you have completed the tutorial move on to [step 2]({{< ref "#step-2" >}}).
 
 {{% notice tip %}}
 You can use the UI's build-in function documentation by hitting {{% keybinding "alt+enter" %}} while
@@ -43,8 +45,8 @@ you can work with your own data. It is time to start sending logs to Humio.
 
 ### 2.1 Sandbox or Dedicated Repository
 
-First you need a [repository]({{< relref "repositories.md" >}}) to store the data in.
-You can either use your [sandbox repository]({{< relref "the_sandbox.md" >}}) or if you are running Humio
+First you need a [repository]({{< ref "repositories.md" >}}) to store the data in.
+You can either use your [sandbox repository]({{< ref "the-sandbox.md" >}}) or if you are running Humio
 locally you can create a new dedicated repository (make sure to pick a "Repository"
 and not "View" since they cannot be used for storage).
 

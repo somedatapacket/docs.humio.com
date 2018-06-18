@@ -1,24 +1,25 @@
 ---
-title: "User Login"
+title: "Setting Up Authentication"
+weight: 2
 ---
 
 Humio supports the following authentication types:
 
-* [__None__ (Default)](#no-authentication)  
+* [__None__ (Default)]({{< ref "#no-authentication" >}})  
    Humio can run without authentication at all, and with only a single user account named _developer_.
    This is the default if authentication is not configured, but is __not recommended__ for production systems.
-* [__Single user__](#single-user)  
+* [__Single user__]({{< ref "#single-user" >}})  
    Single-user mode is similar to running with no authentication except that it enables login using a password.
-* [__LDAP__](#ldap)  
+* [__LDAP__]({{< ref "#ldap" >}})  
    Humio can connect to an LDAP server an authenticate users
-* [__By-Proxy__](#by-proxy)  
+* [__By-Proxy__]({{< ref "#by-proxy" >}})  
    Humio can use the username provided by the proxy in a HTTP header.
-* [__OAuth Identity Providers__](#oauth)  
+* [__OAuth Identity Providers__]({{< ref "#oauth" >}})  
    Authentication is done by external OAuth identity provider, Humio supports:
-   - [Google]({{< relref "#google" >}})
-   - [GitHub]({{< relref "#github" >}})
-   - [BitBucket]({{< relref "#bitbucket" >}})
-* [__Auth0 Integration__](#auth0)  
+   - [Google]({{< ref "#google" >}})
+   - [GitHub]({{< ref "#github" >}})
+   - [BitBucket]({{< ref "#bitbucket" >}})
+* [__Auth0 Integration__]({{< ref "#auth0" >}})  
   [Auth0](https://auth0.com/) is a cloud service making it possible to login with many different OAuth identity providers e.g. Google and Facebook. You can also create your own database of users in Auth0.
 
 Users are authenticated (logged in) using one of the above integrations.
@@ -45,6 +46,7 @@ It's also useful for running scripts/integrations on the local server, for provi
 Since the token is re-generated on every server startup, it is not suitable as a long-term API token.
 {{% /notice %}}
 
+
 ### Creating a Root User
 
 You can use the root token to create root users in Humio.
@@ -65,7 +67,7 @@ providers) as described in this section.
 When using LDAP, `$EMAIL` is the username the user must enter to login, and need not be an actual email address.
 
 Once that user has been added, you can log on using that user and see your own API token, as described
-in [API token](/sending-data/transport/http_api/#api-token).
+in [API token]({{< ref "api_tokens.md" >}}).
 
 
 ## Single User {#single-user}
@@ -75,7 +77,7 @@ that you need a password to login to Humio. The login username is
 `developer`.
 
 {{% notice note %}}
-Be adviced that the **password is stored in clear-text in the Humio
+Be advised that the **password is stored in clear-text in the Humio
 configuration file** and thus anybody with read-permissions to that file
 will have access to the password. The single user authentication
 method is meant as a quick way to get started, but for productions
@@ -102,7 +104,7 @@ This is one way to accomplish single sign-on in certain configurations.
 
 {{% notice note %}}
 Make sure Humio is not accessible without passing through the proxy, as direct access to the Humio server
-in this configuration allows anyone to assumte any identity in Humio.
+in this configuration allows anyone to assume any identity in Humio.
 {{% /notice %}}
 
 Configure using:
@@ -150,7 +152,7 @@ LDAP_SEARCH_BIND_PASSWORD=bind-password
 LDAP_SEARCH_FILTER=custom-search-filter (Optional, example: (uid={0}))
 ```
 
-If `LDAP_SEARCH_FILTER` is set, Humio makes a search for a DN mathcing the provided filter
+If `LDAP_SEARCH_FILTER` is set, Humio makes a search for a DN matching the provided filter
 in the subtree specified by `LDAP_SEARCH_BASE_DN`, Using the bind-principal/password,
 providing what a user entered at the login prompt as parameter to search.
 
@@ -190,7 +192,7 @@ get `client_id` and `client_secret`, and configure your `redirect_uri`.
 {{% notice warning %}}
 In order for OAuth authentication to work properly you must provide
 a URL where Humio can be reached from the browser, see the configuration
-option [`PUBLIC_URL`]({{< relref "configuration_options.md#public_url" >}}).
+option [`PUBLIC_URL`]({{< ref "configuration_options.md#public_url" >}}).
 {{% /notice %}}
 
 ### Google Sign-In {#google}
@@ -203,7 +205,7 @@ Detailed Setup Instructions: https://developers.google.com/identity/sign-in/web/
 - Create a _OAuth Client ID_ on the Credentials Page,
 - Add an _Authorized redirect URI_: `%PUBLIC_URL%/auth/google`
 
-Where [`%PUBLIC_URL%`]({{< relref "configuration_options.md#public_url" >}}) is the same value as Humio is configured with.
+Where [`%PUBLIC_URL%`]({{< ref "configuration_options.md#public_url" >}}) is the same value as Humio is configured with.
 This can e.g. be `http://localhost:8080/auth/google` during development.
 Login will fail if the `redirect_uri` is not set correctly.
 
@@ -218,7 +220,7 @@ GOOGLE_OAUTH_CLIENT_ID=$CLIENT_ID #The client_id from your Google OAuth App
 GOOGLE_OAUTH_CLIENT_SECRET=$CLIENT_SECRET The #client_secret your Google OAuth App
 ```
 
-Read more about [Configuring Humio]({{< relref "configuration_options.md" >}})
+Read more about [Configuring Humio]({{< ref "configuration_options.md" >}})
 
 ### GitHub Sign-In {#github}
 
@@ -229,7 +231,7 @@ Setup Instructions: https://developer.github.com/apps/building-oauth-apps/creati
 - Create an OAuth App from your organization / user settings page,
 - Set the _Authorization callback URL_: `%PUBLIC_URL%/auth/github`
 
-Read more about [Configuring Humio]({{< relref "configuration_options.md" >}})
+Read more about [Configuring Humio]({{< ref "configuration_options.md" >}})
 
 Once your app is created you can configure Humio to use authenticate with GitHub:
 
@@ -242,7 +244,7 @@ GITHUB_OAUTH_CLIENT_ID=$CLIENT_ID # The client_id from your GitHub OAuth App
 GITHUB_OAUTH_CLIENT_SECRET=$CLIENT_SECRET # The client_secret your GitHub OAuth App
 ```
 
-Read more about [Configuring Humio]({{< relref "configuration_options.md" >}})
+Read more about [Configuring Humio]({{< ref "configuration_options.md" >}})
 
 
 ### BitBucket Sign-In {#bitbucket}
@@ -258,7 +260,7 @@ Setup Instructions: https://confluence.atlassian.com/bitbucket/integrate-another
 - Save
 - Find the Key (Client Id), and Secret (Client Secret) in the list of consumers.
 
-Read more about [Configuring Humio]({{< relref "configuration_options.md" >}})
+Read more about [Configuring Humio]({{< ref "configuration_options.md" >}})
 
 Once your consumer is created you can configure Humio to use authenticate with BitBucket:
 
@@ -271,7 +273,7 @@ BITBUCKET_OAUTH_CLIENT_ID=$CLIENT_ID # The Key from your BitBucket OAuth Consume
 BITBUCKET_OAUTH_CLIENT_SECRET=$CLIENT_SECRET # The Secret your BitBucket OAuth Consumer
 ```
 
-Read more about [Configuring Humio]({{< relref "configuration_options.md" >}})
+Read more about [Configuring Humio]({{< ref "configuration_options.md" >}})
 
 ## Auth0 {#auth0}
 
@@ -283,7 +285,7 @@ You can choose which Identity Providers (e.g. Google, Github and Facebook) you w
 {{% notice info %}}
 __GDPR Consideration__  
 Auth0 keeps information about your users. This may require you to have a Data Processing Agreement with
-Auth0. If all you need is Google and GitHub, you can use [Humio's build-in support for these providers](#oauth) and
+Auth0. If all you need is Google and GitHub, you can use [Humio's build-in support for these providers]({{< ref "#oauth" >}}) and
 avoid storing your users' personal data with a third party provider.
 {{% /notice %}}
 

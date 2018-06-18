@@ -1,14 +1,5 @@
 {{ $queryFunctions :=  .Site.Data.functions }}
 
-<div class="query-function-toc">
-<h2>List of Functions</h2>
-<ul class="toc">
-{{ range sort $queryFunctions "name" }}
-  <li><a href="#{{.name}}">{{.name}}</a></li>
-{{ end }}
-</ul>
-</div>
-
 <div class="query-function-list">
 {{ range sort $queryFunctions "name" }}
 <div class="query-function" id="{{.name}}">

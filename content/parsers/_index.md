@@ -2,7 +2,7 @@
 title: "Parsers"
 category_title: "Overview"
 date: 2018-03-15T08:19:58+01:00
-weight: 2
+weight: 650
 ---
 Humio uses parsers to extract the structure from the data that you send to it.
 

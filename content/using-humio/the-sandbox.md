@@ -26,13 +26,13 @@ Free Humio Cloud users use the sandbox as their primary storage.
 It is perfectly suited for smaller projects with low retention requirements
 and no need for multiple user access.
 
-By creating [Views]({{< relref "views.md" >}})
+By creating [Views]({{< ref "views.md" >}})
 that read from the Sandbox, you can easily create specialized repositories for
 each of your services and systems.
 
 ## In-App Tutorial uses your sandbox as storage
 
-When you run [Humio's In-App tutorial]({{< relref "tutorial.md" >}}) also uses the sandbox as storage, so
+When you run [Humio's In-App tutorial]({{< ref "tutorial/_index.md" >}}) also uses the sandbox as storage, so
 don't be surprised to find tutorial events mixed with your own.
 
 ## Not Enough?

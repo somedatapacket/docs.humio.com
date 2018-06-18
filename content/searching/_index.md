@@ -9,7 +9,7 @@ The Humio query language is the syntax that lets you compose queries to retrieve
 process, and analyze business data in your system.
 
 Before reading this section, we recommend that you read the
-[tutorial]({{< relref "tutorial.md" >}}). The tutorial introduces you to queries
+[tutorial]({{< ref "tutorial/_index.md" >}}). The tutorial introduces you to queries
 in Humio, and lets you try out some sample queries that demonstrate the basic principles.
 
 
@@ -54,9 +54,9 @@ This causes Humio to pass the output from one expression into the next expressio
 ## Tag filters
 
 Tag filters always start with a `#` character. They behave in the same way as
-regular [attribute filters]({{< relref "#attribute-filters" >}}).
+regular [attribute filters]({{< ref "#attribute-filters" >}}).
 
-In the example shown in the previous section ([Basic Query Components]({{< relref "#basic-query-components" >}})),
+In the example shown in the previous section ([Basic Query Components]({{< ref "#basic-query-components" >}})),
 we have separated the tag filters from the rest of the query by a pipe character `|`.
 
 We recommend that you include the pipe character before tag filters in your
@@ -67,13 +67,13 @@ recognize tag filters when they are at the front of the query, and use this
 information to narrow  down the number of data sources to search.
 This feature decreases query time.
 
-For more information on tags, see the [glossary]({{< relref "glossary.md#tags" >}}) page.
+See the [tags documentation]({{< ref "tags.md" >}}) for more on tags.
 
 
 ## @rawstring filters
 
 The most basic query in Humio is to search for a particular string in the `@rawstring` attribute of events.
-See [glossary]({{< relref "glossary.md#events" >}}) for more details on `@rawstring`.
+See the [events documentation]({{< ref "events.md#rawstring" >}}) for more details on `@rawstring`.
 
 {{% notice note %}}
 You can perform more complex regular expression searches on the `@rawstring`
