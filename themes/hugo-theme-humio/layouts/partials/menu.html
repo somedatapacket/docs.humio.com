@@ -94,6 +94,7 @@
 {{ define "section-tree-nav" }}
 {{ $showvisitedlinks := .showvisitedlinks }}
 {{ $currentNode := .currentnode }}
+{{ $section := .sect }}
  {{with .sect}}
   {{if .IsSection}}
     {{safeHTML .Params.head}}
@@ -110,35 +111,44 @@
           {{ end }}
       </a>
       {{ $numberOfPages := (add (len .Pages) (len .Sections)) }}
-      {{ if (and (ne $numberOfPages 0) $showChildren) }}
+      {{ if (or .Params.show_functions_as_pages (and (ne $numberOfPages 0) $showChildren)) }}
         <ul>
-          {{ template "menu-item" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "categoryTitle" .Params.category_title }}
 
-          {{ $currentNode.Scratch.Set "pages" .Pages }}
-          {{ if .Sections}}
-            {{ $currentNode.Scratch.Set "pages" (.Pages | union .Sections) }}
-          {{ end }}
           {{ if .Params.show_functions_as_pages }}
-            {{ $functions := getJSON "https://repo.humio.com/repository/maven-releases/com/humio/docs/queryfunctions/1.0.69/queryfunctions-1.0.69.json" }}
-            {{ $currentNode.Scratch.Set "pages" ($currentNode.Scratch.Get "pages" | union $functions ) }}
-          {{ end }}
-          {{ $pages := ($currentNode.Scratch.Get "pages") }}
+            {{ range sort .Site.Data.functions "name" }}
+              <li data-nav-id="{{$section.URL}}" title="{{$section.Title}}" class="dd-item">
+                <a href="{{ $section.RelPermalink }}#{{ .name }}">
+                {{ .name }}
+                </a>
+              </li>
+            {{ end }}
+          {{ else }}
 
-        {{if eq .Site.Params.ordersectionsby "title"}}
-          {{ range $pages.ByTitle }}
-            {{ if and .Params.hidden (not $.showhidden) }}
-            {{else}}
-            {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
-            {{end}}
-          {{ end }}
-        {{else}}
-          {{ range $pages.ByWeight }}
-            {{ if and .Params.hidden (not $.showhidden) }}
-            {{else}}
-            {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
-            {{end}}
-          {{ end }}
-        {{end}}
+            {{ template "menu-item" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "categoryTitle" .Params.category_title }}
+
+            {{ $currentNode.Scratch.Set "pages" .Pages }}
+            {{ if .Sections}}
+              {{ $currentNode.Scratch.Set "pages" (.Pages | union .Sections) }}
+            {{ end }}
+            {{ $pages := ($currentNode.Scratch.Get "pages") }}
+
+          {{if eq .Site.Params.ordersectionsby "title"}}
+            {{ range $pages.ByTitle }}
+              {{ if and .Params.hidden (not $.showhidden) }}
+              {{else}}
+              {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
+              {{end}}
+            {{ end }}
+          {{else}}
+            {{ range $pages.ByWeight }}
+              {{ if and .Params.hidden (not $.showhidden) }}
+              {{else}}
+              {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
+              {{end}}
+            {{ end }}
+          {{end}}
+
+        {{ end }}
         </ul>
       {{ end }}
     </li>

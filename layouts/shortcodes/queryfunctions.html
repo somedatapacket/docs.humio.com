@@ -1,4 +1,4 @@
-{{ $queryFunctions := getJSON "https://repo.humio.com/repository/maven-releases/com/humio/docs/queryfunctions/1.0.69/queryfunctions-1.0.69.json" }}
+{{ $queryFunctions :=  .Site.Data.functions }}
 
 <div class="query-function-toc">
 <h2>List of Functions</h2>
