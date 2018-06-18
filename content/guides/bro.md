@@ -1,5 +1,6 @@
 ---
 title: "Bro"
+menuTitle: Bro Network Security Monitor
 ---
 
 Humio is an excellent tool for analyzing [Bro](https://www.bro.org/) data.  
@@ -43,7 +44,7 @@ These options can be appended to `local.bro`
 
 
 It is also possible to test the script by running:  
-```
+```shell
 bro -i eth0 <bro-directory-full-path>/site/json-logs-by-corelight.bro
 ```
 
@@ -67,8 +68,12 @@ create one by clicking 'Add Repository' on the front page of Humio.
 
 Or you can create it from the command line like this:
 
-```
-curl -v 'http://localhost:8080/humio/api/v1/dataspaces/bro' -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' --data-binary '{}'
+```shell
+curl -v 'http://localhost:8080/humio/api/v1/dataspaces/bro' \
+  -X PUT \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  --data-binary '{}'
 ```
 
 {{% notice note %}}
@@ -88,7 +93,7 @@ Then return here to configure Filebeat.
 
 Below is a filebeat.yml configuration file for sending Bro logs to Humio:
 
-```
+```yaml
 filebeat.prospectors:
 - type: log
   paths:
@@ -122,7 +127,7 @@ The configuration file has these parameters:
 You can replace them in the file or set them as ENV parameters when starting Filebeat.  
 If you are running without authentication leave out the whole line `username: ${INGEST_TOKEN}`.
 or set the `INGEST_TOKEN` to a dummy value.
-Otherwise [create an ingest token as described here]({{< relref "ingest_tokens.md" >}}).
+Otherwise [create an ingest token as described here]({{< ref "ingest_tokens.md" >}}).
 
 
 Note, that in the filebeat configuration we specify that Humio should use the built-in parser `bro-json` to parse the data.
@@ -132,18 +137,15 @@ Note, that in the filebeat configuration we specify that Humio should use the bu
 
 With the config in place we are ready to run Filebeat.
 
-{{% notice note %}}
-***Running Filebeat***  
 Run Filebeat as described [here]({{< relref "filebeat.md#running-filebeat" >}}).  
 An example of running Filebeat with the above parameters as environment variables:  
-```
+
+```shell
 BRO_LOG_DIR=/home/bro/logs REPOSITORY_NAME=bro HOST=localhost INGEST_TOKEN=none /usr/share/filebeat/bin/filebeat -c /etc/filebeat/filebeat.yml
 ```
-{{% /notice %}}
 
 {{% notice note %}}
-***Logging is verbose***
-
+***Logging is verbose***  
 Logging is set to debug in the above Filebeat configuration. It can be a good idea to set it to info when things are running well.
 Filebeat log files are by default rotated and only 7 files of 10 megabytes each are kept, so it should not fill up the disk. See more in the [docs](https://www.elastic.co/guide/en/beats/filebeat/current/configuration-logging.html)
 {{% /notice %}}
@@ -162,26 +164,26 @@ With everything in place, Bro data is streaming into Humio.
 In the above Filebeat configuration events are given a `#path` tag describing
 from which file they originate. To search for data from the `http.log`:
 
-```
+```humio
 #path=http
 ```
 
 Or search data from the `conn.log`
 
-```
+```humio
 #path=conn
 ```
 
 Just leave out the `#path` filter to search across all files. For example we
 could count how many events we have in the different files:
 
-```
+```humio
 groupBy(#path, function=count())
 ```
 
 Or show the event distribution over time
 
-```
+```humio
 timechart(#path, unit="1/minute")
 ```
 
@@ -194,9 +196,7 @@ We have created two example dashboards. You can add them to your Humio
 installation by running this [script](/bro-files/bro-add-dashboards.sh)  
 Before running the script set the right values for the parameters at the top
 
-{{% notice note %}}
-***Make the script executable***  
-```
+***Make the script executable:***
+```shell
 chmod +x <path_to_script>/bro-add-dashboards.sh
 ```
-{{% /notice %}}

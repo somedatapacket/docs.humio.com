@@ -1,5 +1,6 @@
 ---
 title: "Logstash"
+weight: 200
 ---
 
 Logstash is an established open source tool for collecting logs,

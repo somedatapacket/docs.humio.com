@@ -115,7 +115,6 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     fill: #fff;
 }
 .searchbox {
-    margin-top: 1rem;
     position: relative;
     border: 1px solid #915eae;
     background: #764890;

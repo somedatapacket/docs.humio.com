@@ -2,6 +2,7 @@
 title: "Elastic Beats"
 category_title: "Overview"
 heading: "Humio & Elastic Beats"
+weight: 100
 ---
 
 The [Elastic Beats](https://www.elastic.co/products/beats) are a

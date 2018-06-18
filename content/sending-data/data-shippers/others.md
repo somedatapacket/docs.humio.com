@@ -1,56 +1,29 @@
 ---
-title: "Others"
+title: "Others Data Shippers"
+weight: 1000
 ---
 
-Humio supports the following API's for ingesting data.
+If your favorite data shipper is not available changes are it is still compatible
+or configurable enough to send data to Humio.
 
-## Humio Ingest API
+Humio supports the following APIs for data ingestion:
 
-Humio has an [Ingest API](/sending-data/transport/http_api/#ingest).  You can use this
+- [Humio's Ingest API]({{< ref "#humio-api" >}})
+- [ElasticSearch Bulk API]({{< ref "#elastic-api" >}})
+
+## Humio's Ingest API {#humio-api}
+
+Humio has an [Ingest API]({{< ref "ingest-api.md" >}}).  You can use this
 to build an integration towards Humio.
 
-## ElasticSearch Bulk API
+## ElasticSearch Bulk API {#elastic-api}
 
 Humio is compatible with the [ElasticSearch Bulk ingest API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html).
 
 If you have a log shipper that supports the ElasticSearch Bulk API,
 there is a good change that you can use this to send logs to Humio.
-See the [Beats documentation](/sending-data/data-shippers/beats/) for an example of
+See the [Beats documentation]({{< ref "sending-data/data-shippers/beats/_index.md" >}}) for an example of
 configuration options.
 
-Contact us if you have trouble getting this working.
-
-<!--
-## rsyslogd using omelasticsearch module - unsupported.
-module(load="omelasticsearch")
-template(name="testTemplate"
-         type="list"
-         option.json="on") {
-           constant(value="{")
-             constant(value="\"timestamp\":\"")      property(name="timereported" dateFormat="rfc3339")
-             constant(value="\",\"@type\":\"")        constant(value="syslog-utc")
-             constant(value="\",\"message\":\"")     property(name="msg")
-             constant(value="\",\"host\":\"")        property(name="hostname")
-             constant(value="\",\"severity\":\"")    property(name="syslogseverity-text")
-             constant(value="\",\"facility\":\"")    property(name="syslogfacility-text")
-             constant(value="\",\"syslogtag\":\"")   property(name="syslogtag")
-           constant(value="\"}")
-         }
-action(type="omelasticsearch"
-       server="unsupported.humio.com"
-       serverPort="9200"
-       uid="INGEST-TOKEN-HERE"
-       pwd=""
-       template="testTemplate"
-       searchIndex="docker2humio"
-       searchType="ingest"
-       bulkmode="on"
-       #maxbytes="1m"
-       queue.type="linkedlist"
-       queue.size="50"
-       queue.dequeuebatchsize="3"
-       action.resumeretrycount="2")
-
-$DebugFile /tmp/rsyslog-debug
-$DebugLevel 2
--->
+Contact us if you have trouble getting this working e.g. getting errors when trying
+to make a client work against the API.

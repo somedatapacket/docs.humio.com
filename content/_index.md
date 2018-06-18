@@ -26,8 +26,39 @@ a power tool for your help-desk teams and your trusted navigator on an ocean of 
 _If you are new to log management the [introduction to log management]({{< relref "intro_to_log_management.md" >}})
 will help you get to grips with the core concepts is and where Humio fits in to the logging ecosystem._
 
+## Integrations
 
-## Getting Started with Humio
+<div class="integration-overview">
+  <div class="integration-overview__section">
+    <h3 class="integration-overview__section-title">Data Shippers</h3>
+    <ul>
+      <li><a href="{{% ref "filebeat.md" %}}">Filebeat</a></li>
+      <li><a href="{{% ref "logstash.md" %}}">Logstash</a></li>
+      <li><a href="{{% ref "rsyslog.md" %}}">Rsyslog</a></li>
+      <li><a href="{{% ref "sending-data/data-shippers/_index.md" %}}">List All</a></li>
+    </ul>
+  </div>
+  <div class="integration-overview__section">
+    <h3 class="integration-overview__section-title">Platforms</h3>
+    <ul>
+      <li>Kubernetes</li>
+      <li>Cloudwatch</li>
+      <li>Mesos & DC/OS</li>
+      <li>List All</li>
+    </ul>
+  </div>
+  <div class="integration-overview__section">
+    <h3 class="integration-overview__section-title">Languages & Frameworks</h3>
+    <ul>
+      <li>Python</li>
+      <li>Erlang & Elixir</li>
+      <li>NodeJS</li>
+      <li>List All</li>
+    </ul>
+  </div>
+</div>
+
+## Getting Started
 
 Before we can get started you need to have access to a running Humio instance.
 You have two option. You can [download](https://www.humio.com/download/)

@@ -51,7 +51,7 @@ To chain query expressions, use the 'pipe' character, `|`, between each of the q
 This causes Humio to pass the output from one expression into the next expression.
 {{% /notice %}}
 
-## Tag filters
+## Tag Filters
 
 Tag filters always start with a `#` character. They behave in the same way as
 regular [attribute filters]({{< ref "#attribute-filters" >}}).
@@ -70,7 +70,7 @@ This feature decreases query time.
 See the [tags documentation]({{< ref "tags.md" >}}) for more on tags.
 
 
-## @rawstring filters
+## Free-Text Filters (aka grepping) {#grepping}
 
 The most basic query in Humio is to search for a particular string in the `@rawstring` attribute of events.
 See the [events documentation]({{< ref "events.md#rawstring" >}}) for more details on `@rawstring`.
@@ -98,9 +98,9 @@ write the regex.
 | {{< query >}}/foo/i{{< /query >}} | Find all events matching "foo" in the `@rawstring`, ignoring case |
 
 
-## Attribute Filters
+## Field Filters
 
-Besides the `@rawstring`, you can also query event attributes, both as
+Besides the `@rawstring`, you can also query event fields, both as
 text and as numbers.
 
 
@@ -201,7 +201,7 @@ You can find out more about [Query Functions]({{< relref "query-functions/_index
 {{% /notice %}}
 
 
-## Extracting new attributes
+## Extracting new fields {#extracting-fields}
 
 You can extract new attributes from your text data using regular expressions
 and then test their values. This lets you access data that Humio did not parse

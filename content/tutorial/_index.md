@@ -64,7 +64,7 @@ and copying the default token (or creating a new one).
 {{< figure src="/pages/hello-world/ingest-token.png" title="Getting the default ingest token from your repository." >}}
 
 
-### 3. Choosing a Parser
+## 3. Choosing a Parser
 
 When data arrive at Humio they need to be parsed. Therefore you have to specify
 which parser should be used to interpret your data. Which one your need depends
@@ -78,7 +78,7 @@ for now, it is a good idea to stick with one of the built-in parsers for your fi
 experiments with Humio.
 
 
-### 4. Sending Data
+## 4. Sending Data
 
 Now you are all set, choose one of the following guides:
 
@@ -89,7 +89,7 @@ Now you are all set, choose one of the following guides:
 _Tip: If you are already using ElasticSearch ELK you can also take a look at how easy it is to
 [migrate from an Elastic Stack]({{< relref "moving_from_elastic_stack.md" >}}) to Humio._
 
-#### 4.1 Extra: Custom Parsers
+### 4.1 Extra: Custom Parsers
 
 While Humio has build-in support for the most popular logging formats (e.g. AccessLog, JSON)
 and can rip out almost anything with the `kv` <!-- TODO: Missing Link --> parser, you still

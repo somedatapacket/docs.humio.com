@@ -1,5 +1,5 @@
 ---
-title: "Integrations"
+title: "Platform Integrations"
 category_title: Overview
 ---
 

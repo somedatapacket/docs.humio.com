@@ -1,5 +1,6 @@
 ---
 title: "Rsyslog"
+weight: 400
 ---
 
 The [Rsyslog](https://www.rsyslog.com) log processor is very popular and is

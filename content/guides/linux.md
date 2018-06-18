@@ -1,5 +1,5 @@
 ---
-title: "Linux System Logs"
+title: "Linux System Logs & Metrics"
 ---
 
 Getting system logs and host metrics from a Linux systems enables you

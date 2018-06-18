@@ -30,10 +30,7 @@ curl http://localhost:8080/api/v1/users \
  -d "{\"email\": \"$EMAIL\", \"isRoot\": true}"
 ```
 
-`$EMAIL` needs to be verifiable, using one of the configured IdP's (identity
-providers) as described in this section.
-
-When using LDAP, `$EMAIL` is the username the user must enter to login,
+When using LDAP `$EMAIL` is the username the user must enter to login,
 and need not be an actual email address.
 
 Once that user has been added, you can log on using that user and see your own API token, as described

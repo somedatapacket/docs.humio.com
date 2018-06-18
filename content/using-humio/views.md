@@ -7,7 +7,7 @@ A view is a special kind of repository. In most respects a view is just like an 
 They can be searched, they have their own dashboards, users, queries, etc.
 But unlike [repositories]({{< ref "repositories.md" >}}), a view contains no data of its own.
 Instead views read data from one or more other repositories.
-In that sense you can think of a view like the views concept from a SQL databases.
+In that sense Humio views are very much like the views you might know from SQL databases.
 
 A view is defined as a set of connections to repositories
 and associated queries that filter or modify the data as it is read.
@@ -17,7 +17,7 @@ There are many use-cases for views and you can see
 
 ### Searching across multiple repositories
 
-The main role of a view is joining data from other repositories
+The main function of a view is joining data from other repositories
 and allowing you to search across their data.
 
 When creating a new view you connect repositories and write a filter query

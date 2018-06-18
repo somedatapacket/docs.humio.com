@@ -2,19 +2,30 @@
 title: "Cluster Setup"
 ---
 
-## Overview
-
 This section describes how to install Humio configured as a distributed system across multiple machines.
 
 ## Prerequisites
 
+<!-- TODO: What about Zookeeper? -->
+
 Running a distributed Humio setup requires a Kafka cluster (version 1.0).
 You can setup such a cluster using our Docker image. Or you can install Kafka using some other method.
 
+<!--
+TODO: This page should be about HOW things fit together, not the docker containers. 	                                         
+Leave that to the `docker.md` page
+
+The configuration options needed and software that should be installed should be
+described here.
+ -->
+
 ### Installation and configuration scripts
 
-We have created a [github repository](https://github.com/humio/provision-humio-cluster) with scripts to help install and configure Humio.
+We have created a [Github repository](https://github.com/humio/provision-humio-cluster) with scripts to help install and configure Humio.
 We suggest you read through the documentation below and have a look at repository. Check out the scripts and modify them for your environment.
+
+You should also look at the [reference Ansible project](https://github.com/humio/ansible-humio)
+for an example of this in practice.
 
 ### Running the Kafka Docker image from humio/humio-kafka
 
@@ -22,14 +33,14 @@ The suggested default is to run 3 instances of the Docker image each containing 
 The Zookeeper and Kafka instances must run on ports, that the Humio instances can connect to.
 The suggested setup below maps the user "Humio" on the host machine to the user "Humio" inside the Docker containers
 and runs the Kafka, zookeeper and Humio processes as that user. This allows the processes to write to the mounted data directories.
-Tailor according to your needs and make sure the "/data/" directories are on a mount point with sufficient storage. (e.g. probably not "/")
+Tailor according to your needs and make sure the `/data/` directories are on a mount point with sufficient storage. (e.g. probably not "/")
 
-The data is split on 4 mountpoints, in the example configurations below on these prefixes:
+The data is split on 4 mounting points, in the example configurations below on these prefixes:
 
-1. /data/logs holds logfiles from the various processes.
-2. /data/zookeeper-data holds zookeeper data. (Not much)
-3. /data/kafka-data holds Kafka data.
-4. /data/humio-data holds Humio data.
+1. `/data/logs` holds log files from the various processes.
+2. `/data/zookeeper-data` holds zookeeper data. (Not much)
+3. `/data/kafka-data` holds Kafka data.
+4. `/data/humio-data` holds Humio data.
 
 The following shows how to use the `humio/humio-kafka` image to set up
 Zookeeper and Kafka in a 3 machine cluster.
@@ -244,7 +255,7 @@ path of the configuration file you created.
 1. Verify that Humio is able to start using the configuration provided by looking at the log file.
    In particular, it should *not* keep on logging problems connecting to Kafka.
 
-```
+```shell
 grep 'Humio server is now running!'  /data/logs/humio_std_out.log
 grep -i 'kafka'  /data/logs/humio_std_out.log
 ```
@@ -261,9 +272,9 @@ this access by using a firewall, or adjusting the Docker network configuration.
 ### Starting Humio as a service
 
 There are different ways of starting the docker container
-["as a service"](https://docs.docker.com/engine/admin/host_integration/).
+["as a service"](https://docs.docker.com/config/containers/start-containers-automatically/).
 In the above example, we used Dockers
-[restart policies](https://docs.docker.com/engine/reference/run/#restart-policies-restart).
+[restart policies](https://docs.docker.com/config/containers/start-containers-automatically#use-a-restart-policy).
 It can be started using a process manager.
 
 

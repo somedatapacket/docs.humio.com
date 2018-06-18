@@ -1,5 +1,5 @@
 ---
-title: "Advanced Topics"
+title: "Appendix"
 chapter: true
 ---
 # Advanced Topics
