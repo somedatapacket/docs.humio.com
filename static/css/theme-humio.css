@@ -74,6 +74,7 @@ a:hover {
     background: var(--MENU-HEADER-BG-color);
     color: var(--MENU-SEARCH-BOX-color);
     border-color: var(--MENU-HEADER-BORDER-color);
+    padding: 1.4rem 1rem;
 }
 #sidebar .searchbox {
 	border-color: var(--MENU-SEARCH-BOX-color);
