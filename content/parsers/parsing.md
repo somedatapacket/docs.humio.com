@@ -6,11 +6,11 @@ When sending data to Humio, you can specify a parser.
 Humio uses parsers to extract fields and add structure to the data that you send to it.
 
 {{% notice note %}}
-When sending data with [Filebeat]({{< relref "filebeat.md" >}})
+When sending data with [Filebeat]({{< ref "filebeat.md" >}})
 you specify a parser to parse data.
 {{% /notice %}}
 
-Humio comes with a set of [built-in parsers]({{< relref "parsers/built-in-parsers/_index.md" >}}) for
+Humio comes with a set of [built-in parsers]({{< ref "parsers/built-in-parsers/_index.md" >}}) for
 common log formats.
 
 If no built-in parsers match your needs, then you can create your own.
@@ -25,7 +25,7 @@ Go to the **Parsers** subpage in your repository to see all the available parser
 
 ### Built-in parsers
 
-The first part of the list contains [built-in parsers]({{< relref "parsers/built-in-parsers/_index.md" >}}).
+The first part of the list contains [built-in parsers]({{< ref "parsers/built-in-parsers/_index.md" >}}).
 
 You cannot delete the built-in parsers, but you can overwrite them if you want.
 You can also copy existing parsers to use as a starting point for creating new parsers.
@@ -152,7 +152,7 @@ Look at [Java's DateTimeFormatter documentation](https://docs.oracle.com/javase/
 You can specify `millis` in the timestamp format. This specifies that the time is in milliseconds (Epoch time in milliseconds).
 {{% /notice %}}
 
-## Key-value parsing
+## Key-value Parsing
 When creating a regular expression parser, you can add key-value parsing.
 When you enable key-value parsing, Humio runs an extra parser on the incoming event.
 This extra parser looks for key-value fields of the form:
@@ -196,7 +196,7 @@ At the moment, the parser page cannot handle multiline events. You will have to 
 e.g. [filebeat]({{< relref "filebeat.md" >}}). Built-in multiline parsing is planned for a future release of Humio - So stay tuned!
 {{% /notice %}}
 
-## Adding tags
+## Adding Tags
 
 Humio saves data in Data Sources. You can provide a set of [tags]({{< ref "tags.md" >}}) to specify which Data Source the data is saved in.
 Using tags can significantly speed up searches.

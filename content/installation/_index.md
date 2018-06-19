@@ -1,7 +1,7 @@
 ---
 title: "Installation"
 weight: 90
-category_title: Overview
+category_title: Installation Overview
 ---
 
 Humio is available for [download](https://www.humio.com/download) or as [SaaS](https://cloud.humio.com/).

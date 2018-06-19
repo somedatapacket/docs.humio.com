@@ -40,7 +40,7 @@ Aggregate queries run live inside each bucket as Events arrive. Whenever the cur
 response is selected, it runs the aggregations for the query across the buckets.
 
 {{% notice note %}}
-Humio purges live queries if no client has checked their status for 60 minutes.
+Humio automatically stops live queries if no client has checked their status in a while.
 {{% /notice %}}
 
 ### Query Boundaries {#boundaries}
