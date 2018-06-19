@@ -17,7 +17,7 @@ is happening in Nginx in great detail. For example, you can:
 ## Logs
 
 To ship the Nginx access logs to Humio, use
-[Filebeat]({{< relref "sending-data/data-shippers/beats/filebeat.md" >}}).
+[Filebeat]({{< ref "filebeat.md" >}}).
 
 {{% notice note %}}
 On Linux, the access log is in `/var/log/nginx/access.log`

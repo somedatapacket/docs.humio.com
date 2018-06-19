@@ -23,8 +23,7 @@ Filebeat has some properties that make it a great tool for sending file data to 
 
 
 {{% notice note %}}
-***Official documentation***
-
+***Official documentation***  
 Check out Filebeat's [official documentation](https://www.elastic.co/guide/en/beats/filebeat/current/index.html).
 {{% /notice %}}
 
@@ -33,8 +32,7 @@ Check out Filebeat's [official documentation](https://www.elastic.co/guide/en/be
 To download Filebeat, visit the [Filebeat downloads page](https://www.elastic.co/downloads/beats/filebeat)
 
 {{% notice note %}}
-***Installation documentation***
-
+***Installation documentation***  
 You can find installation documentation for Filebeat at [the Filebeat Installation page of the official Filebeat website](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html).
 {{% /notice %}}
 

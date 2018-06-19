@@ -1,1 +1,16 @@
-<p>{{with .GitInfo }}Humio Docs version <a href="https://github.com/humio/docs.humio.com/commit/{{ .Hash }}">{{ .AbbreviatedHash }}</a>.{{ end }}</p>
+
+<p align="center" style="margin-bottom: 40px;">
+
+<a href="https://www.humio.com/download/?__hstc=181257784.ab8d75dcbb40a28aa57bd84b12edd703.1529100402466.1529350272377.1529387541223.9&amp;__hssc=181257784.125.1529387541223&amp;__hsfp=1850029008" target="_blank" class="btn btn-default">
+  <i class="fa fa-download"></i> Download
+</a>
+
+<a href="https://cloud.humio.com/?__hstc=181257784.ab8d75dcbb40a28aa57bd84b12edd703.1529100402466.1529350272377.1529387541223.9&amp;__hssc=181257784.125.1529387541223&amp;__hsfp=1850029008" target="_blank" class="btn btn-default">
+  <i class="fa fa-cloud"></i> Cloud Signup
+</a>
+
+</p>
+
+<div>
+  {{with .GitInfo }}Humio Docs version <a href="https://github.com/humio/docs.humio.com/commit/{{ .Hash }}">{{ .AbbreviatedHash }}</a>.{{ end }}
+</div>

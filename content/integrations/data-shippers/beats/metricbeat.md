@@ -19,8 +19,7 @@ for more details on these integrations and how they work.
 
 
 {{% notice note %}}
-***Official documentation***
-
+***Official documentation***  
 You can read all the official documentation on Metricbeats [at the Metricbeat website](https://www.elastic.co/guide/en/beats/metricbeat/current/index.html).
 {{% /notice %}}
 
@@ -29,8 +28,7 @@ You can read all the official documentation on Metricbeats [at the Metricbeat we
 To download Metricbeat, visit the [Metricbeat downloads page](https://www.elastic.co/downloads/beats/metricbeat).
 
 {{% notice note %}}
-***Installation documentation***
-
+***Installation documentation***  
 You can find installation documentation for Metricbeat at [the Installation page of the official Metricbeat website](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-installation.html).
 {{% /notice %}}
 
@@ -42,8 +40,7 @@ data from Metricbeat to Humio by configuring Metricbeat to use the built-in
 ElasticSearch output.
 
 {{% notice note %}}
-***Configuration documentation***
-
+***Configuration documentation***  
 You can find configuration documentation for Metricbeat at [the Metricbeat configuration page of the official Metricbeat website](https://www.elastic.co/guide/en/beats/metricbeat/current/configuring-howto-metricbeat.html).
 {{% /notice %}}
 
