@@ -31,28 +31,55 @@ will help you get to grips with the core concepts is and where Humio fits in to 
 <div class="integration-overview">
   <div class="integration-overview__section">
     <h3 class="integration-overview__section-title">Data Shippers</h3>
-    <ul>
-      <li><a href="{{% ref "filebeat.md" %}}">Filebeat</a></li>
-      <li><a href="{{% ref "logstash.md" %}}">Logstash</a></li>
-      <li><a href="{{% ref "rsyslog.md" %}}">Rsyslog</a></li>
+    <ul class="icon-list">
+      <li><a href="{{% ref "filebeat.md" %}}">
+        <img src="/integrations/elastic.svg" style="width: 24px">
+        <div>Filebeat</div>
+      </a></li>
+      <li><a href="{{% ref "logstash.md" %}}">
+        <img src="/integrations/logstash.svg" style="width: 24px">
+        <div>Logstash</div>
+      </a></li>
+      <li><a href="{{% ref "rsyslog.md" %}}">
+        <img src="/integrations/rsyslog.svg" style="width: 24px">
+        <div>Rsyslog</div>
+      </a></li>
       <li><a href="{{% ref "sending-data/data-shippers/_index.md" %}}">List All</a></li>
     </ul>
   </div>
   <div class="integration-overview__section">
     <h3 class="integration-overview__section-title">Platforms</h3>
-    <ul>
-      <li>Kubernetes</li>
-      <li>Cloudwatch</li>
-      <li>Mesos & DC/OS</li>
+    <ul class="icon-list">
+      <li>
+        <img src="/integrations/kubernetes.svg" style="width: 24px">
+        <div>Kubernetes</div>
+      </li>
+      <li>
+        <img src="/integrations/cloudwatch.svg" style="width: 24px">
+        <div>Cloudwatch</div>
+      </li>
+      <li>
+        <img src="/integrations/mesos.svg" style="width: 24px">
+        <div>Mesos & DC/OS</div>
+      </li>
       <li>List All</li>
     </ul>
   </div>
   <div class="integration-overview__section">
     <h3 class="integration-overview__section-title">Languages & Frameworks</h3>
-    <ul>
-      <li>Python</li>
-      <li>Erlang & Elixir</li>
-      <li>NodeJS</li>
+    <ul class="icon-list">
+    <li>
+      <img src="/integrations/python.svg" style="width: 24px">
+      <div>Python</div>
+    </li>
+      <li>
+        <img src="/integrations/erlang.svg" style="width: 24px">
+        <div>Erlang & Elixir</div>
+      </li>
+      <li>
+        <img src="/integrations/nodejs.svg" style="width: 24px">
+        <div>NodeJS</div>
+      </li>
       <li>List All</li>
     </ul>
   </div>
@@ -72,4 +99,4 @@ and running it yourself, or creating a free account in [Humio Cloud](https://clo
 </p>
 
 Once you have access to running Humio instance, you can head over to
-the [Hello World]({{< ref "tutorial/_index.md" >}}) tutorial.
+the [tutorial]({{< ref "tutorial/_index.md" >}}).

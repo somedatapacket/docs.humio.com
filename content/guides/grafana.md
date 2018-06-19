@@ -3,8 +3,8 @@ title: Grafana
 ---
 
 Humio has built-in support for dashboards, but if you are using Grafana for
-visualizing your data from different and would prefer to keep everything in Grafana
-you can use Humio's Grafana plugin:
+visualizing your data from different sources and would prefer to keep everything
+in Grafana you can use Humio's Grafana plugin:
 
 https://github.com/humio/humio2grafana
 

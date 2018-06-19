@@ -166,3 +166,16 @@ h3 {
   border-radius: 3px;
   line-height: 1;
 }
+
+.icon-list > li > a,
+.icon-list > li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.icon-list img {
+  display: inline-block;
+  margin: 0 !important;
+  margin-right: 8px !important;
+}
