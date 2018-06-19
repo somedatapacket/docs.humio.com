@@ -6,18 +6,22 @@ category_title: "Overview"
 
 There are steps to getting your data into Humio:
 
-1. Sending data - Which is what this section is about
-2. Parsing and ingesting data - Described in the [Parsers sections]({{< ref "parsing.md" >}})
+1. [Generating an Ingest Token]({{< ref "ingest_tokens.md" >}}) Token - A special API token only for the Ingest API.
+1. Sending data - Which is the subject of this page
+1. Parsing and ingesting data - Described in the [Parsers sections]({{< ref "parsing.md" >}})
 
 Sending data to Humio (also called _data shipping_) can be done in a couple of ways:
 
 - Using a [**Data Shipper**]({{< ref "#data-shippers" >}}) ([Filebeat]({{< ref "filebeat.md" >}}), [Logstash]({{< ref "logstash.md" >}}), [Rsyslog]({{< ref "rsyslog.md" >}}), etc.)
-- Using a [**Platform Integration**]({{< ref "#platform-integrations" >}}) ([Filebeat]({{< ref "kubernetes.md" >}}), [Filebeat]({{< ref "docker.md" >}}), [Filebeat]({{< ref "mesos.md" >}}), etc)
+- Using a [**Platform Integration**]({{< ref "#platform-integrations" >}}) ([Kubernetes]({{< ref "kubernetes.md" >}}), [Docker]({{< ref "docker.md" >}}), [Mesos]({{< ref "mesos.md" >}}), etc)
 - Using the [**Ingest API**]({{< ref "#ingest-api" >}}) directly
 
-In most cases you will want to use a data shipper or one of our platform integrations.
+_In most cases you will want to use a data shipper or one of our platform integrations._
 
-Below is an overview of how the respective ways of sending data to Humio work:
+If you are just interested in getting some data into Humio quickly, take a look at
+the [getting started: sending application logs]({{< ref "getting-started-application-logs.md" >}}) guide.
+
+Below is an overview of how the respective flows of sending data to Humio work:
 
 ## Data Shippers {#data-shippers}
 

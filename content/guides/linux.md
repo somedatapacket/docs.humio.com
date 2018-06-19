@@ -14,8 +14,7 @@ the things you could do:
 ## Host Metrics
 
 To get the standard host metrics, like cpu usage, load, memory,
-etc. use
-[Metricbeat](https://www.elastic.co/guide/en/beats/metricbeat/current/index.html).
+etc. use [Metricbeat](https://www.elastic.co/guide/en/beats/metricbeat/current/index.html).
 Metricbeat can extract metrics from many different applications.  For linux host
 metrics the system module is of interest.
 
@@ -52,8 +51,8 @@ output.elasticsearch:
 See the page on [Metricbeat]({{< relref "metricbeat.md" >}}) for more information.
 
 {{% notice note %}}
-***Example queries***
-check out the these [queries]({{< relref "metricbeat.md" >}}) on host metrics
+***Example queries***  
+check out these [queries]({{< relref "metricbeat.md#host-metrics-example-queries" >}}) on host metrics
 {{% /notice %}}
 
 ## System Logs (syslog)
