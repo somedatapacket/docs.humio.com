@@ -38,11 +38,11 @@ Since Docker just handles log lines from `stdout` as text blobs, you must parse
 the lines to get the full value from them.
 
 To do this, you can either use a built-in parser, or create new ones for your log
-types. For more details on creating parsers, see the [parsing page]({{< relref "parsing.md" >}}).
+types. For more details on creating parsers, see the [parsing page]({{< ref "parsing.md" >}}).
 
 {{% notice tip %}}
 In terms of log management, Docker is just a transport layer.  
-Before writing a custom parser, see the [built in parsers]({{< relref "built_in_parsers.md" >}}) page to see if Humio already supports your log type.
+Before writing a custom parser, see the [built in parsers]({{< ref "parsers/built-in-parsers/_index.md" >}}) page to see if Humio already supports your log type.
 {{% /notice %}}
 
 ## 3. Metrics

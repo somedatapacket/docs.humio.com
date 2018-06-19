@@ -10,7 +10,7 @@ When sending data with [Filebeat]({{< relref "filebeat.md" >}})
 you specify a parser to parse data.
 {{% /notice %}}
 
-Humio comes with a set of [built-in parsers]({{< relref "built_in_parsers.md" >}}) for
+Humio comes with a set of [built-in parsers]({{< relref "parsers/built-in-parsers/_index.md" >}}) for
 common log formats.
 
 If no built-in parsers match your needs, then you can create your own.
@@ -25,7 +25,7 @@ Go to the **Parsers** subpage in your repository to see all the available parser
 
 ### Built-in parsers
 
-The first part of the list contains [built-in parsers]({{< relref "built_in_parsers.md" >}}).
+The first part of the list contains [built-in parsers]({{< relref "parsers/built-in-parsers/_index.md" >}}).
 
 You cannot delete the built-in parsers, but you can overwrite them if you want.
 You can also copy existing parsers to use as a starting point for creating new parsers.
@@ -83,7 +83,7 @@ Resulting Fields:
 
 
 The reason we sometimes need to define custom JSON parsers is to parse the timestamp.
-The build-in JSON parser ([json]({{< relref "built_in_parsers.md#json" >}})) expects
+The build-in JSON parser ([json]({{< ref "json.md" >}})) expects
 a field called `@timestamp`, but this will not always exist for arbitrary JSON logs.
 
 When defining a JSON parser you specify which JSON property should be used as timestamp,

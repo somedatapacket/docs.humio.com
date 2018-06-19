@@ -8,10 +8,10 @@ extract this structure. For example, a standard web server log has the status
 code, method, and URL fields for each log line.
 
 When sending data to Humio, for example using
-[Filebeat]({{< relref "filebeat.md" >}}), you must specify a parser telling
+[Filebeat]({{< ref "filebeat.md" >}}), you must specify a parser telling
 Humio how to parse the incoming data.
 
-Humio has some [built-in parsers]({{< relref "built_in_parsers.md" >}}) for
+Humio has some [built-in parsers]({{< ref "parsers/built-in-parsers/_index.md" >}}) for
 common formats like access logs from Apache and Nginx
 web servers. It also allows for custom parsers.
 
