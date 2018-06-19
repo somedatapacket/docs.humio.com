@@ -1,6 +1,5 @@
 ---
-title: "Searching"
-category_title: "Query Syntax"
+title: "Language Syntax"
 weight: 300
 ---
 This section describes the Humio query language.

@@ -1,6 +1,7 @@
 ---
 title: "Platforms"
 category_title: Overview
+weight: 200
 ---
 
 Humio offers a list a pre baked integrations for a number of platforms. We always strive to make these integrations as
