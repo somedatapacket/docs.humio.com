@@ -17,9 +17,9 @@ running Humio on bare metal please refer to our [Bare Metal Installation Guide](
 ## Guides
 
 <!-- - Running Humio on Kubernetes -->
-- [Running in Docker]({{ ref "docker.md" }})
-- [Running on Bare Metal]({{ ref "bare-metal.md" }})
-- [Provisioning with Ansible]({{ ref "ansible.md" }})
+- [Running in Docker]({{< ref "docker.md" >}})
+- [Running on Bare Metal]({{< ref "bare-metal.md" >}})
+- [Provisioning with Ansible]({{< ref "ansible.md" >}})
 - [Running on AWS]({{< ref "aws.md" >}})
 - [Running on Nomad]({{< ref "nomad.md" >}})
 

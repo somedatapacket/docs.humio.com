@@ -1,6 +1,6 @@
 ---
 title: Running Humio as a Docker container
-weight: 3
+weight: 100
 menuTitle: Docker
 pageImage: /integrations/docker.svg
 ---

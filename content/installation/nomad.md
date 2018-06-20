@@ -2,6 +2,7 @@
 title: Running Humio on Nomad
 menuTitle: Nomad
 pageImage: /integrations/nomad.svg
+weight: 400
 ---
 
 If you want to install Humio on a Nomad cluster we have an example project that

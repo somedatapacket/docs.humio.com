@@ -1,6 +1,7 @@
 ---
 title: Bare Metal
 slug: installation-on-bare-metal
+weight: 500
 ---
 
 If you want to run Humio directly from the Jar file you will need to provide
