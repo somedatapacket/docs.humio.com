@@ -80,7 +80,7 @@ output.elasticsearch:
 Notice the type is `syslog-utc`, which points to the built in syslog parser, expecting the timestamp to be in UTC time.
 Often syslog timestamps are in local time. Go ahead and create a new parser with another timezone in Humio if necessary.
 You can copy the built in syslog-utc and just change the timezone.
-See [Parsing]({{< relref "parsing.md" >}}) for details.
+See [Parsing]({{< relref "parsers/_index.md" >}}) for details.
 
 
 Check out the [Filebeat]({{< relref "filebeat.md" >}}) page for more

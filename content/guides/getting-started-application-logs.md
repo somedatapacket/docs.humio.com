@@ -24,7 +24,7 @@ You set `@type` to the name of one of Humio's built-in parsers or one of your ow
 
 For now let os assume we can use the build-in [`kv`]({{< ref "kv.md" >}}) (Key-Value) parser, it extracts fields
 from the log lines, anything of the form `key=value`.
-See [Parsing Logs]({{< relref "parsing.md" >}}) for more information on parsing log data.
+See [Parsing Logs]({{< relref "parsers/_index.md" >}}) for more information on parsing log data.
 
 Example Filebeat configuration with a custom log type:
 
@@ -44,7 +44,7 @@ output.elasticsearch:
 * `$REPOSITORY_NAME` - name of your repository on your server (e.g. `sandbox`)
 * `$INGEST_TOKEN` - [ingest token]({{< relref "ingest_tokens.md" >}}) for your repository, (e.g. a string such as `fS6Kdlb0clqe0UwPcc4slvNFP3Qn1COzG9DEVLw7v0Ii`).
 * `PATH_TO_YOUR_APPLICATION_LOG` - the file path to the log file you want to send.
-* `PARSER_NAME` - the name of either one of the built-in parsers such as `kv` (Key-Value) or a [custom parser]({{< relref "parsing.md" >}}).
+* `PARSER_NAME` - the name of either one of the built-in parsers such as `kv` (Key-Value) or a [custom parser]({{< relref "parsers/_index.md" >}}).
 
 See the detailed documentation for [filebeat]({{< relref "filebeat.md" >}})
 

@@ -12,7 +12,7 @@ Humio saves data in Data Sources. You can provide a set of Tags to specify which
 You can add Tags to [Events]({{< ref "events.md" >}}) that you ingest into Humio.
 Tags provide an important way to speed up searching. They allow Humio to select which Data Sources to search through.     
 For example, you can add Tags to Events that represent host names, file names, service names, or the kind of service.  
-Tags can be configured in [parsers]({{< ref "parsing.md" >}}) or specified in the APIs for data ingestion.
+Tags can be configured in [parsers]({{< ref "parsers/_index.md" >}}) or specified in the APIs for data ingestion.
 
 In Humio tags always start with a #. When turning a field into a tag it will be
 prepended with `#`.

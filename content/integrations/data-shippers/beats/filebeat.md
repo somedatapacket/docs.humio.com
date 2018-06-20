@@ -113,7 +113,7 @@ To test it can be run like `/usr/share/filebeat/bin/filebeat -c /etc/filebeat/fi
 
 Humio uses parsers to parse the data from Filebeat into events.
 Parsers can extract fields from the text strings an add structure to the events.
-For more information on parsers, see [parsing]({{< relref "parsing.md" >}}).
+For more information on parsers, see [parsing]({{< relref "parsers/_index.md" >}}).
 
 {{% notice note %}}
 Take a look at Humio's [built-in parsers](/sending-data/parsers/built_in_parsers/).
@@ -128,7 +128,7 @@ For example, when sending a web server access log file to Humio, you can use the
 
 ### Parsing JSON data
 
-Humio supports [JSON parsers]({{< relref "parsing.md#json-parser" >}}).
+Humio supports [JSON parsers]({{< ref "json-parsers.md" >}}).
 Filebeat processes logs line by line, so JSON parsing will only work if there is one JSON object per line.
 Customize a JSON parser in Humio (do not use the JSON parsing built into Filebeat).
 
@@ -151,7 +151,7 @@ Humio saves data in Data Sources. You can provide a set of Tags to specify which
 See [glossary](/glossary/#tags) for more information about tags and Data Sources.  
 The `type` configured in Filebeat is always used as tag. Other fields can be used
 as tags as well by defining the fields as `tagFields` in the
-[parser]({{< relref "parsing.md" >}}) pointed to by the `type`.  
+[parser]({{< relref "parsers/_index.md" >}}) pointed to by the `type`.  
 In Humio tags always start with a #. When turning a field into a tag it will
 be prepended with `#`.
 

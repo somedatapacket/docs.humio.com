@@ -11,7 +11,7 @@ parser.
 
 Go to the **Parsers** subpage in your repository to see all the available parsers:
 
-{{% figure src="/images/parsersx.png" %}}
+{{% figure src="/images/parsersx.png" width="600px" %}}
 
 ### Built-in parsers
 
@@ -24,7 +24,7 @@ You can also copy existing parsers to use as a starting point for creating new p
 
 The following screenshots shows the **Parser** page with a custom parser called `humio`:
 
-![Custom Parser`](/images/custom-parser.png)
+{{% figure src="/images/custom-parser.png" width="600px" %}}
 
 The **Parser** page lets you define and test parsers.
 

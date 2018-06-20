@@ -15,7 +15,7 @@ typically use the endpoint where a parser is specified.
 ### Ingest data using a parser {#parser}
 
 This API should be used, when a parser should be applied to the data.
-It is possible to create [parsers]({{< relref "parsing.md" >}}) in Humio
+It is possible to create [parsers]({{< ref "parsers/_index.md" >}}) in Humio
 
 {{% notice note %}}
 ***Filebeat is another option for sending data that needs a parser***
@@ -50,7 +50,7 @@ Example sending 4 accesslog lines to Humio
 ```
 
 The above example sends 4 accesslog lines to Humio. the parser is specified using the `type` field and is set to `accesslog`.   
-The parser accesslog should be specified in the repository. See [parsing]({{< relref "parsing.md" >}}) for details.  
+The parser accesslog should be specified in the repository. See [parsing]({{< relref "parsers/_index.md" >}}) for details.  
 The `fields` section is used to specify fields that should be added to each of the events when they are parsed. In the example all the accesslog events will get a host field telling the events came from webhost1.  
 It is possible to send events of different types in the same request. That is done by adding a new element to the outer array in the example above.
 Tags can be specified in the parser pointed to by the `type` field
@@ -62,7 +62,7 @@ When sending events, you can set the following standard fields:
 Name            | Required      | Description
 ------------    | ------------- |------------
 `messages`      | yes           | The raw strings representing the events. Each string will be parsed by the parser specified by `type`.
-`type`          | yes           | The [parser]({{< relref "parsing.md" >}}) Humio will use to parse the `messages`
+`type`          | yes           | The [parser]({{< relref "parsers/_index.md" >}}) Humio will use to parse the `messages`
 `fields`        | no            | Annotate each of the `messages` with these key-values. Values must be strings.
 `tags`          | no            | Annotate each of the `messages` with these key-values as Tags. Please see other documentation on tags before using.
 

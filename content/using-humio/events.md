@@ -87,7 +87,11 @@ the search documentation.
 
 ### Field: @timestamp {#timestamp}
 
-The timestamp of an event is represented in the `@timestamp` attribute.
+The timestamp of an event is represented in the `@timestamp` field. This field
+defines where the event is stored in the Humio's database, and is what defined
+wether an event is included in search results when searching a time range.
+
+It needs [special treatment when parsing incoming data]({{< ref "creating-a-parser.md#parsing-timestamps">}}) at ingest time.
 
 ### Field: #repo {#repo}
 
@@ -96,4 +100,4 @@ This is useful in cross-repository searches when using [views]({{< ref "views.md
 
 ### Field #type {#type}
 
-The type field is the name of the [parser]({{< ref "parsing.md" >}}) used to ingest the data.
+The type field is the name of the [parser]({{< ref "parsers/_index.md" >}}) used to ingest the data.

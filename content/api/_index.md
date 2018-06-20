@@ -16,9 +16,9 @@ In fact, the UI is constructed using solely the public API.
 
 ## REST and GraphQL
 
-Humio has a mixture of GraphQL and REST endpoint. You can read about the
-[motivation of using GraphQL]({{< relref "graphql.md" >}}),
-as well as an introduction to GraphQL if you are not familiar.
+Humio has a mixture of GraphQL and REST endpoints. You can read about the
+[motivation behind using GraphQL]({{< relref "graphql.md" >}}),
+as well as an introduction to GraphQL if you are not familiar with the technology.
 
 {{% notice info %}}
 We are in the process of migrating most of our API to GraphQL, but there are

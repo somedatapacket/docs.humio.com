@@ -8,7 +8,7 @@ There are steps to getting your data into Humio:
 
 1. [Generating an Ingest Token]({{< ref "ingest_tokens.md" >}}) Token - A special API token only for the Ingest API.
 1. Sending data - Which is the subject of this page
-1. Parsing and ingesting data - Described in the [Parsers sections]({{< ref "parsing.md" >}})
+1. Parsing and ingesting data - Described in the [Parsers sections]({{< ref "parsers/_index.md" >}})
 
 Sending data to Humio (also called _data shipping_) can be done in a couple of ways:
 

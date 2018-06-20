@@ -38,7 +38,7 @@ Since Docker just handles log lines from `stdout` as text blobs, you must parse
 the lines to get the full value from them.
 
 To do this, you can either use a built-in parser, or create new ones for your log
-types. For more details on creating parsers, see the [parsing page]({{< ref "parsing.md" >}}).
+types. For more details on creating parsers, see the [parsing page]({{< ref "parsers/_index.md" >}}).
 
 {{% notice tip %}}
 In terms of log management, Docker is just a transport layer.  
