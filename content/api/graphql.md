@@ -8,6 +8,11 @@ more flexibility for API clients. GraphQL allows you to precisely specify the
 data you require, which allows you to call a single endpoint to get everything
 you need. This makes creating integrations and clients for Humio much easier.
 
+You can find an interactive console for the GraphQL along with field and mutation
+documentation here:
+
+https://cloud.humio.com/docs/api-explorer
+
 ## New to GraphQL?
 
 If you are unfamiliar with GraphQL don't fret. You don't need GraphQL special
@@ -28,7 +33,7 @@ have all based their newest APIs on GraphQL.
 - [GraphQL.org Intro to GraphQL](https://graphql.org/learn/)
 - [HowToGraphQL](https://www.howtographql.com/)
 
-## API Explorer
+## API Explorer {#api-explorer}
 
 Humio has an built-in API explorer bundled with each installation. You can find
 it under:

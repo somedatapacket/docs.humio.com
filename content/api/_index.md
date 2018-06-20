@@ -9,6 +9,7 @@ Here are some quick links to get you started using Humio's API:
 - [Authentication]({{< relref "api_tokens.md" >}})
 - [Search API]({{< relref "search-api.md" >}})
 - [Ingest API]({{< relref "ingest-api.md" >}})
+- [GraphQL API Explorer]({{ ref "graphql.md#api-explorer" }})
 
 Everything you can do in Humio's UI can be done through our HTTP API as well.
 In fact, the UI is constructed using solely the public API.
