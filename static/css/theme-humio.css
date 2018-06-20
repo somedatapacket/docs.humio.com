@@ -169,9 +169,10 @@ h3 {
 
 .icon-list > li > a,
 .icon-list > li {
-  display: flex;
+  display: flex !important;
   align-items: center;
   margin-bottom: 6px;
+  height: 32px;
 }
 
 .icon-list img {

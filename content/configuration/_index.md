@@ -95,7 +95,7 @@ to get the number of CPU cores.
 ## Configuring Authentication
 
 Humio supports different ways of authentication users. Read more in the
-dedicated [Authentication Documentation]({{< relref "authentication.md" >}}).
+dedicated [Authentication Documentation]({{< ref "configuration/authentication/_index.md" >}}).
 
 ## Public URL {#public_url}
 
@@ -103,8 +103,8 @@ dedicated [Authentication Documentation]({{< relref "authentication.md" >}}).
 Leave out trailing slashes.
 
 This property is only important if you plan to use
-[OAuth Federated Login]({{< relref "authentication.md#oauth">}}),
-[Auth0 Login]({{< relref "authentication.md#auth0">}}) or if you want to be able
+[OAuth Federated Login]({{< ref "oauth.md">}}),
+[Auth0 Login]({{< ref "auth0.md">}}) or if you want to be able
 to have Alert Notifications have consistent links back to the Humio UI.
 
 The URL might only be reachable behind a VPN but that is no problem, as the user's

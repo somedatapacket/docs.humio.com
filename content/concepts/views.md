@@ -1,6 +1,5 @@
 ---
 title: Views
-weight: 4
 ---
 
 A view is a special kind of repository. In most respects a view is just like an ordinary repository.
@@ -15,7 +14,7 @@ and associated queries that filter or modify the data as it is read.
 There are many use-cases for views and you can see
 [a list of examples later on this page]({{< ref "#examples" >}}).
 
-### Searching across multiple repositories
+## Searching across multiple repositories
 
 The main function of a view is joining data from other repositories
 and allowing you to search across their data.
@@ -42,7 +41,7 @@ You can use `#repo` in conjunction with a `case`-statement to modify events
 based on which repository they come from.  
 {{% /notice %}}
 
-#### Filtering {#filtering}
+### Filtering {#filtering}
 
 By default views contain all data from their connected repositories.
 This is not always what you want and that is why you can apply a filter to each connection.
@@ -91,7 +90,7 @@ repositories to the view and the
 {{% function "groupBy" %}}-aggregation is executed on the joined events.</figcaption>
 </figure>
 
-### Example use-cases {#examples}
+## Example use-cases {#examples}
 
 Views are a powerful tool and you can achieve many things, like:
 
@@ -103,7 +102,7 @@ Views are a powerful tool and you can achieve many things, like:
 Here are some examples of how you can use views to give you an
 idea of their power.
 
-#### A repository per service {#per-service}
+### A repository per service {#per-service}
 
 Say you have a micro-service setup and you store all logs from all applications
 in a single repository, let's call it `acme-project`. It can
@@ -141,7 +140,7 @@ In this example we create three views that all draw their data from
 a single repository. If you are using a free cloud account the
 repository could be you [Sandbox]({{< relref "the-sandbox.md" >}})
 
-#### Redacting sensitive information {#sensitive}
+### Redacting sensitive information {#sensitive}
 
 Your data may contain information that not everyone should have access to.
 You can use a view to implement security restrictions and censoring.
@@ -155,7 +154,7 @@ filter expression:
 |--------------------|----------------------------------------|
 | `hospital-logs`    | {{< query >}}socialSecurityNo := "REDACTED"{{< /query >}}       |
 
-#### Restricting access to a subset of a repository {#subset}
+### Restricting access to a subset of a repository {#subset}
 
 Say your system produces logs in several regions, but some of the people who
 have search access should only be able to see logs for their respective region.
@@ -171,7 +170,7 @@ reach the user.  in this case limiting access to logs Germany :
 In this example we are dealing with two repositories.
 
 
-#### Field Aliases
+### Field Aliases
 
 In the [previous example]({{< relref "#subset" >}}) we saw that two repositories
 had the same information but in two different fields depending on your parsers and

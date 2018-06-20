@@ -1,6 +1,7 @@
 ---
 title: "Metricbeat"
 categories: ["Integration"]
+pageImage: /integrations/metricbeat.svg
 ---
 
 [Metricbeat](https://www.elastic.co/products/beats/metricbeat) is a lightweight tool for collecting and shipping metrics.

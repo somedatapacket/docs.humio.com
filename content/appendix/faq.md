@@ -6,7 +6,7 @@ weight: 7
 ### What happened to "Dataspaces"
 
 "Repository" is the new term. What used to be a "dataspace" in Humio is
-now a [Repository]({{< relref "using-humio/repositories.md" >}}).
+now a [Repository]({{< ref "repositories.md" >}}).
 
 The HTTP API includes the path `/api/v1/dataspaces/$REPOSITORY_NAME/` to be
 compatible with existing clients.

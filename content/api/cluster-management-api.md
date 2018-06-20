@@ -6,7 +6,7 @@ weight: 500
 This page provides information about the HTTP API for managing
 on-premises installations of Humio.
 
-All requests require **root-level access**. See [API token for local root access]({{< relref "authentication.md#root-token" >}}).
+All requests require **root-level access**. See [API token for local root access]({{< relref "root-access.md#root-token" >}}).
 
 Note, this API is still very much _work-in-progress_.
 

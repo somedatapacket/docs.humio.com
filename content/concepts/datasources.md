@@ -1,5 +1,5 @@
 ---
-title: Data Sources
+title: Datasources
 ---
 
 A Data Source is a set of [Events]({{< ref "events.md" >}}) that have the same [Tags]({{< ref "tags.md" >}}).

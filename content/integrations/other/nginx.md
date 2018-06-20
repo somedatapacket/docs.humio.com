@@ -1,6 +1,7 @@
 ---
 title: "Nginx"
 categories: ["Integration"]
+pageImage: /integrations/nginx.svg
 ---
 
 You can integrate the Nginx web server with Humio. This lets you follow what

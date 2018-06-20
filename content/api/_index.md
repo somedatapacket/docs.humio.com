@@ -6,10 +6,10 @@ weight: 900
 
 Here are some quick links to get you started using Humio's API:
 
-- [Authentication]({{< relref "api_tokens.md" >}})
-- [Search API]({{< relref "search-api.md" >}})
-- [Ingest API]({{< relref "ingest-api.md" >}})
-- [GraphQL API Explorer]({{ ref "graphql.md#api-explorer" }})
+- [Authentication]({{< ref "api_tokens.md" >}})
+- [Search API]({{< ref "search-api.md" >}})
+- [Ingest API]({{< ref "ingest-api.md" >}})
+- [GraphQL API Explorer]({{< ref "graphql.md#api-explorer" >}})
 
 Everything you can do in Humio's UI can be done through our HTTP API as well.
 In fact, the UI is constructed using solely the public API.
@@ -18,7 +18,7 @@ In fact, the UI is constructed using solely the public API.
 ## REST and GraphQL
 
 Humio has a mixture of GraphQL and REST endpoints. You can read about the
-[motivation behind using GraphQL]({{< relref "graphql.md" >}}),
+[motivation behind using GraphQL]({{< ref "graphql.md" >}}),
 as well as an introduction to GraphQL if you are not familiar with the technology.
 
 {{% notice info %}}
