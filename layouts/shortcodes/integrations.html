@@ -1,0 +1,12 @@
+<ul class="icon-list">
+  {{ range $category := .Site.Taxonomies.categories }}
+  {{ range $category }}
+    <li>
+      {{ if ne (or .Page.Params.icon .Page.Params.pageImage) nil }}
+      <img alt="" src="{{ (or .Page.Params.icon .Page.Params.pageImage) }}" />
+      {{ end }}
+      <a href="{{ .Page.RelPermalink }}">{{ or .Page.Params.menuTitle .Page.Title }}</a>
+    </li>
+  {{ end }}
+  {{ end }}
+</ul>

@@ -1,5 +1,7 @@
 ---
 title: "Heroku"
+categories: ["Integration"]
+pageImage: /integrations/heroku.svg
 ---
 
 To get logs from Heroku, you need to follow the guide lines to set up a

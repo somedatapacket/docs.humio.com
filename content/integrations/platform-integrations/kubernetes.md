@@ -1,5 +1,7 @@
 ---
 title: "Kubernetes"
+categories: ["Integration"]
+pageImage: /integrations/kubernetes.svg
 ---
 
 When it comes to managing micro-services in a Kubernetes cluster, Humio is a

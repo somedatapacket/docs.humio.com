@@ -1,6 +1,8 @@
 ---
 title: "Rsyslog"
 weight: 400
+categories: ["Integration"]
+pageImage: /integrations/rsyslog.svg
 ---
 
 The [Rsyslog](https://www.rsyslog.com) log processor is very popular and is

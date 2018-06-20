@@ -1,5 +1,6 @@
 ---
 title: "NetFlow"
+categories: ["Integration"]
 ---
 
 Humio has built in support for [NetFlow](https://en.wikipedia.org/wiki/NetFlow).

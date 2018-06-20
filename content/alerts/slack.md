@@ -1,5 +1,7 @@
 ---
 title: "Slack"
+categories: ["Integration"]
+pageImage: /integrations/slack.svg
 ---
 
 The Slack notifier is an extension of the Webhook notifier and is using Slack's

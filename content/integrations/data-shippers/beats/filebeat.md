@@ -1,5 +1,7 @@
 ---
 title: "Filebeat"
+categories: ["Integration"]
+pageImage: /integrations/elastic.svg
 ---
 
 [Filebeat](https://www.elastic.co/products/beats/filebeat) is a lightweight,

@@ -1,6 +1,8 @@
 ---
 title: "Logstash"
 weight: 200
+categories: ["Integration"]
+pageImage: /integrations/logstash.svg
 ---
 
 Logstash is an established open source tool for collecting logs,

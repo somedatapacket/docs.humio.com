@@ -3,6 +3,7 @@ title: Running Humio as a Docker container
 weight: 100
 menuTitle: Docker
 pageImage: /integrations/docker.svg
+categories: ["Integration"]
 ---
 
 Humio is distributed as a Docker image. This means that you can start an

@@ -1,5 +1,7 @@
 ---
 title: "OpsGenie"
+categories: ["Integration"]
+pageImage: /integrations/opsgenie.svg
 ---
 
 OpsGenie is an Alert Routing & Incident Management system that works very well

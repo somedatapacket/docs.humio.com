@@ -1,5 +1,7 @@
 ---
 title: "DC/OS and Mesos"
+categories: ["Integration"]
+pageImage: /integrations/mesos.svg
 ---
 
 This is a Mesos framework for shipping Mesos tasks logs to Humio in the Cloud and on-premises.

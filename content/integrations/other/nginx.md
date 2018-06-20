@@ -1,5 +1,6 @@
 ---
 title: "Nginx"
+categories: ["Integration"]
 ---
 
 You can integrate the Nginx web server with Humio. This lets you follow what

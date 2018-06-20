@@ -1,7 +1,9 @@
 ---
 title: Ansible
 pageImage: /integrations/ansible.svg
+icon: /integrations/ansible-logo.svg
 weight: 300
+categories: ["Integration"]
 ---
 
 We provide a reference Ansible project on Github:

@@ -1,6 +1,8 @@
 ---
 menuTitle: Python
 title: "Python API Client"
+categories: ["Integration"]
+pageImage: /integrations/python.svg
 ---
 
 If you are using python in your project take a look at our python library:

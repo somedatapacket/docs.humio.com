@@ -1,5 +1,7 @@
 ---
 title: "Kafka Connect"
+categories: ["Integration"]
+pageImage: /integrations/kafka.svg
 ---
 
 [Kafka Connect](https://kafka.apache.org/documentation/#connect) is a framework

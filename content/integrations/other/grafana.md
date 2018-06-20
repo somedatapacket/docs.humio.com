@@ -1,6 +1,8 @@
 ---
 title: Grafana
 weight: 700
+categories: ["Integration"]
+pageImage: /integrations/grafana.svg
 ---
 
 Humio has built-in support for dashboards, but if you are using Grafana for
