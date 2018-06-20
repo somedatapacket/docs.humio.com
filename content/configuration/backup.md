@@ -69,7 +69,7 @@ Humio will start backing up data to the specified directory.
 
 ### Not running Docker?
 The procedure is mostly the same.
-Instead of mouting the directory using "-v", you specify the location using "BACKUP_DIR".
+Instead of mounting the directory using "-v", you specify the location using "BACKUP_DIR".
 A full example configuration is then:
 
 ``` shell

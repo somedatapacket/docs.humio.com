@@ -11,7 +11,7 @@ Humio supports the following authentication types:
 * [__Single user__](#single-user)  
    Single-user mode is similar to running with no authentication except that it enables login using a password.
 * [__LDAP__](#ldap)  
-   Humio can connect to an LDAP server an authenticate users
+   Humio can connect to an LDAP server and authenticate users
 * [__By-Proxy__](#by-proxy)  
    Humio can use the username provided by the proxy in a HTTP header.
 * [__OAuth Identity Providers__](#oauth)  
@@ -65,7 +65,7 @@ If you have a "reverse proxy" in front of Humio, and that proxy has a way of kno
 other unique user identifier, you can let the proxy decide what username the user gets access as inside Humio.
 This is one way to accomplish single sign-on in certain configurations.
 
-{{% notice note %}}
+{{% notice warning %}}
 Make sure Humio is not accessible without passing through the proxy, as direct access to the Humio server
 in this configuration allows anyone to assume any identity in Humio.
 {{% /notice %}}
