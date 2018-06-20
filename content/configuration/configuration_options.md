@@ -15,7 +15,7 @@ your configuration in a file. For a quick intro to setting configuration options
 ```properties
 # The stacksize should be at least 2M.
 # We suggest setting MaxDirectMemory to 50% of physical memory. At least 2G required.
-HUMIO_JVM_ARGS=-Xss2M -XX:MaxDirectMemorySize=32G
+HUMIO_JVM_ARGS=-XX:+UseParallelOldGC -Xss2M -XX:MaxDirectMemorySize=4G
 
 # Make Humio write a backup of the data files:
 # Backup files are written to mount point "/backup".
@@ -28,8 +28,8 @@ HUMIO_JVM_ARGS=-Xss2M -XX:MaxDirectMemorySize=32G
 # If set, must be a (small) positive integer.
 #BOOTSTRAP_HOST_ID=1
 
-# The URL that other humio hosts in the cluster can use to reach this server. Required.
-# Examples: https://humio01.example.com  or  http://humio01:8080
+# The URL that other humio hosts in the cluster can use to reach this server.
+# Required for clustering. Examples: https://humio01.example.com  or  http://humio01:8080
 # Security: We recommend using a TLS endpoint.
 # If all servers in the Humio cluster share a closed LAN, using those endpoints may be okay.
 EXTERNAL_URL=https://humio01.example.com
@@ -80,7 +80,7 @@ You can specify Java virtual machine parameters to pass to Humio using the
 property `HUMIO_JVM_ARGS`. The defaults are:
 
 ```properties
-HUMIO_JVM_ARGS=-XX:+PrintFlagsFinal -Xss2M
+HUMIO_JVM_ARGS=-XX:+UseParallelOldGC -Xss2M -XX:MaxDirectMemorySize=4G
 ```
 
 ## Number of CPU Cores
@@ -88,7 +88,7 @@ You can specify the number of processors for the machine running Humio by
 setting the `CORES` property. Humio uses this number when parallelizing queries.
 
 By default, Humio uses the Java [available processors function](https://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#availableProcessors--)
-to get the number of CPU cores.
+to get the number of CPU cores. This is usually the optimal number.
 
 ## Configuring Authentication
 
