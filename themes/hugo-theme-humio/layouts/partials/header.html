@@ -81,6 +81,11 @@
           <div id="chapter">
         {{ end }}
         <div id="body-inner">
+
+          {{ if ne .Params.pageImage nil }}
+          <img src="{{.Params.pageImage}}" class="page-image" alt="" />
+          {{ end }}
+
           {{if and (not .IsHome) (not .Params.chapter) }}
             <h1>{{or .Params.heading .Title}}</h1>
           {{end}}

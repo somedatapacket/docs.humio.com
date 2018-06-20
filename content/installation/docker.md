@@ -2,19 +2,22 @@
 title: Running Humio as a Docker container
 weight: 3
 menuTitle: Docker
+pageImage: /integrations/docker.svg
 ---
 
 Humio is distributed as a Docker image. This means that you can start an
 instance without a complicated installation procedure.
 
-### Steps
+**Step 1**
 
-1. Create an empty file on the host machine to store the Humio configuration.
+Create an empty file on the host machine to store the Humio configuration.
 For example, `humio.conf`.
-<br />
+
 You can use this file to pass on JVM arguments to the Humio Java process.
 
-1. Enter the following settings into the configuration file:
+**Step 2**
+
+Enter the following settings into the configuration file:
 
 ```shell
 HUMIO_JVM_ARGS=-Xss2M -XX:MaxDirectMemorySize=4G
@@ -26,19 +29,25 @@ These settings are for a machine with 8GB of RAM or more.
 {{% /notice %}}
 -->
 
-1. Create an empty directory on the host machine to store data for Humio:
+**Step 3**
+
+Create an empty directory on the host machine to store data for Humio:
 
 ```shell
 mkdir humio-data
 ```
 
-1. Pull the latest Humio image:
+**Step 4**
+
+Pull the latest Humio image:
 
 ```shell
 docker pull humio/humio
 ```
 
-1. Run the Humio Docker image as a container:
+**Step 5**
+
+Run the Humio Docker image as a container:
 
 ```shell
 docker run -v $HOST_DATA_DIR:/data --net=host --name=humio --env-file=$PATH_TO_CONFIG_FILE humio/humio
@@ -48,8 +57,9 @@ Replace `$HOST_DATA_DIR` with the path to the humio-data directory you created
 on the host machine, and `$PATH_TO_CONFIG_FILE` with the path of the
 configuration file you created.
 
-1. Humio is now running. Navigate to `http://localhost:8080`
-to view the Humio web interface.
+**Step 6**
+
+Humio is now running. Navigate to `http://localhost:8080` to view the Humio web interface.
 
 {{% notice info %}}
 In the above example, we started the Humio container with full access to the
@@ -70,7 +80,7 @@ on Mac. Open the Docker app and go to preferences and specify 4GB.
 
 Updating Humio is described in the [upgrade section]({{< relref "upgrading.md" >}})
 
-### Running Humio as a service
+## Running Humio as a system service
 
 The Docker container can be started as a service using Docker's [restart policies](https://docs.docker.com/engine/reference/run/#restart-policies-restart).  
 An example is adding `--detach --restart=always` to the above docker run:

@@ -1,5 +1,6 @@
 ---
 title: AWS
+pageImage: /integrations/aws.svg
 ---
 
 <!-- TODO: Peter -->

@@ -275,3 +275,10 @@ figcaption h4 {
   margin: 0;
   list-style-type: none;
 }
+
+.page-image {
+  float: right;
+  max-width: 200px;
+  margin: 0 !important;
+  margin-left: 20px !important;
+}
