@@ -1,6 +1,6 @@
 ---
 title: JSON Parsers
-weight: 200
+weight: 400
 ---
 
 Humio has a special class of parser, called JSON parsers. Since
@@ -37,11 +37,11 @@ a field called `@timestamp`, but this will not always exist for arbitrary JSON l
 When defining a JSON parser you specify which JSON property should be used as timestamp,
 and how that field should be parsed.
 
-You can find out how to parse timestamps at the [Parsing Timestamps section below]({{< relref "#parsing-timestamps" >}}).
+You can find out how to parse timestamps at the [Parsing Timestamps section below]({{< ref "creating-a-parser.md#parsing-timestamps" >}}).
 
 
 {{% notice tip %}}
 ***Testing***  
 You can test the parser on the **Parser** page by adding some test data. This offers an interactive way to refine the parser.
-See the section on [Testing the Parser]({{< relref "#testing-parsers" >}}) section below.
+See the section on [Testing the Parser]({{< relref "creating-a-parser.md#testing" >}}) section below.
 {{% /notice %}}

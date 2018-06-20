@@ -25,7 +25,7 @@ Here is an example:
 This creates two fields `@timestamp` and `rest`.
 
 You must also specify a timestamp format. Humio uses this to parse the extracted timestamp.
-See the section below on [parsing timestamps]({{< relref "#parsing-timestamps" >}}).
+See the section below on [parsing timestamps]({{< ref "creating-a-parser.md#parsing-timestamps" >}}).
 
 It is a good idea to reference some of the built-in parsers when creating your first regex parser,
 to see who they are defined.
@@ -33,5 +33,5 @@ to see who they are defined.
 {{% notice tip %}}
 ***Testing***  
 You can test the parser on the **Parser** page by adding some test data. This offers an interactive way to refine the parser.
-See the section on [Testing the Parser]({{< relref "#testing-parsers" >}}) section below.
+See the section on [Testing the Parser]({{< ref "#testing-parsers" >}}) section below.
 {{% /notice %}}
