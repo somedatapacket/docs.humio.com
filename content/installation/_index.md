@@ -28,9 +28,10 @@ running Humio on bare metal please refer to our [Bare Metal Installation Guide](
 Hardware requirements depend Humio will be used, both how much data you will be
 ingesting and how many concurrent searches you will be running.
 
-Here is a list of *rules of thumb* to help you get an idea of how much hardware is needed.
 
 ### Estimating Resources
+
+Here is a list of *rules of thumb* to help you get an idea of how much hardware is needed.
 
 1. Assume data compresses 6x on ingest (test your setup and see, better compression means better performance).
 1. You need to be able to hold 48hrs of compressed data in 80% of you RAM.
@@ -40,10 +41,16 @@ Here is a list of *rules of thumb* to help you get an idea of how much hardware 
 
 **Example Setup**  
 Your machine has 64G of ram, and 8 hyper threads (4 cores), 1TB of storage.
-Your machine can hold 307GB of ingest data compressed, and process 8GB/s.  In this case
+Your machine can hold 307GB of ingest data compressed in ram, and process 8GB/s.  In this case
 that means that 10 seconds worth of query time will run through 80G of data.  So this machine
 fits an 80G/day ingest, with +3 days data available for fast querying.  
-You can store 4.8TB of data before your disk is 80% full, corresponding to 60 days.  
+You can store 4.8TB of data before your disk is 80% full, corresponding to 60 days.
+
+This example assumes all data has the same [Retention settings]({{<
+ref "/configuration/retention.md" >}}) But you can configure Humio
+to automatically delete some events before others,
+e.g. allowing some data to be kept for several years while others get
+deleted after 1 week.
 
 For more details refer to our [Instance Sizing Reference]({{< ref "instance_sizing.md" >}}).
 
