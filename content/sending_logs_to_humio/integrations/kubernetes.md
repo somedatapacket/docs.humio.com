@@ -21,8 +21,8 @@ backend:
     host: "<humio-host>"
     http_user: "<ingest-token>"
     http_passwd: "none"
-    tls: on
-    tls_verify: on
+    tls: "on"
+    tls_verify: "on"
     tls_ca: |
       -----BEGIN CERTIFICATE-----
       MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/
@@ -44,6 +44,7 @@ backend:
       JDGFoqgCWjBH4d1QB7wCCZAA62RjYJsWvIjJEubSfZGL+T0yjWW06XyxV3bqxbYo
       Ob8VZRzI9neWagqNdwvYkQsEjgfbKbYK7p2CNTUQ
       -----END CERTIFICATE-----
+
 ```
 Replace `<humio-host>` with the hostname of your Humio installation (i.e. `cloud.humio.com`). For on-prem installation don't forget to enable the [`ELASTIC_PORT` property](/operation/installation/configuration_options.md).
 Take your ingest token from your Humio Dataspace page…
