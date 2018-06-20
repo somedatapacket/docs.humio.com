@@ -38,23 +38,25 @@ by specifying tags or other time limitations.
 On this setup, a 300GB/day ingest will use ~5% of your CPU load, so there is plenty of headroom for data spikes
 and running dashboards.
 
-Searches going beyond what fits in the OS-level filesystem caches are significantly slower, and depends on the
-disk I/O performance.  We built Humio to run on local SSDs, so it is not (presently) optimized to run on high-latency
-EBS storage. But it will work.
+Searches going beyond what fits in the OS-level filesystem caches are
+significantly slower, by a factor of 3-10, and depends on the disk I/O
+performance.  We built Humio to run on local SSDs, so it is not
+(presently) optimized to run on high-latency EBS storage. But it will
+work.
 
 ## Rules of thumb
 
-- Assume data compresses 6x (test your setup and see, better compression means better performance).
+- Assume data compresses 9x (test your setup and see, better compression means better performance).
 - You need to be able to hold 48hrs of compressed data in 80% of you RAM.
 - You want enough hyper threads/vCPUs (each giving you 1GB/s search) to be able
   to search 24hrs of data in less than 10 seconds.
 - You need disk space to hold your compressed data. Never fill your disk more than 80%.
 
-> Example: your machine has 64G of ram, and 8 hyper threads (4 cores), 1TB of storage.
-  Your machine can hold 307GB of ingest data compressed, and process 8GB/s.  In this case
-  that means that 10 seconds worth of query time will run through 80G of data.  So this machine
-  fits an 80G/day ingest, with +3 days data available for fast querying.  
-  You can store 4.8TB of data before your disk is 80% full, corresponding to 60 days.  
+> Example: Your machine has 64G of ram, and 8 hyper threads (4 cores), 1TB of storage.
+  Your machine can hold 460GB of ingest data compressed in ram, and process 8GB/s.  In this case
+  that means that 10 seconds worth of query time will run through 80GB of data.  So this machine
+  fits an 80GB/day ingest, with +5 days data available for fast querying.  
+  You can store 7.2TB of data before your disk is 80% full, corresponding to 90 days at 80GB/day ingest
 
 
 ## AWS Single Instance Humio
@@ -95,7 +97,7 @@ the cache runs full.  The 3.8TB SSD would hold ~150 days of ingest data.
 
 With ephemeral SSD storage, you'd want to setup EBS instances for live backup (and Kafka's storage),
 so that you can load the Humio data onto a fresh machine quickly.  Humio live backup live-replicates all data
-to a separate network drive such that data loss is prevented even for ephemeral disks.
+to a separate network drive such that data loss is prevented even for ephemeral disks. See [Backup]({{< ref "/configuration/backup.md" >}}).
 
 
 ## Live Queries / Dashboards
@@ -103,5 +105,5 @@ to a separate network drive such that data loss is prevented even for ephemeral 
 Running many live queries / dashboards is less of an issue with Humio than
 most other similar products, because these are kept in-memory as a sort of
 in-memory materialized view.  When initializing such queries, it does need to
-run a historic query to fill in past data, and that can take some time it
-it extends beyond the compressed-memory horizon.
+run a historic query to fill in past data, and that can take some time if
+it extends beyond what fits within the compressed-memory horizon.

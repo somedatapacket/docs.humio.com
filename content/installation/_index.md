@@ -33,7 +33,7 @@ ingesting and how many concurrent searches you will be running.
 
 Here is a list of *rules of thumb* to help you get an idea of how much hardware is needed.
 
-1. Assume data compresses 6x on ingest (test your setup and see, better compression means better performance).
+1. Assume data compresses 9x on ingest (test your setup and see, better compression means better performance).
 1. You need to be able to hold 48hrs of compressed data in 80% of you RAM.
 1. You want enough hyper-threads/vCPUs (each giving you 1GB/s search) to be able
    to search 24hrs of data in less than 10 seconds.
@@ -41,10 +41,10 @@ Here is a list of *rules of thumb* to help you get an idea of how much hardware 
 
 **Example Setup**  
 Your machine has 64G of ram, and 8 hyper threads (4 cores), 1TB of storage.
-Your machine can hold 307GB of ingest data compressed in ram, and process 8GB/s.  In this case
-that means that 10 seconds worth of query time will run through 80G of data.  So this machine
-fits an 80G/day ingest, with +3 days data available for fast querying.  
-You can store 4.8TB of data before your disk is 80% full, corresponding to 60 days.
+Your machine can hold 460GB of ingest data compressed in ram, and process 8GB/s.  In this case
+that means that 10 seconds worth of query time will run through 80GB of data.  So this machine
+fits an 80GB/day ingest, with +5 days data available for fast querying.  
+You can store 7.2TB of data before your disk is 80% full, corresponding to 90 days at 80GB/day ingest
 
 This example assumes all data has the same [Retention settings]({{<
 ref "/configuration/retention.md" >}}) But you can configure Humio
