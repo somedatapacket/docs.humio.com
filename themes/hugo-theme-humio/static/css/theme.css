@@ -330,6 +330,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     position: relative;
     margin-left: 300px;
     min-height: 100%;
+    max-width: 1000px;
 }
 #body img, #body .video-container {
     margin: 3rem auto;

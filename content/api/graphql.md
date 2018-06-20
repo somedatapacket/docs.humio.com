@@ -37,10 +37,7 @@ it under:
 
 There newest version is always available under:
 
-`https://cloud.humio.com/docs/api-explorer`
-
-<!-- TODO: Remove once redirect is implemented for the api-explorer -->
-Make sure to log in to your account before visiting the API Explorer.
+https://cloud.humio.com/docs/api-explorer
 
 ## Why use both GraphQL and REST?
 
