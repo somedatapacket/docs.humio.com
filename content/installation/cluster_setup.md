@@ -281,7 +281,7 @@ It can be started using a process manager.
 
 
 ## Configuring Humio
-Please refer to the [configuration]({{< ref "configuration_options.md" >}}) section
+Please refer to the [configuration]({{< ref "configuration/_index.md" >}}) section
 
 ## Cluster Management API
 Please refer to the [API page]({{< ref "cluster-management-api.md" >}})

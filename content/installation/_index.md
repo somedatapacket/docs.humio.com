@@ -54,4 +54,4 @@ If you want to run a clustered mode please refer to [cluster setup]({{< ref "clu
 
 ## Configuration Options
 
-Please refer to the [configuration reference page]({{< ref "configuration_options.md" >}}).
+Please refer to the [configuration reference page]({{< ref "configuration/_index.md" >}}).

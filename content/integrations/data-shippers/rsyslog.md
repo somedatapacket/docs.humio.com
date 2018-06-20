@@ -11,7 +11,7 @@ which is supported by Humio.
 
 {{% notice note %}}
 On-prem users will have to enable the ElasticSearch bulk endpoint on port 9200. See `ELASTIC_PORT` in
-[configuration options]({{< relref "configuration_options.md#example-configuration-file-with-comments" >}})
+[configuration options]({{< relref "configuration/_index.md#example-configuration-file-with-comments" >}})
 {{% /notice %}}
 
 ## Minimal configuration

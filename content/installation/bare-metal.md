@@ -17,7 +17,7 @@ your own **Kafka** and **Zookeeper** instances.
 
 Please refer to the [Ansible reference project](https://github.com/humio/ansible-humio) for setting
 up Humio on your system.  
-The project contains uses all the [configuration options]({{ ref "configuration_options.md"}})
+The project contains uses all the [configuration options]({{ ref "configuration/_index.md"}})
 needed to connect to Kafka, Zookeeper and optionally run Humio as a cluster.
 
 ### Resources
