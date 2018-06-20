@@ -30,15 +30,15 @@ HUMIO_JVM_ARGS=-XX:+UseParallelOldGC -Xss2M -XX:MaxDirectMemorySize=4G
 # If set, must be a (small) positive integer.
 #BOOTSTRAP_HOST_ID=1
 
-# The URL that other humio hosts in the cluster can use to reach this server. Required.
-# Examples: https://humio01.example.com  or  http://humio01:8080
+# The URL that other humio hosts in the cluster can use to reach this server.
+# Required for clustering. Examples: https://humio01.example.com  or  http://humio01:8080
 # Security: We recommend using a TLS endpoint.
 # If all servers in the Humio cluster share a closed LAN, using those endpoints may be okay.
 EXTERNAL_URL=https://humio01.example.com
 
 # The URL which users/browsers will use to reach the server
 # This URL is used to create links to the server
-# It is important to set this property when using OAuth authentication or alerts
+# It is important to set this property when using OAuth authentication or alerts.
 PUBLIC_URL=https://humio.mycompany.com
 
 # Specify the replication factor for the Kafka ingest queue
@@ -68,13 +68,6 @@ KAFKA_SERVERS=kafkahost01:9092,kafkahost02:9092
 # Select the IP to bind the http listening socket to. (Defaults to HUMIO_SOCKET_BIND)
 #HUMIO_HTTP_BIND=0.0.0.0
 
-# The URL where the Humio instance is reachable. (Leave our trailing slashes)
-#
-# This is important if you plan to use OAuth Federated Login or if you want to
-# be able to have Alert Notifications have consistent links back to the Humio UI.
-# The URL might only be reachable behind a VPN but that is no problem, as a
-# browser can access it.
-#PUBLIC_URL=https://demo.example.com/humio
 ```
 
 ## Java virtual machine parameters
@@ -82,7 +75,7 @@ You can specify Java virtual machine parameters to pass to Humio using the
 property `HUMIO_JVM_ARGS`. The defaults are:
 
 ```properties
-HUMIO_JVM_ARGS=-XX:+PrintFlagsFinal -Xss2M
+HUMIO_JVM_ARGS=-XX:+UseParallelOldGC -Xss2M -XX:MaxDirectMemorySize=4G
 ```
 
 ## Number of CPU Cores
@@ -90,7 +83,7 @@ You can specify the number of processors for the machine running Humio by
 setting the `CORES` property. Humio uses this number when parallelizing queries.
 
 By default, Humio uses the Java [available processors function](https://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#availableProcessors--)
-to get the number of CPU cores.
+to get the number of CPU cores. This is usually the optimal number.
 
 ## Configuring Authentication
 
