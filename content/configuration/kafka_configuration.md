@@ -17,7 +17,7 @@ Humio creates the following queues in Kafka:
 * [transientChatter-events]({{< ref "#transientChatter-events" >}})
 
 You can set the environment variable `HUMIO_KAFKA_TOPIC_PREFIX` to add that prefix to the topic names in Kafka.
-Adding a prefix is recommended if you share the Kafka installation with applications other than Humio.
+Adding a prefix is recommended if you share the Kafka installation with applications other than Humio, or with another Humio instance.
 The default is not to add a prefix.
 
 Humio configures default retention settings on the topics when it creates them.
@@ -30,13 +30,13 @@ See below for an example, modifying the retention on the ingest queue to keep bu
 
 ### global-events
 This is Humio's event sourced database queue. This queue will contain small events, and has a pretty low throughput.
-No log data is saved to this queue. There should be high number of replicas for this queue.
+No log data is saved to this queue. There should be a high number of replicas for this queue. Humio will raise the number of replicas on this queue to 3 if there are at least 3 brokers in the Kafka cluster.
 
 Default retention configuration: `retention.ms = 30 days`
 
 ### global-snapshots
-This is Humio's database snapshot queue. This queue will contain fairly large events, and has a pretty low throughput.
-No log data is saved to this queue. There should be high number of replicas for this queue.
+This is Humio's database snapshot queue. This queue will contain few but fairly large events, and has a pretty low throughput.
+No log data is saved to this queue. There should be a high number of replicas for this queue. Humio will raise the number of replicas on this queue to 3 if there are at least 3 brokers in the Kafka cluster.
 
 Default retention configuration: `retention.ms = 30 days`
 
@@ -46,13 +46,16 @@ frontends will accept ingest requests, parse them and put them on the queue.
 The backends of Humio is processing events from the queue and storing them into Humio's datastore.
 This queue will have high throughput corresponding to the ingest load.
 The number of replicas can be configured in accordance with data size, latency
-and throughput requirements and how important it is not too lose in flight data.
+and throughput requirements and how important it is not to lose in flight data.
+Humio defaults to 2 replicas on this queue, if at least 2 brokers exist in the Kafka cluster,
+and Humio has not been told otherwise through the configuration parameter "INGEST_QUEUE_REPLICATION_FACTOR", which defaults to "2".
 When data is stored in Humio's own datastore, we don't need it on the queue anymore.
 
 Default retention configuration: `retention.ms = 48 hours`
 
 ### transientChatter-events
 This queue is used for chatter between Humio nodes.  It is only used for transient data.
+Humio will raise the number of replicas on this queue to 3 if there are at least 3 broker in the Kafka cluster.
 The queue can have a short retention and it is not important to keep the data, as it gets stale very fast.
 
 Default retention configuration: `retention.ms = 1 hours`
