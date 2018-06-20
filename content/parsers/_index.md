@@ -13,7 +13,7 @@ For example, each line from a standard web server log file has status code,
 method, and URL fields.
 
 You have to specify which parser should be used on the client side. Exactly how
-this is done, depends on [how you send your logs to Humio]({{< ref "sending-logs-to-humio/_index.md" >}}).
+this is done, depends on [how you send your logs to Humio]({{< ref "sending-data-to-humio/_index.md" >}}).
 E.g. if you are using Filebeat you specify the parser by setting the special `@type` field in the
 configuration.
 
