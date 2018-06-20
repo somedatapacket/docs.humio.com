@@ -4,7 +4,6 @@ title: Queries
 
 A Humio query is much like a query to an SQL database. You write search terms
 to include or exclude values from a repository or view.
-
 Unlike most queries SQL, in Humio, you also do calculations and transform the
 data as part of the query.
 
@@ -34,9 +33,8 @@ Just like the examples above they only adds/removes/modifies fields and never pr
 new (additional) events as output.
 
 If a query consists solely of transformation expressions it is known as
-_filter query_ or _transformation query_. These queries are used e.g. when
-connecting [views]({{< ref "views.md" >}}) with repositories,
-and are very common when defining [alerts]({{< ref "alerts/_index.md" >}}).
+_filter query_ or _transformation query_. This kind of query are required e.g. when
+connecting [views]({{< ref "views.md" >}}) with repositories.
 
 ## Aggregation Queries {#aggregate}
 

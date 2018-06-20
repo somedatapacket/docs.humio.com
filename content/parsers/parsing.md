@@ -13,126 +13,9 @@ you specify a parser to parse data.
 Humio comes with a set of [built-in parsers]({{< ref "parsers/built-in-parsers/_index.md" >}}) for
 common log formats.
 
-If no built-in parsers match your needs, then you can create your own.
-This page will guide you through the process of creating a custom
-parser.
-
-## List of Parsers
-
-Go to the **Parsers** subpage in your repository to see all the available parsers:
-
-![Parsers List`](/images/parsersx.png)
-
-### Built-in parsers
-
-The first part of the list contains [built-in parsers]({{< ref "parsers/built-in-parsers/_index.md" >}}).
-
-You cannot delete the built-in parsers, but you can overwrite them if you want.
-You can also copy existing parsers to use as a starting point for creating new parsers.
-
-## The Parser User Interface
-
-The following screenshots shows the **Parser** page with a custom parser called `humio`:
-
-![Custom Parser`](/images/custom-parser.png)
-
-The **Parser** page lets you define and test parsers.
-
-{{% notice tip %}}
-Click the tooltips ('?') next to each field for information on their purpose.
-{{% /notice %}}
-
-Let's walk through the different steps in creating a parser:
-
-## Parser Types
-
-Humio supports two types of parsers:
-
-* [JSON Parsers]({{< relref "#json-parser" >}})
-* [Regular expressions parsers]({{< relref "#regular-expression-parser" >}})
-
-At the top of the page, select the type of parser you want to create.
-
 ### JSON Parser {#json-parser}
 
-Humio has a special class of parser, called JSON parsers. Since
-JSON data is already structured, you do not need to extract fields manually.
-Humio turns JSON properties into fields as shown below:
-
-```json
-{
-  "ts": "2017-02-22T11:04:17.000+01:00",  
-  "loglevel": "INFO",  
-  "thread": "TimerThread",  
-  "timing": {  
-    "name": "service1",
-    "time": 42
-  }
-}
-```
-
-Resulting Fields:
-
-| field      | value                           |
-|------------|---------------------------------|
-|ts          | "2017-02-22T11:04:17.000+01:00" |
-|loglevel    | "INFO"                          |
-|thread      | "TimerThread"                   |
-|timing.name | "service1"                      |
-|timing.time | 42                              |
-
-
-The reason we sometimes need to define custom JSON parsers is to parse the timestamp.
-The build-in JSON parser ([json]({{< ref "json.md" >}})) expects
-a field called `@timestamp`, but this will not always exist for arbitrary JSON logs.
-
-When defining a JSON parser you specify which JSON property should be used as timestamp,
-and how that field should be parsed.
-
-You can find out how to parse timestamps at the [Parsing Timestamps section below]({{< relref "#parsing-timestamps" >}}).
-
-
-{{% notice tip %}}
-***Testing***  
-You can test the parser on the **Parser** page by adding some test data. This offers an interactive way to refine the parser.
-See the section on [Testing the Parser]({{< relref "#testing-parsers" >}}) section below.
-{{% /notice %}}
-
-
 ### Regular Expression Parsers {#regular-expression-parser}
-
-Regular expression (regex) parsers lets you parse incoming data using a
-regular expression. Humio extracts fields using _named capture groups_ -
-feature of regular expressions that allows you to name sub-matches, e.g:
-
-```regex
-(?<firstname>\S+)\s(?<lastname>\S+)
-```
-
-This defines a parser that expects input to contain names, first and last. It then extracts
-the first and last names into two fields `firstname` and `lastname`. The `\S` of course means
-any character that is not a whitespace and `\s` is a whitespace character.
-
-When creating a regex parser you always have to extract a field called `@timestamp`.
-Here is an example:
-
-```regex
-(?<@timestamp>\S+\s\S+)\s(?<rest>.*)
-```
-
-This creates two fields `@timestamp` and `rest`.
-
-You must also specify a timestamp format. Humio uses this to parse the extracted timestamp.
-See the section below on [parsing timestamps]({{< relref "#parsing-timestamps" >}}).
-
-It is a good idea to reference some of the built-in parsers when creating your first regex parser,
-to see who they are defined.
-
-{{% notice tip %}}
-***Testing***  
-You can test the parser on the **Parser** page by adding some test data. This offers an interactive way to refine the parser.
-See the section on [Testing the Parser]({{< relref "#testing-parsers" >}}) section below.
-{{% /notice %}}
 
 ## Parsing Timestamps {#parsing-timestamps}
 
@@ -193,7 +76,7 @@ A formatted timestamp is shown on the gray bar at the top of the details for the
 
 {{% notice note %}}
 At the moment, the parser page cannot handle multiline events. You will have to rely on external data-shippers to handle this,
-e.g. [filebeat]({{< relref "filebeat.md" >}}). Built-in multiline parsing is planned for a future release of Humio - So stay tuned!
+e.g. [filebeat]({{< ref "filebeat.md" >}}). Built-in multiline parsing is planned for a future release of Humio - So stay tuned!
 {{% /notice %}}
 
 ## Adding Tags

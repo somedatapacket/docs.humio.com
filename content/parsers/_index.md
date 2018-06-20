@@ -20,8 +20,7 @@ your own.
 
 Humio supports two types of parsers:
 
-* JSON Parsers
-* RegExp Parsers
+* [JSON Parsers]({{< ref "json-parsers.md" >}})
+* [Regular Expression Parsers]({{< ref "regexp-parsers.md" >}})
 
-To find out how to configure parsers, see the
-[Parsers API documentation]({{< relref "parser-api.md" >}}).
+We also have an API for managing parsers: [Parsers API]({{< relref "parser-api.md" >}}).

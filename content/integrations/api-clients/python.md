@@ -1,28 +1,29 @@
 ---
 menuTitle: Python
-title: "Python library for Humio"
+title: "Python API Client"
 ---
 
-If you are using python in your project take a look at out python library:
-[python-humio](https://github.com/humio/python-humio)
+If you are using python in your project take a look at our python library:
 
-It supports basic operations with Humio like:
+https://github.com/humio/python-humio
 
-- User management
-- Data ingestion
+It supports basic operations like:
+
+- User Management
+- Data Ingestion
 - Making Queries
 
-**Using library example**
+**Example Usage**
 
 ```python
 from humio_api.humio_api import HumioApi
 
 # Init the API
-h = HumioApi(baseUrl='https://cloud.humio.com', dataspace='<YOUR_DATASPACE>',
-             token='<YOUR_TOKEN>')
+h = HumioApi(baseUrl='https://cloud.humio.com', dataspace='<REPOSITORY_NAME>',
+             token='<YOUR_API_TOKEN>')
 
 # some test data
-jsonDt=[
+testData=[
     {
         "tags": {
             "host": "server1",
@@ -47,7 +48,5 @@ jsonDt=[
 ]
 
 # Ingesting the data
-h.ingestJsonData(jsonDt)
-
-# see https://github.com/humio/python-humio for more
+h.ingestJsonData(testData)
 ```
