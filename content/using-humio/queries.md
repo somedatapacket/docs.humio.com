@@ -2,54 +2,59 @@
 title: Queries
 ---
 
-### Aggregate Queries {#aggregate}
-_Aggregate queries_ are queries that join the Events into a new structure of [events]({{< ref "events.md" >}}) with attributes.
+A Humio query is much like a query to an SQL database. You write search terms
+to include or exclude values from a repository or view.
 
-A query becomes an _aggregate query_ if it uses an aggregate function
+Unlike most queries SQL, in Humio, you also do calculations and transform the
+data as part of the query.
+
+To learn Humio's query language head over to the [language syntax documentation page]({{< ref "language-syntax/_index.md" >}}).
+
+Some filter, some transform and augment, others aggregate data into
+result sets like tables or bucketed time series.
+
+
+## Transformation Queries {#filter}
+
+Transformation expressions (also called _Filter expressions_) filter
+input or adds/removes/modifies fields on each event.
+These include filter expressions like:
+
+```humio
+name = "Peter" and age > 25
+```
+
+```humio
+color := "blue"
+```
+
+A subset of the available query functions are known as _Transformation Functions_,
+e.g. {{% function "regex" %}}, {{% function "in" %}} or {{% function "eval" %}}.
+Just like the examples above they only adds/removes/modifies fields and never produce
+new (additional) events as output.
+
+If a query consists solely of transformation expressions it is known as
+_filter query_ or _transformation query_. These queries are used e.g. when
+connecting [views]({{< ref "views.md" >}}) with repositories,
+and are very common when defining [alerts]({{< ref "alerts/_index.md" >}}).
+
+## Aggregation Queries {#aggregate}
+
+_Aggregation expressions_ are always function calls. These functions can combine
+their input into a new structures or emit new events into the output stream.
+
+A query becomes an _aggregation query_ if it uses at least one aggregate function
 like {{% function "sum" %}}, {{% function "count" %}} or {{% function "avg" %}}.
-See [functions]({{< relref "query-functions/_index.md" >}}) for more information.
 
-For example, the query `count()` takes a stream of Events as its input, and
-produces one Event containing a `count` attribute.
+For example, the query {{< query >}}count(){{< /query >}} takes a stream of events as its input,
+and produces a single record containing a `_count` field.
 
+***Examples***
 
-### Transformation Queries {#filter}
+```humio
+loglevel = ERROR | timechart()
+```
 
-_Filter queries_, or _non-aggregate queries_, are queries that only filter
-Events, or add or remove attributes on each event.
-
-These queries can only contain filters and transformation functions
-(see [functions]({{< relref "query-functions/_index.md" >}}))
-
-
-### Live Queries {#live}
-
-Live queries provide a way to run searches that are continuously
-updated as new Events arrive. Live queries are important for creating dashboards,
-and many other uses.
-
-Humio uses an efficient streaming implementation to provide this feature.
-
-In a live query, the time interval is a time window relative to 'now', such
-as 'the last 5 minutes' or 'the last day'.
-
-Humio sets the {{% function "groupBy" %}} attribute of a live query automatically.
-It bases the grouping on buckets that each represent a part of the given time interval.
-
-Aggregate queries run live inside each bucket as Events arrive. Whenever the current
-response is selected, it runs the aggregations for the query across the buckets.
-
-{{% notice note %}}
-Humio automatically stops live queries if no client has checked their status in a while.
-{{% /notice %}}
-
-### Query Boundaries {#boundaries}
-
-The term *query boundary* means those aspects of a query that
-Humio uses to select the data that it scans to produce the query result.
-
-The query boundary consists of a repository, a time interval and a set of tags.
-
-In the Humio interface, you can set the time interval using a special selector.
-The Tags should preferably be at the start of the query string.
-For example, `#tagname=value`.
+```humio
+x := y * 2 | bucket(function=sum(x))
+```
