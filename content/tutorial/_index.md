@@ -100,7 +100,8 @@ may have special needs for your custom application logs. If that is the case you
 
 ## 5. Next Steps
 
-- [Query Function Reference]({{< relref "query-functions/_index.md" >}})
-- [Creating Custom Parsers]({{< relref "parsers/_index.md" >}})
-- [Virtual Repositories]({{< relref "views.md" >}})
-- [Controlling Retention]({{< relref "retention.md" >}})
+- [Language Syntax]({{< ref "language-syntax/_index.md" >}})
+- [Query Function Reference]({{< ref "query-functions/_index.md" >}})
+- [Creating Custom Parsers]({{< ref "parsers/_index.md" >}})
+- [Using Views]({{< ref "views.md" >}})
+- [Controlling Retention]({{< ref "retention.md" >}})
