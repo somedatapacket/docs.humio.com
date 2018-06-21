@@ -2,7 +2,7 @@ pipeline:
   make:
     image: golang
     commands:
-      - make data/releases.yml
+      - make clean deps
   hugo:
     image: mwldk/drone-hugo
     validate: true
