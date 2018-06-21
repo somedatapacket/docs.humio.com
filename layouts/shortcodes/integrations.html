@@ -1,6 +1,7 @@
 <ul class="icon-list">
-  {{ range $category := .Site.Taxonomies.categories }}
-  {{ range $category }}
+  {{ range $name, $category := .Site.Taxonomies.categories }}
+  {{ if eq $name "integration" }}
+  {{ range sort $category "value" }}
     <li>
       <a href="{{ .Page.RelPermalink }}">
         {{ if ne (or .Page.Params.icon .Page.Params.pageImage) nil }}
@@ -9,6 +10,7 @@
         <div>{{ or .Page.Params.menuTitle .Page.Title }}</div>
       </a>
     </li>
+  {{ end }}
   {{ end }}
   {{ end }}
 </ul>

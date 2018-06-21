@@ -2,6 +2,7 @@
 title: "Logstash"
 weight: 200
 categories: ["Integration", "DataShipper"]
+categories_weight: -90
 pageImage: /integrations/logstash.svg
 ---
 

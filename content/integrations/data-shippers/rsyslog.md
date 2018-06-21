@@ -2,6 +2,7 @@
 title: "Rsyslog"
 weight: 400
 categories: ["Integration", "DataShipper"]
+categories_weight: -80
 pageImage: /integrations/rsyslog.svg
 ---
 

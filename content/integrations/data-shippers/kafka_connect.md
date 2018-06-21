@@ -2,6 +2,7 @@
 title: "Kafka Connect"
 categories: ["Integration", "DataShipper"]
 pageImage: /integrations/kafka.svg
+categories_weight: -70
 ---
 
 [Kafka Connect](https://kafka.apache.org/documentation/#connect) is a framework

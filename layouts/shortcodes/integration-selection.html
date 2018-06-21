@@ -1,8 +1,9 @@
 <ul class="icon-list">
   {{ $target := (.Get 0) }}
+  {{ $limit := or (.Get 1) 10}}
   {{ range $key, $category := .Site.Taxonomies.categories }}
   {{ if eq $key $target }}
-  {{ range $category }}
+  {{ range first $limit $category }}
     <li>
       <a href="{{ .Page.RelPermalink }}">
         {{ if ne (or .Page.Params.icon .Page.Params.pageImage) nil }}

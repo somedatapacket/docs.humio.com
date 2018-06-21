@@ -33,15 +33,15 @@ will help you get to grips with the core concepts is and where Humio fits in to 
 <div class="integration-overview">
   <div class="integration-overview__section">
     <h5 class="integration-overview__section-title">Popular Data Shippers</h5>
-    {{% integration-selection "datashipper" %}}
+    {{% integration-selection "datashipper" 4 %}}
   </div>
   <div class="integration-overview__section">
     <h5 class="integration-overview__section-title">Popular Platforms</h5>
-    {{% integration-selection "platform" %}}
+    {{% integration-selection "platform" 4 %}}
   </div>
   <div class="integration-overview__section">
-    <h5 class="integration-overview__section-title">Popular API Clients</h5>
-    {{% integration-selection "apiclient" %}}
+    <h5 class="integration-overview__section-title">Other Integrations</h5>
+    {{% integration-selection "otherintegration" 4 %}}
   </div>
 </div>
 

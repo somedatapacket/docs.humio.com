@@ -1,7 +1,8 @@
 ---
 title: "Filebeat"
 categories: ["Integration", "DataShipper"]
-pageImage: /integrations/elastic.svg
+categories_weight: -100
+pageImage: /integrations/filebeat.svg
 ---
 
 [Filebeat](https://www.elastic.co/products/beats/filebeat) is a lightweight,

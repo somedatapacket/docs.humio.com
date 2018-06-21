@@ -1,7 +1,7 @@
 ---
 menuTitle: Python
 title: "Python API Client"
-categories: ["Integration", "ApiClient"]
+categories: ["Integration", "ApiClient", "OtherIntegration"]
 pageImage: /integrations/python.svg
 ---
 
