@@ -1,5 +1,6 @@
 ---
 title: Repositories
+aliases: ["getting_started/repositories"]
 ---
 
 Humio organizes data into _Repositories_ (or _Repos_). Each repository has its

@@ -76,8 +76,8 @@ Our list of notifiers is ever growing and currently we do support the following 
 * [Slack]({{< ref "slack.md" >}})
 * [Webhook]({{< ref "webhook.md" >}})
 * [OpsGenie]({{< ref "opsgenie.md" >}})
-<!--TODO: * PagerDuty-->
-<!--TODO: * VictorOps-->
+* [PagerDuty]({{< ref "pagerduty.md" >}})
+* [VictorOps]({{< ref "victorops.md" >}})
 
 Creating a new Notifier is pretty simple. On the Alerts Page there's a Notifiers menu item on the left.
 To create a new one hit the "New Notifier" button on the top right.
@@ -100,7 +100,7 @@ You can add headers and [customize body of the message]({{< ref "#templates" >}}
 ### Message Templates {#templates}
 
 Notifier templates are used to create the message sent by notifiers.
-They currently apply to [Email](email.md) and [WebHook](webhook.md) notifiers.
+They currently apply to [Email]({{< ref "email.md" >}}) and [WebHook]({{< ref "webhook.md" >}}) notifiers.
 The template engine is a simple "search/replace" model, where the `{…}` marked
 placeholders are replaced with contextual aware variables.
 
