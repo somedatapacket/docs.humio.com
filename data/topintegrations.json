@@ -1,17 +1,17 @@
 [
   {
     "name": "Filebeat",
-    "url": "/sending_logs_to_humio/log_shippers/beats/filebeat",
+    "url": "/sending-data/data-shippers/beats/filebeat",
     "imgUrl": "/images/filebeat.svg"
   },
   {
     "name": "Kubernetes",
-    "url": "/sending_logs_to_humio/integrations/kubernetes",
+    "url": "/sending-data/integrations/kubernetes",
     "imgUrl": "/images/kubernetes.svg"
   },
   {
     "name": "DC/OS",
-    "url": "/sending_logs_to_humio/integrations/mesos",
+    "url": "/sending-data/integrations/mesos",
     "imgUrl": "/images/dcos.svg"
   }
 ]

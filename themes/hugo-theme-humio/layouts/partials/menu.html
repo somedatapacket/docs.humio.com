@@ -3,9 +3,9 @@
 {{ $currentNode := . }}
 {{ $showvisitedlinks := .Site.Params.showVisitedLinks }}
   <div id="header-wrapper">
-    <div id="header">
-      {{ partial "logo.html" . }}
-    </div>
+    <a href="https://www.humio.com/">
+      <svg width="32px" height="32px" viewBox="0 0 148 148" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><path d="M74.36,0.314l0.045,0c40.352,0 73.556,33.204 73.556,73.557c0,0.014 0,0.029 0,0.044c0,40.377 -33.224,73.601 -73.601,73.601c-40.376,0 -73.601,-33.224 -73.601,-73.601c0,-40.376 33.224,-73.601 73.601,-73.601Zm46.251,63.372c0.529,-2.035 0.828,-4.123 0.89,-6.226c-0.078,-2.174 -0.376,-4.334 -0.89,-6.448l0,-22.236l-2.668,0.445c-8.45,0.889 -17.122,1.556 -25.572,2.001c-11.504,-4.889 -24.518,-4.889 -36.022,0c-8.672,-0.445 -17.122,-1.112 -25.572,-2.001l-2.668,-0.223l0,22.236c-0.637,2.089 -0.937,4.266 -0.889,6.449c-0.034,2.109 0.266,4.21 0.889,6.226c-4.002,2.223 -7.115,7.115 -7.115,14.009c-0.445,15.565 10.228,30.685 10.228,30.685c1.104,-3.319 2.676,-6.464 4.67,-9.339c3.902,6.019 9.156,11.045 15.343,14.676c-0.815,-0.004 -1.575,0.418 -2.002,1.112c-0.426,-0.694 -1.186,-1.116 -2.001,-1.112l-0.667,0c-1.337,0.012 -2.434,1.109 -2.446,2.446l0,8.005c-0.003,0.052 -0.005,0.104 -0.005,0.156c0,1.355 1.096,2.479 2.451,2.512l0.89,0c0.814,0.005 1.574,-0.418 2.001,-1.112c0.426,0.694 1.186,1.117 2.001,1.112l0.667,0c0.815,0.005 1.575,-0.418 2.001,-1.112c0.427,0.694 1.187,1.117 2.002,1.112l0.222,0c1.337,-0.012 2.434,-1.109 2.446,-2.446l0,-7.115c9.993,3.556 20.915,3.556 30.908,0l0,6.893c-0.005,1.383 1.067,2.553 2.446,2.668l0.667,0c0.815,0.005 1.575,-0.418 2.001,-1.112c0.427,0.694 1.187,1.117 2.002,1.112l0.667,0c0.814,0.005 1.574,-0.418 2.001,-1.112c0.427,0.694 1.187,1.117 2.001,1.112l0.667,0c1.355,-0.033 2.451,-1.157 2.451,-2.512c0,-0.052 -0.002,-0.104 -0.005,-0.156l0,-8.227c0.005,-1.384 -1.067,-2.553 -2.446,-2.669l-0.667,0c-0.815,-0.004 -1.575,0.418 -2.001,1.112c-0.427,-0.694 -1.187,-1.116 -2.001,-1.112c6.186,-3.631 11.44,-8.657 15.343,-14.676c1.993,2.875 3.565,6.02 4.669,9.34c1.104,3.319 10.673,-15.121 10.229,-30.686c0.316,-5.541 -2.416,-10.834 -7.116,-13.787Zm-46.251,23.793l-9.117,-9.117c3.936,-2.586 7.089,-6.2 9.117,-10.451c1.967,4.29 5.134,7.92 9.117,10.451l-9.117,9.117Zm-22.458,-9.784c-10.979,0 -20.013,-9.034 -20.013,-20.012c0,-10.979 9.034,-20.013 20.013,-20.013c10.978,0 20.012,9.034 20.012,20.013c0,10.978 -9.033,20.012 -20.012,20.012Zm44.917,0c-10.979,0 -20.013,-9.034 -20.013,-20.012c0,-10.979 9.034,-20.013 20.013,-20.013c10.978,0 20.012,9.034 20.012,20.013c0,10.978 -9.034,20.012 -20.012,20.012Zm0,-28.462c4.663,0 8.449,3.786 8.449,8.45c0,4.663 -3.786,8.449 -8.449,8.449c-4.664,0 -8.45,-3.786 -8.45,-8.449c0,-4.664 3.786,-8.45 8.45,-8.45Zm-44.917,0c4.663,0 8.449,3.786 8.449,8.45c0,4.663 -3.786,8.449 -8.449,8.449c-4.664,0 -8.45,-3.786 -8.45,-8.449c0,-4.664 3.786,-8.45 8.45,-8.45Z" style="fill:#fff;"/></svg>
+    </a>
     {{if not .Site.Params.disableSearch}}
         {{ partial "search.html" . }}
     {{end}}
@@ -13,8 +13,7 @@
 
     <div class="highlightable">
     <ul class="topics">
-
-        {{if eq .Site.Params.ordersectionsby "title"}}  
+        {{if eq .Site.Params.ordersectionsby "title"}}
           {{range .Site.Home.Sections.ByTitle}}
           {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}}
           {{end}}
@@ -22,7 +21,7 @@
           {{range .Site.Home.Sections.ByWeight}}
           {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}}
           {{end}}
-        {{end}} 
+        {{end}}
     </ul>
 
     {{ $disableShortcutsTitle := .Site.Params.DisableShortcutsTitle}}
@@ -31,7 +30,7 @@
         <h3>{{ if not $disableShortcutsTitle}}{{ T "Shortcuts-Title"}}{{ end }}</h3>
         <ul>
           {{ range sort . "Weight"}}
-              <li> 
+              <li>
                   {{.Pre}}<a class="padding" href="{{.URL | absLangURL }}">{{safeHTML .Name}}</a>{{.Post}}
               </li>
           {{end}}
@@ -76,10 +75,10 @@
         </div>
         </a>
         </li>
-      {{end}} 
-      
+      {{end}}
+
       {{ if $showvisitedlinks}}
-        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fa fa-fw fa-history"></i> {{T "Clear-History"}}</a></li>         
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fa fa-fw fa-history"></i> {{T "Clear-History"}}</a></li>
       {{ end }}
       </ul>
     </section>
@@ -94,10 +93,12 @@
 {{ define "section-tree-nav" }}
 {{ $showvisitedlinks := .showvisitedlinks }}
 {{ $currentNode := .currentnode }}
+{{ $section := .sect }}
  {{with .sect}}
   {{if .IsSection}}
     {{safeHTML .Params.head}}
-    <li data-nav-id="{{.URL}}" title="{{.Title}}" class="dd-item 
+    {{ $showChildren := or (.IsAncestor $currentNode) (eq .UniqueID $currentNode.UniqueID)}}
+    <li data-nav-id="{{.URL}}" title="{{.Title}}" class="dd-item
         {{if .IsAncestor $currentNode }}parent{{end}}
         {{if eq .UniqueID $currentNode.UniqueID}}active{{end}}
         {{if .Params.alwaysopen}}parent{{end}}
@@ -109,42 +110,74 @@
           {{ end }}
       </a>
       {{ $numberOfPages := (add (len .Pages) (len .Sections)) }}
-      {{ if ne $numberOfPages 0 }}
+      {{ if (or .Params.show_functions_as_pages .Params.menuTOC (and (ne $numberOfPages 0) $showChildren)) }}
         <ul>
-          {{ $currentNode.Scratch.Set "pages" .Pages }}
-          {{ if .Sections}}
-            {{ $currentNode.Scratch.Set "pages" (.Pages | union .Sections) }}
-          {{end}}
-          {{ $pages := ($currentNode.Scratch.Get "pages") }}
-          
-        {{if eq .Site.Params.ordersectionsby "title"}}  
-          {{ range $pages.ByTitle }}
-            {{ if and .Params.hidden (not $.showhidden) }} 
-            {{else}}
-            {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
-            {{end}}
+          {{ if .Params.show_functions_as_pages }}
+            {{ range sort .Site.Data.functions "name" }}
+              <li data-nav-id="{{$section.URL}}__{{.name}}" title="{{.name}}" class="dd-item">
+                <a href="{{ $section.RelPermalink }}#{{ .name }}">
+                {{ .name }}
+                </a>
+              </li>
+            {{ end }}
+          {{ else if (ne nil .Params.menuTOC) }}
+            {{ range $index, $item := .Params.menuTOC }}
+              {{ range $key, $name := $item }}
+                <li data-nav-id="{{$section.URL}}" title="{{$section.Title}}" class="dd-item">
+                  <a href="{{ $section.RelPermalink }}{{ $key }}">
+                  {{ $name }}
+                  </a>
+                </li>
+              {{ end }}
+            {{ end }}
+          {{ else }}
+
+            {{ template "menu-item" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "categoryTitle" .Params.category_title }}
+
+            {{ $currentNode.Scratch.Set "pages" .Pages }}
+            {{ if .Sections}}
+              {{ $currentNode.Scratch.Set "pages" (.Pages | union .Sections) }}
+            {{ end }}
+            {{ $pages := ($currentNode.Scratch.Get "pages") }}
+
+            {{ if eq .Site.Params.ordersectionsby "title" }}
+              {{ range $pages.ByTitle }}
+                {{ if and .Params.hidden (not $.showhidden) }}
+                {{else}}
+                {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
+                {{end}}
+              {{ end }}
+            {{ else }}
+              {{ range $pages.ByWeight }}
+                {{ if and .Params.hidden (not $.showhidden) }}
+                {{else}}
+                {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
+                {{end}}
+              {{ end }}
+            {{ end }}
+
           {{ end }}
-        {{else}}
-          {{ range $pages.ByWeight }}
-            {{ if and .Params.hidden (not $.showhidden) }} 
-            {{else}}
-            {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
-            {{end}}
-          {{ end }}
-        {{end}}
         </ul>
-      {{ end }}        
+      {{ end }}
     </li>
   {{else}}
-    {{ if not .Params.Hidden }}
-      <li data-nav-id="{{.URL}}" title="{{.Title}}" class="dd-item {{if eq .UniqueID $currentNode.UniqueID}}active{{end}}">
-        <a href="{{ .RelPermalink}}">
-        {{safeHTML .Params.Pre}}{{or .Params.menuTitle .LinkTitle .Title}}{{safeHTML .Params.Post}}
-        {{ if $showvisitedlinks}}<i class="fa fa-check read-icon"></i>{{end}}
-        </a>
-    </li>
-     {{ end }}
+    {{ template "menu-item" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
   {{end}}
  {{ end }}
 {{ end }}
 
+{{ define "menu-item" }}
+{{ $showvisitedlinks := .showvisitedlinks }}
+{{ $currentNode := .currentnode }}
+{{ $categoryTitle := .categoryTitle }}
+  {{with .sect}}
+    {{ if not .Params.Hidden }}
+      <li data-nav-id="{{.URL}}" title="{{.Title}}" class="dd-item {{if eq .UniqueID $currentNode.UniqueID}}active{{end}}">
+        <a href="{{ .RelPermalink}}">
+        {{safeHTML .Params.Pre}}{{or $categoryTitle .Params.menuTitle .LinkTitle .Title}}{{safeHTML .Params.Post}}
+        {{ if $showvisitedlinks}}<i class="fa fa-check read-icon"></i>{{end}}
+        </a>
+      </li>
+    {{ end }}
+  {{ end }}
+{{ end}}

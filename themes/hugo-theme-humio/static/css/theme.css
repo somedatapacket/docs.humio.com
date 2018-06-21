@@ -23,16 +23,16 @@
     font-weight: 200;
 }
 @font-face {
-    font-family: 'Work Sans';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 300;
-    src: url("../fonts/Work_Sans_300.eot?#iefix") format("embedded-opentype"), url("../fonts/Work_Sans_300.woff") format("woff"), url("../fonts/Work_Sans_300.woff2") format("woff2"), url("../fonts/Work_Sans_300.svg#WorkSans") format("svg"), url("../fonts/Work_Sans_300.ttf") format("truetype");
+    src: url("../fonts/OpenSans-400.ttf") format("truetype");
 }
 @font-face {
-    font-family: 'Work Sans';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
-    src: url("../fonts/Work_Sans_500.eot?#iefix") format("embedded-opentype"), url("../fonts/Work_Sans_500.woff") format("woff"), url("../fonts/Work_Sans_500.woff2") format("woff2"), url("../fonts/Work_Sans_500.svg#WorkSans") format("svg"), url("../fonts/Work_Sans_500.ttf") format("truetype");
+    src: url("../fonts/OpenSans-600.ttf") format("truetype");
 }
 body {
     background: #fff;
@@ -103,7 +103,20 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     text-align: center;
     border-bottom: 4px solid #9c6fb6;
     padding: 1rem;
+    display: flex;
+    align-items: center;
 }
+
+#header-wrapper > *:first-child {
+  flex: 0 0 auto;
+  margin-right: 10px;
+  height: 32px;
+}
+
+#header-wrapper > *:last-child {
+  flex: 1 1 auto;
+}
+
 #header a {
     display: inline-block;
 }
@@ -115,7 +128,6 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     fill: #fff;
 }
 .searchbox {
-    margin-top: 1rem;
     position: relative;
     border: 1px solid #915eae;
     background: #764890;
@@ -261,8 +273,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     display: block;
 }
 #sidebar ul.topics > li > a {
-    line-height: 2rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 #sidebar ul.topics > li > a b {
     opacity: 0.5;
@@ -272,15 +283,13 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     margin-top: 9px;
 }
 #sidebar ul.topics > li.parent, #sidebar ul.topics > li.active {
-    background: #251f29;
+    background: #fff;
     margin-left: -1rem;
     margin-right: -1rem;
     padding-left: 1rem;
     padding-right: 1rem;
 }
 #sidebar ul li.active > a {
-    background: #fff;
-    color: #777 !important;
     margin-left: -1rem;
     margin-right: -1rem;
     padding-left: 1rem;
@@ -321,6 +330,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     position: relative;
     margin-left: 300px;
     min-height: 100%;
+    max-width: 1000px;
 }
 #body img, #body .video-container {
     margin: 3rem auto;
@@ -423,7 +433,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     max-width: 80%;
 }
 #chapter h3 {
-    font-family: "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    font-family: "Open Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     font-weight: 300;
     text-align: center;
 }
@@ -444,24 +454,20 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     margin: 0;
 }
 body {
-    font-family: "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    font-family: "Open Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     font-weight: 300;
     line-height: 1.6;
     font-size: 18px !important;
 }
-h2, h3, h4, h5, h6 {
-    font-family: "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Open Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     text-rendering: optimizeLegibility;
     color: #5e5e5e;
-    font-weight: 400;
+    font-weight: 300;
     letter-spacing: -1px;
 }
 h1 {
-    font-family: "Novacento Sans Wide", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     text-align: center;
-    text-transform: uppercase;
-    color: #222;
-    font-weight: 200;
 }
 blockquote {
     border-left: 10px solid #F0F2F4;
@@ -479,6 +485,7 @@ blockquote cite {
 div.notices {
     margin: 2rem 0;
     position: relative;
+    clear: both;
 }
 div.notices p {
     padding: 15px;
@@ -657,16 +664,24 @@ code, kbd, pre, samp {
 code {
     border-radius: 2px;
     white-space: nowrap;
-    color: #5e5e5e;
-    background: #FFF7DD;
-    border: 1px solid #fbf0cb;
-    padding: 0px 2px;
+    color: #3b3939;
+    background: #f6f6f7;
+    border: 1px solid #e9e9eb;
+    padding: 1px 3px;
 }
+
+code.language-humio {
+  background: white;
+  border: 1px solid rgb(236, 236, 236);
+  padding-top: 3px;
+}
+
 table code {
     background: rgb(250, 250, 250);
     border-color: rgb(228, 228, 228);
 }
 code + .copy-to-clipboard {
+    background-color: rgba(0,0,0,0.1);
     margin-left: -1px;
     border-left: 0 !important;
     font-size: inherit !important;
@@ -675,21 +690,17 @@ code + .copy-to-clipboard {
     top: 0;
 }
 pre {
-    padding: 1rem;
     margin: 2rem 0;
-    background: #1d1f21;
-    border: 0;
-    border-radius: 2px;
-    line-height: 1.15;
+    background: white;
+    border: solid 1px rgb(156, 156, 156);
 }
 pre code {
-    color: whitesmoke;
-    background: inherit;
-    white-space: inherit;
-    border: 0;
+    border: 0 !important;
     padding: 0;
     margin: 0;
     font-size: 15px;
+    white-space: pre-wrap;
+    background-color: inherit;
 }
 hr {
     border-bottom: 4px solid #F0F2F4;
@@ -833,7 +844,7 @@ td {
     z-index: 1000000;
     display: none;
     padding: 5px 8px;
-    font: normal normal 11px/1.5 "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    font: normal normal 11px/1.5 "Open Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     color: #fff;
     text-align: center;
     text-decoration: none;
@@ -1109,12 +1120,11 @@ pre .copy-to-clipboard {
     position: absolute;
     right: 4px;
     top: 4px;
-    background-color: #4d5257;
     color: #ccc;
     border-radius: 2px;
 }
 pre .copy-to-clipboard:hover {
-    background-color: #656c72;
+    background-color: rgb(244, 222, 255);
     color: #fff;
 }
 .parent-element {

@@ -12,6 +12,7 @@ pipeline:
     repo: humio/docs
     tags:
       - latest
+      - beta
       - ${DRONE_COMMIT}
   deploy:
     image: e20co/drone-marathon

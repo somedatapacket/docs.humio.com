@@ -1,16 +1,16 @@
-        {{ if .Params.chapter }}
+         {{ if .Params.chapter }}
             </div> <!-- end chapter-->
         {{ end }}
-        </div> 
+        </div>
         {{ partial "custom-comments.html" . }}
       </div>
 
     <div id="navigation">
         <!-- Next prev page -->
         {{ $currentNode := . }}
-        
+
         {{ template "menu-nextprev" dict "menu" .Site.Home "currentnode" $currentNode }}
-        
+
         {{ define "menu-nextprev" }}
             {{$currentNode := .currentnode }}
             {{ if ne .menu.Params.hidden true}}
@@ -49,7 +49,7 @@
     </div>
 
     </section>
-    
+
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
@@ -59,8 +59,39 @@
     <script src="{{"js/jquery.sticky.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script src="{{"js/featherlight.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script src="{{"js/html5shiv-printshiv.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
-    <script src="{{"js/highlight.pack.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+
+    <script src="{{"codemirror-5.38.0/addon/runmode/runmode-standalone.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+    <script src="{{"codemirror-5.38.0/addon/mode/simple.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+    <script src="{{"codemirror-contrib/regex.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+    <script src="{{"codemirror-contrib/humio.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+    <script src="{{"codemirror-5.38.0/mode/javascript/javascript.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+    <script src="{{"codemirror-5.38.0/mode/yaml/yaml.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+    <script src="{{"codemirror-5.38.0/mode/shell/shell.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+    <script src="{{"codemirror-5.38.0/mode/nginx/nginx.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+    <script src="{{"codemirror-5.38.0/mode/properties/properties.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+    <script src="{{"codemirror-5.38.0/mode/python/python.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+    <script src="{{"codemirror-5.38.0/mode/groovy/groovy.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+
+    <script>
+    var languageMime = {
+      "json": "application/json"
+    };
+
+    $('code[class^="language-"]').each(function(i, code) {
+      var language = [].slice.apply(code.classList)
+        .filter(function(c) { return c.startsWith("language-"); })
+        .map(function(c) { return c.split("-")[1]; })[0];
+
+      if (!language) return;
+
+      language = languageMime[language] || language;
+
+      CodeMirror.runMode(code.innerText, language, code);
+    });
+    </script>
+
+    <!-- <script src="{{"js/highlight.pack.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+    <script>hljs.initHighlightingOnLoad();</script> -->
     <script src="{{"js/modernizr.custom.71422.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script src="{{"js/learn.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script src="{{"js/hugo-learn.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>

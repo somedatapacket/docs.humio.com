@@ -1,13 +1,4 @@
-{{ $queryFunctions := getJSON "https://repo.humio.com/repository/maven-releases/com/humio/docs/queryfunctions/1.0.69/queryfunctions-1.0.69.json" }}
-
-<div class="query-function-toc">
-<h2>List of Functions</h2>
-<ul class="toc">
-{{ range sort $queryFunctions "name" }}
-  <li><a href="#{{.name}}">{{.name}}</a></li>
-{{ end }}
-</ul>
-</div>
+{{ $queryFunctions :=  .Site.Data.functions }}
 
 <div class="query-function-list">
 {{ range sort $queryFunctions "name" }}
@@ -25,8 +16,8 @@
     <tr>
         <th>Name</th>
         <th>Type</th>
-        <th>Is&nbsp;required</th>
-        <th>Default&nbsp;value</th>
+        <th>Required</th>
+        <th>Default</th>
         <th>Description</th>
     </tr>
     </thead>
@@ -36,7 +27,7 @@
         <td>{{ .type}}</td>
         <td>{{ if .isRequired }}Yes{{ else }}No{{ end }}</td>
         <td>{{ .defaultValue}}</td>
-        <td>{{ .description}}</td>
+        <td>{{ .description | markdownify }}</td>
     </tr>
     {{ end }}</tbody>
 </table>
@@ -46,8 +37,8 @@
 <h3 id="{{ .name }}-examples">Examples</h3>
 {{range $index, $value := .examples}}
 <h4 id="{{ $value.name }}-examples-{{add $index 1}}">Example {{ add $index 1 }}</h4>
-<p>{{ $value.description}}</p>
-{{ highlight $value.value "" "" }}
+<p>{{ $value.description }}</p>
+<pre><code class="language-humio">{{ $value.value }}</code></pre>
 {{ end }}
 </div>
 {{ end }}

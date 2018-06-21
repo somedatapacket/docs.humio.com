@@ -152,7 +152,7 @@ h2:hover .anchor, h3:hover .anchor, h4:hover .anchor, h5:hover .anchor, h6:hover
 /* Redfines headers style */
 
 h2, h3, h4, h5, h6 {
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.1;
 }
 
@@ -172,7 +172,7 @@ h2 {
 h3 {
   font-size: 1.8rem;
   line-height: 110% !important;
-  margin: 4rem 0 1rem 0;
+  margin: 2rem 0 1rem 0;
   font-weight: 300;
 }
 
@@ -255,4 +255,56 @@ figcaption h4 {
 
 .is-sticky #top-bar {
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.integration-overview {
+  display: flex;
+  width: 100%;
+}
+
+.integration-overview__section {
+  width: 33.33%;
+}
+
+.integration-overview__section-title {
+  margin: 0 0 1rem 0;
+}
+
+.integration-overview ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.page-image {
+  float: right;
+  max-width: 200px;
+  margin: 0 !important;
+  margin-left: 20px !important;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+}
+
+h1 .badge {
+  margin-left: 16px;
+}
+
+.badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 3px;
+  border-color: rgb(240, 240, 240);
+  background-color: white;
+  font-size: 16px;
+}
+
+.badge--beta {
+  border-color: rgb(18, 150, 83);
+  background-color: rgb(17, 164, 90);
+  color: white !important;
 }

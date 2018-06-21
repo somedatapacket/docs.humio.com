@@ -1,0 +1,17 @@
+<ul class="icon-list">
+  {{ $target := (.Get 0) }}
+  {{ $limit := or (.Get 1) 10}}
+  {{ range $key, $category := .Site.Taxonomies.categories }}
+  {{ if eq $key $target }}
+  {{ range first $limit $category }}
+    <li>
+      <a href="{{ .Page.RelPermalink }}">
+        {{ if ne (or .Page.Params.icon .Page.Params.pageImage) nil }}
+        <img alt="" src="{{ (or .Page.Params.icon .Page.Params.pageImage) }}" />
+        {{ end }}
+        <div>{{ or .Page.Params.menuTitle .Page.Title }}</div></a>
+    </li>
+  {{ end }}
+  {{ end }}
+  {{ end }}
+</ul>

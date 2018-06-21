@@ -15,9 +15,9 @@
     --MENU-SEARCH-BOX-ICONS-color: rgb(214, 204, 255); /* Override search field icons color */
 
     --MENU-SECTIONS-ACTIVE-BG-color:#20272b; /* Background color of the active section and its childs */
-    --MENU-SECTIONS-BG-color:#252c31; /* Background color of other sections */
-    --MENU-SECTIONS-LINK-color: #ccc; /* Color of links in menu */
-    --MENU-SECTIONS-LINK-HOVER-color: #e6e6e6;  /* Color of links in menu, when hovered */
+    --MENU-SECTIONS-BG-color:#ffffff; /* Background color of other sections */
+    --MENU-SECTIONS-LINK-color: #000; /* Color of links in menu */
+    --MENU-SECTIONS-LINK-HOVER-color: rgb(110, 26, 156);  /* Color of links in menu, when hovered */
     --MENU-SECTION-ACTIVE-CATEGORY-color: #777; /* Color of active category text */
     --MENU-SECTION-ACTIVE-CATEGORY-BG-color: #fff; /* Color of background for the active category (only) */
 
@@ -68,19 +68,28 @@ a:hover {
 }
 #sidebar {
 	background-color: var(--MENU-SECTIONS-BG-color);
+  border-right: solid 1px rgb(221, 221, 221);
 }
 #sidebar #header-wrapper {
     background: var(--MENU-HEADER-BG-color);
     color: var(--MENU-SEARCH-BOX-color);
     border-color: var(--MENU-HEADER-BORDER-color);
+    padding: 1.4rem 1rem;
 }
 #sidebar .searchbox {
 	border-color: var(--MENU-SEARCH-BOX-color);
     background: var(--MENU-SEARCH-BG-color);
 }
-#sidebar ul.topics > li.parent, #sidebar ul.topics > li.active {
-    background: var(--MENU-SECTIONS-ACTIVE-BG-color);
+
+#sidebar ul.topics  li.parent > a {
+  color: rgb(157, 59, 191);
 }
+
+#sidebar ul.topics  li.active:not(.parent) > a {
+  color: #000;
+  font-weight: 600;
+}
+
 #sidebar .searchbox * {
     color: var(--MENU-SEARCH-BOX-ICONS-color);
 }
@@ -91,11 +100,6 @@ a:hover {
 
 #sidebar a:hover {
     color: var(--MENU-SECTIONS-LINK-HOVER-color);
-}
-
-#sidebar ul li.active > a {
-    background: var(--MENU-SECTION-ACTIVE-CATEGORY-BG-color);
-    color: var(--MENU-SECTION-ACTIVE-CATEGORY-color) !important;
 }
 
 #sidebar hr {
@@ -140,14 +144,40 @@ body #chapter h1 {
 }
 
 h2 {
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 
 h3 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   color: rgb(128, 126, 127)
 }
 
 .query-function h3 {
   font-size: 1.3rem;
+}
+
+/* ADDED */
+
+.keybinding {
+  display: inline-block;
+  background-color: rgb(80, 80, 80);
+  color: white;
+  padding: 4px 4px;
+  border-radius: 3px;
+  line-height: 1;
+}
+
+.icon-list > li > a,
+.icon-list > li {
+  display: flex !important;
+  align-items: center;
+  margin-bottom: 6px;
+  height: 32px;
+}
+
+.icon-list img {
+  display: inline-block;
+  margin: 0 !important;
+  margin-right: 8px !important;
+  width: 32px;
 }

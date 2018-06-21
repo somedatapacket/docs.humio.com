@@ -2,14 +2,23 @@ RELEASE=1.1.0
 clean:
 	rm -rf public test data/releases.yml
 
-run:
+run: deps
 	# CSS gets mashed if we don't use --disableFastRender
 	hugo server --disableFastRender
+
+run-docker: deps
+	# Runs hugo server in a docker container, container is automatically destroyed when stopped
+	bash run-hugo-docker.sh
 
 data/releases.yml:
 	curl -s https://repo.humio.com/repository/maven-releases/com/humio/server/$(RELEASE)/server-$(RELEASE).releases.yml > data/releases.yml
 
-public: data/releases.yml
+data/functions.json:
+	curl -s https://repo.humio.com/repository/maven-releases/com/humio/docs/queryfunctions/$(RELEASE)/queryfunctions-$(RELEASE).json > data/functions.json
+
+deps: data/releases.yml data/functions.json
+
+public: deps
 	hugo
 	docker build --tag="humio/docs:latest" .
 

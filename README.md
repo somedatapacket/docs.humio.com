@@ -4,7 +4,7 @@
 Official documentation for Humio
 
 ## Building docs
-First, you need to make sure you have [Hugo installed](https://gohugo.io/getting-started/quick-start/#step-1-install-hugo) on your machine.
+First, you need to make sure you have [Hugo installed](https://gohugo.io/using-humio/quick-start/#step-1-install-hugo) on your machine.
 Then you can preview the docs by running
 ```
 $ hugo server -D
