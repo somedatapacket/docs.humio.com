@@ -10,9 +10,7 @@ together. In this scenario, you use Logstash as the log collection and
 parsing agent, and instruct it to send the data to Humio.
 
 {{% notice tip %}}
-***Humio supports the Elasticsearch bulk insertion API*** 
-
-Just point the Elastic outputter to Humio as described [here](#configuration)
+__Humio supports the ElasticSearch bulk insertion API__  Just [point the Elastic outputter to Humio](#configuration).
 {{% /notice %}}
 
 
@@ -21,7 +19,6 @@ extensible architecture of Logstash to parse many kinds of data:
 
 * You can install one of the many available plugins that can parse
   many well-known data formats.
-
 * You can use the Grok language to build custom parsers for unusual
   data formats. Grok has many built-in patterns to help parse your
   data.
@@ -37,7 +34,7 @@ You can find the complete documentation for Logstash at [the Reference page of t
 
 ## Configuration
 
-Because Humio supports parts of the Elasticsearch insertion API, you
+Because Humio supports parts of the ElasticSearch insertion API, you
 can use the built-in `elasticsearch` output in the Logstash
 configuration.
 
@@ -53,26 +50,21 @@ input{
 }
 output{
   elasticsearch{
-    hosts => ["https://<humio-host>:443/api/v1/dataspaces/<dataspace>/ingest/elasticsearch/"]
-    user => "<ingest-token>"
+    hosts => ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch/"]
+    user => "$INGEST_TOKEN"
     password => "notused" # a password has to be set, but Humio does not use it
   }
 }
 ```
 
-Where:
-
-* `<humio-host>` - is the name of your Humio server
-* `<dataspace>` - is the name of your dataspace on your server
-* `<ingest-token>` - is the [ingest token](/sending_logs_to_humio/ingest_tokens/) for your dataspace
-
+{{< partial "common-rest-params" >}}
 
 In the above example, Logstash calls the Linux `date` command every
 five seconds. It passes the output from this command to Humio.
 
 ### Field mappings
 
-When you use the Elasticsearch output, Logstash outputs JSON
+When you use the ElasticSearch output, Logstash outputs JSON
 objects. The JSON for an event sent to Humio with the above
 configuration looks like this:
 

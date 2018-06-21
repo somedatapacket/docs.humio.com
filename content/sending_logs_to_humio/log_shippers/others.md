@@ -9,11 +9,11 @@ Humio supports the following API's for ingesting data.
 Humio has an [Ingest API](/sending_logs_to_humio/transport/http_api/#ingest).  You can use this
 to build an integration towards Humio.
 
-## Elasticsearch Bulk API
+## ElasticSearch Bulk API
 
-Humio is compatible with the [Elasticsearch Bulk ingest API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html).
+Humio is compatible with the [ElasticSearch Bulk ingest API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html).
 
-If you have a log shipper that supports the Elasticsearch Bulk API,
+If you have a log shipper that supports the ElasticSearch Bulk API,
 there is a good change that you can use this to send logs to Humio.
 See the [Beats documentation](/sending_logs_to_humio/log_shippers/beats/) for an example of
 configuration options.

@@ -2,6 +2,10 @@ RELEASE=1.0.69
 clean:
 	rm -rf public test data/releases.yml
 
+run:
+	# CSS gets mashed if we don't use --disableFastRender
+	hugo server --disableFastRender
+
 data/releases.yml:
 	curl -s https://repo.humio.com/repository/maven-releases/com/humio/server/$(RELEASE)/server-$(RELEASE).releases.yml > data/releases.yml
 

@@ -33,3 +33,11 @@ A: While this list is not exhaustive, Humio recommends [Beats](http://localhost:
 A: Humio integrates with several common notification methods including [email, Slack, and extrenal services like OpsGenie](http://localhost:1313/features/alerts/notifiers/). If you need Humio to work with your particular notification system, contact our support team!
 
 <hr noshade>
+
+<b>Q: What happened to "Dataspaces"</b>
+
+A: "Repository" is the new term. What used to be a "dataspace" in Humio is now a [Repository]({{< relref "getting_started/repositories.md" >}}).
+
+The HTTP API includes the path `/api/v1/dataspaces/$REPOSITORY_NAME/` to be compatible with existing clients.
+In this context, the `$REPOSITORY_NAME` variable is the name of the repository. (It used to be the name of the dataspace).
+

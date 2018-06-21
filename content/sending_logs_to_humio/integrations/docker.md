@@ -23,11 +23,9 @@ Docker host. Then, you hook up all the containers for which you want
 logs using the fluentd log-driver.
 
 {{% notice tip %}}
-***Log Types***
-
-You should set the log types for your containers so Humio can parse the logs.
-
-Humio can accept logs even when it does not know their type. So just start sending logs to Humio, and then create and enhance the relevant parsers afterwards.
+You should set the __log types__ for your containers so Humio can parse the logs.  
+Humio can accept logs even when it does not know their type. So just start sending
+logs to Humio, and then create and enhance the relevant parsers afterwards.
 {{% /notice %}}
 
 Go to the [`docker2humio` container page](https://hub.docker.com/r/pmech/docker2humio/)
@@ -40,20 +38,18 @@ Since Docker just handles log lines from `stdout` as text blobs, you must parse
 the lines to get the full value from them.
 
 To do this, you can either use a built-in parser, or create new ones for your log
-types.  For more details on creating parsers, see the [parsing page](/sending_logs_to_humio/parsers/parsing/).
+types. For more details on creating parsers, see the [parsing page]({{< relref "sending_logs_to_humio/parsers/parsing" >}}).
 
 {{% notice tip %}}
-In terms of log management, Docker is just a transport layer.
-
-Before writing a custom parser, see the [built in parsers](/sending_logs_to_humio/parsers/built_in_parsers/) page to see if Humio already supports your log type.
+In terms of log management, Docker is just a transport layer.  
+Before writing a custom parser, see the [built in parsers]({{< relref "sending_logs_to_humio/parsers/built_in_parsers" >}}) page to see if Humio already supports your log type.
 {{% /notice %}}
 
 ## 3. Metrics
 
 To get standard host level metrics for your docker containers, use
 [Metricbeat](https://www.elastic.co/guide/en/beats/metricbeat/current/index.html).
-It includes a [docker
-module](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-docker.html).
+It includes a [docker module](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-docker.html).
 
 ### Example Metricbeat Configuration
 
@@ -66,15 +62,14 @@ metricbeat.modules:
     period: 10s
 
 output.elasticsearch:
-  hosts: ["https://<humio-host>:443/api/v1/dataspaces/<dataspace>/ingest/elasticsearch"]
-  username: <ingest-token>
+  hosts: ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+  username: $INGEST_TOKEN
 ```
 
 Where:
 
-* `<humio-host>` - is the name of your Humio server
-* `<dataspace>` - is the name of your dataspace on your server
-* `<ingest-token>` - is the [ingest token](/sending_logs_to_humio/ingest_tokens/) for your dataspace
+* `$HOST` - is the name of your Humio server.
+* `$REPOSITORY_NAME` - is the name of your repository on your server.
+* `$INGEST_TOKEN` - is the [ingest token]({{< relref "sending_logs_to_humio/ingest_tokens" >}}) for your repository.
 
-See also the page on [Beats](/sending_logs_to_humio/log_shippers/beats/) for more
-information.
+See also the page on [Beats]({{< relref "sending_logs_to_humio/log_shippers/beats" >}}) for more information.
