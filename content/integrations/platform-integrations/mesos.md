@@ -1,6 +1,6 @@
 ---
 title: "DC/OS and Mesos"
-categories: ["Integration"]
+categories: ["Integration", "Platform"]
 pageImage: /integrations/mesos.svg
 ---
 
@@ -124,6 +124,6 @@ The agent will add the following fields to each log entry
 * At this state only logs from the private agents are being forwarded to Humio. humio/dcos2humio#8
 * Only `stdout` and `stderr` logs are harvested from tasks
 
-## Road map
+## Road Map
 
-* Forward DC/OS metrics. humio/dcos2humio#3
+* Forward DC/OS metrics.

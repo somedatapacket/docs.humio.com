@@ -1,6 +1,6 @@
 ---
 title: "Heroku"
-categories: ["Integration"]
+categories: ["Integration", "Platform"]
 pageImage: /integrations/heroku.svg
 ---
 

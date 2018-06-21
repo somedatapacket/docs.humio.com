@@ -1,7 +1,7 @@
 ---
 title: Grafana
 weight: 700
-categories: ["Integration"]
+categories: ["Integration", "OtherIntegration"]
 pageImage: /integrations/grafana.svg
 ---
 

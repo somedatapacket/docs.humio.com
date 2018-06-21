@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes"
-categories: ["Integration"]
+categories: ["Integration", "Platform"]
 pageImage: /integrations/kubernetes.svg
 ---
 

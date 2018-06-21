@@ -3,11 +3,15 @@ title: Running Humio as a Docker container
 weight: 100
 menuTitle: Docker
 pageImage: /integrations/docker.svg
-categories: ["Integration"]
+categories: ["Integration", "Platform"]
 ---
 
 Humio is distributed as a Docker image. This means that you can start an
 instance without a complicated installation procedure.
+
+{{% notice tip %}}
+Looking for how to get logs from Docker into Humio? Try the [Docker logging integration]({{< ref "docker-integration.md" >}}) instead.
+{{% /notice %}}
 
 **Step 1**
 

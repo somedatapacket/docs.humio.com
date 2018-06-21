@@ -1,6 +1,6 @@
 ---
 title: "Kafka Connect"
-categories: ["Integration"]
+categories: ["Integration", "DataShipper"]
 pageImage: /integrations/kafka.svg
 ---
 

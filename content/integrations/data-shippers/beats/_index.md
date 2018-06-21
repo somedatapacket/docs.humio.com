@@ -3,7 +3,7 @@ title: "Elastic Beats"
 category_title: "Overview"
 heading: "Humio & Elastic Beats"
 weight: 100
-categories: ["Integration"]
+categories: ["Integration", "DataShipper"]
 pageImage: /integrations/elastic.svg
 ---
 

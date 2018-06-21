@@ -1,6 +1,6 @@
 ---
 title: "NetFlow"
-categories: ["Integration"]
+categories: ["Integration", "DataShipper"]
 pageImage: /integrations/netflow.svg
 ---
 

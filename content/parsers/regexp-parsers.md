@@ -33,5 +33,5 @@ to see who they are defined.
 {{% notice tip %}}
 ***Testing***  
 You can test the parser on the **Parser** page by adding some test data. This offers an interactive way to refine the parser.
-See the section on [Testing the Parser]({{< ref "#testing-parsers" >}}) section below.
+See the section on [Testing the Parser]({{< ref "creating-a-parser.md#testing" >}}) section below.
 {{% /notice %}}

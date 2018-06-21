@@ -1,5 +1,9 @@
 ---
-title: "Docker"
+title: "Sending Docker Logs to Humio"
+menuTitle: "Docker"
+# DON'T ADD CATEGORIES HERE, ANOTHER PAGE ABOUT DOCKER HAS THOSE
+slug: docker
+pageImage: /integrations/docker.svg
 ---
 
 There are two key steps to getting logs from Docker containers into Humio:
@@ -7,9 +11,11 @@ There are two key steps to getting logs from Docker containers into Humio:
 1. Shipping the container logs to Humio
 2. Parsing the logs
 
-{{% notice note %}}
 In this guide, we assume that you use Docker in the standard way, where
 logs are captured from `stdout` and `stderr`.
+
+{{% notice tip %}}
+Looking for how to run Humio in a Docker container? Try the [Docker installation guide]({{< ref "docker.md" >}}) instead.
 {{% /notice %}}
 
 ## 1. Shipping container logs to Humio
@@ -22,7 +28,7 @@ With `docker2humio`, you configure and run a shipper container on each
 Docker host. Then, you hook up all the containers for which you want
 logs using the fluentd log-driver.
 
-{{% notice tip %}}
+{{% notice info %}}
 You should set the __log types__ for your containers so Humio can parse the logs.  
 Humio can accept logs even when it does not know their type. So just start sending
 logs to Humio, and then create and enhance the relevant parsers afterwards.

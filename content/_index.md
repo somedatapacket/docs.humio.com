@@ -23,65 +23,25 @@ PageDuty, OpsGene or VictorOps) means Humio can be the backbone of your operatio
 a power tool for your help-desk teams and your trusted navigator on an ocean of data.
 
 
-_If you are new to log management the [introduction to log management]({{< relref "intro_to_log_management.md" >}})
+_If you are new to log management the [introduction to log management]({{< ref "intro_to_log_management.md" >}})
 will help you get to grips with the core concepts is and where Humio fits in to the logging ecosystem._
 
 ## Integrations
 
+<a href="{{% ref "integrations/_index.md" %}}">Full List of Integrations</a>
+
 <div class="integration-overview">
   <div class="integration-overview__section">
-    <h3 class="integration-overview__section-title">Data Shippers</h3>
-    <ul class="icon-list">
-      <li><a href="{{% ref "filebeat.md" %}}">
-        <img src="/integrations/elastic.svg" style="width: 24px">
-        <div>Filebeat</div>
-      </a></li>
-      <li><a href="{{% ref "logstash.md" %}}">
-        <img src="/integrations/logstash.svg" style="width: 24px">
-        <div>Logstash</div>
-      </a></li>
-      <li><a href="{{% ref "rsyslog.md" %}}">
-        <img src="/integrations/rsyslog.svg" style="width: 24px">
-        <div>Rsyslog</div>
-      </a></li>
-      <li><a href="{{% ref "sending-data/data-shippers/_index.md" %}}">List All</a></li>
-    </ul>
+    <h5 class="integration-overview__section-title">Popular Data Shippers</h5>
+    {{% integration-selection "datashipper" %}}
   </div>
   <div class="integration-overview__section">
-    <h3 class="integration-overview__section-title">Platforms</h3>
-    <ul class="icon-list">
-      <li>
-        <img src="/integrations/kubernetes.svg" style="width: 24px">
-        <div>Kubernetes</div>
-      </li>
-      <li>
-        <img src="/integrations/cloudwatch.svg" style="width: 24px">
-        <div>Cloudwatch</div>
-      </li>
-      <li>
-        <img src="/integrations/mesos.svg" style="width: 24px">
-        <div>Mesos & DC/OS</div>
-      </li>
-      <li>List All</li>
-    </ul>
+    <h5 class="integration-overview__section-title">Popular Platforms</h5>
+    {{% integration-selection "platform" %}}
   </div>
   <div class="integration-overview__section">
-    <h3 class="integration-overview__section-title">Languages & Frameworks</h3>
-    <ul class="icon-list">
-    <li>
-      <img src="/integrations/python.svg" style="width: 24px">
-      <div>Python</div>
-    </li>
-      <li>
-        <img src="/integrations/erlang.svg" style="width: 24px">
-        <div>Erlang & Elixir</div>
-      </li>
-      <li>
-        <img src="/integrations/nodejs.svg" style="width: 24px">
-        <div>NodeJS</div>
-      </li>
-      <li>List All</li>
-    </ul>
+    <h5 class="integration-overview__section-title">Popular API Clients</h5>
+    {{% integration-selection "apiclient" %}}
   </div>
 </div>
 

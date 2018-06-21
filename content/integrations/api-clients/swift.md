@@ -1,7 +1,8 @@
 ---
 menuTitle: Swift
-categories: ["Integration"]
+categories: ["Integration", "ApiClient"]
 pageImage: /integrations/swift.svg
+draft: true
 ---
 
 TODO: Thomas

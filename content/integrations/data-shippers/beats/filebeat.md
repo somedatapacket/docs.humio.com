@@ -1,6 +1,6 @@
 ---
 title: "Filebeat"
-categories: ["Integration"]
+categories: ["Integration", "DataShipper"]
 pageImage: /integrations/elastic.svg
 ---
 

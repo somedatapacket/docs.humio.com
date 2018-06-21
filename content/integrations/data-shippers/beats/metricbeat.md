@@ -1,6 +1,6 @@
 ---
 title: "Metricbeat"
-categories: ["Integration"]
+categories: ["Integration", "DataShipper"]
 pageImage: /integrations/metricbeat.svg
 ---
 

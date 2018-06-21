@@ -1,6 +1,6 @@
 ---
 title: "Nginx"
-categories: ["Integration"]
+categories: ["Integration", "OtherIntegration"]
 pageImage: /integrations/nginx.svg
 ---
 
