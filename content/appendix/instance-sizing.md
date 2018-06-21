@@ -1,6 +1,7 @@
 ---
 title: "Instance Sizing"
 weight: 1
+aliases: ["appendix/instance_sizing"]
 ---
 
 This page describes how to choose hardware and size a Humio installation.

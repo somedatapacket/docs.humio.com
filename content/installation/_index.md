@@ -52,7 +52,7 @@ to automatically delete some events before others,
 e.g. allowing some data to be kept for several years while others get
 deleted after 1 week.
 
-For more details refer to our [Instance Sizing Reference]({{< ref "instance_sizing.md" >}}).
+For more details refer to our [Instance Sizing Reference]({{< ref "instance-sizing.md" >}}).
 
 ## Cluster Setup
 

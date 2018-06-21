@@ -1,6 +1,7 @@
 ---
 title: "Cluster Setup"
 weight: 1000
+aliases: ["/operation/installation/cluster_setup/"]
 ---
 
 This section describes how to install Humio configured as a distributed system across multiple machines.

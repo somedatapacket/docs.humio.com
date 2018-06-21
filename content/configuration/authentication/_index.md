@@ -1,6 +1,7 @@
 ---
 title: Authentication
 category_title: Overview
+aliases: ["operation/installation/authentication"]
 ---
 
 Humio supports the following authentication types:

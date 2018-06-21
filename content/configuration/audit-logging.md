@@ -1,6 +1,7 @@
 ---
 title: "Audit Logging"
 beta: true
+aliases: ["/operation/installation/audit_logs/"]
 ---
 
 Humio emits audit log events on many users actions.
