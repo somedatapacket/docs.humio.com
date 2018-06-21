@@ -1,5 +1,6 @@
 ---
 title: Live Queries
+aliases: ["/glossary/"]
 ---
 
 Live queries provide a way to run searches that are continuously
