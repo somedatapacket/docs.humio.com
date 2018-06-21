@@ -1,7 +1,7 @@
 ---
 title: "Tutorial"
-category_title: "Hello World"
 weight: 95
+aliases: ["getting_started", "getting_started/tutorial"]
 ---
 
 This tutorial will teach you search and send data to Humio.

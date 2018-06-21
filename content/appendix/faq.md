@@ -11,7 +11,7 @@ A: Humio is a flexible log management solution. We have customers that use our c
 
 <b>Q: If we use other logging like Elastic Stack, is it easy to move over to Humio?</b>
 
-A: Moving to Humio is easy! We have several common integrations to bring your logs into Humio and we even have a guide on [moving from Elastic Stack to Humio](https://docs.humio.com/getting_started/moving_from_elastic_stack/) - it's as easy as following a few steps to getting your logs flowing.
+A: Moving to Humio is easy! We have several common integrations to bring your logs into Humio and we even have a guide on [moving from Elastic Stack to Humio](moving-from-elastic-stack.md) - it's as easy as following a few steps to getting your logs flowing.
 
 <hr noshade>
 

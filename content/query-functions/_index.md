@@ -2,6 +2,7 @@
 title: "Query Functions"
 weight: 600
 show_functions_as_pages: true
+aliases: ["searching_logs/query_functions/"]
 ---
 
 Query functions are specified using a name followed by brackets containing parameters.
