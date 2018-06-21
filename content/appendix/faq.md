@@ -3,9 +3,9 @@ title: "FAQ"
 weight: 7
 ---
 
-<b>Q: Is Humio cloud only? Is it possible to use Humio on prem?</b>
+<b>Q: Is Humio cloud only? Is it possible to use Humio on premises?</b>
 
-A: Humio is a flexible log management solution. We have customers that use our cloud solution, on prem solutions, and hybrids of both options. Consider what works best for your application and organization and we are happy to help you find the set up to best suit your needs.
+A: Humio is a flexible log management solution. We have customers that use our cloud solution, on-prem solutions, and hybrids of both options. Consider what works best for your application and organization and we are happy to help you find the set up to best suit your needs.
 
 <hr noshade>
 
@@ -35,7 +35,7 @@ A: Humio integrates with several common notification methods including [email, S
 
 <b>Q: What happened to "Dataspaces"</b>
 
-A: "Repository" is the new term. What used to be a "dataspace" in Humio is now a [Repository]({{< relref "getting_started/repositories.md" >}}).
+A: "Repository" is the new term. What used to be a "dataspace" in Humio is now a [Repository]({{< ref "repositories.md" >}}).
 
 The HTTP API includes the path `/api/v1/dataspaces/$REPOSITORY_NAME/` to be compatible with existing clients.
 In this context, the `$REPOSITORY_NAME` variable is the name of the repository. (It used to be the name of the dataspace).
