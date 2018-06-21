@@ -334,13 +334,13 @@ a parameter named `field`. It designates the {{< query >}}field=attr{{< /query >
 and lets you write:
 
 ```humio
-... | ip_addr =~ cidr("127.0.0.1/24") | ...
+... | ip_addr =~ cidr(subnet="127.0.0.1/24") | ...
 ```
 
 rather than
 
 ```humio
-... | cidr("127.0.0.1/24", field=ip_addr) | ...
+... | cidr(subnet="127.0.0.1/24", field=ip_addr) | ...
 ```
 
 This also works well with e.g. {{< function "regex" >}} and {{< function "replace" >}}.
