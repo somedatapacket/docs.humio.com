@@ -53,7 +53,7 @@ Finally, `<INGEST_TOKEN>` should be replace with an __Ingest Token__ from the re
 If your repository is still empty your a dialog on the search page will
 contain your default ingest token:
 
-![Empty Repository Dialog](/images/dataspacewelcomewithingesttoken.png)
+{{% figure src="/images/dataspacewelcomewithingesttoken.png" width="50%" %}}
 
 If you cannot find it there, you can always go to _Settings_ for your repository
 and create a new Ingest Token from there.
