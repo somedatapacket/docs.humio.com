@@ -89,7 +89,7 @@ Now you are all set, choose one of the following guides:
 You can read more about these methods in the [sending data to humio]({{< ref "sending-data/_index.md" >}}) section.
 
 _Tip: If you are already using ElasticSearch ELK you can also take a look at how easy it is to
-[migrate from an Elastic Stack]({{< relref "moving_from_elastic_stack.md" >}}) to Humio._
+[migrate from an Elastic Stack]({{< ref "moving-from-elastic-stack.md" >}}) to Humio._
 
 ### 4.1 Extra: Custom Parsers
 
