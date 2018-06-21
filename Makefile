@@ -1,4 +1,4 @@
-RELEASE=1.0.69
+RELEASE=1.1.0
 clean:
 	rm -rf public test data/releases.yml
 
