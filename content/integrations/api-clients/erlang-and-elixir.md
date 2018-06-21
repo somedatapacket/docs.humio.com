@@ -3,7 +3,9 @@ menuTitle: Erlang & Elixir
 title: "Logging to Humio using Lager for Erlang/Elixir"
 categories: ["Integration", "ApiClient"]
 pageImage: /integrations/erlang.svg
-draft: true
 ---
 
-TODO: Peter
+This library implements a [Lager](https://github.com/erlang-lager/lager) backend
+for logging directly to Humio in BEAM based languages such as Erlang or Elixir.
+
+https://github.com/tgrk/lager_humio_backend
