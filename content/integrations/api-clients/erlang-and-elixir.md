@@ -1,8 +1,9 @@
 ---
 menuTitle: Erlang & Elixir
-title: "Logging to Humio using Lager for Erlang/Elixir"
+title: "Logging in Erlang / Elixir"
 categories: ["Integration", "ApiClient"]
 pageImage: /integrations/erlang.svg
+slug: logging-to-humio-from-erlang-or-elixir
 ---
 
 This library implements a [Lager](https://github.com/erlang-lager/lager) backend
