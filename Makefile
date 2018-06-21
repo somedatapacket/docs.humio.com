@@ -1,6 +1,6 @@
 RELEASE=1.1.1
 clean:
-	rm -rf public test data/releases.yml
+	rm -rf public test data/releases.yml data/functions.json
 
 run: deps
 	# CSS gets mashed if we don't use --disableFastRender
