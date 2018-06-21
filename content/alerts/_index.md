@@ -2,6 +2,7 @@
 title: "Alerts"
 weight: 675
 category_title: Overview
+aliases: ["/features/alerts/notifiers/"]
 ---
 Humio has built-in support for alerting.
 Every repository has it's own individual set of alerts.

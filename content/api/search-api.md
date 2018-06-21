@@ -97,7 +97,7 @@ end times as relative times if you specify them as strings.
 
 When providing a timestamp, relative time modifiers are specified relative to "now".
 
-See the relative time syntax [here]({{< relref "relative_time_syntax.md" >}})
+See the relative time syntax [here]({{< ref "relative-time-syntax.md" >}})
 
 {{% notice note %}}
 Relative time modifiers are always relative to now.

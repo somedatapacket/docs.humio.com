@@ -6,7 +6,7 @@ category_title: "Overview"
 
 There are steps to getting your data into Humio:
 
-1. [Generating an Ingest Token]({{< ref "ingest_tokens.md" >}}) Token - A special API token only for the Ingest API.
+1. [Generating an Ingest Token]({{< ref "ingest-tokens.md" >}}) Token - A special API token only for the Ingest API.
 1. Sending data - Which is the subject of this page
 1. Parsing and ingesting data - Described in the [Parsers sections]({{< ref "parsers/_index.md" >}})
 
@@ -57,7 +57,7 @@ graph LR;
 ## Platform Integrations {#platform-integrations}
 
 If you want to get logs and metrics from your deployment platform, e.g. a Kubernetes cluster or your company PaaS,
-you can use one of our [Platform Integrations]({{sending-data-to-humio}}).
+you can use one of our [Platform Integrations]({{< ref "sending-data-to-humio/_index.md" >}}).
 
 **Example Flow**  
 Depending on your platform the data flow will look slightly different. Some systems

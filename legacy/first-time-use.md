@@ -11,7 +11,7 @@ please read the [brief overview of log management](log-management-overview.md).
 
 First, decide which log data sources you want to put into Humio.
 
-Second, find or create an [ingest token]({{< ref "ingest_tokens.md" >}}).
+Second, find or create an [ingest token]({{< ref "ingest-tokens.md" >}}).
 
 Third, go through the [Integrations](index.md#integrations) and see if you
 can find the integration you need. For example, if what you want is:

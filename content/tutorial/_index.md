@@ -54,7 +54,7 @@ and not "View" since they cannot be used for storage).
 
 ### 2.2 Find your Ingest Token
 
-Once you have chosen a repository you need get an access token called an [ingest token]({{< relref "ingest_tokens.md" >}}).
+Once you have chosen a repository you need get an access token called an [ingest token]({{< relref "ingest-tokens.md" >}}).
 You can find the _default_ ingest token generated for your repository by going to:
 
 `Settings` __→__ `Ingest Tokens` __→__ `Click the Eye Icon`

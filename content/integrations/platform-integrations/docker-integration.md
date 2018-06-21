@@ -76,6 +76,6 @@ Where:
 
 * `$HOST` - is the name of your Humio server.
 * `$REPOSITORY_NAME` - is the name of your repository on your server.
-* `$INGEST_TOKEN` - is the [ingest token]({{< relref "ingest_tokens.md" >}}) for your repository.
+* `$INGEST_TOKEN` - is the [ingest token]({{< relref "ingest-tokens.md" >}}) for your repository.
 
 See also the page on [Beats]({{< relref "sending_data/data-shippers/beats/_index.md" >}}) for more information.

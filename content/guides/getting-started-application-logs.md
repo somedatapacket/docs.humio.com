@@ -42,7 +42,7 @@ output.elasticsearch:
 
 * `$HOST` - address/hostname of your Humio server (e.g. `cloud.humio.com`)
 * `$REPOSITORY_NAME` - name of your repository on your server (e.g. `sandbox`)
-* `$INGEST_TOKEN` - [ingest token]({{< relref "ingest_tokens.md" >}}) for your repository, (e.g. a string such as `fS6Kdlb0clqe0UwPcc4slvNFP3Qn1COzG9DEVLw7v0Ii`).
+* `$INGEST_TOKEN` - [ingest token]({{< relref "ingest-tokens.md" >}}) for your repository, (e.g. a string such as `fS6Kdlb0clqe0UwPcc4slvNFP3Qn1COzG9DEVLw7v0Ii`).
 * `PATH_TO_YOUR_APPLICATION_LOG` - the file path to the log file you want to send.
 * `PARSER_NAME` - the name of either one of the built-in parsers such as `kv` (Key-Value) or a [custom parser]({{< relref "parsers/_index.md" >}}).
 

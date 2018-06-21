@@ -3,6 +3,7 @@ title: "Filebeat"
 categories: ["Integration", "DataShipper"]
 categories_weight: -100
 pageImage: /integrations/filebeat.svg
+aliases: ["/sending-data/data-shippers/beats/filebeat/"]
 ---
 
 [Filebeat](https://www.elastic.co/products/beats/filebeat) is a lightweight,
@@ -87,7 +88,7 @@ You must make the following changes to the sample configuration:
   Note that the URL specifies the repository that Humio sends events to.
   In the example, the URL points to Humio in the cloud, which is fine if you are using our hosted service.  
   It is important to specify the port number in the URL otherwise Filebeat defaults to using 9200.
-* Insert an [ingest token]({{< relref "ingest_tokens.md" >}}) from the repository as the username.
+* Insert an [ingest token]({{< relref "ingest-tokens.md" >}}) from the repository as the username.
 
 * Specify the text encoding to use when reading files using the `encoding` field.
   If the log files use special, non-ASCII characters, then set the encoding here. For example, `utf-8` or `latin1`.

@@ -166,7 +166,7 @@ spec:
 ```
 
 Don't forget to replace `$HOST` with the hostname of your Humio instance,
-i.e. `cloud.humio.com` and `$INGEST_TOKEN` with your [ingest-token]({{< relref "ingest_tokens.md" >}}).
+i.e. `cloud.humio.com` and `$INGEST_TOKEN` with your [ingest-token]({{< relref "ingest-tokens.md" >}}).
 
 {{% notice note %}}
 Remember if you're an on-prem solution without TLS, the

@@ -1,6 +1,7 @@
 ---
 title: "Ingest Tokens"
 weight: 1
+aliases: ["sending-data-to-humio/ingest_tokens"]
 ---
 
 Humio has two kinds of API tokens. The _Personal API Tokens_ and _Ingest Tokens_.

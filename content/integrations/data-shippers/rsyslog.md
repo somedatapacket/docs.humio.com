@@ -58,7 +58,7 @@ template(name="humiotemplate"
 ```
 
 Remember to replace `$HOST` with your Humio host, i.e. `cloud.humio.com`
-and `$INGEST_TOKEN` with an [ingest token]({{< relref "ingest_tokens.md" >}})
+and `$INGEST_TOKEN` with an [ingest token]({{< relref "ingest-tokens.md" >}})
 for your repository.
 
 Furthermore `bulkmode` and `usehttps` _has_ to be set to `on` for

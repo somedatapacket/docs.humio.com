@@ -1,5 +1,6 @@
 ---
 title: "Relative Time Syntax"
+aliases: ["appendix/relative_time_syntax", "/searching_logs/advanced_topics/relative_time_syntax/"]
 ---
 
 In many places in Humio you have to specify a time interval. For example
