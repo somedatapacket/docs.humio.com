@@ -1,7 +1,7 @@
 ---
 title: "Pagerduty"
 pageImage: "/integrations/pagerduty.svg"
-categories: ["Integration"]
+categories: ["Integration", "OtherIntegration"]
 ---
 
 Humio supports Pagerduty alerts through our Notifier system.

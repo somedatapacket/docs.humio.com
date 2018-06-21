@@ -282,3 +282,29 @@ figcaption h4 {
   margin: 0 !important;
   margin-left: 20px !important;
 }
+
+h1 {
+  display: flex;
+  align-items: center;
+}
+
+h1 .badge {
+  margin-left: 16px;
+}
+
+.badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 3px;
+  border-color: rgb(240, 240, 240);
+  background-color: white;
+  font-size: 16px;
+}
+
+.badge--beta {
+  border-color: rgb(18, 150, 83);
+  background-color: rgb(17, 164, 90);
+  color: white !important;
+}

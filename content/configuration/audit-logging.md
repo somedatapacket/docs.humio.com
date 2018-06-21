@@ -1,10 +1,7 @@
 ---
 title: "Audit Logging"
+beta: true
 ---
-
-{{% notice warning %}}
-Audit logging is currently being implemented as is as such considered in __Beta__.
-{{% /notice %}}
 
 Humio emits audit log events on many users actions.
 

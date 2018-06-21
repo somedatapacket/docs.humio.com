@@ -2,13 +2,10 @@
 title: "NetFlow"
 categories: ["Integration", "DataShipper"]
 pageImage: /integrations/netflow.svg
+beta: true
 ---
 
 Humio has built in support for [NetFlow](https://en.wikipedia.org/wiki/NetFlow).
-
-{{% notice warning %}}
-This feature is in beta!
-{{% /notice %}}
 
 It is possible to send NetFlow data directly to Humio over UDP using ingest listeners.
 Ingest listeners are configured under settings in a repository.  

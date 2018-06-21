@@ -1,5 +1,5 @@
 ---
-title: "Root"
+title: "Front Page"
 ---
 
 # Documentation Overview

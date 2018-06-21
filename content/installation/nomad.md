@@ -2,6 +2,7 @@
 title: Running Humio on Nomad
 menuTitle: Nomad
 pageImage: /integrations/nomad.svg
+icon: /integrations/nomad-icon.svg
 weight: 400
 categories: ["Integration", "Platform"]
 ---

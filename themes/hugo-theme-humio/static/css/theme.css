@@ -485,6 +485,7 @@ blockquote cite {
 div.notices {
     margin: 2rem 0;
     position: relative;
+    clear: both;
 }
 div.notices p {
     padding: 15px;

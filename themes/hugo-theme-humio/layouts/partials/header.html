@@ -87,7 +87,8 @@
           {{ end }}
 
           {{if and (not .IsHome) (not .Params.chapter) }}
-            <h1>{{or .Params.heading .Title}}</h1>
+            <h1>{{or .Params.heading .Title}}
+              {{ if .Params.beta }}<div class="badge badge--beta">Beta</div>{{end}}</h1>
           {{end}}
 
         {{define "breadcrumb"}}

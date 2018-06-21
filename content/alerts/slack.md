@@ -1,6 +1,6 @@
 ---
 title: "Slack"
-categories: ["Integration"]
+categories: ["Integration", "OtherIntegration"]
 pageImage: /integrations/slack.svg
 ---
 
