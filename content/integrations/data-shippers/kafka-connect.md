@@ -2,6 +2,7 @@
 title: "Kafka Connect"
 categories: ["Integration", "DataShipper"]
 pageImage: /integrations/kafka.svg
+aliases: ["sending_logs_to_humio/integrations/kafka_connect"]
 categories_weight: -70
 ---
 
