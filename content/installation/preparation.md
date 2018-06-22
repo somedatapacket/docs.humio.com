@@ -20,7 +20,7 @@ Refer to the [Authentication Configuration]({{< ref "configuration/authenticatio
 
 ## Increase Open File Limit
 
-Humio needs to be able keep a lot of files open at a time. The default limits
+Humio needs to be able keep a lot of files open. The default limits
 on unix systems are typically too low for any significant amount of data.
 
 For Humio to perform you need to increase the limit.
