@@ -6,7 +6,7 @@ weight: 500
 This page provides information about the HTTP API for managing
 on-premises installations of Humio.
 
-All requests require **root-level access**. See [API token for local root access]({{< relref "root-access.md#root-token" >}}).
+All requests except the status endpoint require **root-level access**. See [API token for local root access]({{< relref "root-access.md#root-token" >}}).
 
 Note, this API is still very much _work-in-progress_.
 
@@ -36,11 +36,12 @@ Note, this API is still very much _work-in-progress_.
 | `/api/v1/listeners/$ID`                                                            | [GET,DELETE](#adding-a-ingest-listener-endpoint)                        | Add tcp listener (used for Syslog)                   |
 | `/api/v1/dataspace/$REPOSITORY_NAME/taggrouping`                                   | [GET,POST](#setup-grouping-of-tags)                                     | Setup grouping of tags                               |
 | `/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding`       | [GET,POST,DELETE](#configure-auto-sharding-for-high-volume-datasources) | Configure auto-sharding for high-volume datasources. |
+| `/api/v1/status`       | [GET](#status-endpoint) | Get status and version of node |
 
 
 ## Manage your cluster
 
-All cluster operation on the Humio cluster presumes a running Kafka/Zookeeper cluster.
+All cluster operations on the Humio cluster presumes a running Kafka/Zookeeper cluster.
 All Humio instances in a cluster must be hooked up to the same Kafka cluster,
 preferably being able to talk to more than one Kafka and zookeeper server instance.
 
@@ -492,6 +493,18 @@ The API allows `GET`/`POST`/`DELETE` of the settings. `POST` with no arguments
 applies a default number of shards, currently _4_.
 
 The API requires root access.
+
+## Status endpoint
+
+The status endpoint can be used to check whether the node can be reached and which version it's running.
+Useful as e.g. a smoke test after a humio upgrade or as a health check to be used with service discovery tools such as Consul.
+
+Example:
+
+```shell
+$ curl -s https://cloud.humio.com/api/v1/status
+{"status":"ok","version":"1.1.0--build-2965--sha-581e6ec64"
+```
 
 ### Examples
 

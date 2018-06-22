@@ -7,13 +7,8 @@ Official documentation for Humio
 First, you need to make sure you have [Hugo installed](https://gohugo.io/using-humio/quick-start/#step-1-install-hugo) on your machine.
 Then you can preview the docs by running
 
-
 ```
-$ cd humio; make build-docs; cd ..\docs.humio.com
-```
-
-```
-$ hugo server -D
+$ make run
 ```
 which will expose the documentation at [localhost:1313](http://localhost:1313).
 
