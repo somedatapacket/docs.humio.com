@@ -24,7 +24,7 @@ a power tool for your help-desk teams and your trusted navigator on an ocean of 
 
 
 _If you are new to log management the [introduction to log management]({{< ref "intro_to_log_management.md" >}})
-will help you get to grips with the core concepts is and where Humio fits in to the logging ecosystem._
+will help you get to grips with the core concepts and where Humio fits in to the logging ecosystem._
 
 ## Integrations
 
@@ -49,7 +49,7 @@ will help you get to grips with the core concepts is and where Humio fits in to 
 
 Before we can get started you need to have access to a running Humio instance.
 You have two option. You can [download](https://www.humio.com/download/)
-and run it yourself or creating a free account in [Humio Cloud](https://cloud.humio.com/).
+and run it yourself or create a free account in [Humio Cloud](https://cloud.humio.com/).
 
 {{< figure src="pages/welcome/eggs.svg" width="180px" >}}
 
