@@ -178,10 +178,10 @@ This feature decreases query time.
 
 See the [tags documentation]({{< ref "tags.md" >}}) for more on tags.
 
-## Logical Operators: `and`, `or`, `not` {#logical-operators}
+## Logical Operators: `and`, `or`, `not`, and `!` {#logical-operators}
 
 You can combine filters using the `and`, `or`, `not` Boolean operators,
-and group them with parentheses.
+and group them with parentheses.  `!` can also be used as an alternative to unary `not`.
 
 ### Examples
 
@@ -191,11 +191,21 @@ and group them with parentheses.
 | {{< query >}}foo bar{{< /query >}}               | Since the `and` operator is implicit, you do not need to include it in this simple type of query.
 | {{< query >}}statuscode=404 and (method=GET or method=POST){{< /query >}} | Match events with `404` in their `statuscode` field, and *either* `GET` or `POST` in their `method` field. |
 | {{< query >}}foo not bar{{< /query >}}           | This query is equivalent to the query {{< query >}}foo and (not bar){{< /query >}}.|
+| {{< query >}}!bar{{< /query >}}           | This query is equivalent to the query {{< query >}}not bar{{< /query >}}.|
 | {{< query >}}not foo bar{{< /query >}}           | This query is equivalent to the query {{< query >}}(not foo) and bar{{< /query >}}. This is because the `not` operator has a higher priority than `and` and `or`.|
 | {{< query >}}foo and not bar or baz{{< /query >}}| This query is equivalent to the query {{< query >}}foo and ((not bar) or baz){{< /query >}}. This is because Humio has a defined order of precedence for operators. It evaluates operators from the left to the right. |
 | {{< query >}}foo or not bar and baz{{< /query >}}| This query is equivalent to the query {{< query >}}foo or ((not bar) and baz){{< /query >}}. This is because Humio has a defined order of precedence for operators. It evaluates operators from the left to the right. |
 | {{< query >}}foo not statuscode=200{{< /query >}}| This query is equivalent to the query {{< query >}}foo and statuscode!=200{{< /query >}}. |
 
+## Negating the result of filter functions {#negate-filter-function}
+
+The `not` and `!` operators can also be used to negate filter-function expressions, which is syntactically more clean than passing in an explicit `negate=true` argument.  This examples of this are:
+
+```humio
+... | !cidr(ip, subnet="127.0.0/16") | ...
+... | !in(field, values=[a, b, c]) | ...
+... | !regex("xxx") | ...
+```
 
 ## Adding new fields {#adding-fields}
 
