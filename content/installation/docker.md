@@ -68,6 +68,7 @@ Humio is now running. Navigate to `http://localhost:8080` to view the Humio web 
 
 {{% notice info %}}
 In the above example, we started the Humio container with full access to the
+[comment]: <> Do we want to promote running humio in docker in production?
 network of the host machine (`--net=host`). In a production environment, you
 should restrict this access by using a firewall, or adjusting the Docker network
 configuration. Another possibility is to forward explicit ports.
