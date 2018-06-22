@@ -6,7 +6,7 @@ weight: 500
 This page provides information about the HTTP API for managing
 on-premises installations of Humio.
 
-All requests require **root-level access**. See [API token for local root access]({{< relref "root-access.md#root-token" >}}).
+All requests except the status endpoint require **root-level access**. See [API token for local root access]({{< relref "root-access.md#root-token" >}}).
 
 Note, this API is still very much _work-in-progress_.
 
@@ -41,7 +41,7 @@ Note, this API is still very much _work-in-progress_.
 
 ## Manage your cluster
 
-All cluster operation on the Humio cluster presumes a running Kafka/Zookeeper cluster.
+All cluster operations on the Humio cluster presumes a running Kafka/Zookeeper cluster.
 All Humio instances in a cluster must be hooked up to the same Kafka cluster,
 preferably being able to talk to more than one Kafka and zookeeper server instance.
 
