@@ -40,7 +40,7 @@ Here is a list of *rules of thumb* to help you get an idea of how much hardware 
 1. You need disk space to hold your compressed data. Never fill your disk more than 80%.
 
 **Example Setup**  
-Your machine has 64G of ram, and 8 hyper threads (4 cores), 1TB of storage.
+Your machine has 64G of ram, 8 hyper threads (4 cores) and 1TB of storage.
 Your machine can hold 460GB of ingest data compressed in ram, and process 8GB/s.  In this case
 that means that 10 seconds worth of query time will run through 80GB of data.  So this machine
 fits an 80GB/day ingest, with +5 days data available for fast querying.  
