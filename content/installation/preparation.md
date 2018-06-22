@@ -11,7 +11,7 @@ If you are just experimenting and playing around with Humio, you can probably
 skip this page. **For production deployments you want to set up authentication.**
 {{% /notice %}}
 
-If not configured otherwise Humio runs in `NO_AUTH` mode, meaning that there
+If authentication is not configured Humio runs in `NO_AUTH` mode, meaning that there
 are no access restrictions at all – anyone with access to the system, can do
 anything.
 
