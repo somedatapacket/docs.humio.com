@@ -55,7 +55,7 @@ docker pull humio/humio
 Run the Humio Docker image as a container:
 
 ```shell
-docker run -v $HOST_DATA_DIR:/data --net=host --name=humio --env-file=$PATH_TO_CONFIG_FILE humio/humio
+docker run -v $HOST_DATA_DIR:/data --net=host --name=humio --ulimit="nofile=8192:8192" --env-file=$PATH_TO_CONFIG_FILE humio/humio
 ```
 
 Replace `$HOST_DATA_DIR` with the path to the humio-data directory you created

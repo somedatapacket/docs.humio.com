@@ -20,10 +20,19 @@ Refer to the [Authentication Configuration]({{< ref "configuration/authenticatio
 
 ## Increase Open File Limit
 
-Humio needs to be able keep a lot of files open. The default limits
-on unix systems are typically too low for any significant amount of data.
+For production usage Humio needs to be able to keep a lot of files open for sockets and actual files from the file system. The default limits
+on unix systems are typically too low for any significant amount of data and concurrents users.
 
-For Humio to perform you need to increase the limit.
+You can verify the actual limits for the process using
+
+```shell
+PID=`ps -ef | grep java | grep humio-assembly | head -n 1 | awk '{print $2}'`
+cat /proc/$PID/limits | grep 'Max open files'
+```
+
+The minimum required settings depend on the number of open network connections and datasources.
+There is no harm in setting these limits high for the Humio process. A value of at least 8192 is recommended.
+
 You can do that by running:
 
 ```shell
@@ -40,3 +49,5 @@ EOF
 ```
 
 **These settings apply to the next login of the Humio user, not to any running processes.**
+
+If you run Humio using Docker then you can raise the limit using the `--ulimit="nofile=8192:8192"` option on the `docker run` command.
