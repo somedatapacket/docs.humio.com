@@ -25,7 +25,7 @@ running Humio on bare metal please refer to our [Bare Metal Installation Guide](
 
 ## Hardware Requirements
 
-Hardware requirements depend Humio will be used, both how much data you will be
+Hardware requirements depend on how Humio will be used, both how much data you will be
 ingesting and how many concurrent searches you will be running.
 
 
