@@ -41,8 +41,8 @@ Here is a list of *rules of thumb* to help you get an idea of how much hardware 
 
 **Example Setup**  
 Your machine has 64G of ram, 8 hyper threads (4 cores) and 1TB of storage.
-Your machine can hold 460GB of ingest data compressed in ram, and process 8GB/s.  In this case
-that means that 10 seconds worth of query time will run through 80GB of data.  So this machine
+Your machine can hold 460GB of ingest data compressed in ram and process 8GB/s.  In this case
+it means 10 seconds worth of query time will run through 80GB of data.  So this machine
 fits an 80GB/day ingest, with +5 days data available for fast querying.  
 You can store 7.2TB of data before your disk is 80% full, corresponding to 90 days at 80GB/day ingest
 
