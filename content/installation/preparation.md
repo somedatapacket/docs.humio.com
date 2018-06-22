@@ -8,7 +8,7 @@ weight: 3
 
 {{% notice tip %}}
 If you are just experimenting and playing around with Humio, you can probably
-skip this page. **For production deployments you want to set up authentication, the first thing you do.**
+skip this page. **For production deployments you want to set up authentication.**
 {{% /notice %}}
 
 If not configured otherwise Humio runs in `NO_AUTH` mode, meaning that there
