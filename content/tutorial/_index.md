@@ -4,7 +4,7 @@ weight: 95
 aliases: ["getting_started", "getting_started/tutorial"]
 ---
 
-This tutorial will teach you search and send data to Humio.
+This tutorial will teach you to search and send data to Humio.
 Before we get started make sure you have a running installation of Humio or
 a free Humio Cloud account:
 
@@ -66,7 +66,7 @@ and copying the default token (or creating a new one).
 
 ## 3. Choosing a Parser
 
-When data arrive at Humio they need to be parsed. Therefore you have to specify
+When data arrive at Humio it needs to be parsed. Therefore you have to specify
 which parser should be used to interpret your data. Which one your need depends
 your data format. A safe bet is the `kv` (Key-Value) parser.
 

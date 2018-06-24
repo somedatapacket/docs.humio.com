@@ -17,17 +17,17 @@ menuTOC:
 ---
 
 The Humio Query Language is the syntax that lets you compose queries to retrieve,
-process, and analyze business data in your system.
+process, and analyze data in Humio.
 
 Before reading this section, we recommend that you read the
 [tutorial]({{< ref "tutorial/_index.md" >}}). The tutorial introduces you to queries
-in Humio, and lets you try out some sample queries that demonstrate the basic principles.
+in Humio, and lets you try out sample queries that demonstrate the basic principles.
 
 
 ## Principles {#intro}
 
 The Query Language is built around a 'chain' of data processing commands
-linked together. Each expression passes its result to the next expression in sequence.
+linked together. Each expression passes its result to the next expression in the sequence.
 That way you can create complex queries by combining query expressions.
 
 This architecture is similar to the idea of [command pipes](https://en.wikipedia.org/wiki/Pipeline_(Unix))
@@ -51,7 +51,7 @@ graph LR;
     E{Final Result}
 {{< /mermaid >}}
 <figcaption>Events flow through the query pipeline, from the repository to the left.
-The events are as it passes through filters, and aggregates. After an aggregation the data is usually no longer events, one or more simple rows containing the results.</figcaption>
+Events are filtered or transformed as it passes through filters, and aggregates. After an aggregation the data is usually no longer events, but one or more simple rows containing the results.</figcaption>
 </figure>
 
 As the data passes through the query, Humio filters, transforms, and aggregates
@@ -163,7 +163,7 @@ that do not have the field `foo`.
 ### Tag Filters {#tag-filters}
 
 Tag filters are a special kind of field filter. They behave in the same way as
-regular [filed filters]({{< ref "#field-filters" >}}).
+regular [filters]({{< ref "#field-filters" >}}).
 
 In the example shown in the previous section ([Basic Query Components]({{< ref "#pipeline" >}})),
 we have separated the tag filters from the rest of the query by a pipe character `|`.
@@ -172,7 +172,7 @@ We recommend that you include the pipe character before tag filters in your
 queries to improve the readability of your queries.
 
 However, these pipe characters are not mandatory. The Humio query engine can
-recognize tag filters when they are at the front of the query, and use this
+recognize tag filters, and use this
 information to narrow  down the number of data sources to search.
 This feature decreases query time.
 
@@ -228,6 +228,7 @@ to find the entries that have less than 1000 free disk space:
 regex("disk_free=(?<space>[0-9]+)") | space < 1000
 ```
 
+Named capturing groups are used to extract fields in regular expressions. The field `space` is extracted and is then available after the regex function.  
 The same can be written using a regex literal:
 
 ```humio
@@ -252,7 +253,7 @@ simple filtering as possible earlier in the query chain before applying the rege
 
 Fields can also be added by functions.
 Most functions set their result in a field that has the function name prefixed
-with a '\_' by default, e.g. the {{% function "count" %}} function outputs to `_count` by default.
+with a '\_' by default. For example the {{% function "count" %}} puts its result in a field `_count`.
 
 Most functions that produce fields have a parameter called `as`. By setting this parameter you
 can specify the name of the output field, for example:
