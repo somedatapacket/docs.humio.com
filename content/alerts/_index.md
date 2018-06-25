@@ -109,6 +109,7 @@ See the list for an explanation of the placeholders:
 
 | Placeholder                   | Description                                                |
 |-------------------------------|------------------------------------------------------------|
+| `{field:$FIELE_NAME}`         | Extracts the value of `$FIELD_NAME` from the alert result set. If there are multiple rows in the result, the first result is used. Put field names with spaces in double quotes, i.e. `{field"My Field"}`. 
 | `{alert_name}`                | The user made name of the alert fired.                     |
 | `{alert_description}`         | A user made description of the alert fired.                |
 | `{alert_triggered_timestamp}` | The time at which the alert was triggered.                 |
