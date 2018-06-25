@@ -93,7 +93,7 @@ The JSON with connector properties could look like below:
     "schema.ignore": true,
     "behavior.on.malformed.documents": "warn",
     "drop.invalid.message": true,
-    "connection.url": "http://$HOST:$PORT/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch",
+    "connection.url": "http://$HOST:$PORT/api/v1/repos/$REPOSITORY_NAME/ingest/elasticsearch",
     "type.name": "kafka-ingest",
     "max.retries": 1000
   }
@@ -214,7 +214,7 @@ the JSON configuration (`humio-connect.json`):
     "schema.ignore": true,
     "behavior.on.malformed.documents": "warn",
     "drop.invalid.message": true,
-    "connection.url": "https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch",
+    "connection.url": "https://$HOST:443/api/v1/repos/$REPOSITORY_NAME/ingest/elasticsearch",
     "type.name": "mytype",
     "max.retries": 1000
   }

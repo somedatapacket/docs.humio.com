@@ -36,7 +36,7 @@ filebeat.prospectors:
     "@type": $PARSER_NAME
 
 output.elasticsearch:
-  hosts: ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+  hosts: ["https://$HOST:443/api/v1/repos/$REPOSITORY_NAME/ingest/elasticsearch"]
   username: $INGEST_TOKEN
 ```
 

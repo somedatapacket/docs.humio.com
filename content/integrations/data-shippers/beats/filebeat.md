@@ -63,7 +63,7 @@ filebeat.prospectors:
 
 output:
   elasticsearch:
-    hosts: ["$HOST/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+    hosts: ["$HOST/api/v1/repos/$REPOSITORY_NAME/ingest/elasticsearch"]
     username: $INGEST_TOKEN
     compression_level: 5
     bulk_max_size: 50
@@ -204,7 +204,7 @@ filebeat:
 
 output:
   elasticsearch:
-    hosts: ["https://cloud.humio.com:443/api/v1/dataspaces/test/ingest/elasticsearch"]
+    hosts: ["https://cloud.humio.com:443/api/v1/repos/test/ingest/elasticsearch"]
     username: "ingest-token"
     compression_level: 5
     bulk_max_size: 50

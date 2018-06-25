@@ -4,7 +4,7 @@ TOKEN=none
 REPOSITORY_NAME=bro
 HOST=http://localhost:8080
 
-curl -0 -v "$HOST/api/v1/dataspaces/$REPOSITORY_NAME/dashboards/" \
+curl -0 -v "$HOST/api/v1/repos/$REPOSITORY_NAME/dashboards/" \
 -H 'Content-Type: application/json; charset=utf-8' \
 -H "Authorization: Bearer $TOKEN" \
 -d @- << EOF
@@ -177,7 +177,7 @@ curl -0 -v "$HOST/api/v1/dataspaces/$REPOSITORY_NAME/dashboards/" \
 }
 EOF
 
-curl -0 -v "$HOST/api/v1/dataspaces/$REPOSITORY_NAME/dashboards/" \
+curl -0 -v "$HOST/api/v1/repos/$REPOSITORY_NAME/dashboards/" \
 -H 'Content-Type: application/json; charset=utf-8' \
 -H "Authorization: Bearer $TOKEN" \
 -d @- << EOF

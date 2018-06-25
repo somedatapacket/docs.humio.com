@@ -27,7 +27,7 @@ Filebeat can handle many problems like network problems, retrying, batching, spi
 {{% /notice %}}
 
 ```
-POST	/api/v1/dataspaces/$REPOSITORY_NAME/ingest-messages
+POST	/api/v1/repos/$REPOSITORY_NAME/ingest-messages
 ```
 
 Example sending 4 accesslog lines to Humio
@@ -40,10 +40,10 @@ Example sending 4 accesslog lines to Humio
       "host": "webhost1"
     },
     "messages": [
-       "192.168.1.21 - user1 [02/Nov/2017:13:48:26 +0000] \"POST /humio/api/v1/dataspaces/humio/ingest HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.015 664 0.015",
-       "192.168.1.49 - user1 [02/Nov/2017:13:48:33 +0000] \"POST /humio/api/v1/dataspaces/developer/ingest HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.014 657 0.014",
-       "192.168.1..21 - user2 [02/Nov/2017:13:49:09 +0000] \"POST /humio/api/v1/dataspaces/humio HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.013 565 0.013",
-       "192.168.1.54 - user1 [02/Nov/2017:13:49:10 +0000] \"POST /humio/api/v1/dataspaces/humio/queryjobs HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.015 650 0.015"
+       "192.168.1.21 - user1 [02/Nov/2017:13:48:26 +0000] \"POST /humio/api/v1/repos/humio/ingest HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.015 664 0.015",
+       "192.168.1.49 - user1 [02/Nov/2017:13:48:33 +0000] \"POST /humio/api/v1/repos/developer/ingest HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.014 657 0.014",
+       "192.168.1..21 - user2 [02/Nov/2017:13:49:09 +0000] \"POST /humio/api/v1/repos/humio HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.013 565 0.013",
+       "192.168.1.54 - user1 [02/Nov/2017:13:49:10 +0000] \"POST /humio/api/v1/repos/humio/queryjobs HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.015 650 0.015"
     ]
   }
 ]
@@ -71,7 +71,7 @@ Name            | Required      | Description
 Previous example as a curl command:
 
 ``` shell
-curl -v -X POST localhost:8080/api/v1/dataspaces/developer/ingest-messages/ \
+curl -v -X POST localhost:8080/api/v1/repos/developer/ingest-messages/ \
 -H "Content-Type: application/json" \
 -d @- << EOF
 [
@@ -81,10 +81,10 @@ curl -v -X POST localhost:8080/api/v1/dataspaces/developer/ingest-messages/ \
       "host": "webhost1"
     },
     "messages": [
-       "192.168.1.21 - user1 [02/Nov/2017:13:48:26 +0000] \"POST /humio/api/v1/dataspaces/humio/ingest HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.015 664 0.015",
-       "192.168.1.49 - user1 [02/Nov/2017:13:48:33 +0000] \"POST /humio/api/v1/dataspaces/developer/ingest HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.014 657 0.014",
-       "192.168.1.21 - user2 [02/Nov/2017:13:49:09 +0000] \"POST /humio/api/v1/dataspaces/humio HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.013 565 0.013",
-       "192.168.1.54 - user1 [02/Nov/2017:13:49:10 +0000] \"POST /humio/api/v1/dataspaces/humio/queryjobs HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.015 650 0.015"
+       "192.168.1.21 - user1 [02/Nov/2017:13:48:26 +0000] \"POST /humio/api/v1/repos/humio/ingest HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.015 664 0.015",
+       "192.168.1.49 - user1 [02/Nov/2017:13:48:33 +0000] \"POST /humio/api/v1/repos/developer/ingest HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.014 657 0.014",
+       "192.168.1.21 - user2 [02/Nov/2017:13:49:09 +0000] \"POST /humio/api/v1/repos/humio HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.013 565 0.013",
+       "192.168.1.54 - user1 [02/Nov/2017:13:49:10 +0000] \"POST /humio/api/v1/repos/humio/queryjobs HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.015 650 0.015"
     ]
   }
 ]
@@ -94,7 +94,7 @@ EOF
 Shorter example using the built-in kv parser
 
 ``` shell
-curl -v -X POST localhost:8080/api/v1/dataspaces/developer/ingest-messages/ \
+curl -v -X POST localhost:8080/api/v1/repos/developer/ingest-messages/ \
 -H "Content-Type: application/json" \
 -d @- << EOF
 [
@@ -113,7 +113,7 @@ This API should be used when data is well structured and no extra parsing
 is needed. (Except for the optional extra key-value parsing)
 
 ```
-POST	/api/v1/dataspaces/$REPOSITORY_NAME/ingest
+POST	/api/v1/repos/$REPOSITORY_NAME/ingest
 ```
 
 The following example request contains two events. Both these events share the same tags:
@@ -261,7 +261,7 @@ Standard HTTP response codes.
 #### Example
 
 ``` shell
-curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/ingest \
+curl https://demo.humio.com/api/v1/repos/$REPOSITORY_NAME/ingest \
  -X POST \
  -H "Content-Type: application/json" \
  -H "Authorization: Bearer $API_TOKEN" \

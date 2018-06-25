@@ -54,7 +54,7 @@ input{
 }
 output{
   elasticsearch{
-    hosts => ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch/"]
+    hosts => ["https://$HOST:443/api/v1/repos/$REPOSITORY_NAME/ingest/elasticsearch/"]
     user => "$INGEST_TOKEN"
     password => "notused" # a password has to be set, but Humio does not use it
   }

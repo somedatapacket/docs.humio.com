@@ -35,7 +35,7 @@ Note, this API is still very much _work-in-progress_.
 | `/api/v1/listeners`                                                                | [GET,POST](#adding-a-ingest-listener-endpoint)                          | Add tcp listener (used for Syslog)                   |
 | `/api/v1/listeners/$ID`                                                            | [GET,DELETE](#adding-a-ingest-listener-endpoint)                        | Add tcp listener (used for Syslog)                   |
 | `/api/v1/dataspace/$REPOSITORY_NAME/taggrouping`                                   | [GET,POST](#setup-grouping-of-tags)                                     | Setup grouping of tags                               |
-| `/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding`       | [GET,POST,DELETE](#configure-auto-sharding-for-high-volume-datasources) | Configure auto-sharding for high-volume datasources. |
+| `/api/v1/repos/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding`       | [GET,POST,DELETE](#configure-auto-sharding-for-high-volume-datasources) | Configure auto-sharding for high-volume datasources. |
 | `/api/v1/status`       | [GET](#status-endpoint) | Get status and version of node |
 
 
@@ -332,7 +332,7 @@ curl -XPOST \
  -d @create-rsyslogd-rfc3339-parser.json \
  -H "Authorization: Bearer $TOKEN" \
  -H 'Content-Type: application/json' \
- "http://localhost:8080/api/v1/dataspaces/$REPOSITORY_NAME/parsers/rsyslogd-rfc3339"
+ "http://localhost:8080/api/v1/repos/$REPOSITORY_NAME/parsers/rsyslogd-rfc3339"
 ```
 
 Example setting up a listener using the rsyslogd forward format added above:
@@ -378,8 +378,8 @@ sudo sysctl net.core.rmem_max=16777216
 ## Setup grouping of tags
 
 ```
-GET    /api/v1/dataspaces/$REPOSITORY_NAME/taggrouping
-POST   /api/v1/dataspaces/$REPOSITORY_NAME/taggrouping
+GET    /api/v1/repos/$REPOSITORY_NAME/taggrouping
+POST   /api/v1/repos/$REPOSITORY_NAME/taggrouping
 ```
 
 Please note that this is a feature for advanced users only.
@@ -407,7 +407,7 @@ to hash the field `#host` into 8 buckets, and `#client_ip` into 10 buckets.
 Note how the field names do not include the `#` prefix in the rules.
 
 ```shell
-curl http://localhost:8080/api/v1/dataspaces/$REPOSITORY_NAME/taggrouping \
+curl http://localhost:8080/api/v1/repos/$REPOSITORY_NAME/taggrouping \
   -X POST \
   -H "Authorization: Bearer $TOKEN" \
   -H 'Content-Type: application/json' \
@@ -509,10 +509,10 @@ $ curl -s https://cloud.humio.com/api/v1/status
 ### Examples
 
 ```shell
-curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding"
-curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding"
-curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding?number=7"
-curl -XDELETE -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding"
+curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/repos/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding"
+curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/repos/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding"
+curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/repos/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding?number=7"
+curl -XDELETE -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/repos/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding"
 ```
 
 Humio also supports detecting if there is high load on a datasource, and automatically trigger this auto-sharding on the datasources.

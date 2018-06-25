@@ -15,7 +15,7 @@ use your [Sandbox Repository]({{< ref "the-sandbox.md" >}}).
 The command to set up logging for your Heroku app is then:
 
 ```shell
-heroku drains:add https://$INGEST_TOKEN@$HOST/api/v1/dataspaces/$REPOSITORY_NAME/logplex -a myapp
+heroku drains:add https://$INGEST_TOKEN@$HOST/api/v1/repos/$REPOSITORY_NAME/logplex -a myapp
 ```
 
 {{< partial "common-rest-params.html" >}}

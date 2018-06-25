@@ -20,7 +20,7 @@ The file should be in a part named `file`.
 Replace `myfile.csv` with the path to your file.
 
 ``` shell
-curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/files \
+curl https://demo.humio.com/api/v1/repos/$REPOSITORY_NAME/files \
  -H "Authorization: Bearer $API_TOKEN" \
  -F "file=@myfile.csv"
 ```
