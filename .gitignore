@@ -3,5 +3,5 @@
 public/
 test/
 data/releases.yml
-data/functions.yml
+data/functions.json
 *.swp
