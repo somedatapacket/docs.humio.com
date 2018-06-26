@@ -2,8 +2,6 @@
 title: Status API
 ---
 
-## Status
-
 Humio has a status endpoint for monitoring if Humio is up and running. The endpoint can be called without authentication.
 
 ```
