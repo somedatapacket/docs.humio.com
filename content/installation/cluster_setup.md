@@ -236,10 +236,6 @@ mkdir /data/humio-data
 docker pull humio/humio-core
 ```
 
-{{% notice warning %}}
-If you get a 'permission denied' error, then contact Humio to gain access to the `humio/humio-core` private repository.
-{{% /notice %}}
-
 1. Run the Humio Docker image as a container:
 
 ```shell
