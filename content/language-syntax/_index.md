@@ -484,8 +484,8 @@ comments just like Java or C++.
 
 ## Links
 When showing search results in a table it is possible to create a link that is clickable.
-If the value of a field looks like a link, the UI will make it clickable if it is in a table.
-It is possible to construct links using the search language. The {{% function "format" %}} function can be handy for this.
+If the value of a field looks like a link, the UI will make it clickable.
+Links can be contructed using the search language. The {{% function "format" %}} function can be handy for this.
 
 ``` humio
 $extractRepo() | top(repo) | format("https://myhumio/%s", field=repo, as=link)
