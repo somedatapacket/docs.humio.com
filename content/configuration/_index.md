@@ -56,6 +56,11 @@ KAFKA_SERVERS=kafkahost01:9092,kafkahost02:9092
 # Note, there is NO security on the zookeeper connections. Keep inside trusted LAN.
 #ZOOKEEPER_URL=localhost:2181
 
+
+#Let Humio send emails using the Postmark service
+#Create a Postmark account and insert the token here
+#POSTMARK_SERVER_SECRET=abc2454232
+
 # Select the TCP port to listen for http.
 #HUMIO_PORT=8080
 # Select the TCP port for ElasticSearch Bulk API
