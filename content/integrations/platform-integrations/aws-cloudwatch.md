@@ -21,15 +21,23 @@ choice.
 
 {{% notice note %}}
 
-When asked by pick a stack name, use a globally unique one. The integration uses an S3 bucket
-and bucket names need to be globally unique.
+Use a **globally unique** stack name. The integration uses an S3 bucket
+and bucket names in S3 needs to be globally unique.
 
 {{% /notice %}}
 
-You need to manually send a test event to the
-[AutoSubscriber]({{< ref "#autosubscriber" >}}) and
-[CloudwatchBackfiller]({{< ref "#cloudwatchbackfiller" >}}) in order to enable
-them. You can do this via the Lambda UI in AWS.
+The integration uses a set of AWS Lambdas and you need to manually
+send a test event to the [AutoSubscriber]({{< ref "#autosubscriber"
+>}}) and [CloudwatchBackfiller]({{< ref "#cloudwatchbackfiller" >}})
+in order to enable them.
+
+You can send a test event using the Lambda part of the AWS
+Console. The content of test event does not matter.
+
+{{< figure src="/pages/integrations/platform-integrations/aws-cloudwatch/test-event-lambda.png" >}}
+
+
+### Launch
 
 
 | Region                            |                               |
@@ -45,21 +53,30 @@ If your region is missing contact us via
 [Slack](https://community.humio.com).
 
 
-## Details
+## Launch Parameters
 
-The ingestion uses a CloudFormation template to install itself.
+The integration is installed using a CloudFormation template.
 
 The template supports the following parameters:
 
 * `HumioHost` - The host you want to ship your Humio logs to.
-* `HumioDataspaceName` - The name of the repository in Humio that you want to ship logs to.
-* `HumioAutoSubscription` - Enable automatic subscription to new log groups.
-* `HumioIngestToken` - The value of your ingest token from your Humio account.
-* `HumioSubscriptionBackfiller` - This will check for missed or old log groups that existed before the Humio integration will install. This increases execution time of the lambda by about 1s. Defaults to **true**.
-* `HumioProtocol` - The transport protocol used for delivering log events to Humio. `HTTPS` is default and recommended.
-* `HumioSubscriptionPrefix` - By adding this filter the Humio Ingester will only subscribe to log groups that start with this prefix.
+* `HumioDataspaceName` - The name of the repository in Humio that you
+  want to ship logs to.
+* `HumioAutoSubscription` - Enable automatic subscription to new log
+  groups.
+* `HumioIngestToken` - The value of your ingest token from your Humio
+  account.
+* `HumioSubscriptionBackfiller` - This will check for missed or old
+  log groups that existed before the Humio integration will
+  install. This increases execution time of the lambda by about
+  1s. Defaults to **true**.
+* `HumioProtocol` - The transport protocol used for delivering log
+  events to Humio. `HTTPS` is default and recommended, but `HTTP` is
+  possible as well.
+* `HumioSubscriptionPrefix` - By adding this filter the Humio Ingester
+  will only subscribe to log groups whose paths start with this
+  prefix.
 
-Once you know the parameters you want to customize, you can apply the template by running the following command:
 
 ## How this integration works
 
