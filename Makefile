@@ -10,7 +10,10 @@ run-docker: deps
 	# Runs hugo server in a docker container, container is automatically destroyed when stopped
 	bash run-hugo-docker.sh
 
-data/releases.yml:
+data:
+	mkdir data/
+
+data/releases.yml: data
 	curl -fs https://repo.humio.com/repository/maven-releases/com/humio/server/$(RELEASE)/server-$(RELEASE).releases.yml > data/releases.yml
 
 data/functions.json:
