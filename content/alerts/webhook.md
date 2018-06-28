@@ -6,7 +6,7 @@ Webhooks are our most flexible type of notifier. The webhook notifier can perfor
 and can therefore be used to integrate 3rd party services that Humio doesn't have natively integrated.
 
 
-| Parameter            | Description            |
+| Parameter             | Description            |
 |-----------------------|-----------------------|
 | Endpoint URL          | The URL of the service the webhook is contacting. |
 | HTTP Method           | HTTP method of the call, usually `POST` |
