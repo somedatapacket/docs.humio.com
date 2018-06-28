@@ -35,20 +35,28 @@ Click the tooltips ('?') next to each field for information on their purpose.
 
 ## Timestamps {#parsing-timestamps}
 
-The default timestamp format is [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601),
-with the format `yyyy-MM-dd'T'HH:mm:ss[.SSS]XXX`. Milliseconds are optional, and `XXX` specifies the timezone offset.
+When creating a parser, it is important to specify how to extract timestamps in the incoming data.
+First of all the timestamp needs to be extracted into a field. Then the value of that field should be parsed into a timestamp using a timestamp format. 
 
-If the timestamps in the data are in local time, and do not have a time zone, then you can specify the time zone manually.
-The **Timezone** input field becomes editable when the timestamp format does not have a time zone designator.
+extracting the timestamp field is done by extracting the field as `@timestamp` in a regular expression parser, or by specifying the name of the field in a JSON parser.  
+Then it is possible to specify the timestamp format, that will be used to parse the value into a timestamp.
 
 {{% notice note %}}
 ***Timestamp format***  
 Look at [Java's DateTimeFormatter documentation](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html) for details on how to define the timestamp format.
 {{% /notice %}}
 
+The default timestamp format used is [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601),
+with the format `yyyy-MM-dd'T'HH:mm:ss[.SSS]XXX`. Milliseconds are optional, and `XXX` specifies the timezone offset.
+
+If the timestamps in the data are in local time, and do not have a time zone, then you can specify the time zone manually.
+The **Timezone** input field becomes editable when the timestamp format does not have a time zone designator.
+
+
+
 {{% notice note %}}
-***timestamp in milliseconds***  
-You can specify `millis` in the timestamp format. This specifies that the time is in milliseconds (Epoch time in milliseconds).
+***Epoch or Unixtime***  
+You can specify `unixtime` or `unixtime_millis` as the timestamp format. This specifies that the time is in seconds or milliseconds with UTC timezone (Epoch time).
 {{% /notice %}}
 
 ## Key-value Parsing {#key-value}
