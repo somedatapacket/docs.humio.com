@@ -32,7 +32,7 @@ To create a user with root privileges on the server, run:
 
 ```shell
 TOKEN=`cat /data/humio-data/local-admin-token.txt`
-curl http://localhost:8080/api/v1/users \
+curl $BASEURL/api/v1/users \
  -X POST \
  -H "Content-Type: application/json" \
  -H "Authorization: Bearer $TOKEN" \

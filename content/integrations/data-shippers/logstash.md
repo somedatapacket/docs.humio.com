@@ -54,7 +54,7 @@ input{
 }
 output{
   elasticsearch{
-    hosts => ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch/"]
+    hosts => ["https://$BASEURL/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch/"]
     user => "$INGEST_TOKEN"
     password => "notused" # a password has to be set, but Humio does not use it
   }
@@ -62,6 +62,10 @@ output{
 ```
 
 {{< partial "common-rest-params" >}}
+
+{{% notice warning %}}
+Logstash uses 9200 as the default port, if no port is specified. So if Humio is listening on the default ports 80 or 443, these ports should be explicitly put in the $BASEURL
+{{% /notice %}}
 
 In the above example, Logstash calls the Linux `date` command every
 five seconds. It passes the output from this command to Humio.

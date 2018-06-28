@@ -261,7 +261,7 @@ Standard HTTP response codes.
 #### Example
 
 ``` shell
-curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/ingest \
+curl $BASEURL/api/v1/dataspaces/$REPOSITORY_NAME/ingest \
  -X POST \
  -H "Content-Type: application/json" \
  -H "Authorization: Bearer $API_TOKEN" \

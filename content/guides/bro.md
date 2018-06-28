@@ -69,7 +69,7 @@ create one by clicking 'Add Repository' on the front page of Humio.
 Or you can create it from the command line like this:
 
 ```shell
-curl -v 'http://localhost:8080/humio/api/v1/dataspaces/bro' \
+curl -v '$BASEURL/humio/api/v1/dataspaces/bro' \
   -X PUT \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \

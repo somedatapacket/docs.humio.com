@@ -56,14 +56,14 @@ The following example shows a simple Filebeat configuration that sends data to H
 ``` yaml
 filebeat.prospectors:
 - paths:
-    - <path-to-your-application-log>
+    - $PATH_TO_LOG_FILE
   encoding: utf-8
   fields:
-    "type": <name-of-your-application-log-parser>
+    "type": $TYPE
 
 output:
   elasticsearch:
-    hosts: ["$HOST/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+    hosts: ["$BASEURL/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
     username: $INGEST_TOKEN
     compression_level: 5
     bulk_max_size: 50
@@ -76,15 +76,15 @@ The Filebeat configuration file is located at `/etc/filebeat/filebeat.yml` on Li
 
 You must make the following changes to the sample configuration:
 
-* Insert a `path` section for each log file you want to monitor.
+* Insert a `path` section for each log file you want to monitor in `$PATH_TO_LOG_FILE`.
   It is possible to insert a prospector configuration (with `paths` and `fields` etc) for each file that filebeat should monitor
 
-* Specify the type of the events. Humio will use the type field to decide which parser it will use to parse the incoming events.
+* Specify the type of the events in `$TYPE`. Humio will use the type field to decide which parser it will use to parse the incoming events.
   This is done by specifying the `type` field in the fields section. See the Parsing Data section below.
 
 * Add other fields in the fields section. These fields, and their values, will be added to each event.
 
-* Insert the URL containing the Humio host in the `hosts` field in the ElasticSearch output. For example `https://cloud.humio.com:443`
+* Insert the URL containing the Humio host in the `$BASEURL` field in the ElasticSearch output. For example `https://cloud.humio.com:443`
   Note that the URL specifies the repository that Humio sends events to.
   In the example, the URL points to Humio in the cloud, which is fine if you are using our hosted service.  
   It is important to specify the port number in the URL otherwise Filebeat defaults to using 9200.

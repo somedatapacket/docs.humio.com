@@ -64,17 +64,18 @@ metricbeat.modules:
       - socket # linux only
 
 output.elasticsearch:
-  hosts: ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+  hosts: ["https://$BASEURL/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
   username: $INGEST_TOKEN
 ```
 
 {{< partial "common-rest-params.html" >}}
 
-{{% notice note %}}
-***Configuration file***
+
+{{% notice warning %}}
+Metricbeat uses 9200 as the default port, if no port is specified. So if Humio is listening on the default ports 80 or 443, these ports should be explicitly put in the $BASEURL
+{{% /notice %}}
 
 The Metricbeat configuration file is located at `/etc/metricbeat/metricbeat.yml` on Linux.
-{{% /notice %}}
 
 ## Running Metricbeat
 

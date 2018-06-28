@@ -30,10 +30,9 @@ Here is an example of updating the license key using CURL:
 ```shell
 LICENSE_KEY="....."
 TOKEN=`cat /data/humio-data/local-admin-token.txt`
-HUMIO_HOST="http://localhost:8080"
 curl -v -X POST -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' \
   -d "{ \"query\": \"mutation { updateLicenseKey(license: \\\"$LICENSE_KEY\\\") { expiresAt } }\" }" \
-  https://$HUMIO_HOST/graphql
+  $BASEURL/graphql
 ```
 
 This will return status 200 and the date your license expires.

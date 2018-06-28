@@ -11,6 +11,7 @@ you need. This makes creating integrations and clients for Humio much easier.
 The GraphQL API is documented by our interactive API explorer:
 
 https://cloud.humio.com/docs/api-explorer _(Requires a [Humio Cloud Account](https://cloud.humio.com/))_
+$BASEURL/docs/api-explorer
 
 ## New to GraphQL?
 
@@ -42,6 +43,7 @@ it under:
 There newest version is always available under:
 
 https://cloud.humio.com/docs/api-explorer _(Requires a [Humio Cloud Account](https://cloud.humio.com/))_
+$BASEURL/docs/api-explorer (for on premise installations)
 
 ## Why use both GraphQL and REST?
 

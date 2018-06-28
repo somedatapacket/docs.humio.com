@@ -91,7 +91,7 @@ GET    /api/v1/clusterconfig/members
 Example:
 
 ```shell
-curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/members"
+curl -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/members"
 ```
 
 ## Modifying a host in your cluster
@@ -107,14 +107,14 @@ PUT    /api/v1/clusterconfig/members/$HOST
 Example:
 
 ```shell
-curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/members/1" > host-1.json
-curl -XPUT -d @host-1.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/members/1"
+curl -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/members/1" > host-1.json
+curl -XPUT -d @host-1.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/members/1"
 ```
 
 outputs:
 
 ```json
-{"vhost":1,"uuid":"7q2LwHv6q3C5jmdGj3EYL1n56olAYcQy","internalHostUri":"http://localhost:8080","displayName":"host-1"}
+{"vhost":1,"uuid":"7q2LwHv6q3C5jmdGj3EYL1n56olAYcQy","internalHostUri":"$BASEURL","displayName":"host-1"}
 ```
 
 You can edit the fields internalHostUri and displayName in this structure and POST the resulting changes back to the server, preserving the vhost and uuid fields.
@@ -130,7 +130,7 @@ DELETE    /api/v1/clusterconfig/members/$HOST
 Example:
 
 ```shell
-curl -XDELETE -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/members/1"
+curl -XDELETE -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/members/1"
 ```
 
 It is possible to drop a host, even if it has data and assigned partitions, by adding the query parameter "accept-data-loss" with the value "true".
@@ -142,7 +142,7 @@ This silently drops your data.
 Example:
 
 ```shell
-curl -XDELETE -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/members/1?accept-data-loss=true"
+curl -XDELETE -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/members/1?accept-data-loss=true"
 ```
 
 ## Applying default partition settings
@@ -156,7 +156,7 @@ POST   /api/v1/clusterconfig/partitions/setdefaults
 Example:
 
 ```shell
-curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/partitions/setdefaults"
+curl -XPOST -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/partitions/setdefaults"
 ```
 
 ## Querying and assigning storage partitions to hosts
@@ -178,8 +178,8 @@ POST   /api/v1/clusterconfig/segments/partitions
 Example:
 
 ```shell
-curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/partitions" > segments-partitions.json
-curl -XPOST -d @segments-partitions.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/partitions"
+curl -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/segments/partitions" > segments-partitions.json
+curl -XPOST -d @segments-partitions.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/segments/partitions"
 ```
 
 ## Assigning default storage partitions to hosts
@@ -200,7 +200,7 @@ Example:
 
 ```shell
 echo '{ "partitionCount": 7, "replicas": 2 }' > settings.json
-curl -XPOST -d @settings.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/partitions/set-replication-defaults"
+curl -XPOST -d @settings.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/segments/partitions/set-replication-defaults"
 ```
 
 ## Pruning replicas when reducing replica setting
@@ -212,7 +212,7 @@ POST   /api/v1/clusterconfig/segments/prune-replicas
 ```
 
 ```shell
-curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/prune-replicas"
+curl -XPOST -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/segments/prune-replicas"
 ```
 
 ## Moving existing segments between hosts
@@ -238,10 +238,10 @@ Optional; Add a "percentage=[0..100]" query parameter to only apply the action t
 Examples:
 
 ```shell
-curl -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/distribute-evenly"
-curl -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/distribute-evenly-reshuffle-all?percentage=3"
-curl -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/distribute-evenly-to-host/1"
-curl -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/segments/distribute-evenly-from-host/7"
+curl -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/segments/distribute-evenly"
+curl -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/segments/distribute-evenly-reshuffle-all?percentage=3"
+curl -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/segments/distribute-evenly-to-host/1"
+curl -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/segments/distribute-evenly-from-host/7"
 ```
 
 ## Ingest Partitions
@@ -269,8 +269,8 @@ POST   /api/v1/clusterconfig/ingestpartitions/distribute-evenly-from-host/$HOST
 Example:
 
 ```shell
-curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/ingestpartitions" > ingest-partitions.json
-curl -XPOST -d @ingest-partitions.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/ingestpartitions"
+curl -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/ingestpartitions" > ingest-partitions.json
+curl -XPOST -d @ingest-partitions.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/ingestpartitions"
 ```
 
 ## Managing kafka queue settings
@@ -288,11 +288,11 @@ POST   /api/v1/clusterconfig/kafka-queues/partition-assignment/set-replication-d
 Example:
 
 ```shell
-curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/kafka-queues/partition-assignment" > kafka-ingest-partitions.json
-curl -XPOST -d @kafka-ingest-partitions.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/kafka-queues/partition-assignment"
+curl -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/kafka-queues/partition-assignment" > kafka-ingest-partitions.json
+curl -XPOST -d @kafka-ingest-partitions.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/kafka-queues/partition-assignment"
 
 echo '{ "partitionCount": 24, "replicas": 2 }' > kafka-ingest-settings.json
-curl -XPOST -d @kafka-ingest-settings.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/clusterconfig/kafka-queues/partition-assignment/set-replication-defaults"
+curl -XPOST -d @kafka-ingest-settings.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/kafka-queues/partition-assignment/set-replication-defaults"
 ```
 
 ## Adding a ingest listener endpoint
@@ -332,7 +332,7 @@ curl -XPOST \
  -d @create-rsyslogd-rfc3339-parser.json \
  -H "Authorization: Bearer $TOKEN" \
  -H 'Content-Type: application/json' \
- "http://localhost:8080/api/v1/dataspaces/$REPOSITORY_NAME/parsers/rsyslogd-rfc3339"
+ "$BASEURL/api/v1/dataspaces/$REPOSITORY_NAME/parsers/rsyslogd-rfc3339"
 ```
 
 Example setting up a listener using the rsyslogd forward format added above:
@@ -355,10 +355,10 @@ curl -XPOST \
   -d @create-rsyslogd-listener.json \
   -H 'Content-Type: application/json' \
   -H "Authorization: Bearer $TOKEN" \
-  'http://localhost:8080/api/v1/listeners'
+  '$BASEURL/api/v1/listeners'
 
-curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/listeners"
-curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/listeners/tcp7777"
+curl -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/listeners"
+curl -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/listeners/tcp7777"
 ```
 
 Listeners also support UDP by setting `kind` to `"udp"`. For UDP, each UDP datagram is
@@ -407,7 +407,7 @@ to hash the field `#host` into 8 buckets, and `#client_ip` into 10 buckets.
 Note how the field names do not include the `#` prefix in the rules.
 
 ```shell
-curl http://localhost:8080/api/v1/dataspaces/$REPOSITORY_NAME/taggrouping \
+curl $BASEURL/api/v1/dataspaces/$REPOSITORY_NAME/taggrouping \
   -X POST \
   -H "Authorization: Bearer $TOKEN" \
   -H 'Content-Type: application/json' \
@@ -462,7 +462,7 @@ NAME="my-repository-name"
 sudo mkdir /data/humio-data/ready_for_import_dataspaces
 sudo mv /data/dataspaces-from-elsewhere/dataspace_$NAME /data/humio-data/ready_for_import_dataspaces
 sudo chown -R humio /data/humio-data/ready_for_import_dataspaces/
-curl -XPOST -d @from-elsewhere-global-data-snapshot.json  -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/importdataspaces/$NAME"
+curl -XPOST -d @from-elsewhere-global-data-snapshot.json  -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/importdataspaces/$NAME"
 ```
 
 The `POST` imports the metadata, such as users and dashboards, and moves
@@ -509,10 +509,10 @@ $ curl -s https://cloud.humio.com/api/v1/status
 ### Examples
 
 ```shell
-curl -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding"
-curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding"
-curl -XPOST -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding?number=7"
-curl -XDELETE -H "Authorization: Bearer $TOKEN" "http://localhost:8080/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding"
+curl -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding"
+curl -XPOST -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding"
+curl -XPOST -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding?number=7"
+curl -XDELETE -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding"
 ```
 
 Humio also supports detecting if there is high load on a datasource, and automatically trigger this auto-sharding on the datasources.
