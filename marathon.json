@@ -38,7 +38,7 @@
     "HAPROXY_0_REDIRECT_TO_HTTPS": "true",
     "HAPROXY_0_USE_HSTS": "true",
     "HAPROXY_0_VHOST": "docs.humio.com",
-    "HAPROXY_0_BACKEND_HTTP_OPTIONS": "  option forwardfor\n  http-request set-header X-Forwarded-Port %[dst_port]\n  http-request add-header X-Forwarded-Proto https if { ssl_fc }\n",
+    "HAPROXY_0_BACKEND_HTTP_OPTIONS": "  http-request add-header Forwarded proto=https\n",
     "HAPROXY_GROUP": "external",
     "HUMIO_TYPE": "nginx-accesslog"
   },
