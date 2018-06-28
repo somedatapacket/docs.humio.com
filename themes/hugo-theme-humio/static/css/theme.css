@@ -332,11 +332,13 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     min-height: 100%;
     max-width: 1000px;
 }
-#body img, #body .video-container {
+#body .body-inner > p > img, #body .video-container {
     margin: 3rem auto;
     display: block;
     text-align: center;
 }
+#body img
+
 #body img.border, #body .video-container.border {
     border: 2px solid #e6e6e6 !important;
     padding: 2px;

@@ -21,5 +21,5 @@ https://aws.amazon.com/marketplace/pp/B07DCZKMHQ
 
 
 {{% references %}}
-- [Humio Cloudwatch Integration]({{< ref "cloudwatch.md" >}})
+- [Humio AWS Cloudwatch Logs Integration]({{< ref "aws-cloudwatch.md" >}})
 {{% /references %}}
