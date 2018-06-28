@@ -1,5 +1,5 @@
 ---
-title: "Sending Docker Logs to Humio"
+title: "Docker"
 menuTitle: "Docker"
 # DON'T ADD CATEGORIES HERE, ANOTHER PAGE ABOUT DOCKER HAS THOSE
 slug: docker

@@ -1,6 +1,6 @@
 ---
-title: Using Humio with AWS Cloudwatch Logs
-menuTitle: AWS Cloudwatch
+title: AWS Cloudwatch Logs
+menuTitle: AWS Cloudwatch Logs
 categories: ["Integration", "Platform"]
 pageImage: /integrations/cloudwatch.svg
 beta: true
