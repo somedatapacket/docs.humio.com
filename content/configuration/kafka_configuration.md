@@ -48,7 +48,7 @@ This queue will have high throughput corresponding to the ingest load.
 The number of replicas can be configured in accordance with data size, latency
 and throughput requirements and how important it is not to lose in flight data.
 Humio defaults to 2 replicas on this queue, if at least 2 brokers exist in the Kafka cluster,
-and Humio has not been told otherwise through the configuration parameter "INGEST_QUEUE_REPLICATION_FACTOR", which defaults to "2".
+and Humio has not been told otherwise through the configuration parameter `INGEST_QUEUE_REPLICATION_FACTOR`, which defaults to "2".
 When data is stored in Humio's own datastore, we don't need it on the queue anymore.
 
 Default retention configuration: `retention.ms = 48 hours`

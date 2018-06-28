@@ -22,15 +22,17 @@ After the configuration section a longer example will follow showing how to get 
 The ElasticSearch Connector does not yet support Basic Authentication.
 Because of that the connector cannot be used to send data to a Humio
 installation that's configured with authentication.
-There is a [pull request]( https://github.com/confluentinc/kafka-connect-elasticsearch/pull/187)
-to support authentication, and we are eagerly waiting for it to be accepted.
-Contact us if you need this feature, we can add another way of authenticating against Humio.
+Authentication has been added to the project and will be included in the next release 5.X
 {{% /notice %}}
 
 ## Configuring the kafka connector
-<!-- Some intro about what to do with the following -->
 
 This section shows how to configure the Kafka connector to send data to Humio.
+
+{{%notice note %}}
+This section should be used as a reference for peopling already knowing how to use Kafka connect. In a later section there is a full example showing how to setup a connector sending data to Humio. 
+{{% /notice %}}
+  
 Configuration is done in 2 parts. A `worker.properties` properties file and a
 JSON request with the `connector properties` starting the connector.
 
@@ -116,9 +118,17 @@ Kafka connectors are stateless, as their state is stored in Kafka. They work ver
 
 ## Transforming data
 
-<!--TODO: Some elaboration needed -->
-Kafka connectors support [transforming data](https://kafka.apache.org/documentation/#connect_transforms)
-This way it is possible (to some extend) to transform data before inserting it into Humio.
+Often you want to tranform or filter data before sending it to Humio. Maybe your company have a genereal log stream in Kafka and you want to filter which data should be put in Humio. 
+Data can also be transformed or enriched before it is send to Humio, for example you might want to specify some Tag fields, to get data split up into different datasources in Humio.
+ 
+Kafka connectors support some basic [transformations](https://kafka.apache.org/documentation/#connect_transforms). On top of that it is possible to build custom transformations.
+This makes it is possible to transform data before inserting it into Humio.
+
+If more advanced transformations or filtering is needed we suggest using [Kafka Streams](https://kafka.apache.org/documentation/streams/) or [KSQL](https://www.confluent.io/product/ksql/).
+Using Kafka streams a new Topic can be created, for example `humio-logs` where data that should be send to Humio are placed. Kafka Streams can be used to read the existing log topics, filter and transform data and put it on the topic `humio-logs`.
+Kafka Connect can then read from `humio-logs` and send data to Humio.  
+The intermidiate topic `humio-logs` can be kept reasonably small by deleting data when it has been put in Humio. See [Kafkas Admin clients deleteRecords method](https://kafka.apache.org/11/javadoc/index.html?org/apache/kafka/clients/admin/AdminClient.html).
+
 
 ## At least once delivery semantics
 
@@ -135,7 +145,9 @@ This is one of the features we plan to improve.
 
 To minimize the problem, the interval between committing the offset can be set low. this is done using the [`offset.flush.interval.ms` configuration](https://kafka.apache.org/documentation/#connectconfigs).
 
+
 ## Example running a Connector sending data to Humio
+
 In this example we assume Humio and Kafka are already running.
 We will use the [confluentinc/cp-kafka-connect](https://hub.docker.com/r/confluentinc/cp-kafka-connect/) Docker image as it has the [Confluent ElasticSearch connector](https://docs.confluent.io/current/connect/connect-elasticsearch/docs/index.html) installed.
 
@@ -183,10 +195,11 @@ docker run -it -d \
   confluentinc/cp-kafka-connect:4.1.1-2 connect-distributed /config/worker.properties
 ```
 
-Replace `$KAFKA_SERVER` with the address of your one your kafka servers. <!--TODO: finish sentence from "and the above script will start tREST API for managing connectors on localhost port 10082."-->
+Replace `$KAFKA_SERVER` with the address of one of your kafka servers.  
+The above script will start the REST API for managing connectors (on localhost port 10082).
 
-<!--TODO: Reread this sentence--> If the Kafka topics to read data from does not already exist we need to create them. That can be done using the `kafka-topics` script in the  in the bin directory of the kafka installation. It is also possible to do using the
-`humio-kafka-connect` Docker container we have just started to run our connector.
+If the Kafka topics to read data from does not already exist we need to create them. That can be done using the `kafka-topics` script in the bin directory of the kafka installation.  
+It is also possible to do using the `humio-kafka-connect` Docker container we have just started:
 
 ```shell
 docker exec -it humio-kafka-connect kafka-topics \
@@ -200,7 +213,7 @@ docker exec -it humio-kafka-connect kafka-topics \
 Above we created the topic `logs`. It can be replaced with the topic name you
 want to use and you can change other configurations as well.
 
-Now the ElasticSearch connector is ready to be started so first we will create
+Now the ElasticSearch connector is ready to be started, first we will create
 the JSON configuration (`humio-connect.json`):
 
 ```json
@@ -221,7 +234,8 @@ the JSON configuration (`humio-connect.json`):
 }
 ```
 
-{{< partial "common-rest-params.html" >}}
+{{< partial "common-rest-params.html" >}}  
+
 * `$TOPICS` should be replaced with a comma-separated list of topics to read data from.  
 * `connection.url` takes a comma-separated list of URLs. In this example we use only one url.
 
