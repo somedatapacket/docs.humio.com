@@ -27,8 +27,8 @@ and bucket names need to be globally unique.
 {{% /notice %}}
 
 You need to manually send a test event to the
-[AutoSubscriber](#autosubscriber) and
-[CloudwatchBackfiller](#cloudwatchbackfiller) in order to enable
+[AutoSubscriber]({{< ref "#autosubscriber" >}}) and
+[CloudwatchBackfiller]({{< ref "#cloudwatchbackfiller" >}}) in order to enable
 them. You can do this via the Lambda UI in AWS.
 
 
@@ -63,7 +63,7 @@ Once you know the parameters you want to customize, you can apply the template b
 
 ## How this integration works
 
-The integration will install three lamba functions, the
+The integration will install three lambda functions, the
 `AutoSubscriber`,`CloudwatchIngester` and the
 `CloudwatchBackfiller`. The CloudFormation template will also set up
 CloudTrail and an S3 bucket for your account. We need this in order to
