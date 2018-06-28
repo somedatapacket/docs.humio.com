@@ -1,4 +1,4 @@
-RELEASE=1.1.3
+RELEASE?=1.1.3
 clean:
 	rm -rf public test data/releases.yml data/functions.json
 
@@ -11,10 +11,10 @@ run-docker: deps
 	bash run-hugo-docker.sh
 
 data/releases.yml:
-	curl -s https://repo.humio.com/repository/maven-releases/com/humio/server/$(RELEASE)/server-$(RELEASE).releases.yml > data/releases.yml
+	curl -fs https://repo.humio.com/repository/maven-releases/com/humio/server/$(RELEASE)/server-$(RELEASE).releases.yml > data/releases.yml
 
 data/functions.json:
-	curl -s https://repo.humio.com/repository/maven-releases/com/humio/docs/queryfunctions/$(RELEASE)/queryfunctions-$(RELEASE).json > data/functions.json
+	curl -fs https://repo.humio.com/repository/maven-releases/com/humio/docs/queryfunctions/$(RELEASE)/queryfunctions-$(RELEASE).json > data/functions.json
 
 deps: data/releases.yml data/functions.json
 
