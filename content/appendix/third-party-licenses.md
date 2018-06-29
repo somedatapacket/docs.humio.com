@@ -33,13 +33,15 @@ License. The source code of jersey can be found at https://github.com/jersey/jer
 License | Dependency | Attribution
 --- | --- | ---
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | # net.java.dev.jna # jna # 4.5.1 | Copyright by the authors.
-[Apache License, Version 2.0](https://github.com/lomigmegard/akka-http-cors/blob/master/LICENSE) | ch.megard # akka-http-cors_2.12 # 0.2.2 | Copyright (c) Lomig Mégard
-[Apache License, Version 2.0](https://github.com/spray/spray-json/blob/master/LICENSE) | io.spray # spray-json_2.12 # 1.3.3 | Copyright (c) 2009-2011 Debasish Ghosh & Mathias Doenitz
+[Apache License, Version 2.0](https://github.com/lomigmegard/akka-http-cors/blob/master/LICENSE) | ch.megard # akka-http-cors_2.12 # 0.3.0 | Copyright (c) Lomig Mégard
+[Apache License, Version 2.0](https://github.com/spray/spray-json/blob/master/LICENSE) | io.spray # spray-json_2.12 # 1.3.4 | Copyright (c) 2009-2011 Debasish Ghosh & Mathias Doenitz
 [Apache License, Version 2.0](https://github.com/dropwizard/metrics/blob/master/LICENSE) | com.yammer.metrics # metrics-core # 2.2.0 | Copyright 2010-2013 Coda Hale and Yammer, Inc. [NOTICE](https://github.com/dropwizard/metrics/blob/4.1-development/NOTICE)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | commons-io # commons-io # 2.5 | Copyright 2002-2016 The Apache Software Foundation. [NOTICE](https://git-wip-us.apache.org/repos/asf?p=commons-io.git;a=blob_plain;f=NOTICE.txt;hb=92a07f9aa109f0f55af963f86e466c80718f9466)
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | io.airlift # slice # 0.16 | Copyright by the authors.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.sangria-graphql # sangria # 1.3.0 | Copyright by the authors.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.sangria-graphql # sangria-spray-json # 1.0.0 | Copyright by the authors.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.sangria-graphql # sangria-streaming-api # 1.0.0 | Copyright by the authors.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.sangria-graphql # sangria-marshalling-api # 1.0.0 | Copyright by the authors.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.sangria-graphql # macro-visit # 1.0.0 | Copyright by the authors.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | io.dropwizard.metrics # metrics-core # 3.2.3 | Copyright 2010-2013 Coda Hale and Yammer, Inc. [NOTICE](https://github.com/dropwizard/metrics/blob/4.0-development/NOTICE)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.apache.commons # commons-csv # 1.2 | Copyright 2002-2016 The Apache Software Foundation. [NOTICE](https://github.com/apache/commons-csv/blob/master/NOTICE.txt)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.apache.commons # commons-lang3 # 3.5 | Copyright 2002-2016 The Apache Software Foundation.
@@ -47,9 +49,10 @@ License | Dependency | Attribution
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.cache2k # cache2k-core # 0.23.1 | Copyright (C) 2000 - 2017 headissue GmbH, Munich
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.cache2k # cache2k-jmx-api # 0.23.1 | Copyright (C) 2000 - 2017 headissue GmbH, Munich
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.clearspring.analytics # stream # 2.7.0 | Copyright (C) 2012 Clearspring Technologies, Inc.
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe # config # 1.3.0 | Copyright (C) 2011-2012 Typesafe Inc.
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe # ssl-config-core_2.12 # 0.2.1 | Copyright 2009-2017 Lightbend Inc.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe # config # 1.3.2 | Copyright (C) 2011-2012 Typesafe Inc.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe # ssl-config-core_2.12 # 0.2.3 | Copyright 2009-2017 Lightbend Inc.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe.akka # akka-actor_2.12 # 2.5.13 | Copyright 2009-2017 Lightbend Inc.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe.akka # akka-protobuf_2.12 # 2.5.13 | Copyright 2018 Lightbend Inc.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe.akka # akka-stream-testkit_2.12 # 2.5.13 | Copyright 2009-2017 Lightbend Inc.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe.akka # akka-stream_2.12 # 2.5.13 | Copyright 2009-2017 Lightbend Inc.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe.akka # akka-testkit_2.12 # 2.5.13 | Copyright 2009-2017 Lightbend Inc.
@@ -62,40 +65,47 @@ License | Dependency | Attribution
 [Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0) | com.typesafe.akka # akka-parsing_2.12 # 10.1.03 | Copyright 2009-2017 Lightbend Inc.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | uk.co.real-logic # Agrona # 0.4.11 | Copyright 2014-2017 Real Logic Ltd.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.101tec # zkclient # 0.10 | Copyright 2010 the original author or authors
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.fasterxml.jackson.core # jackson-annotations # 2.8.0 | Copyright (c) 2007- Tatu Saloranta, tatu.saloranta@iki.fi
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.fasterxml.jackson.core # jackson-core # 2.8.4 | Copyright (c) 2007- Tatu Saloranta, tatu.saloranta@iki.fi
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.fasterxml.jackson.core # jackson-databind # 2.8.4 | Copyright (c) 2007- Tatu Saloranta, tatu.saloranta@iki.fi
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.fasterxml.jackson.core # jackson-annotations # 2.9.3 | Copyright (c) 2007- Tatu Saloranta, tatu.saloranta@iki.fi
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.fasterxml.jackson.core # jackson-core # 2.9.3 | Copyright (c) 2007- Tatu Saloranta, tatu.saloranta@iki.fi
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.fasterxml.jackson.core # jackson-databind # 2.9.3 | Copyright (c) 2007- Tatu Saloranta, tatu.saloranta@iki.fi
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.googlecode.java-ipv6 # java-ipv6 # 0.16 | Copyright 2013 Jan Van Besien [NOTICE](https://github.com/janvanbesien/java-ipv6/blob/master/NOTICE)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.tdunning # t-digest # 3.1 | The code for the t-digest was originally authored by Ted Dunning
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.yahoo.datasketches # sketches-core # 0.10.3 |
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.yahoo.datasketches # memory # 0.10.3 |
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.lz4 # lz4-java # 1.4 |  Copyright Adrien Grand.  LZ4 is Copyright (c) 2011-2014, Yann Collet [NOTICE](https://github.com/lz4/lz4-java/blob/master/src/lz4/LICENSE)
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.kafka # kafka-clients # 1.0.0 | Copyright 2017 The Apache Software Foundation.
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.kafka # kafka_2.12 # 1.0.0 |  Copyright 2017 The Apache Software Foundation. [NOTICE](https://github.com/apache/kafka/blob/trunk/NOTICE)
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.kafka # kafka-clients # 1.0.1 | Copyright 2017 The Apache Software Foundation.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.kafka # kafka_2.12 # 1.0.1 |  Copyright 2017 The Apache Software Foundation. [NOTICE](https://github.com/apache/kafka/blob/trunk/NOTICE)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.zookeeper # zookeeper # 3.4.10 | Copyright 2009-2014 The Apache Software Foundation. [NOTICE](https://github.com/apache/zookeeper/blob/master/NOTICE.txt)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.scalatra.scalate # scalate-core_2.12 # 1.8.0 | Copyright 2009-2010 Progress Software Corporation [NOTICE](https://github.com/scalate/scalate/blob/master/notice.md)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.scalatra.scalate # scalate-util_2.12 # 1.8.0 | Copyright 2009-2010 Progress Software Corporation [NOTICE](https://github.com/scalate/scalate/blob/master/notice.md)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.xerial.snappy # snappy-java # 1.1.2.6 | Copyright 2011 Taro L. Saito. [NOTICE](https://github.com/xerial/snappy-java/blob/master/NOTICE)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.github.davidmoten # flatbuffers-java # 1.7.0.1 |
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.chuusai # shapeless_2.12 # 0.3.0 | Copyright by the authors.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.typelevel # macro-compat_2.12 # 1.1.1 | Copyright by the authors.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.maxmind.db # maxmind-db # 1.2.2 | Copyright by MaxMind
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.maxmind.geoip2 # geoip2 # 2.11.0 | Copyright by MaxMind
+[BSD 2-Clause License](http://opensource.org/licenses/BSD-2-Clause) | com.jcraft # jzlib # 1.1.3 | Copyright by the authors
 [BSD 2-Clause License](http://opensource.org/licenses/BSD-2-Clause) | dnsjava # dnsjava # 2.1.7 | Copyright (c) 2004 Brian Wellington (bwelling@xbill.org)
 [BSD 3-Clause](http://www.scala-lang.org/license.html) | org.scala-lang # scala-compiler # 2.12.2 | Copyright (c) 2002-  EPFL, Copyright (c) 2011-  Lightbend, Inc.
 [BSD 3-Clause](http://www.scala-lang.org/license.html) | org.scala-lang # scala-library # 2.12.2 | Copyright (c) 2002-  EPFL, Copyright (c) 2011-  Lightbend, Inc.
 [BSD 3-Clause](http://www.scala-lang.org/license.html) | org.scala-lang # scala-reflect # 2.12.2 | Copyright (c) 2002-  EPFL, Copyright (c) 2011-  Lightbend, Inc.
 [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause) | org.scala-lang.modules # scala-java8-compat_2.12 # 0.8.0 | Copyright (c) 2002-  EPFL, Copyright (c) 2011-  Lightbend, Inc.
-[BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause) | org.scala-lang.modules # scala-parser-combinators_2.12 # 1.0.6 | Copyright (c) 2002-2013 EPFL Copyright (c) 2011-2013 Typesafe, Inc.
+[BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause) | org.scala-lang.modules # scala-parser-combinators_2.12 # 1.1.0 | Copyright (c) 2002-2013 EPFL Copyright (c) 2011-2013 Typesafe, Inc.
 [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause) | org.scala-lang.modules # scala-xml_2.12 # 1.0.6 | Copyright (c) 2002-2017  EPFL, Copyright (c) 2011-2017  Lightbend, Inc.
-[CC Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | org.reactivestreams # reactive-streams # 1.0.0 | [Copyright Waiver](https://github.com/reactive-streams/reactive-streams-jvm/blob/master/CopyrightWaivers.txt)
+[CC Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | org.reactivestreams # reactive-streams # 1.0.2 | [Copyright Waiver](https://github.com/reactive-streams/reactive-streams-jvm/blob/master/CopyrightWaivers.txt)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.logging.log4j # log4j-api # 2.10.0 | Copyright 1999-2017 The Apache Software Foundation.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.logging.log4j # log4j-core # 2.10.0 | Copyright 1999-2017 The Apache Software Foundation.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.logging.log4j # log4j-1.2-api # 2.10.0 | Copyright 1999-2017 The Apache Software Foundation.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.logging.log4j # log4j-slf4j-impl # 2.10.0 | Copyright 1999-2017 The Apache Software Foundation.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.lmax # disruptor # 3.3.7 | Copyright 2017 LMAX-Exchange
 [MIT License](http://www.opensource.org/licenses/mit-license.php) | org.slf4j # slf4j-api # 1.7.25 | Copyright (c) 2004-2017 QOS.ch
-[MIT License](http://www.opensource.org/licenses/mit-license.php) | net.sf.jopt-simple # jopt-simple # 5.0.3 | Copyright (c) 2004-2016 Paul R. Holser, Jr.
+[MIT License](http://www.opensource.org/licenses/mit-license.php) | net.sf.jopt-simple # jopt-simple # 5.0.4 | Copyright (c) 2004-2016 Paul R. Holser, Jr.
 [MIT License (MIT)](https://raw.githubusercontent.com/auth0/java-jwt/master/LICENSE) | com.auth0 # java-jwt # 3.0.1 | Copyright (c) 2015 Auth0, Inc.
 [Bouncy Castle Licence](http://www.bouncycastle.org/licence.html) | org.bouncycastle # bcprov-jdk15on # 1.55 | Copyright (c) 2000 - 2017 The Legion of the Bouncy Castle Inc. (https://www.bouncycastle.org)
 [JSON License](http://json.org/license.html) | org.json # json # 20141113 | Copyright (c) 2002 JSON.org
 [Apache License, Version 2]() | nc.com # ExponentialSmoothing # 1.0 | Copyright 2011 [Nishant Chandra](https://github.com/nchandra/ExponentialSmoothing)
 [Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html) | etherip | Copyright (c) 2012 Oak Ridge National Laboratory
+[Go License](http://golang.org/LICENSE) | com.google.re2j # re2j | 1.2 | Copyright (C) 2018 by The Go Authors
 
 ## Elm/JS Dependencies
 
