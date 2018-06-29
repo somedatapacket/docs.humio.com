@@ -79,7 +79,7 @@ License | Dependency | Attribution
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.scalatra.scalate # scalate-core_2.12 # 1.8.0 | Copyright 2009-2010 Progress Software Corporation [NOTICE](https://github.com/scalate/scalate/blob/master/notice.md)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.scalatra.scalate # scalate-util_2.12 # 1.8.0 | Copyright 2009-2010 Progress Software Corporation [NOTICE](https://github.com/scalate/scalate/blob/master/notice.md)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.xerial.snappy # snappy-java # 1.1.2.6 | Copyright 2011 Taro L. Saito. [NOTICE](https://github.com/xerial/snappy-java/blob/master/NOTICE)
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.github.davidmoten # flatbuffers-java # 1.7.0.1 |
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.github.davidmoten # flatbuffers-java # 1.7.0.1 | Copyright (C) By Google.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.chuusai # shapeless_2.12 # 0.3.0 | Copyright by the authors.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.typelevel # macro-compat_2.12 # 1.1.1 | Copyright by the authors.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.maxmind.db # maxmind-db # 1.2.2 | Copyright by MaxMind
