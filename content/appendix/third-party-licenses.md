@@ -16,6 +16,7 @@ Docker images also contain copies of Apache Zookeeper and Apache Kafka
 - Apache Zookeeper: Used under [Apache License, Version 2](http://www.apache.org/licenses/LICENSE-2.0.txt).
 
 - Apache Kafka: Used under [Apache License, Version 2](http://www.apache.org/licenses/LICENSE-2.0.txt).
+
 ```
 Apache Kafka
 Copyright 2017 The Apache Software Foundation.
