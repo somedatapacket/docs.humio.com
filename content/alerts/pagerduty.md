@@ -9,7 +9,7 @@ Humio supports Pagerduty alerts through our Notifier system.
 To create a PagerDuty Notifier you need to create a "Service"
 in your PagerDuty Account (Note that you have to be an admin in PagerDuty).
 
-In PagerDuty you can do that by going to:
+You do that by performing the following steps:
 
 1. Open `Configuration` → `Services` and select `Add New Service`.
 2. Give your service a name, i.e. "Humio"
@@ -26,8 +26,10 @@ Back in Humio proceed with the following steps
 5. Paste the _integration key_ from PagerDuty __PagerDuty Integration Key__ field
 6. Hit __Create Notifier__.
 
+Your PagerDuty notifier is now fully configured and ready to use.
+
 {{% notice info %}}
-Your PagerDuty notifier is now fully configured and ready to use. You can create multiple PagerDuty notifiers i.e. if you have multiple pager channels.
+You can create multiple PagerDuty notifiers i.e. if you have multiple alerting channels.
 {{% /notice %}}
 
 Next, you might want to configure an [Alert]({{< ref "/alerts/_index.md" >}}).
