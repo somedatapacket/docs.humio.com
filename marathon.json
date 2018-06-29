@@ -39,7 +39,8 @@
     "HAPROXY_0_USE_HSTS": "true",
     "HAPROXY_0_VHOST": "docs.humio.com",
     "HAPROXY_GROUP": "external",
-    "HUMIO_TYPE": "nginx-accesslog"
+    "HUMIO_TYPE": "nginx-accesslog",
+    "HAPROXY_0_BACKEND_HSTS_OPTIONS": "  rspadd  Strict-Transport-Security:\\ max-age=63072000\n"
   },
   "mem": 128,
   "networks": [
