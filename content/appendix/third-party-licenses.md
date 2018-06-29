@@ -128,13 +128,21 @@ License | Module | Attribution
 [MIT License](https://github.com/codemirror/CodeMirror/blob/master/LICENSE) | "codemirror": "5.34" | Copyright (C) 2017 by Marijn Haverbeke <marijnh@gmail.com> and others
 [MIT License](https://github.com/kazzkiq/balloon.css/blob/master/LICENSE) | "balloon.css": "0.5.0" | Copyright (c) 2016 Claudio Holanda
 
+[MIT License](https://github.com/dillonkearns/graphqelm/blob/master/LICENSE) | "dillonkearns/graphqelm": "10.0.0" | Copyright (c) 2017, Dillon Kearns
+[MIT License](https://github.com/elm-community/elm-time/blob/master/LICENSE) | "elm-community/elm-time": "1.0.14" | Copyright (c) 2016, Bogdan Paul Popa
+[MIT License](https://github.com/mgold/elm-date-format/blob/master/LICENSE) | mgold/elm-date-format": "1.4.1" | Copyright (c) 2014, Max Goldstein
+[BSD 3-Clause License](https://github.com/myrho/elm-round/blob/master/LICENSE) | myrho/elm-round: "1.0.0" | Copyright (c) 2018, Matthias Rella
+[BSD 3-Clause License](https://github.com/supermario/elm-countries) | supermario/elm-countries "1.0.2" | Copyright (c) 2018, Mario Rogic
+[MIT License](https://github.com/alpacaaa/elm-date-distance/blob/1.1.0/LICENSE) | "alpacaaa/elm-date-distance": "1.1.0" | Copyright (c) 2017 Marco Sampellegrini
+[MIT License](https://github.com/jamesmacaulay/elm-graphql/blob/master/LICENSE) | "jamesmacaulay/elm-graphql": "1.8.0" | Copyright 2017 James MacAulay
+[MIT License](http://www.opensource.org/licenses/mit-license.php) | Moment.js | Tim Wood, Iskren Chernev, Moment.js contributors
+[BSD 3-Clause License](https://github.com/isagalaev/highlight.js/blob/master/LICENSE) | Highlight.js | Copyright (c) 2006, Ivan Sagalaev (theme by Louis Barranqueiro)
+[BSD 3-Clause License](https://github.com/webcomponents/webcomponentsjs/blob/master/LICENSE.md) | @webcomponents/webcomponentsjs | Copyright (c) 2015 The Polymer Authors. All rights reserved.
+
+
 ## Other Resources
 
 License | Module | Attribution
 --- | --- | ---
 [Apache License Version 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) | Material Design Icons | Copyright (C) Google
 [Apache License Version 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) | Open Sans | Copyright (C) Google
-[MIT License](http://www.opensource.org/licenses/mit-license.php) | Moment.js | Tim Wood, Iskren Chernev, Moment.js contributors
-[BSD 3-Clause License](https://github.com/isagalaev/highlight.js/blob/master/LICENSE) | Highlight.js | Copyright (c) 2006, Ivan Sagalaev (theme by Louis Barranqueiro)
-[BSD 2-Clause License](https://github.com/mkdocs/mkdocs/blob/master/LICENSE) | mkdocs | Copyright © 2014, Tom Christie
-[MIT License](http://opensource.org/licenses/mit-license.html) | Modernizr | Copyright 2009-2017 by Faruk Ateş and other contributors
