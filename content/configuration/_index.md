@@ -87,7 +87,7 @@ HUMIO_JVM_ARGS=-XX:+UseParallelOldGC -Xss2M -XX:MaxDirectMemorySize=4G
 You can specify the number of processors for the machine running Humio by
 setting the `CORES` property. Humio uses this number when parallelizing queries.
 
-By default, Humio uses the Java [available processors function](https://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#availableProcessors--)
+By default, Humio uses the Java [available processors function](https://docs.oracle.com/javase/9/docs/api/java/lang/Runtime.html#availableProcessors--)
 to get the number of CPU cores. This is usually the optimal number.
 
 ## Configuring Authentication

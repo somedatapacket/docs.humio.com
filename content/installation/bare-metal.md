@@ -11,7 +11,7 @@ your own **Kafka** and **Zookeeper** instances.
 
 - Kafka
 - Zookeeper
-- JVM
+- JVM version 9 or above.
 
 ## Setup
 
