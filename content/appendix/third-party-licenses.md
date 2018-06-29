@@ -105,7 +105,7 @@ License | Dependency | Attribution
 [JSON License](http://json.org/license.html) | org.json # json # 20141113 | Copyright (c) 2002 JSON.org
 [Apache License, Version 2]() | nc.com # ExponentialSmoothing # 1.0 | Copyright 2011 [Nishant Chandra](https://github.com/nchandra/ExponentialSmoothing)
 [Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html) | etherip | Copyright (c) 2012 Oak Ridge National Laboratory
-[Go License](http://golang.org/LICENSE) | com.google.re2j # re2j | 1.2 | Copyright (C) 2018 by The Go Authors
+[Go License](http://golang.org/LICENSE) | com.google.re2j # re2j # 1.2 | Copyright (C) 2018 by The Go Authors
 
 ## Elm/JS Dependencies
 
