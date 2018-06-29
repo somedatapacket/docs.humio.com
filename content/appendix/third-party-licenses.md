@@ -127,7 +127,6 @@ License | Module | Attribution
 [MIT License](https://github.com/facebook/react/blob/master/LICENSE) | "facebook/react-dom": "15.4.2" | Copyright (c) 2013-present, Facebook, Inc.
 [MIT License](https://github.com/codemirror/CodeMirror/blob/master/LICENSE) | "codemirror": "5.34" | Copyright (C) 2017 by Marijn Haverbeke <marijnh@gmail.com> and others
 [MIT License](https://github.com/kazzkiq/balloon.css/blob/master/LICENSE) | "balloon.css": "0.5.0" | Copyright (c) 2016 Claudio Holanda
-
 [MIT License](https://github.com/dillonkearns/graphqelm/blob/master/LICENSE) | "dillonkearns/graphqelm": "10.0.0" | Copyright (c) 2017, Dillon Kearns
 [MIT License](https://github.com/elm-community/elm-time/blob/master/LICENSE) | "elm-community/elm-time": "1.0.14" | Copyright (c) 2016, Bogdan Paul Popa
 [MIT License](https://github.com/mgold/elm-date-format/blob/master/LICENSE) | mgold/elm-date-format": "1.4.1" | Copyright (c) 2014, Max Goldstein
