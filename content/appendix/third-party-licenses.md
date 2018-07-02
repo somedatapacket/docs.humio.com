@@ -106,6 +106,7 @@ License | Dependency | Attribution
 [JSON License](http://json.org/license.html) | org.json # json # 20141113 | Copyright (c) 2002 JSON.org
 [Apache License, Version 2](http://www.apache.org/licenses/LICENSE-2.0) | nc.com # ExponentialSmoothing # 1.0 | Copyright 2011 [Nishant Chandra](https://github.com/nchandra/ExponentialSmoothing)
 [Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html) | etherip | Copyright (c) 2012 Oak Ridge National Laboratory
+[CDDL and GPLv2+CE](https://javaee.github.io/javamail/JavaMail-License) | JavaMail | See [LICENSE File](https://github.com/javaee/javamail/blob/master/LICENSE.txt)
 [Go License](http://golang.org/LICENSE) | com.google.re2j # re2j # 1.2 | Copyright (C) 2018 by The Go Authors
 
 ## Elm/JS Dependencies
@@ -148,7 +149,6 @@ License | Module | Attribution
 [MIT License](http://www.opensource.org/licenses/mit-license.php) | Moment.js | Tim Wood, Iskren Chernev, Moment.js contributors
 [BSD 3-Clause License](https://github.com/isagalaev/highlight.js/blob/master/LICENSE) | Highlight.js | Copyright (c) 2006, Ivan Sagalaev (theme by Louis Barranqueiro)
 [BSD 3-Clause License](https://github.com/webcomponents/webcomponentsjs/blob/master/LICENSE.md) | @webcomponents/webcomponentsjs | Copyright (c) 2015 The Polymer Authors. All rights reserved.
-
 
 ## Other Resources
 
