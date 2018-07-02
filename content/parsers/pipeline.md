@@ -94,7 +94,7 @@ work exactly like [user functions in search queries]({{< ref "language-syntax/_i
 
 You can also add Grok files as part of your ingest pipeline. Each file defines
 a set of Grok patterns that can be used in the {{% function "grok" %}} function.
-This gives you a more compossible alternative [regular expression field extraction]({{< "language-syntax/_index.md#extracting-fields" >}}).
+This gives you a more compossible alternative [regular expression field extraction]({{< ref "language-syntax/_index.md#extracting-fields" >}}).
 
 Any grok patterns defined in the ingest pipeline can also be used in the search view.
 
