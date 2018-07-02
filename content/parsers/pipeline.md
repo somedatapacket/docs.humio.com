@@ -53,6 +53,35 @@ using the {% function "parseKeyValues" %} function. Finally it uses a [`case`]({
 statement to conditionally extract a field `errorMessage` using a user function called
 "parseErrorMessage".
 
+## Dropping Events
+
+It is perfectly fine to drop events as part of the ingest pipeline. Depending on
+your use-case, e.g. there might data that is sensitive or simply garbage and you just want
+to get rid of it. For this you can either use a filter expression that excludes
+some events, e.g.:
+
+```humio
+parseKeyValues() | location.region != "europe"
+```
+
+This pipeline discards all events that `location.region` is not `"europe"`.
+Alternatively you can use the {{% function "drop" %}} which will not match
+any events - this is especially useful when used together with case-statements, e.g.:
+
+```humio
+parseKeyValues() |
+case {
+  loglevel=INFO | ...;
+  loglevel=TRACE | drop();
+  loglevel=ERROR | ...;
+  loglevel=* | error("Unknown value for loglevel. value=%s", values=[loglevel]);
+  *; // Default case: no loglevel field present - ignore.
+}
+```
+
+In this example, for some reason we are not interested in storing the logs with the
+`TRACE` level and use the {{% function "drop" %}} function to discard them. 
+
 ## User Functions
 
 Pipeline scripts can quickly grow large and become hard to read. You can split up
@@ -77,6 +106,8 @@ or when you want different retention rules for different types of data, you can
 route (or forward) events to other pipelines, this is called routing.
 
 Routing is done using the {{% function "forward" %}} function. When used in a pipeline
-the function is ...
+the events it is applied to is forwarded at the end.
 
 ### Default Repository
+
+If an event
