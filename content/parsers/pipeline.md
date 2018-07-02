@@ -74,7 +74,7 @@ case {
 
 This example pipeline script uses the {% function "parseTimestamp" %} that automatically
 tries to determine the timestamp of the input by applying a series of regular expressions.
-It then extracts all key value pairs (of form `key=value`) form the event as new fields
+It then extracts all key value pairs (of form `key=value`) from the event as new fields
 using the {% function "parseKeyValues" %} function. Finally it uses a [`case`]({{< ref "language-syntax/_index.md#case" >}})
 statement to conditionally extract a field `errorMessage` using a user function called
 "parseErrorMessage".
@@ -156,7 +156,7 @@ case {
 In the first clause of the case statement matches all event that have a field `hostname` with a value
 starts with `nginx` (e.g. `nginx-01`, `nginx.dev`) should all be forwarded to the upstream repository `nginx`.
 
-The second clause `service.name=*` matches anything that has a value for `service.name`, it then forwards
+The second clause `service.name=*` matches anything that has a value in the `service.name` field, it then forwards
 the event based on the value of `service.name`.
 What is neat about the {{% function "forward" %}} function is that is only matches an event if there
 is an downstream repository with a matching name.
