@@ -395,10 +395,10 @@ be dropped. You cannot use the empty clause - you must explicit write `*` to mat
 
 #### Example
 
-An example: Let's say we have logs from multiple sources that all have a field named `time`,
+Let's say we have logs from multiple sources that all have a field named `time`,
 and we want to get percentiles of the time fields, but one for each kind of source.
 
-First we try to match some text that distinguish the different types of line.
+First we try to match some text that distinguishes the different types of line.
 Then we can create a new field `type` and assign a value that we can use to group by:
 
 ```humio
