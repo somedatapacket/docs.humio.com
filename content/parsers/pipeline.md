@@ -75,12 +75,12 @@ case {
   loglevel=TRACE | drop();
   loglevel=ERROR | ...;
   loglevel=* | error("Unknown value for loglevel. value=%s", values=[loglevel]);
-  *; // Default case: no loglevel field present - ignore.
+  * |; // Default case: no loglevel field present - ignore.
 }
 ```
 
 In this example, for some reason we are not interested in storing the logs with the
-`TRACE` level and use the {{% function "drop" %}} function to discard them. 
+`TRACE` level and use the {{% function "drop" %}} function to discard them.
 
 ## User Functions
 
@@ -108,6 +108,32 @@ route (or forward) events to other pipelines, this is called routing.
 Routing is done using the {{% function "forward" %}} function. When used in a pipeline
 the events it is applied to is forwarded at the end.
 
+### Example: Routing Pipeline with Dead Letters
+
+```humio
+parseKeyValues() |
+case {
+  hostname=nginx* | forward("nginx");
+  service.name=* | forward(`service.name`); // TODO: Discuss how to dereference a field.
+  * | error("No field 'service.name' or missing downstream repo.") | forward("deadLetters");
+}
+```
+In the first clause of the case statement matches all event that have a field `hostname` with a value
+starts with `nginx` (e.g. `nginx-01`, `nginx.dev`) should all be forwarded to the upstream repository `nginx`.
+
+The second clause `service.name=*` matches anything that has a value for `service.name`, it then forwards
+the event based on the value of `service.name`.
+What is neat about the {{% function "forward" %}} function is that is only matches an event if there
+is an downstream repository with a matching name.
+
+This means that if we e.g. have a downstream repository called `webapp` and
+we called {{< query >}}forward("webapp"){{< /query >}} the expression would match. If on the other
+hand we did not have a downstream repository called `webapp` the event would fall through to the
+next line in the case statement. In the case above we have made a catch all clause in the case-statement
+that forwards any non-matching events to a downstream repository we have called `deadLetters` (it could be called anything).
+This can be a nifty trick as it lets you inspect the events that don't match without just dropping the event entirely.
+
 ### Default Repository
 
-If an event
+If an event is not forwarded to a downstream repository the event is stored in
+the current one.
