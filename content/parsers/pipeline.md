@@ -1,4 +1,6 @@
-# The Ingest Pipeline
+---
+title: Ingest Pipelines
+---
 
 Clients that send data to Humio are configured with an ingest token and when data
 arrives at Humio this token determines which repository the events are stored in
