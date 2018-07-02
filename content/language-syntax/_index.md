@@ -370,20 +370,36 @@ But there are a couple of ways to do conditional evaluation, they are called
 
 ### Case Statements {#case}
 
-`case` describes alternative flows (as in `case` or `cond` in other languages).
-You write a sequence (`;` separated) of pipe lines, and the first of these to
-emit a value ends the selection.  
+Using case-statements you can describe alternative flows in your queries.
+It is similar to `case` or `cond` you might know from many other functional programming languages.
+It essentially allows you to write `if-then-else` constructs that work on for events streams.
 
-You can add {{< query >}}case { ... ; * }{{< /query >}} to let all events through.
+The syntax looks like this:
 
-In effect, it is kind of an if-then-if-then-else construct for events streams.
-An alternative cannot be syntactically empty, you must put in an explicit `*` to match all.
+```humio
+case {
+  expression | expression | ...;
+  expression | expression | ...;
+  expression | expression | ...;
+  * | expression | ...
+}
+```
 
-An example: We have logs from multiple sources that all have a "time" field,
+You write a sequence of pipeline clauses separated by semicolon (`;`). Humio will apply each clause
+from top to bottom until one emits a value (i.e. matches the input).
+
+You can add wildcard clause {{< query >}}case { ... ; * }{{< /query >}} which
+matches all event as the "default case", essentially the `else` part of an if-statement.
+If you don't add a wildcard clause any events that don't match any of the explicit clauses will
+be dropped. You cannot use the empty clause - you must explicit write `*` to match all.
+
+#### Example
+
+An example: Let's say we have logs from multiple sources that all have a field named `time`,
 and we want to get percentiles of the time fields, but one for each kind of source.
 
-To distinguish the lines, we need to match a text, then set a field ("type")
-that we can then group by.
+First we try to match some text that distinguish the different types of line.
+Then we can create a new field `type` and assign a value that we can use to group by:
 
 ```humio
 time=*
