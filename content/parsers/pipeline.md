@@ -22,11 +22,11 @@ the pipeline script of the ElasticSearch Bulk Input. The available inputs are:
 - ElasticSearch Bulk API
 - Humio Message API
 - Humio Ingest API
-- Forward Input
+- Upstream Input
 
 Each repository has its own set of inputs and scripts. Each of them define an
 endpoint for data to enter Humio from an external source, with one exception,
-_Forward Inputs_, which are [described below]({{< ref "#forward" >}}).
+_Upstream Inputs_, which are [described in the routing section]({{< ref "#routing" >}}).
 
 ## Pipeline Scripts
 
@@ -57,10 +57,26 @@ statement to conditionally extract a field `errorMessage` using a user function 
 
 Pipeline scripts can quickly grow large and become hard to read. You can split up
 your pipeline script by defining user functions. User functions in the ingest pipeline
-work exactly like [user functions in search queries]({{< ref "language-syntax/_index.md#user-functions" >}}).  
+work exactly like [user functions in search queries]({{< ref "language-syntax/_index.md#user-functions" >}}).
+
+...
 
 ## Grok Patterns
 
-## Event Forwarding {#forward}
+You can also add Grok files as part of your ingest pipeline. Each file defines
+a set of Grok patterns that can be used in the {{% function "grok" %}} function.
+This gives you a more compossible alternative [regular expression field extraction]({{< "language-syntax/_index.md#extracting-fields" >}}).
+
+Any grok patterns defined in the ingest pipeline can also be used in the search view.
+
+## Routing {#routing}
+
+In most cases you will want store events in the repository the ingest pipeline is
+defined on. But sometimes in more complex set-ups like a shared Kubernetes cluster
+or when you want different retention rules for different types of data, you can
+route (or forward) events to other pipelines, this is called routing.
+
+Routing is done using the {{% function "forward" %}} function. When used in a pipeline
+the function is ...
 
 ### Default Repository
