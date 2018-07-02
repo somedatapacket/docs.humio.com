@@ -12,6 +12,27 @@ processing or to be stored in another repository.
 
 ## Inputs
 
+{{% notice note %}}
+
+PMM: OVERALL COMMENTS HERE:
+
+Terminology. I would say that a repo cantains a list of Inputs
+(located in the Inputs tab, which replaces the Parser tab). An Input
+consists of an end-point and a Humio Ingest Pipeline (maybe Pipeline
+Script that you also use).
+
+Define the data model as an entity-relation diagram, but maybe start
+the explanation of Inputs with the "story" of how an event flow
+through an concrete example setup. `end-point1 -> pipeline1 ->
+end-point2 -> pipeline2`.
+
+I don't think we need upstream and downstream. I think we could just
+use connected repository for downstream repos and use repo
+Input/end-point instead of upstream repo.
+
+{{% /notice %}}
+
+
 Each ingest pipeline has one or more _inputs_. An input is way for data to enter
 Humio. If data is sent to Humio using [Rsyslog]({{< ref "rsyslog.md" >}}) for instance, you would configure
 a _Socket Listeners_ with a specific network port, data sent to that socket would
@@ -40,6 +61,9 @@ Humio offers a plethora of functions for parsing incoming events. Usually a pipe
 script will look something like this:
 
 ```humio
+// PMM: I would just write parseTimestamp().
+// I think all parser functions will add/change fields in events
+
 @timestamp := parseTimestamp() |
 parseKeyValues() |
 case {
@@ -57,10 +81,17 @@ statement to conditionally extract a field `errorMessage` using a user function 
 
 ## Dropping Events
 
+PMM: I think we should explain that events will end up in the default
+repository unless they are forwarded. Also when errors occur. Dropping
+is not the default.
+
 It is perfectly fine to drop events as part of the ingest pipeline. Depending on
 your use-case, e.g. there might data that is sensitive or simply garbage and you just want
 to get rid of it. For this you can either use a filter expression that excludes
 some events, e.g.:
+
+PMM: I think we should always drop explicitly to avoid silent throwing
+data away.
 
 ```humio
 parseKeyValues() | location.region != "europe"
@@ -84,6 +115,8 @@ case {
 In this example, for some reason we are not interested in storing the logs with the
 `TRACE` level and use the {{% function "drop" %}} function to discard them.
 
+PMM: actually I think `drop` will be difficult to implement. Morten told that functions has return type `list[event]` and than a `case` will try a the next clause if `drop` return the empty list, which is not what we want. So, `list[event]` cannot be the return type of functions which ties nicely back to our long discussion about predicates, side-effects, and what not :).
+
 ## User Functions
 
 Pipeline scripts can quickly grow large and become hard to read. You can split up
@@ -105,7 +138,7 @@ Any grok patterns defined in the ingest pipeline can also be used in the search 
 In most cases you will want store events in the repository the ingest pipeline is
 defined on. But sometimes in more complex set-ups like a shared Kubernetes cluster
 or when you want different retention rules for different types of data, you can
-route (or forward) events to other pipelines, this is called routing.
+route (or forward) events to other pipelines (PMM: repositories?), this is called routing.
 
 Routing is done using the {{% function "forward" %}} function. When used in a pipeline
 the events it is applied to is forwarded at the end.
@@ -116,7 +149,7 @@ the events it is applied to is forwarded at the end.
 parseKeyValues() |
 case {
   hostname=nginx* | forward("nginx");
-  service.name=* | forward(`service.name`); // TODO: Discuss how to dereference a field.
+  service.name=* | forward(field=service.name); // TODO: Discuss how to dereference a field.
   * | error("No field 'service.name' or missing downstream repo.") | forward("deadLetters");
 }
 ```
@@ -134,6 +167,13 @@ hand we did not have a downstream repository called `webapp` the event would fal
 next line in the case statement. In the case above we have made a catch all clause in the case-statement
 that forwards any non-matching events to a downstream repository we have called `deadLetters` (it could be called anything).
 This can be a nifty trick as it lets you inspect the events that don't match without just dropping the event entirely.
+
+PMM: I think forwarding to a non-connected repository should result in
+`@error=true`. We want to fail early and be explicit so that the
+behavior of our ingest pipeline is easy to understand.
+
+PMM: This is necessary when the fall-through gets dropped. I think the
+originating repo should also act as the `deatletter` repo.
 
 ### Default Repository
 
