@@ -94,10 +94,10 @@ License | Dependency | Attribution
 [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause) | org.scala-lang.modules # scala-parser-combinators_2.12 # 1.1.0 | Copyright (c) 2002-2013 EPFL Copyright (c) 2011-2013 Typesafe, Inc.
 [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause) | org.scala-lang.modules # scala-xml_2.12 # 1.0.6 | Copyright (c) 2002-2017  EPFL, Copyright (c) 2011-2017  Lightbend, Inc.
 [CC Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | org.reactivestreams # reactive-streams # 1.0.2 | [Copyright Waiver](https://github.com/reactive-streams/reactive-streams-jvm/blob/master/CopyrightWaivers.txt)
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.logging.log4j # log4j-api # 2.10.0 | Copyright 1999-2017 The Apache Software Foundation.
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.logging.log4j # log4j-core # 2.10.0 | Copyright 1999-2017 The Apache Software Foundation.
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.logging.log4j # log4j-1.2-api # 2.10.0 | Copyright 1999-2017 The Apache Software Foundation.
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.logging.log4j # log4j-slf4j-impl # 2.10.0 | Copyright 1999-2017 The Apache Software Foundation.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.logging.log4j # log4j-api # 2.11.0 | Copyright 1999-2017 The Apache Software Foundation.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.logging.log4j # log4j-core # 2.11.0 | Copyright 1999-2017 The Apache Software Foundation.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.logging.log4j # log4j-1.2-api # 2.11.0 | Copyright 1999-2017 The Apache Software Foundation.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.logging.log4j # log4j-slf4j-impl # 2.11.0 | Copyright 1999-2017 The Apache Software Foundation.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.lmax # disruptor # 3.3.7 | Copyright 2017 LMAX-Exchange
 [MIT License](http://www.opensource.org/licenses/mit-license.php) | org.slf4j # slf4j-api # 1.7.25 | Copyright (c) 2004-2017 QOS.ch
 [MIT License](http://www.opensource.org/licenses/mit-license.php) | net.sf.jopt-simple # jopt-simple # 5.0.4 | Copyright (c) 2004-2016 Paul R. Holser, Jr.
