@@ -105,7 +105,7 @@ License | Dependency | Attribution
 [Bouncy Castle Licence](http://www.bouncycastle.org/licence.html) | org.bouncycastle # bcprov-jdk15on # 1.55 | Copyright (c) 2000 - 2017 The Legion of the Bouncy Castle Inc. (https://www.bouncycastle.org)
 [JSON License](http://json.org/license.html) | org.json # json # 20141113 | Copyright (c) 2002 JSON.org
 [Apache License, Version 2](http://www.apache.org/licenses/LICENSE-2.0) | nc.com # ExponentialSmoothing # 1.0 | Copyright 2011 [Nishant Chandra](https://github.com/nchandra/ExponentialSmoothing)
-[Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html) | etherip | Copyright (c) 2012 Oak Ridge National Laboratory
+[Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html) | etherip.util.Hexdump | Derivative of single file. Copyright (c) 2012 Oak Ridge National Laboratory. Author: Kay Kasemir.
 [Go License](http://golang.org/LICENSE) | com.google.re2j # re2j # 1.2 | Copyright (C) 2018 by The Go Authors
 
 ## Elm/JS Dependencies
