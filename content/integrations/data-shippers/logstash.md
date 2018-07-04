@@ -61,6 +61,21 @@ output{
 }
 ```
 
+### Adding tags to events
+Please read [the section on tags]({{< relref "concepts/tags.md" >}}) before adding tags to your events. Add tags by including them in the "inputs/exec" section:
+
+```
+input{
+  exec{
+    command => "date"
+    interval => "5"
+    add_field => { "[@tags][customer]" => "CustomerName" }
+  }
+}
+```
+
+
+
 {{< partial "common-rest-params" >}}
 
 {{% notice warning %}}

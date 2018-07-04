@@ -152,7 +152,7 @@ To avoid having the `@host` and `@source` fields, specify `@host` and `@source` 
 ## Tags
 
 Humio saves data in Data Sources. You can provide a set of Tags to specify which Data Source the data is saved in.  
-See [glossary](/glossary/#tags) for more information about tags and Data Sources.  
+See [the section on tags]({{< relref "concepts/tags.md" >}}) for more information about tags and Data Sources.  
 The `type` configured in Filebeat is always used as tag. Other fields can be used
 as tags as well by defining the fields as `tagFields` in the
 [parser]({{< relref "parsers/_index.md" >}}) pointed to by the `type`.  
@@ -218,4 +218,21 @@ logging:
     name: filebeat.log
     keepfiles: 3
 
+```
+
+### Adding `tags` through client configuration
+
+Humio recommends adding tags through the `parser` set using the `type`
+field.  But if you want to add tags through configuration of filebeat
+only, add the following to the `fields` section.  This example makes
+`@host` into a tag thus renaming it to `#host` in Humio. You should
+always include the field "type" if you set this list, as that is the
+default tag in Humio, if you do not provide a "@tags" field.
+
+``` yaml
+[...]
+      fields:
+        type: $NAME_OF_PARSER
+        "@tags": ["type", "@host"]
+[...]
 ```
