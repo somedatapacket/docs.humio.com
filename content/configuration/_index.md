@@ -57,9 +57,27 @@ KAFKA_SERVERS=kafkahost01:9092,kafkahost02:9092
 #ZOOKEEPER_URL=localhost:2181
 
 
-#Let Humio send emails using the Postmark service
-#Create a Postmark account and insert the token here
+# Let Humio send emails using the Postmark service
+# Create a Postmark account and insert the token here
 #POSTMARK_SERVER_SECRET=abc2454232
+
+# Let Humio send emails using an SMTP server. ONLY put a password here
+# if you also enable starttls. Otherwise you will expose your password.
+#
+# Example using GMail:
+#SMTP_HOST=smtp.gmail.com
+#SMTP_PORT=587
+#SMTP_SENDER_ADDRESS=you@domain.com
+#SMTP_USE_STARTTLS=true
+#SMTP_USERNAME=you@domain.com
+#SMTP_PASSWORD=your-secret-password
+#
+# Example using a local clear-text non-authenticated SMTP server
+#SMTP_HOST=localhost
+#SMTP_PORT=25
+#SMTP_SENDER_ADDRESS=you@domain.com
+#SMTP_USE_STARTTLS=false
+
 
 # Select the TCP port to listen for http.
 #HUMIO_PORT=8080
