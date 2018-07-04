@@ -516,7 +516,11 @@ curl -XDELETE -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/dataspaces/$REP
 ```
 
 Humio also supports detecting if there is high load on a datasource, and automatically trigger this auto-sharding on the datasources.
-This is configured through the settings `AUTOSHARDING_TRIGGER_DELAY_MS`, which is compared to the time an even spends in the ingest pipeline inside Humio.
+You will see this happening on "fast" datasources, typically if more than 2 TB/day is delivered to a single datasource. 
+The events then get an extra tag, `#humioAutoShard` that is assigned a random integer value.
 
+This is configured through the settings `AUTOSHARDING_TRIGGER_DELAY_MS`, which is compared to the time an event spends in the ingest pipeline inside Humio.
 When the delay threshold is exceeded, the number of shards on that datasource (combination of tags) is doubled.
 The default value for `AUTOSHARDING_TRIGGER_DELAY_MS` is 60000 ms (60 seconds).
+
+The setting `AUTOSHARDING_MAX` controls how many different datasources get created this way for each "real" datasource. Default value is 128. Internally, the number of cores and hosts reading from the ingest queue is also taken into consideration, aiming at not creating more shards than totoal number of cores in the ingest part of the cluster.
