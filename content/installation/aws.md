@@ -8,12 +8,15 @@ categories_weight: 1
 beta: true
 ---
 
-The following list options for running Humio on AWS.
+
+You can install Humio manually following the steps found in [overall
+installation guide](/installation), but we also provide a couple of
+easy installation options for AWS.
 
 {{% notice note %}}
 
-If you want to ship logs from AWS Cloudwatch to Humio see the [AWS
-Cloudwatch Logs]({{< ref "aws-cloudwatch.md" >}}) integration.
+If you want to ship logs from ***AWS CloudWatch*** to Humio see the [AWS
+CloudWatch Logs]({{< ref "aws-cloudwatch.md" >}}) integration.
 
 {{% /notice %}}
 
@@ -26,12 +29,12 @@ instance using a CloudFormation Template.
 The template will create an instance and a data volume and start Humio
 in single-user mode.
 
-When the template in done you can click on the output link to log into
+When the template is done you can click on the output link to log into
 Humio - give it a few moments to start.
 
 {{< figure src="/pages/installation/aws/template-output.png" >}}
 
-Log-in using user: `developer` and password: "instance ID".
+Log-in using the `developer` user and use the EC2 instance ID of node running Humio as password.
 
 Humio will listen for HTTP traffic on port 8080, but behind a
 single-user login page. You can restrict access based on IP range if
@@ -60,9 +63,3 @@ https://github.com/humio/aws-quick-start
 Humio is available directly from the AWS Marketplace:
 
 https://aws.amazon.com/marketplace/pp/B07DCZKMHQ
-
-## Manual Installation
-
-You can also choose to manually install Humio on your instances. See
-the [overall installation guide](/installation) for more information
-about which options you have here.
