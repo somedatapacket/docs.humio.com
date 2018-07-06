@@ -1,13 +1,13 @@
 ---
-title: AWS Cloudwatch Logs
-menuTitle: AWS Cloudwatch Logs
+title: AWS CloudWatch Logs
+menuTitle: AWS CloudWatch Logs
 categories: ["Integration", "Platform"]
 pageImage: /integrations/cloudwatch.svg
 beta: true
 
 ---
 
-Humio's Cloudwatch integration sends your AWS Cloudwatch Logs to Humio by using
+Humio's CloudWatch integration sends your ***AWS CloudWatch*** Logs to Humio by using
 an AWS Lambda function to ship the data.
 
 The integration is available from GitHub:
@@ -88,7 +88,7 @@ trigger the Auto Subscription lambda to newly created log groups.
 
 ### CloudwatchIngester
 
-This lambda handles the delivery of your Cloudwatch log events to
+This lambda handles the delivery of your CloudWatch log events to
 Humio.
 
 ### AutoSubscriber
@@ -100,5 +100,5 @@ created.
 ### CloudwatchBackfiller
 This will run if you have set `HumioSubscriptionBackfiller` to `true`
 when executing the CloudFormation template. This function will
-paginate through your existing Cloudwatch log groups and subscribe the
+paginate through your existing CloudWatch log groups and subscribe the
 CloudwatchIngester to every single one.
