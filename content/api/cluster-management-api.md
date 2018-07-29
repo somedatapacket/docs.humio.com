@@ -62,12 +62,11 @@ Assuming you have a cluster of one or more humio nodes, add a with these steps:
 
 1.  Add a new server as described in the installation documentation, and configure it to talk to the existing kafka-cluster
 
-1.  Start humio on the new server with an empty "/data/humio-data" directory. Humio needs a way to get hold of the shared state in the cluster, from one of these sources:
+1.  Start humio on the new server with an empty "/data/humio-data" directory. Humio needs a way to get hold of a snapshot of the shared state in the cluster, from one of these sources:
 
-    1.  If humio does not have BACKUP configured, you can copy the file `global-data-snapshot.json` from another member of the cluster, and place that in the /data/humio-data" directory. Make sure not to copy any other files.
     1.  If humio has BACKUP configured, the shared backup folder including long-term copies is also searched for a copy of the current shared state.
     1.  Humio also fetches a snapshot from the Kafka-queue named "global-snapshots".
-    1.  Humio selects the latest, in terms of epoch and offset, recorded inside these snapshots.
+    1.  Humio selects the latest snapshot, in terms of epoch and offset, recorded inside these snapshots. It then continues reading events from the Kafka-queue named "global-events" from the snapshots offset.
 
 1.  The new Humio instance will pull the latest events in the shared state from Kafka queue "global-events", and detect that it is a fresh member of an existing cluster.
 
