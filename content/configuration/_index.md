@@ -56,6 +56,10 @@ KAFKA_SERVERS=kafkahost01:9092,kafkahost02:9092
 # Note, there is NO security on the zookeeper connections. Keep inside trusted LAN.
 #ZOOKEEPER_URL=localhost:2181
 
+# Maximum number of datasources (unique tag combinations) in a repo.
+# There will be a sub-directory for each combination that exists.
+# (Since v1.1.10)
+MAX_DATASOURCES=10000
 
 #Let Humio send emails using the Postmark service
 #Create a Postmark account and insert the token here
