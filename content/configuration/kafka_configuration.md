@@ -2,10 +2,10 @@
 title: "Kafka Configuration"
 ---
 
-When running Humio in a cluster setup it uses Kafka as part of the infrastructure.
+Humio uses Kafka internally for queueing incoming messages and for
+storing shared state when running Humio in a cluster setup.
 
-In this section, we briefly describe how Humio uses Kafka. Then we discuss how to configure Kafka.
-
+In this section we briefly describe how Humio uses Kafka. Then we discuss how to configure Kafka.
 
 ## Queues
 
@@ -90,4 +90,28 @@ Set retention on the ingest queue to 1GB (per partition)
 
 {{% notice note %}}
 The setting `retention.bytes` is per partition. By default Humio has 24 partitions for ingest.
+{{% /notice %}}
+
+## Kafka broker settings
+If your Humio instance has a lot of data then the "global-snapshots" topic requires large messages.
+If you use the Kafka brokers only for humio, you can configure the kafka brokers to allow large message on all topics. This example allows up to 100MB in each message. Note that larger sizes makes the brokers need more memory for replication.
+
+```
+# setup to allow large messages - messages on "global-snapshots" can get big
+replica.fetch.max.bytes=104857600
+
+# max message size for all topics by default:
+message.max.bytes=104857600
+```
+
+Another option is to configure the global-snapshots topic to allow larger messages on that topic only:
+
+```shell
+<kafka_dir>/bin/kafka-configs.sh --zookeeper $HOST:2181 --entity-name global-snapshots --entity-type topics --alter  --add-config max.message.bytes=104857600
+```
+
+If you have very large amounts of data (say petabytes) in Humio you may need to increase beyond 100MB.
+
+{{% notice note %}}
+If you run your own Kafka (i.e. not the one provided by Humio) you must increase the max.message.bytes on the global-snapshots topic as desacribed above, or raise the default on your existing brokers.
 {{% /notice %}}
