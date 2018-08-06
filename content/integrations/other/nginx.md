@@ -28,7 +28,7 @@ On Linux, the access log is in `/var/log/nginx/access.log`
 ### Example Filebeat Configuration
 
 ``` yaml
-filebeat.prospectors:
+filebeat.inputs:
 - paths:
     - /var/log/nginx/access.log
   fields:

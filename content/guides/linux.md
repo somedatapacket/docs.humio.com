@@ -63,7 +63,7 @@ To ship the interesting system logs from `/var/log/` to Humio use
 ### Example Filebeat Configuration
 
 ```yaml
-filebeat.prospectors:
+filebeat.inputs:
 - paths:
     - /var/log/syslog
     - /var/log/auth.log

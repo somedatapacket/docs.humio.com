@@ -54,7 +54,7 @@ You can find configuration documentation for Filebeat at [the Filebeat configura
 The following example shows a simple Filebeat configuration that sends data to Humio:
 
 ``` yaml
-filebeat.prospectors:
+filebeat.inputs:
 - paths:
     - $PATH_TO_LOG_FILE
   encoding: utf-8
@@ -66,7 +66,8 @@ output:
     hosts: ["$BASEURL/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
     username: $INGEST_TOKEN
     compression_level: 5
-    bulk_max_size: 50
+    bulk_max_size: 200
+    worker: 1
 
 ```
 
@@ -77,7 +78,7 @@ The Filebeat configuration file is located at `/etc/filebeat/filebeat.yml` on Li
 You must make the following changes to the sample configuration:
 
 * Insert a `path` section for each log file you want to monitor in `$PATH_TO_LOG_FILE`.
-  It is possible to insert a prospector configuration (with `paths` and `fields` etc) for each file that filebeat should monitor
+  It is possible to insert a input configuration (with `paths` and `fields` etc) for each file that filebeat should monitor
 
 * Specify the type of the events in `$TYPE`. Humio will use the type field to decide which parser it will use to parse the incoming events.
   This is done by specifying the `type` field in the fields section. See the Parsing Data section below.
@@ -93,8 +94,10 @@ You must make the following changes to the sample configuration:
 * Specify the text encoding to use when reading files using the `encoding` field.
   If the log files use special, non-ASCII characters, then set the encoding here. For example, `utf-8` or `latin1`.
 
-* If all your events are fairly small, you can increase `bulk_max_size` from the default of 50. The default of 50 is fine for most use cases.
+* If all your events are fairly small, you can increase `bulk_max_size` from the default of 200. The default of 200 is fine for most use cases.
   But keep bulk_max_size low, as you may get "Failed to perform any bulk index operations: 413 Request Entity Too Large" if a request ends up being too large, measured in bytes, not in number of events.
+
+* You may want to increase the number of worker instances (`worker`) from the default of 1 to (say) 4 to achieve more throughput if filebeat is not able to keep up with the inputs. But if increasing bulk_max_size is possible then do that instead.
 
 ## Running Filebeat {#running-filebeat}
 
@@ -188,7 +191,7 @@ The `multiline.pattern` should match your timestamp format
 
 ``` yaml
 filebeat:
-  prospectors:
+  inputs:
     - paths:
         - /var/log/nginx/access.log
       fields:
@@ -207,7 +210,8 @@ output:
     hosts: ["https://cloud.humio.com:443/api/v1/dataspaces/test/ingest/elasticsearch"]
     username: "ingest-token"
     compression_level: 5
-    bulk_max_size: 50
+    bulk_max_size: 200
+    worker: 1
 
 logging:
   level: info

@@ -29,7 +29,7 @@ See [Parsing Logs]({{< relref "parsers/_index.md" >}}) for more information on p
 Example Filebeat configuration with a custom log type:
 
 ```yaml
-filebeat.prospectors:
+filebeat.inputs:
 - paths:
     - $PATH_TO_YOUR_APPLICATION_LOG
   fields:

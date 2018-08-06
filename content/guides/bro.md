@@ -94,7 +94,7 @@ Then return here to configure Filebeat.
 Below is a filebeat.yml configuration file for sending Bro logs to Humio:
 
 ```yaml
-filebeat.prospectors:
+filebeat.inputs:
 - type: log
   paths:
     - "${BRO_LOG_DIR}/corelight_*.log" #The file path should be a glob matching the json log files
