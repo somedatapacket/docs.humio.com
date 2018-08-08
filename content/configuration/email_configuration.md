@@ -1,18 +1,26 @@
 ---
-title: "SMTP Configuration"
-menuTitle: "SMTP"
-beta: true
-aliases: ["/operation/installation/audit_logs/"]
+title: "Email Configuration"
+menuTitle: "Email configuration"
 ---
 
-Humio can be configured to support sending email notifications. You can either
-do this by using Humio's [Postmark Integration]({{< ref "postmark.md" >}}) or using
-your own SMTP server.
+Humio supports 2 options for sending emails:
 
-## SMTP Authentication
+* Postmark
+* SMTP
 
-Humio only supports the `LOGIN` authentication method for SMTP or using
-a local SMTP server without authentication.
+## Postmark
+
+[Postmark](https://postmarkapp.com/) is a SaaS solution for sending emails.
+
+It is possible to create a free account and use that.  
+Create a Postmark account and then generate a "Server API Token" for that account. Add that token to Humios configuration like this:  
+`POSTMARK_SERVER_SECRET=TOKEN`
+
+
+
+## SMTP
+
+Humio only supports the `LOGIN` authentication method for SMTP or using a local SMTP server without authentication.
 
 {{% notice note %}}
 **If you are using Gmail**, you will have to [enable "Less Secure App Access"](https://support.google.com/accounts/answer/6010255?hl=en).
