@@ -29,34 +29,45 @@ SMTP. What is less secure is that you use a fixed password, rather than
 per-app OAuth tokens which is arguably more secure.
 {{% /notice %}}
 
-## Configuration Options
-
-### `SMTP_HOST`
+`SMTP_HOST`
 
 The hostname or ip of the SERVER server. E.g. `smtp.gmail.com` or `1`
 
-### `SMTP_PORT`
+`SMTP_PORT`
 
 The port to send SMTP messages to. Usually `587`, `465` or `25`.
 
-### `SMTP_SENDER_ADDRESS`
+`SMTP_SENDER_ADDRESS`
 
 The sender email address ("From" email address) that will be used when sending
 emails. E.g. `humio-alerts@example.com`.  
 
-### `SMTP_USERNAME` (Optional)
+`SMTP_USERNAME` (Optional)
 
 The username to use for authentication with the SMTP server. If not
 specified communication will be done without authentication.
 If this is specified you also have to provide `SMTP_PASSWORD` as well.
 
-### `SMTP_PASSWORD` (Optional)
+`SMTP_PASSWORD` (Optional)
 
 The password to use for authentication with the SMTP server. If not
 specified communication will be done without authentication.
 If this is specified you also have to provide `SMTP_PASSWORD` as well.
 
-### `SMTP_USE_STARTTLS` (Optional)
+`SMTP_USE_STARTTLS` (Optional)
 
 If set to `SMTP_USE_STARTTLS=true` Humio will use StartTLS for the connection
 to the SMTP server. Defaults to `false`.
+
+### Gmail SMTP example
+
+You need to create an app-password that Humio can use to send emails through Gmail. To do this, go to [this Google page](https://security.google.com/settings/security/apppasswords) to do it.  
+
+```properties
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SENDER_ADDRESS=my-email@gmail.com
+SMTP_USERNAME=my-email@gmail.com
+SMTP_PASSWORD=app-password
+SMTP_USE_STARTTLS=true
+```
