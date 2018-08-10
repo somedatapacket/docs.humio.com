@@ -30,8 +30,8 @@ Since docker does not support newlines i environment variables, replace newlines
 
 The result should look like this in the `humio-config.env` file:
 
-```
-LDAP_AUTH_PROVIDER_CERT=-----BEGIN CERTIFICATE-----\nMIIE5DCCAswCCQCWP3L1+ZxNtjANBgkqhkiG9w0BAQsFADA ... d/XVOLgWc=\n-----END CERTIFICATE-----\n
+```shell
+LDAP_AUTH_PROVIDER_CERT=-----BEGIN CERTIFICATE-----\nMII...gWc=\n-----END CERTIFICATE-----\n
 ```
 
 ## LDAP-search (using a bind user)
