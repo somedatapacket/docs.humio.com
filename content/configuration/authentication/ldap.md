@@ -21,6 +21,19 @@ LDAP_AUTH_PRINCIPAL=your-principal   # (example: cn=HUMIOUSERNAME,dc=example,dc=
 `LDAP_AUTH_PRINCIPAL` can be left unset, in which case the username is used directly when binding to the server.
 If it is set, the token `HUMIOUSERNAME` is replaced with the username, and the resulting string is used as principal.
 
+The URL can be `ldap:/` or `ldaps:/`.  If using `ldaps:/`, you can configure Humio to work with the a server
+using a self-signed certificate by specifying `LDAP_AUTH_PROVIDER_CERT` to be the PEM-format value of the certificate.  If this config parameter is not specified, trust is established using the docker container's regular ca authority infrastructure.
+
+Since docker does not support newlines i environment variables, replace newlines with `\n` using something like this:
+
+```echo LDAP_AUTH_PROVIDER_CERT=`cat cert.pem | perl -pe 's/\n/\\\\n/g'` >> humio-config.env```
+
+The result should look like this in the `humio-config.env` file:
+
+```
+LDAP_AUTH_PROVIDER_CERT=-----BEGIN CERTIFICATE-----\nMIIE5DCCAswCCQCWP3L1+ZxNtjANBgkqhkiG9w0BAQsFADA ... d/XVOLgWc=\n-----END CERTIFICATE-----\n
+```
+
 ## LDAP-search (using a bind user)
 
 If LDAP/AD requires login with the exact DN, then it is possible to first do a search for the DN using
