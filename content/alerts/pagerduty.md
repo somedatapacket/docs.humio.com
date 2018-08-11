@@ -12,18 +12,18 @@ in your PagerDuty Account (Note that you have to be an admin in PagerDuty).
 You do that by performing the following steps:
 
 1. Open `Configuration` → `Services` and select `Add New Service`.
-2. Give your service a name, i.e. "Humio"
+2. Give your service a name, i.e. "Humio".
 3. Under __Integration Settings__ select "Use our API directly" under __Integration Type__. "Events API v2", should be the default and also what we're using for this notifier.
-4. Leave the rest as default and hit `Add Service`
+4. Leave the rest as default and hit `Add Service`.
 5. Take note of the __Integration Key__ as we'll be using that in Humio when setting up the notifier.
 
 Back in Humio proceed with the following steps
 
-1. Open the Repo for View for which you want to configure a notifier.
+1. Open the Repo or View for which you want to configure a notifier.
 2. Select the __Alerts__ menu item and go to __Notifiers__. Hit __New Notifier__.
-3. In the __Notifier Type__ drop down, please select PagerDuty.
-4. Give the Notifier a name, i.e. "PagerDuty Critical"
-5. Paste the _integration key_ from PagerDuty __PagerDuty Integration Key__ field
+3. In the __Notifier Type__ drop down select PagerDuty.
+4. Give the Notifier a name, i.e. "PagerDuty Critical".
+5. Paste the _integration key_ from PagerDuty into the __PagerDuty Integration Key__ field.
 6. Hit __Create Notifier__.
 
 Your PagerDuty notifier is now fully configured and ready to use.
