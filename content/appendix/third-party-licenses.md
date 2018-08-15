@@ -38,6 +38,7 @@ License | Dependency | Attribution
 [Apache License, Version 2.0](https://github.com/spray/spray-json/blob/master/LICENSE) | io.spray # spray-json_2.12 # 1.3.4 | Copyright (c) 2009-2011 Debasish Ghosh & Mathias Doenitz
 [Apache License, Version 2.0](https://github.com/dropwizard/metrics/blob/master/LICENSE) | com.yammer.metrics # metrics-core # 2.2.0 | Copyright 2010-2013 Coda Hale and Yammer, Inc. [NOTICE](https://github.com/dropwizard/metrics/blob/4.1-development/NOTICE)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | commons-io # commons-io # 2.5 | Copyright 2002-2016 The Apache Software Foundation. [NOTICE](https://git-wip-us.apache.org/repos/asf?p=commons-io.git;a=blob_plain;f=NOTICE.txt;hb=92a07f9aa109f0f55af963f86e466c80718f9466)
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | commons-net # commons-net # 3.6 | Copyright 2001-2017 by The Apache Software Foundation. [NOTICE](https://github.com/apache/commons-net/blob/trunk/NOTICE.txt)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.sangria-graphql # sangria # 1.3.0 | Copyright by the authors.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.sangria-graphql # sangria-spray-json # 1.0.0 | Copyright by the authors.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.sangria-graphql # sangria-streaming-api # 1.0.0 | Copyright by the authors.
@@ -148,7 +149,6 @@ License | Module | Attribution
 [MIT License](http://www.opensource.org/licenses/mit-license.php) | Moment.js | Tim Wood, Iskren Chernev, Moment.js contributors
 [BSD 3-Clause License](https://github.com/isagalaev/highlight.js/blob/master/LICENSE) | Highlight.js | Copyright (c) 2006, Ivan Sagalaev (theme by Louis Barranqueiro)
 [BSD 3-Clause License](https://github.com/webcomponents/webcomponentsjs/blob/master/LICENSE.md) | @webcomponents/webcomponentsjs | Copyright (c) 2015 The Polymer Authors. All rights reserved.
-
 
 ## Other Resources
 
