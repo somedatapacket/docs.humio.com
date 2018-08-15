@@ -28,3 +28,8 @@ Start by [creating a new parser]({{< ref "parsers/creating-a-parser" >}}) with t
 
 And no _Parse timestamp_ and _Parse key values_. Finally give it a name, i.e. "statsd".
 
+Next, create an [ingest listener]({{< ref "sending-data-to-humio/ingest-listeners" >}}) with the statsd parser.
+
+{{% notice note %}}
+We strongly recommend using an UDP ingest listener for non-aggregated StatsD data
+{{% /notice %}}
