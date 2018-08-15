@@ -1,4 +1,4 @@
-RELEASE?=1.1.11
+RELEASE?=1.1.12
 
 clean:
 	rm -rf public test data/releases.yml data/functions.json
