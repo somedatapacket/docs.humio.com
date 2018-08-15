@@ -48,7 +48,7 @@ will help you get to grips with the core concepts and where Humio fits in to the
 ## Getting Started
 
 Before we can get started you need to have access to a running Humio instance.
-You have two option. You can [download](https://www.humio.com/download/)
+You have two options. You can [download](https://www.humio.com/download/)
 and run it yourself or create a free account in [Humio Cloud](https://cloud.humio.com/).
 
 {{< figure src="pages/welcome/eggs.svg" width="180px" >}}
