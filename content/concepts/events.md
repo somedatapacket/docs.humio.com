@@ -50,7 +50,7 @@ have an `@id`, `@timestamp`, `@timezone`, `@display` and `@rawstring` field.
 
 Notice that metadata fields start with all `@` to make them easy to identity.
 
-The three most important are `@timestamp`, `@rawstring`, and `@display` and will both be
+The three most important are `@timestamp`, `@rawstring`, and `@display` and will be
 described in detail below.
 
 ### Tag Fields {#tags}
