@@ -14,8 +14,8 @@ humio support for specific suggestions.
 
 ## Background
 
-With Humio, the limiting factor is usually query speed, not ingest capacity.  Query speed depends on two factors:
-available RAM and number of CPUs.  The following numbers are all "ballpark recommendations", your exact circumstances
+With Humio, the limiting factor is usually query speed, not ingest capacity.  Query speed depends:
+Number of CPUs, available RAM and disk speed.  The following numbers are all "ballpark recommendations", your exact circumstances
 may be different.
 
 A running Humio instance will use something like 10-20% of available RAM - the rest of available memory is used for OS-level
@@ -47,13 +47,19 @@ work.
 
 ## Rules of thumb
 
+- One vCPU/hyperthread can ingest 250GB/day.
+- Search speed is 1-1.5GB per vCPU/hyperthread (for data in RAM or on fast disks).
+- Compression ratio * RAM is how much data can be kept in memory (Using OS-level file system cache).
+- Fast SSDs can achieve as good search speeds as when data is in RAM.
+
+### Example
 - Assume data compresses 9x (test your setup and see, better compression means better performance).
 - You need to be able to hold 48hrs of compressed data in 80% of you RAM.
 - You want enough hyper threads/vCPUs (each giving you 1GB/s search) to be able
   to search 24hrs of data in less than 10 seconds.
 - You need disk space to hold your compressed data. Never fill your disk more than 80%.
 
-> Example: Your machine has 64G of ram, and 8 hyper threads (4 cores), 1TB of storage.
+> Your machine has 64G of ram, and 8 hyper threads (4 cores), 1TB of storage.
   Your machine can hold 460GB of ingest data compressed in ram, and process 8GB/s.  In this case
   that means that 10 seconds worth of query time will run through 80GB of data.  So this machine
   fits an 80GB/day ingest, with +5 days data available for fast querying.  
