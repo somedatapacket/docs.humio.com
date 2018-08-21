@@ -131,7 +131,7 @@ In addition to globbing (`*` appearing in match strings) you can match fields us
 |{{< query >}}url = /login/{{< /query >}} | The `url` field contains `login`.
 |{{< query >}}user = /Turing$/{{< /query >}} | The `user` field ends with `Turing`.
 |{{< query >}}loglevel = /error/i{{< /query >}} | The `loglevel` field matches `error` case insensitively, i.e. it could be `Error`, `ERROR` or `error`.
-|{{< query >}}/user with id (?&lt;id&gt;\S+) logged in/ | top(id){{< /query >}} | The user id is extracted into a field named `id` at search time. The `id` is then used in the top function to find the users that logged in the most. It is possible to extract fields in regular expressions using named groups. See [Regex field extraction]({{< ref "#extracting-fields" >}}) for details. 
+|{{< query >}}/user with id (?&lt;id&gt;\S+) logged in/ | top(id){{< /query >}} | The user id is extracted into a field named `id` at search time. The `id` is then used in the top function to find the users that logged in the most. It is possible to extract fields in regular expressions using named groups. See [Regex field extraction]({{< ref "#extracting-fields" >}}) for details.
 
 #### Comparison operators on numbers
 
@@ -500,9 +500,10 @@ The Humio query language supports `// single line` and `/* multi line */`
 comments just like Java or C++.
 
 ## Links
+
 When showing search results in a table it is possible to create a link that is clickable.
 If the value of a field looks like a link, the UI will make it clickable.
-Links can be contructed using the search language. The {{% function "format" %}} function can be handy for this.
+Links can be constructed using the search language. The {{% function "format" %}} function can be handy for this.
 
 ``` humio
 $extractRepo() | top(repo) | format("https://myhumio/%s", field=repo, as=link)
