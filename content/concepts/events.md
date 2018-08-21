@@ -46,11 +46,11 @@ There are three types of fields:
 ### Metadata Fields {#metadata}
 
 Each even has some metadata attached to it on ingestion, e.g. all events will
-have an `@id`, `@timestamp`, `@timezone`, and `@rawstring` field.
+have an `@id`, `@timestamp`, `@timezone`, `@display` and `@rawstring` field.
 
 Notice that metadata fields start with all `@` to make them easy to identity.
 
-The two most important are `@timestamp` and `@rawstring`, and will both be
+The three most important are `@timestamp`, `@rawstring`, and `@display` and will both be
 described in detail below.
 
 ### Tag Fields {#tags}
@@ -92,6 +92,35 @@ defines where the event is stored in the Humio's database, and is what defined
 wether an event is included in search results when searching a time range.
 
 It needs [special treatment when parsing incoming data]({{< ref "creating-a-parser.md#parsing-timestamps">}}) at ingest time.
+
+
+### Field: @display {#display}
+
+By default the Humio will display the content of the field `@rawstring` in the
+Event List. Sometimes this is not what you want, e.g the message could be very
+long and the relevant information be at the end of `@rawstring`, or you might
+want to be able to see a single field.
+
+You can fix this my assigning a value to the field `@display`.
+Let's take an example: Say in our example data you only want to se the fields
+`method` and `url`. You can use the format() and the `@display` field to achieve this.
+
+Say you have an access log for a web server, and don't want to see all the details
+but just lines like:
+
+```
+GET /path/to/page
+POST /path/to/other/page
+```
+
+By setting the `@display` field you can achieve using the following in you query:
+
+``` humio
+@display := format("%s %s", field=[method, url])
+```
+
+As you can see we use a printf-like in format to format the resulting message,
+and now the entries in the Event List.
 
 ### Field: #repo {#repo}
 
