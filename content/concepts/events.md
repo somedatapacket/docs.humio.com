@@ -103,7 +103,7 @@ want to be able to see a single field.
 
 You can fix this my assigning a value to the field `@display`.
 Let's take an example: Say in our example data you only want to se the fields
-`method` and `url`. You can use the format() and the `@display` field to achieve this.
+`method` and `url`. You can use the [format]({{< ref "query-functions/_index.md#format">}}) function and the `@display` field to achieve this.
 
 Say you have an access log for a web server, and don't want to see all the details
 but just lines like:
