@@ -141,8 +141,8 @@ For each machine do:
 
 1. Inspecting the log files:
 
-    - `/data/logs/zookeeper_std_out.log`
-    - `/data/logs/kafka_std_out.log`
+    - `$ docker logs humio-zookeeper`
+    - `$ docker logs humio-kafkar`
 
 2. Using "nc" to get the status of each zookeeper instance. The following must respond with either "Leader" or "Follower" for all instances:
 
