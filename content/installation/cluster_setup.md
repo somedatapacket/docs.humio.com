@@ -70,7 +70,7 @@ For each machine do:
 
 4. Create a configuration file for Zookeeper. Replace the `HOST_1-3` variables with the DNS name or IP addresses of your hosts; here is the configuration file for `HOST`. Save it a known location, such as `/etz/humio/zookeeper.properties`
 
-    ```
+    ```properties
     dataDir=/data/zookeeper-data
     clientPort=2181
     clientPortAddress=${HOST}
@@ -98,7 +98,7 @@ For each machine do:
 
 7. Create a configuration file for Kafka. Each server needs to have a unique name and an `broker.id`  (`1`, `2` or `3`). Make sure the listener is something the humio instances can reach. If in doubt, please refer to the Kafka documentation. Here is the configuration file for `HOST`, remember to set `broker.id` and `listeners` accordingly. Save it a known location, such as `/etz/humio/kafka.properties`
 
-    ```shell
+    ```properties
     broker.id=1
     log.dirs=/data/kafka-data
     zookeeper.connect=${HOST_1}:2181,${HOST_2}:2181,${HOST_3}:2181
@@ -118,8 +118,8 @@ For each machine do:
 8. [Install Docker](https://docs.docker.com/engine/installation/) and pull the latest `humio/zookeeper` and `humio/kafka` Docker images
 
     ```shell
-    docker pull humio/zookeeper
-    docker pull humio/kafka
+    $ docker pull humio/zookeeper
+    $ docker pull humio/kafka
     ```
 
 9. Start the Docker images on each host, mounting the configuration files and data locations created in previous steps
@@ -142,18 +142,18 @@ For each machine do:
 1. Inspecting the log files:
 
     - `$ docker logs humio-zookeeper`
-    - `$ docker logs humio-kafkar`
+    - `$ docker logs humio-kafka`
 
 2. Using "nc" to get the status of each zookeeper instance. The following must respond with either "Leader" or "Follower" for all instances:
 
     ```shell
-    echo stat | nc 192.168.1.1 2181 | grep '^Mode: '
+    $ echo stat | nc 192.168.1.1 2181 | grep '^Mode: '
     ```
 
 3. Optionally, using your favourite Kafka tools to validate the state of your Kafka cluster. You could list the topics using this, expecting to get an empty list since this is a fresh install of Kafka
 
     ```shell
-    kafka-topics.sh --zookeeper localhost:2181 --list
+    $ kafka-topics.sh --zookeeper localhost:2181 --list
     ```
 
 ## Running the Humio Docker container
