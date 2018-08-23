@@ -44,6 +44,7 @@ License | Dependency | Attribution
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.sangria-graphql # sangria-streaming-api # 1.0.0 | Copyright by the authors.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.sangria-graphql # sangria-marshalling-api # 1.0.0 | Copyright by the authors.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.sangria-graphql # macro-visit # 1.0.0 | Copyright by the authors.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.sangria-graphql # sangria-slowlog 0.1.6 | Copyright by the authors.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | io.dropwizard.metrics # metrics-core # 3.2.3 | Copyright 2010-2013 Coda Hale and Yammer, Inc. [NOTICE](https://github.com/dropwizard/metrics/blob/4.0-development/NOTICE)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.apache.commons # commons-csv # 1.2 | Copyright 2002-2016 The Apache Software Foundation. [NOTICE](https://github.com/apache/commons-csv/blob/master/NOTICE.txt)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.apache.commons # commons-lang3 # 3.5 | Copyright 2002-2016 The Apache Software Foundation.
