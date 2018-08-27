@@ -30,7 +30,7 @@ backend:
     host: "$HOST"
     http_user: "$INGEST_TOKEN"
     http_passwd: "none"
-    index: "FluentBitHelmChart"
+    logstash_prefix: "FluentBitHelmChart"
     tls: "on"
     tls_verify: "on"
     tls_ca: |
