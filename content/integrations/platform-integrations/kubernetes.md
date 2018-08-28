@@ -79,9 +79,8 @@ above, Humio will look for the [pod
 label](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
 `humio-parser` and use that parser on the log line. This way you can
 control how data is parsed by just configuring your pods. If the
-`humio-parser` label is not set, the
-[`kv` parser]({{< ref "parsers/built-in-parsers/kv.md" >}}) will
-be used by default.
+`humio-parser` label is not set, no parser will be applied to the log
+lines.
 
 
 
