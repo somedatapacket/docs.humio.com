@@ -13,7 +13,7 @@ You do that by performing the following steps:
 
 1. Open `Configuration` → `Services` and select `Add New Service`.
 2. Give your service a name, i.e. "Humio".
-3. Under __Integration Settings__ select "Use our API directly" under __Integration Type__. "Events API v2", should be the default and also what we're using for this notifier.
+3. Under __Integration Settings__ select "Humio" in the tools dropdown.
 4. Leave the rest as default and hit `Add Service`.
 5. Take note of the __Integration Key__ as we'll be using that in Humio when setting up the notifier.
 
