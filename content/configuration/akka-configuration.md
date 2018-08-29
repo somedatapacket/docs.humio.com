@@ -40,16 +40,12 @@ For better debugging it is possible to add `akka.log-config-on-start = "on"` to 
 
 ## Example
 
-In this example we want Humio to use a HTTP proxy when accessing the internet.
+In this example we want to change the Akka log level. 
 
 ``` SAML
 include "application"
 akka.log-config-on-start = "on"
-akka.http.client.proxy {
- https {
-   host = ""
-   port = 443
- }
+akka.loglevel = "DEBUG"
 }
 
 ```
