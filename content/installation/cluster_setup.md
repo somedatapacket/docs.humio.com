@@ -100,7 +100,6 @@ For each machine do:
 
     ```properties
     broker.id=1
-    log.dirs=/data/kafka-data
     zookeeper.connect=${HOST_1}:2181,${HOST_2}:2181,${HOST_3}:2181
     listeners=PLAINTEXT://${HOST}:9092
     replica.fetch.max.bytes=104857600
@@ -127,12 +126,12 @@ For each machine do:
     ```shell
     $ docker run -d  --restart always --net=host \
       -v /etc/humio/zookeeper.properties:/etc/kafka/zookeeper.properties \
-      -v /data/logs:/data/logs \
+      -v /data/logs:/products/kafka/logs \
       -v /data/zookeeper-data:/data/zookeeper-data  \
       --name humio-zookeeper "humio/zookeeper"
     $ docker run -d  --restart always --net=host \
       -v /etc/humio/kafka.properties:/etc/kafka/kafka.properties \
-      -v /data/logs:/data/logs \
+      -v /data/logs:/products/kafka/logs \
       -v /data/kafka-data:/data/kafka-data  \
       --name humio-kafka "humio/kafka"
     ```
