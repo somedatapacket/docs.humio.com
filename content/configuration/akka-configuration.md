@@ -46,6 +46,5 @@ In this example we want to change the Akka log level.
 include "application"
 akka.log-config-on-start = "on"
 akka.loglevel = "DEBUG"
-}
 
 ```
