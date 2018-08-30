@@ -25,7 +25,7 @@ You can use this file to pass on JVM arguments to the Humio Java process.
 Enter the following settings into the configuration file:
 
 ```shell
-HUMIO_JVM_ARGS=-Xss2M -XX:MaxDirectMemorySize=4G
+HUMIO_JVM_ARGS=-Xss2M
 ```
 
 <!--

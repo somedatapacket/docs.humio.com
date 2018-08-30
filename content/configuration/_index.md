@@ -17,7 +17,7 @@ see the documentation for [installation on docker]({{< ref "docker.md" >}}).
 ```properties
 # The stacksize should be at least 2M.
 # We suggest setting MaxDirectMemory to 50% of physical memory. At least 2G required.
-HUMIO_JVM_ARGS=-XX:+UseParallelOldGC -Xss2M -XX:MaxDirectMemorySize=4G
+HUMIO_JVM_ARGS=-XX:+UseParallelOldGC -Xss2M
 
 # Make Humio write a backup of the data files:
 # Backup files are written to mount point "/backup".
@@ -102,7 +102,7 @@ You can specify Java virtual machine parameters to pass to Humio using the
 property `HUMIO_JVM_ARGS`. The defaults are:
 
 ```properties
-HUMIO_JVM_ARGS=-XX:+UseParallelOldGC -Xss2M -XX:MaxDirectMemorySize=4G
+HUMIO_JVM_ARGS=-XX:+UseParallelOldGC -Xss2M
 ```
 
 ## Number of CPU Cores
