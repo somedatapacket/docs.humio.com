@@ -83,6 +83,14 @@ MAX_DATASOURCES=10000
 #SMTP_USE_STARTTLS=false
 
 
+# Use a HTTP proxy for sending alert notifications
+# This can be usefull if Humio is not allowed direct access to the internet
+#
+#HTTP_PROXY_HOST=proxy.myorganisation.com
+#HTTP_PROXY_PORT=3129
+#HTTP_PROXY_USERNAME=you
+#HTTP_PROXY_PASSWORD=your-secret-password
+
 # Select the TCP port to listen for http.
 #HUMIO_PORT=8080
 # Select the TCP port for ElasticSearch Bulk API
