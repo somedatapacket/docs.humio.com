@@ -4,17 +4,41 @@ pipeline:
     commands:
       - make clean deps
 
-  hugo:
+  hugo-master:
     image: mwldk/drone-hugo
     validate: true
+    url: https://docs.humio.com/
+    when:
+      branch: master
 
-  docker-build:
+  hugo-preview:
+    image: mwldk/drone-hugo
+    validate: true
+    url: https://docs-preview.humio.com/${DRONE_BRANCH##preview/}
+    when:
+      branch: "preview/*"
+
+  docker-build-master:
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
     repo: humio/docs
     tags:
-      - ${DRONE_BRANCH/master/latest}
+      - latest
       - ${DRONE_BRANCH}-${DRONE_BUILD_NUMBER}
+    when:
+      branch: master
+
+  docker-build-preview:
+    image: plugins/docker
+    secrets: [ docker_username, docker_password ]
+    repo: humio/docs
+    build_args:
+      - location: "${DRONE_BRANCH##preview/}"
+    tags:
+      - preview-${DRONE_BRANCH##preview/}-latest
+      - preview-${DRONE_BRANCH##preview/}-${DRONE_BUILD_NUMBER}
+    when:
+      branch: "preview/*"
 
   deploy-master:
     image: e20co/drone-marathon
@@ -22,10 +46,18 @@ pipeline:
     marathonfile: marathon.json
     environment:
       - MARATHON_ID=docs
+      - EXTERNAL_PATH=/
+      - EXTERNAL_VHOST=docs
+      - "DOCKER_IMAGE=humio/docs:${DRONE_BRANCH}-${DRONE_BUILD_NUMBER}"
+      - INSTANCES=2
     values:
       - marathon_id
       - drone_branch
       - drone_build_number
+      - external_path
+      - external_vhost
+      - docker_master
+      - instances
     when:
       branch: master
 
@@ -34,10 +66,18 @@ pipeline:
     server: http://marathon.mesos:8080
     marathonfile: marathon.json
     environment:
-      - MARATHON_ID=docs-preview
+      - MARATHON_ID=docs-preview/${DRONE_BRANCH##preview/}
+      - EXTERNAL_PATH=/${DRONE_BRANCH##preview/}
+      - EXTERNAL_VHOST=docs-preview.humio.com
+      - "DOCKER_IMAGE=humio/docs:preview-${DRONE_BRANCH##preview/}-${DRONE_BUILD_NUMBER}"
+      - INSTANCES=1
     values:
       - marathon_id
       - drone_branch
       - drone_build_number
+      - external_path
+      - external_vhost
+      - docker_image
+      - instances
     when:
-      branch: preview
+      branch: "preview/*"

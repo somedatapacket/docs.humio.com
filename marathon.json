@@ -2,7 +2,7 @@
   "container": {
     "docker": {
       "forcePullImage": true,
-      "image": "humio/docs:<<DRONE_BRANCH>>-<<DRONE_BUILD_NUMBER>>",
+      "image": "<<DOCKER_IMAGE>>",
       "privileged": false
     },
     "portMappings": [
@@ -25,19 +25,20 @@
       "intervalSeconds": 60,
       "ipProtocol": "IPv4",
       "maxConsecutiveFailures": 3,
-      "path": "/",
+      "path": "<<EXTERNAL_PATH>>",
       "portIndex": 0,
       "protocol": "MESOS_HTTP",
       "timeoutSeconds": 20
     }
   ],
   "id": "/humio/<<MARATHON_ID>>",
-  "instances": 2,
+  "instances": <<INSTANCES>>,
   "killSelection": "YOUNGEST_FIRST",
   "labels": {
     "HAPROXY_0_REDIRECT_TO_HTTPS": "true",
     "HAPROXY_0_USE_HSTS": "true",
-    "HAPROXY_0_VHOST": "<<MARATHON_ID>>.humio.com",
+    "HAPROXY_0_VHOST": "<<EXTERNAL_VHOST>>",
+    "HAPROXY_0_PATH": "<<EXTERNAL_PATH>>",
     "HAPROXY_GROUP": "external",
     "HUMIO_TYPE": "nginx-accesslog",
     "HAPROXY_0_BACKEND_HSTS_OPTIONS": "  rspadd  Strict-Transport-Security:\\ max-age=63072000\n"
