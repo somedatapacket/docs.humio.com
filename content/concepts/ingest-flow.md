@@ -10,11 +10,11 @@ If you are planning a large system or tuning the performance of your Humio clust
 to understand the flow of data. E.g. if you understand the different phases of the ingest flow
 you can ensure that the right machines have the optimal hardware configuration.
 
-In this section we'll explains the different ingest phases and how nodes participate.
+In this section we'll explain the different ingest phases and how nodes participate.
 
 ## Parsing, Digest and Storage
 
-There are three phases a incoming data goes through:
+There are three phases a (bulk of) incoming data goes through:
 
 <figure>
 {{<mermaid align="center">}}
@@ -27,9 +27,9 @@ graph LR;
 
 1. __Parse__: Receiving messages over the wire and processing them with parsers.
 2. __Digest__: Building segment files and buffering data for real-time queries.
-3. __Archive__: Replicating the segments files to designated nodes and processing historical queries.
+3. __Archive__: Replicating the segment files to designated nodes and processing historical queries.
 
-These phases may handled by different nodes in a Humio cluster, or a
+These phases may be handled by different nodes in a Humio cluster, or any
 single node can take part in any combination of the three. Sometimes you may want
 to specialize certain nodes with higher CPUs or RAM to tune performance.
 
@@ -48,8 +48,8 @@ style Parse fill:#2ac76d;
 When an system sends data (e.g. logs) to Humio over one of the
 [Ingest APIs]({{< ref "ingest-api.md" >}}) or through an [ingest listener]({{< ref "ingest-listeners.md" >}})
 the cluster node that receives the request is called the [arrival node]({{< ref "node-roles.md#arrival-node" >}}).
-The arrival node parses the incoming data and puts result (called an [event]({{< ref "events.md" >}})
-on a Kafka message queue. The event is now ready to be processed by a Digest Node.
+The arrival node parses the incoming data and puts result (called a bulk of [events]({{< ref "events.md" >}})
+on a Kafka message queue. The events are now ready to be processed by a Digest Node.
 
 <figure>
 {{<mermaid align="center">}}
@@ -70,8 +70,8 @@ graph LR;
 {{< /mermaid >}}
 </figure>
 
-Exactly which partition the event ends up on is chosen at random. If you are not
-familiar with Kafka, don't worry. You can think of a partition has a queue of work
+Exactly which partition the event ends up on is chosen at random for each data source. If you are not
+familiar with Kafka, don't worry. You can think of a partition as a queue of work
 ready to be processed.
 
 ## The __Digest__ Phase {#digest}
@@ -86,17 +86,17 @@ style Digest fill:#2ac76d;
 {{< /mermaid >}}
 </figure>
 
-After an event is placed in the digest queue a [Digest Node]({{< ref "node-roles.md#digest" >}})
-will grab it off the queue as soon as possible. Each Kafka partition has a node
-assigned to it, this is the node that does all the processing of event that end up
+After the events are placed in the digest queue a [Digest Node]({{< ref "node-roles.md#digest" >}})
+will grab them off the queue as soon as possible. Each Kafka partition has a node
+assigned to it, this is the node that does all the processing of events that end up
 there. A single node can handle multiple partitions and exactly which node that
 handles which partition is defined in the cluster's _Digest Rules_.
 
 ### Digest Rules {#digest-rules}
 
 Each cluster has a table of rules that associates partitions in the Digest Queue
-with the nodes that process events on that queue. You can see the digest rules
-for your own cluster by going Cluster Node Administration page and selecting the
+with the nodes that processes events on that queue. You can see the digest rules
+for your own cluster by going to the Cluster Node Administration page and selecting the
 Digest Rules tab:
 
 {{< figure src="/pages/ingest-flow/digest-rules.png" class="screenshot" caption="Digest Rules, a cluster of 3 nodes where each node is assigned to 8 out of 24 digest partitions." >}}
@@ -121,8 +121,8 @@ If a node is not assigned to a partition, it will not take part in the digest ph
 
 ### Real-Time Query Results {#real-time}
 
-Digest node also produces the Real-Time part of search results. They to this by
-using processing new events that enter the system but before they are archived.
+Digest nodes also produces the Real-Time part of search results. They do this by
+processing new events that enter the system before they are archived.
 
 In other words: Whenever a new event is pulled off the digest queue the
 digest node examines it and updates the results of any matching queries that are
@@ -130,10 +130,10 @@ currently running.
 
 ### Segment Files {#segment-files}
 
-Digest nodes are responsible buffering new events and compiling segment
+Digest nodes are responsible for buffering new events and compiling segment
 files (the files that are written to disk in the Archive Phase).
 
-Once a segment file if full, it is passed on to Storage Nodes in the Archive Phase.
+Once a segment file is full, it is passed on to Storage Nodes in the Archive Phase.
 
 
 ## The __Archive__ Phase {#archive}
@@ -155,9 +155,9 @@ your cluster is configured.
 ### Replication & Archive Rules
 
 If you want fault-tolerence you should ensure your data is replicated across
-multiple node and physical locations. To do this you use configure your cluster's _Archive Rules_,
+multiple node and physical servers / locations. To do this you configure your cluster's _Archive Rules_,
 and just like with [Digest Rules]({{< ref "#digest-rules" >}})
-the associate a partition of data with nodes responsible for handling them.
+they associate a partition of data with nodes responsible for handling them.
 
 If you take a look at the Cluster Nodes Administration Page you can see that
 each entry in the Archive Rules Table associates a partition with a set of nodes -
@@ -167,7 +167,7 @@ you want to ensure the physical separation of data replicas.
 {{< figure src="/pages/ingest-flow/archive-rules.png" class="screenshot" caption="Archive Rules, a cluster of 3 nodes where each node is assigned to 2 out of 3 archive partitions leading to a replication factor of _2_." >}}
 
 _It is important to understand that the Digest Partitions and Archive Partitions
-are not related in anyway. E.g a Digest Partition with ID=1 does not contain the same events
+are not related in any way. E.g a Digest Partition with ID=1 does not contain the same events
 as are written to the Archive Partition with ID=1.__
 
 __Example Archive Rules__
@@ -183,7 +183,7 @@ than nodes `3` and `4`. This is because `1` and `2` archive all data in partitio
 `1` and `3`, while nodes `3` and `4` only archive the data in partition `2`.
 
 If a node is not assigned to a partition, it will not store any data on disk and
-wont be used for searching in historical segments when executing a search on the
+won't be used for searching in historical segments when executing a search on the
 cluster.
 
 #### Replication Factor
@@ -193,7 +193,7 @@ This is because we want a replication factor of __2__, meaning that all data is
 stored on 2 nodes. If you had a partition with only 1 associated node, the
 replication factor will effectively be 1 for the entire cluster! This is because
 you cannot know which data goes into an given partition - and it does not make
-sense to say that a random subset of the data should only be stored in 1 copy.
+sense to say that a random subset of the data should be stored in only 1 copy.
 
 ## Detailed Flow Diagram
 
@@ -234,7 +234,7 @@ graph LR;
         DN("<b>Digest Node <em>#P</em></b>")
       end
       subgraph Archiving
-        S1("<b>Storage Node <em>#1</em></b>")
+        D1 --> S1("<b>Storage Node <em>#1</em></b>")
         D1 --> S2("<b>Storage Node <em>#2</em></b>")
         D1 --> SN("<b>Storage Node <em>#Q</em></b>")
       end
