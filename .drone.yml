@@ -3,17 +3,20 @@ pipeline:
     image: golang
     commands:
       - make clean deps
+
   hugo:
     image: mwldk/drone-hugo
     validate: true
+
   docker-build:
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
     repo: humio/docs
     tags:
-      - latest
+      - ${DRONE_BRANCH/master/latest}
       - ${DRONE_BRANCH}-${DRONE_BUILD_NUMBER}
-  deploy:
+
+  deploy-master:
     image: e20co/drone-marathon
     server: http://marathon.mesos:8080
     marathonfile: marathon.json
@@ -25,3 +28,16 @@ pipeline:
       - drone_build_number
     when:
       branch: master
+
+  deploy-preview:
+    image: e20co/drone-marathon
+    server: http://marathon.mesos:8080
+    marathonfile: marathon.json
+    environment:
+      - MARATHON_ID=docs-preview
+    values:
+      - marathon_id
+      - drone_branch
+      - drone_build_number
+    when:
+      branch: preview
