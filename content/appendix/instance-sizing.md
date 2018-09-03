@@ -55,10 +55,11 @@ blocks.
 ## Rules of thumb
 
 - One vCPU/hyperthread can ingest 250GB/day.
-- Search speed is 1-1.5GB per vCPU/hyperthread (for data in RAM or on fast disks).
+- Search speed is 1 GB per vCPU/hyperthread (for data in RAM or on fast disks).
 - Compression ratio * RAM is how much data can be kept in memory (Using OS-level file system cache).
 - Fast SSDs can achieve as good search speeds as when data is in RAM.
 - For better performance, the disk subsystem should be able to read data at at least 150MB/s/core when not cached.
+
 
 ### Example
 - Assume data compresses 9x (test your setup and see, better compression means better performance).
