@@ -35,6 +35,16 @@ to specialize certain nodes with higher CPUs or RAM to tune performance.
 
 ## The __Parse__ Phase {#parse}
 
+<figure>
+{{<mermaid align="center">}}
+graph LR;
+  Data{"Data"} --> Parse
+  Parse --> Digest
+  Digest --> Archive
+style Parse fill:#2ac76d;
+{{< /mermaid >}}
+</figure>
+
 When an system sends data (e.g. logs) to Humio over one of the
 [Ingest APIs]({{< ref "ingest-api.md" >}}) or through an [ingest listener]({{< ref "ingest-listeners.md" >}})
 the cluster node that receives the request is called the [arrival node]({{< ref "node-roles.md#arrival-node" >}}).
@@ -69,8 +79,8 @@ ready to be processed.
 <figure>
 {{<mermaid align="center">}}
 graph LR;
-  Data{"Data"} --> Ingest
-  Ingest --> Digest
+  Data{"Data"} --> Parse
+  Parse --> Digest
   Digest --> Archive
 style Digest fill:#2ac76d;
 {{< /mermaid >}}
@@ -153,6 +163,8 @@ If you take a look at the Cluster Nodes Administration Page you can see that
 each entry in the Archive Rules Table associates a partition with a set of nodes -
 exactly which partitions are associated with which nodes are only important if
 you want to ensure the physical separation of data replicas.
+
+{{< figure src="/pages/ingest-flow/archive-rules.png" class="screenshot" caption="Archive Rules, a cluster of 3 nodes where each node is assigned to 2 out of 3 archive partitions leading to a replication factor of _2_." >}}
 
 _It is important to understand that the Digest Partitions and Archive Partitions
 are not related in anyway. E.g a Digest Partition with ID=1 does not contain the same events
