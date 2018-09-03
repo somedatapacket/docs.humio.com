@@ -12,9 +12,9 @@ you can ensure that the right machines have the optimal hardware configuration.
 
 In this section we'll explain the different ingest phases and how nodes participate.
 
-## Parsing, Digest and Storage
+## Parse, Digest and Archive
 
-There are three phases a (bulk of) incoming data goes through:
+There are three phases a incoming data goes through:
 
 <figure>
 {{<mermaid align="center">}}
@@ -48,7 +48,7 @@ style Parse fill:#2ac76d;
 When an system sends data (e.g. logs) to Humio over one of the
 [Ingest APIs]({{< ref "ingest-api.md" >}}) or through an [ingest listener]({{< ref "ingest-listeners.md" >}})
 the cluster node that receives the request is called the [arrival node]({{< ref "node-roles.md#arrival-node" >}}).
-The arrival node parses the incoming data and puts result (called a bulk of [events]({{< ref "events.md" >}})
+The arrival node parses the incoming data and puts the result (called [events]({{< ref "events.md" >}})
 on a Kafka message queue. The events are now ready to be processed by a Digest Node.
 
 <figure>
@@ -164,11 +164,11 @@ each entry in the Archive Rules Table associates a partition with a set of nodes
 exactly which partitions are associated with which nodes are only important if
 you want to ensure the physical separation of data replicas.
 
-{{< figure src="/pages/ingest-flow/archive-rules.png" class="screenshot" caption="Archive Rules, a cluster of 3 nodes where each node is assigned to 2 out of 3 archive partitions leading to a replication factor of _2_." >}}
+{{< figure src="/pages/ingest-flow/archive-rules.png" class="screenshot" caption="Archive Rules, a cluster of 3 nodes where each node is assigned to 2 out of 3 archive partitions leading to a replication factor of 2." >}}
 
 _It is important to understand that the Digest Partitions and Archive Partitions
-are not related in any way. E.g a Digest Partition with ID=1 does not contain the same events
-as are written to the Archive Partition with ID=1.__
+are not related in any way. E.g a Digest Partition with `ID=1` does not contain the same events
+as are written to the Archive Partition with `ID=1`._
 
 __Example Archive Rules__
 
