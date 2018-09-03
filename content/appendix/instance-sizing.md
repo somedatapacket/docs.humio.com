@@ -155,6 +155,8 @@ numjobs=8
 Then run fio
 ``` shell
 fio --bandwidth-log ./humio-read-test.fio
+# Clean tmp files from fio:
+rm /data/fio-tmp-dir/read8.?.?
 ```
 
 and then look for the lines at the bottom of the very detailed report similar to...
