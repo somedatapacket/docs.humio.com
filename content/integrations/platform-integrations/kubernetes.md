@@ -30,6 +30,7 @@ backend:
     host: "$HOST"
     http_user: "$INGEST_TOKEN"
     http_passwd: "none"
+    logstash_prefix: "FluentBitHelmChart"
     tls: "on"
     tls_verify: "on"
     tls_ca: |
@@ -70,6 +71,17 @@ helm install stable/fluent-bit --name=humio-agent -f humio-agent.yaml
 ```
 
 Once this is in place, your logs should be up and running.
+
+### Parsing Logs
+
+When using the `FluentBitHelmChart` index as shown in the config
+above, Humio will look for the [pod
+label](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
+`humio-parser` and use that parser on the log line. This way you can
+control how data is parsed by just configuring your pods. If the
+`humio-parser` label is not set, no parser will be applied to the log
+lines.
+
 
 
 ### Uninstall Chart
