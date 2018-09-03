@@ -39,11 +39,18 @@ by specifying tags or other time limitations.
 On this setup, a 300GB/day ingest will use ~5% of your CPU load, so there is plenty of headroom for data spikes
 and running dashboards.
 
-Searches going beyond what fits in the OS-level filesystem caches are
-significantly slower, by a factor of 3-10, and depends on the disk I/O
-performance.  We built Humio to run on local SSDs, so it is not
-(presently) optimized to run on high-latency EBS storage. But it will
-work.
+Searches going beyond what fits in the OS-level file system caches can
+be significantly slower, as they depend on the disk I/O performance.
+If you have sufficiently fast NVME-drives or similar that can deliver
+the compressed data as fast as the CPU cores can decompress them, then
+there is virtually no penalty for doing searches that extend beyond
+the size of the page cache.  We built Humio to run on local SSDs, so
+it is not (presently) optimized to run on high-latency EBS storage or
+slow spinning disks. But it will work, especially if most searches are
+"live" or within the page cache. Humio reads files using "read ahead"
+instructions to the Linux kernel, which allows for file systems on
+spinning disks to read continuous ranges of blocks rather than random
+blocks.
 
 ## Rules of thumb
 
@@ -51,10 +58,11 @@ work.
 - Search speed is 1-1.5GB per vCPU/hyperthread (for data in RAM or on fast disks).
 - Compression ratio * RAM is how much data can be kept in memory (Using OS-level file system cache).
 - Fast SSDs can achieve as good search speeds as when data is in RAM.
+- For better performance, the disk subsystem should be able to read data at at least 150MB/s/core when not cached.
 
 ### Example
 - Assume data compresses 9x (test your setup and see, better compression means better performance).
-- You need to be able to hold 48hrs of compressed data in 80% of you RAM.
+- You need to be able to hold 48hrs of compressed data in 80% of you RAM. (But only if your disks cannot keep up)
 - You want enough hyper threads/vCPUs (each giving you 1GB/s search) to be able
   to search 24hrs of data in less than 10 seconds.
 - You need disk space to hold your compressed data. Never fill your disk more than 80%.
@@ -114,3 +122,49 @@ most other similar products, because these are kept in-memory as a sort of
 in-memory materialized view.  When initializing such queries, it does need to
 run a historic query to fill in past data, and that can take some time if
 it extends beyond what fits within the compressed-memory horizon.
+
+## Testing disk performance
+
+[FIO](http://git.kernel.dk/cgit/fio/plain/README) is a great tool for
+testing the IO performance of your system. It is available as a APT
+package on Ubuntu too:
+
+``` shell
+sudo apt install fio
+```
+
+Here are a sample contents for a "jobfile" that somewhat mimics how
+Humio reads from the file system. Make sure to replace
+`/data/fio-tmp-dir` with the path to somewhere on the disk where your
+`humio-data` would be located, once installed.
+
+```
+[global]
+thread
+rw=read
+bs=1Mi
+directory=/data/fio-tmp-dir
+
+[read8]
+stonewall
+size=1Gi
+numjobs=8
+```
+
+Then run fio
+``` shell
+fio --bandwidth-log ./humio-read-test.fio
+```
+
+and then look for the lines at the bottom of the very detailed report similar to...
+
+```
+Run status group 0 (all jobs):
+   READ: bw=3095MiB/s (3245MB/s), 387MiB/s-431MiB/s (406MB/s-452MB/s), io=8192MiB (8590MB), run=2375-2647msec
+```
+
+This example is an NVME providing ~3 GB/s read performance. This
+allows for searching up to (9*3) GB/s of uncompressed data if the
+system has sufficient number of CPU cores according to the rules of
+thumb above. This NVME is well matched to a CPU with 32 hyper-threads
+(16 hardware cores.)
