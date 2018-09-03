@@ -13,14 +13,14 @@ loosing any acknowledged ingest events and without requiring operator
 intervention.
 
 To be able to handle the failure of `n` machines, Humio must be
-configured to keep at least `n+1` replica of both "ingest partitions"
-and "segment partitions".
+configured to keep at least `n+1` replica of both "ingest routing"
+and "segment routing".
 
 When a node go missing, the remaining nodes configured to handle those
-partitions take over on those. As a result those partitions go from
-having `n` replicas of data to having `n-1` replicas. The cluster does
-not add other nodes to those partitions. If more of the nodes on those
-partitions go missing and there at some point is a partition that has
+routes take over on those. As a result those routes go from having `n`
+replicas of data to having `n-1` replicas. The cluster does not add
+other nodes to those routes. If more of the nodes on those
+routes go missing and there at some point is a route that has
 no live hosts, then the cluster is no longer functional.
 
 Make sure there is sufficient capacity in the cluster to run the full
@@ -61,16 +61,20 @@ will result in duplicate and identical events that differ only on the
 The cluster must consist of nodes on independent hosts in such a
 manner that a problem on one host does not affect the other hosts.
 
-Make sure to assign partitions to nodes in such a manner that the
-nodes servicing a partition are as independent as possible, e.g. run
-on independent hosts.
+Make sure to assign routes to nodes in such a manner that the nodes
+servicing a route are as independent as possible, e.g. run on
+independent hosts.
 
 ### Kafka and Zookeeper
 
-Humio depends on Kafka and Zookeeper to be available to run. Make sure
-your Kafka and Zookeeper clusters have enough nodes to be able to able
-to support 3 replicas of Humio also in the case of failures of some of
-those nodes. The recommended number of Kafka nodes is 5 or more.
+Humio depends on Kafka and Zookeeper to run. Make sure your Kafka and
+Zookeeper clusters have enough nodes to be able to able to support 3
+replicas of Humio data also in the case of failures of some of those
+nodes. The recommended number of Kafka nodes is 5 or more.
 
 ### Humio nodes
 
+High availability requires multiple replicas of the data. By default a
+Humio cluster has only a single copy configured. Please use the
+cluster management UI or the configuration API to setup a replication
+factor of 2 or more on both storage routing and ingest routing.
