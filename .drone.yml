@@ -12,12 +12,16 @@ pipeline:
     repo: humio/docs
     tags:
       - latest
-      - ${DRONE_COMMIT}
+      - ${DRONE_BRANCH}-${DRONE_BUILD_NUMBER}
   deploy:
     image: e20co/drone-marathon
     server: http://marathon.mesos:8080
     marathonfile: marathon.json
+    environment:
+      - MARATHON_ID=docs
     values:
-      - drone_commit
+      - marathon_id
+      - drone_branch
+      - drone_build_number
     when:
       branch: master
