@@ -422,7 +422,9 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
 }
 #body-inner {
     margin-bottom: 5rem;
+    grid-area: c;
 }
+
 #chapter {
     display: flex;
     align-items: center;
@@ -947,7 +949,6 @@ td {
 }
 .highlightable {
     padding: 1rem 0 1rem;
-    overflow: auto;
     position: relative;
 }
 .hljs::selection, .hljs span::selection {
