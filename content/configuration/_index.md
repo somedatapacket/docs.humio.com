@@ -103,6 +103,10 @@ MAX_DATASOURCES=10000
 # Select the IP to bind the http listening socket to. (Defaults to HUMIO_SOCKET_BIND)
 #HUMIO_HTTP_BIND=0.0.0.0
 
+# Verify checksum of segments files when reading them. Default to true. Allows detecting partial and malformed files.
+# (Since v1.1.16)
+#VERIFY_CRC32_ON_SEGMENT_FILES=true
+
 ```
 
 ## Java virtual machine parameters
