@@ -10,12 +10,19 @@ You should always check the [Release Notes]({{< ref "release-notes/_index.md" >}
 for the all versions between the version on Humio you are currently running
 and the version you are installing.
 
+## Data Migrations
+
 Some versions are marked with __Data Migrations__ indicating that Humio's
 internal database will be migrated to a new schema. This is usually one way
 and that implies you cannot easily downgrade if you have issues with the new
 version!
 
-## Steps to updating
+WARNING: If a version is marked as having data migrations you will need to update all nodes
+at the same time, else you might corrupt the cluster's metadata!
+This means taking all nodes offline while updating. Hopefully all clients are configured
+with data retransmission, e.g. using FileBeat or similar, so you should not see any data loss.
+
+## Steps to updating a node
 
 Upgrading Humio is a matter of stopping the old running version and
 starting the new version, on top of the same data directories, and
