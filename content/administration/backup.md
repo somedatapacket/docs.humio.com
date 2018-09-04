@@ -79,3 +79,5 @@ BACKUP_DIR=/mnt/my-net-server/humio-backup01
 ```
 
 ## Restoring From Backup {#restore}
+
+FIXME

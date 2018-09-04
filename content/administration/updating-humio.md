@@ -1,5 +1,6 @@
 ---
 title: Updating Humio to a newer version
+aliases: ["configuration/upgrading"]
 ---
 
 This guide will take you through the steps required to upgrade your Humio Cluster
@@ -14,4 +15,41 @@ internal database will be migrated to a new schema. This is usually one way
 and that implies you cannot easily downgrade if you have issues with the new
 version!
 
-# Steps to Updating your Cluster
+## Steps to updating
+
+Upgrading Humio is a matter of stopping the old running version and
+starting the new version, on top of the same data directories, and
+with the same configuration, in most cases. Some releases have
+instructions in their release notes on required steps to upgrade, but
+most releases should just run on top of the previous one.
+
+We recommend that you make a backup copy of the file `$DATA_DIR/humio-data/global-data-snapshot.json`
+before you upgrade - preferably after shutting down the old version but before starting the new one.
+This file may come in handy if something goes wrong.
+This file can be used to roll back to the previous version.
+
+### Running in Docker
+
+When using Docker images to run Humio, upgrade by pulling the latest
+version of the Docker image and running it using the same Docker
+arguments as previously.
+
+All Humio images are tagged with a version. You should specify the version
+of the image when you run it. In the example below "latest" is used as version.
+
+#### Example
+
+This example shows how to upgrade the "single image" Docker version,
+where everything is inside a single Docker container.
+
+```shell
+docker stop humio | true
+docker rm humio | true
+docker pull humio/humio:latest
+docker run -v $HOST_DATA_DIR:/data --net=host --detach --restart=always --name=humio --env-file=$PATH_TO_CONFIG_FILE humio/humio
+```
+
+### Running from Java JAR
+
+When running the Humio jar outside Docker, download the latest version and
+restart the java process on the new Jar file.
