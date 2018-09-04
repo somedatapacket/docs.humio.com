@@ -152,7 +152,7 @@ The final phase of the ingest flow is archiving. Once a segment file has been
 closed in the digest phase it is saved in _X_ replicas - how many depend on how
 your cluster is configured.
 
-### Replication & Archive Rules
+### Replication & Archive Rules {#replication}
 
 If you want fault-tolerence you should ensure your data is replicated across
 multiple node and physical servers / locations. To do this you configure your cluster's _Archive Rules_,

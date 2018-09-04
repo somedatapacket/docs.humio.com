@@ -21,7 +21,7 @@ we will be listing the associated HTTP calls performed in each step.
 The Cluster UI will indicate that a node is safe to remove from the cluster with
 a `Yes` in the _Removable_ column.
 
-### Step 1: Un-assign Digest Rules
+### Step 1: Un-assign Digest Rules {#unassign-digest}
 
 If the node is being used for digest (the _Digest_ column has a value greater than 0),
 you need to stop accepting new digest work by removing the node from all Digest Rules.
@@ -34,7 +34,7 @@ In the Cluster UI follow these steps:
 This will automatically assign other suitable nodes to the digest partitions currently
 assigned to the node you want to remove.
 
-### Step 2: Un-assign Digest Rules
+### Step 2: Un-assign Archive Rules {#unassign-archive}
 
 If the node is being used for archiving (the _Archive_ column has a value greater than 0),
 you need to stop archiving new data by removing the node from all Archive Rules.
@@ -75,6 +75,6 @@ In the Cluster UI follow these steps:
 1. Select the node you want to remove in the list of nodes
 1. In the panel labeled _Node Tasks_ click the item labeled __Unregister Node__ and then click the button __Unregister Node__.
 
-## Forcing Removal
+## Forcing Removal {#force}
 
 TODO

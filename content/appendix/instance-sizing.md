@@ -113,7 +113,7 @@ the cache runs full.  The 3.8TB SSD would hold ~150 days of ingest data.
 
 With ephemeral SSD storage, you'd want to setup EBS instances for live backup (and Kafka's storage),
 so that you can load the Humio data onto a fresh machine quickly.  Humio live backup live-replicates all data
-to a separate network drive such that data loss is prevented even for ephemeral disks. See [Backup]({{< ref "/configuration/backup.md" >}}).
+to a separate network drive such that data loss is prevented even for ephemeral disks. See [Backup]({{< ref "administration/backup.md" >}}).
 
 
 ## Live Queries / Dashboards
