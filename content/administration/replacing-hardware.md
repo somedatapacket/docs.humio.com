@@ -127,7 +127,7 @@ become available in the Cluster Management UI.
 
 In the case where storage cannot be recovered, there are two options:
 
-1. Restore the node from backup if you have that enabled. See [Restoring from Backup]({{< backup.md#restoring >}})
+1. Restore the node from backup if you have that enabled. See [Restoring from Backup]({{< ref "backup.md#restoring" >}})
 
 2. Forcibly Remove the node from the cluster. Any data that was not stored in multiple
    replicas will be lost. See [Force Remove a Node]({{< ref "removing-a-node.md#force" >}})

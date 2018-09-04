@@ -83,7 +83,7 @@ Another concern is to allow enough memory to the virtual machine running Docker
 on Mac. Open the Docker app and go to preferences and specify 4GB.
 {{% /notice %}}
 
-Updating Humio is described in the [upgrade section]({{< relref "upgrading.md" >}})
+Updating Humio is described in the [upgrade section]({{< ref "updating-humio.md" >}})
 
 ## Running Humio as a system service
 
