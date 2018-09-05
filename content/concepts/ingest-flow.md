@@ -46,8 +46,8 @@ style Parse fill:#2ac76d;
 
 When an system sends data (e.g. logs) to Humio over one of the
 [Ingest APIs]({{< ref "ingest-api.md" >}}) or through an [ingest listener]({{< ref "ingest-listeners.md" >}})
-the cluster node that receives the request is called the [arrival node]({{< ref "node-roles.md#arrival-node" >}}).
-The arrival node parses the incoming data (using the [configured parsers]({{< ref "parsing.md">}}))
+the cluster node that receives the request is called the [arrival node]({{< ref "cluster-nodes.md#arrival-node" >}}).
+The arrival node parses the incoming data (using the [configured parsers]({{< ref "parsers/_index.md">}}))
 and puts the result (called [events]({{< ref "events.md" >}})
 in a partition of Humio's digest Kafka queue.
 
@@ -88,7 +88,7 @@ style Digest fill:#2ac76d;
 {{< /mermaid >}}
 </figure>
 
-After the events are placed in the digest queue a [Digest Node]({{< ref "node-roles.md#digest" >}})
+After the events are placed in the digest queue a [Digest Node]({{< ref "cluster-nodes.md#digest-node" >}})
 will grab them off the queue as soon as possible. Each Kafka partition has a node
 assigned to it, this is the node that does all the processing of events that end up
 there. A single node can handle multiple partitions and exactly which node that

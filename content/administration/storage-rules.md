@@ -55,7 +55,7 @@ If you want fault-tolerence you should ensure your data is replicated across
 multiple node, physical servers and geographical locations.
 
 
-## UI for Storage Nodes
+## UI for Storage Nodes {#ui}
 
 The Cluster Nodes Administration Page can be found under the Account Menu by selecting
 `Administration` -> `Cluster Nodes`. On the right-hand side of the screen the
@@ -71,7 +71,7 @@ as are written to the Storage Partition with `ID=1`._
 ## Storage Divergence {#divergence}
 
 Humio is capable of storing and searching across huge amounts of data.
-When [cluster nodes]({{< cluster-nodes.md >}}) join or leave the cluster, data
+When [cluster nodes]({{< ref "cluster-nodes.md" >}}) join or leave the cluster, data
 will usually need to be moved between nodes to ensure the replication factor is
 upheld and that no data is lost.
 

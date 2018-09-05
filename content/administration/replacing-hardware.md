@@ -57,7 +57,7 @@ and it is acceptable for the cluster to be in a state of lower replication
 while the new hardware is being provisioned.
 
 1. You must also make sure that the node does not contain any data that it is the sole
-owner of (this can e.g. occur if you have [archive divergence]({{< ref "archive-divergence.md" >}})).
+owner of (this can e.g. occur if you have [archive divergence]({{< ref "storage-rules.md#divergence" >}})).
 You can check this in the Cluster Management UI, indicated by red numbers in the _Size_ column.
 
 In this case the cluster can self-heal once the node reappears. It will discover
