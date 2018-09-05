@@ -84,7 +84,7 @@ Your node should rejoin the cluster after a little while and you can see the nod
 become available in the Cluster Management UI.
 
 You will see that the other nodes will start resending all the data that is missing
-on the node and that the _Lower_ segment of the replication status in the header
+on the node and that the _Too Low_ segment of the replication status in the header
 will initially be high, but start dropping as data is replicated.
 
 #### __Step 6__: Reassign the Digest Rules (if you unassigned any in Step 2).

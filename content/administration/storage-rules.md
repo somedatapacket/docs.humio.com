@@ -121,7 +121,7 @@ first handing over the node's data to other nodes, there will be one less versio
 of whatever data it was holding.
 
 In this case that effective data distribution will diverge from the current
-rules, indicated by the _Lower_ segment of the replication bar in the Cluster
+rules, indicated by the _Too Low_ segment of the replication bar in the Cluster
 Management UI.
 
 
