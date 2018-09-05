@@ -6,24 +6,25 @@ aliases: ["configuration/backup"]
 Humio has a built-in backup facility. It only requires a separate
 directory for Humio to write to, preferably on another disk or network
 drive from the data directory. When configured, Humio keeps a full
-backup of the current state in this directory, and also deletes old
-copies when e.g. retention deletes them from the main copy. Humio is
-able to start with an empty data directory and restore the previous
-state from such a backup. The files written on the backup drive are
-encrypted using a secret provided in the configuration of Humio to
+backup of the current state in this directory.
+
+A Humio node can to start with an no data and restore the previous
+state from such a backup.
+
+## Backup Encryption
+
+The files written on the backup drive are encrypted using a secret provided in the configuration of Humio to
 allow storing the backup on e.g. a network drive where others may have
 read access.
 
-Currently this is the only backup strategy. However Humio is designed to
-support other strategies like e.g. Amazon S3 Backup.
+## Third Party Backup Software
 
-Alternatively, you can back up your Humio installation by using any
-backup software that is able to backup all the files in the Humio data
-directory. Note that the software need to support "sparse files" to be
-efficient.
+Humio is designed to support other strategies like e.g. Amazon S3 Backup.
+You can do backup using any backup software that is able to back up
+all the files in the Humio data directory.
+Note that the software need to support "sparse files" to be efficient.
 
-
-### Steps
+## Configuring Backup
 
 You can back up your Humio installation by adding a special mounted directory
 when you run the Docker container. Humio writes its backup files to this directory.
@@ -80,4 +81,4 @@ BACKUP_DIR=/mnt/my-net-server/humio-backup01
 
 ## Restoring From Backup {#restore}
 
-FIXME
+FIXME: @morten
