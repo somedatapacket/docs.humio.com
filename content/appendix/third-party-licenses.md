@@ -33,6 +33,10 @@ License. The source code of jersey can be found at https://github.com/jersey/jer
 
 License | Dependency | Attribution
 --- | --- | ---
+[BSD 3-Clause License](https://asm.ow2.io/license.html) | # org.ow2.asm # asm # 6.2.1 | Copyright (c) 2000-2011 INRIA, France Telecom
+[BSD 3-Clause License](https://asm.ow2.io/license.html) | # org.ow2.asm # asm-commons # 6.2.1 | Copyright (c) 2000-2011 INRIA, France Telecom
+[BSD 3-Clause License](https://asm.ow2.io/license.html) | # org.ow2.asm # asm-tree # 6.2.1 | Copyright (c) 2000-2011 INRIA, France Telecom
+[BSD 3-Clause License](https://asm.ow2.io/license.html) | # org.ow2.asm # asm-analysis # 6.2.1 | Copyright (c) 2000-2011 INRIA, France Telecom
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | # net.java.dev.jna # jna # 4.5.1 | Copyright by the authors.
 [Apache License, Version 2.0](https://github.com/lomigmegard/akka-http-cors/blob/master/LICENSE) | ch.megard # akka-http-cors_2.12 # 0.3.0 | Copyright (c) Lomig Mégard
 [Apache License, Version 2.0](https://github.com/spray/spray-json/blob/master/LICENSE) | io.spray # spray-json_2.12 # 1.3.4 | Copyright (c) 2009-2011 Debasish Ghosh & Mathias Doenitz
