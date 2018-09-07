@@ -48,11 +48,10 @@ When an system sends data (e.g. logs) to Humio over one of the
 [Ingest APIs]({{< ref "ingest-api.md" >}}) or through an [ingest listener]({{< ref "ingest-listeners.md" >}})
 the cluster node that receives the request is called the [arrival node]({{< ref "cluster-nodes.md#arrival-node" >}}).
 The arrival node parses the incoming data (using the [configured parsers]({{< ref "parsers/_index.md">}}))
-and puts the result (called [events]({{< ref "events.md" >}})
-in a partition of Humio's digest Kafka queue.
+and puts the result (called [events]({{< ref "events.md" >}}))
+in a Humio's `humio-ingest` Kafka queue.
 
-If you are not familiar with Kafka - don't worry. You can think of a partition
-as a queue of work ready to be processed.
+If you are not familiar with Kafka - don't worry. 
 
 <figure>
 {{<mermaid align="center">}}
@@ -88,13 +87,12 @@ style Digest fill:#2ac76d;
 {{< /mermaid >}}
 </figure>
 
-After the events are placed in the digest queue a [Digest Node]({{< ref "cluster-nodes.md#digest-node" >}})
-will grab them off the queue as soon as possible. Each Kafka partition has a node
-assigned to it, this is the node that does all the processing of events that end up
-there. A single node can handle multiple partitions and exactly which node that
+After the events are placed in the `humio-ingest` queue a [Digest Node]({{< ref "cluster-nodes.md#digest-node" >}})
+will grab them off the queue as soon as possible. A queue in Kafka is configured with a number of partitions (parallel streams), and each such Kafka partition is consumed by a digest node.
+A single node can handle consume multiple partitions and exactly which node that
 handles which digest partition is defined in the cluster's [Digest Rules]({{< ref "digest-rules.md" >}}).
 
-### Segment Files {#segment-files}
+### Constructing Segment Files {#segment-files}
 
 Digest nodes are responsible for buffering new events and compiling segment
 files (the files that are written to disk in the _Store_ phase).
@@ -103,9 +101,9 @@ Once a segment file is full it is passed on to Storage Nodes in the Store Phase.
 
 ### Real-Time Query Results {#real-time}
 
-Digest nodes also produces the Real-Time part of search results.
-Whenever a new event is pulled off the digest queue the
-digest node examines it and updates the result of any matching Humio searches
+Digest nodes also processes the Real-Time part of search results.
+Whenever a new event is pulled off the `humio-ingest` queue the
+digest node examines it and updates the result of any matching live searches
 that are currently in progress. This is what makes results appear instantly in
 results after arriving in Humio.
 
