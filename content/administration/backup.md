@@ -81,4 +81,25 @@ BACKUP_DIR=/mnt/my-net-server/humio-backup01
 
 ## Restoring From Backup {#restore}
 
-FIXME: @morten
+Humio can restore all events that were stored in segment files for a Humio node in the `humio-data` dir from the backup.
+It can also help a node claim the nodeID of a lost node in a cluster.
+
+### If you have lost an entire node with the `humio-data` dir
+
+The node is lost, but you have reinstalled the OS on the existing
+hardware, or perhaps found a spare server that should now take on the
+role of the lost Humio node. To do so you should create the
+`humio-data` and place a copy of the uuid file from the lost node -
+this file is present in the folder
+```
+/backup/BACKUP-NAME/globaldata/cluster_membership-NODEID-UUID.uuid
+```
+
+copy this file to
+
+```
+/data/humio-data/cluster_membership.uuid
+```
+
+### Restoring lost segment files
+Humio restores missing segment files when it discovers they are missing, and are present in the backup folder.
