@@ -4,9 +4,10 @@ title: Storage Rules
 
 In Humio data is distributed across the cluster nodes. Which nodes store what
 is chosen randomly. The only thing you as an operator can control is how big a
-portion each node gets and that that multiple replicas are not stored on the
+portion is assigned to each node, and that multiple replicas are not stored on the
 same rack/machine/location (to ensure fault-tolerence).
 
+Data is stored in units of _segments_, which are compressed files between 0.5GB and 1GB.
 
 ## Storage Partitions {#partitions}
 
@@ -24,8 +25,7 @@ Data is distributed according to the cluster's Storage Rules.
 A _Storage Rule_ is a relation between a [storage partition]({{< ref "#partitions" >}}) and
 the set of nodes that should store all data that written to that partition.
 
-
-When [digest nodes]({{< ref "cluster-nodes.md#digest-node" >}}) complete a data
+When a [digest node]({{< ref "cluster-nodes.md#digest-node" >}}) completes a data
 segment file (the internal data unit in Humio) it is assigned to a random storage
 partition. Here is an example configuration:
 
