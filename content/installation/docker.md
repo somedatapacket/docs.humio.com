@@ -55,12 +55,12 @@ docker pull humio/humio
 Run the Humio Docker image as a container:
 
 ```shell
-docker run -v $HOST_DATA_DIR:/data --net=host --name=humio --ulimit="nofile=8192:8192" --env-file=$PATH_TO_CONFIG_FILE humio/humio
+docker run -v $HOST_DATA_DIR:/data -v $PATH_TO_READONLY_FILES:/etc/humio:ro --net=host --name=humio --ulimit="nofile=8192:8192" --env-file=$PATH_TO_CONFIG_FILE humio/humio
 ```
 
 Replace `$HOST_DATA_DIR` with the path to the humio-data directory you created
 on the host machine, and `$PATH_TO_CONFIG_FILE` with the path of the
-configuration file you created.
+configuration file you created. The directory `$PATH_TO_READONLY_FILES` provides a place to put files that are needed at runtime by humio such as certificates for SAML authentication.
 
 **Step 6**
 
