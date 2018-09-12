@@ -8,7 +8,7 @@ on-premises installations of Humio.
 
 All requests except the status endpoint require **root-level access**. See [API token for local root access]({{< relref "root-access.md#root-token" >}}).
 
-Note, this API is still very much _work-in-progress_.
+Note, this API ids still very much _work-in-progress_.
 
 
 ## Available Endpoints
