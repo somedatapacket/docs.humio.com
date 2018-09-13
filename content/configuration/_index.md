@@ -49,6 +49,10 @@ PUBLIC_URL=https://humio.mycompany.com
 # Example: `my-kafka01:9092` or `kafkahost01:9092,kafkahost02:9092`
 KAFKA_SERVERS=kafkahost01:9092,kafkahost02:9092
 
+# By default Humio will create topics and manage number of replica in Kafka for the topics being used.
+# If you run Humio on top of an existing Kafka or want to manage this outside of Humio, set this to false.
+KAFKA_MANAGED_BY_HUMIO=true
+
 # Zookeeper servers.
 # Defaults to "localhost:2181", which is okay for a single server system, but
 # should be set to a comma separated host:port pairs string.
@@ -60,6 +64,13 @@ KAFKA_SERVERS=kafkahost01:9092,kafkahost02:9092
 # There will be a sub-directory for each combination that exists.
 # (Since v1.1.10)
 MAX_DATASOURCES=10000
+
+# Compresions level for data in segment files. Defaults to 9, range is [1 ; 17]
+# COMPRESSION_LEVEL=9
+
+# (Approximate) limit on the number of hours a segment file can be open for writing
+# before being flushed even if it is not full.
+MAX_HOURS_SEGMENT_OPEN=720
 
 # Let Humio send emails using the Postmark service
 # Create a Postmark account and insert the token here
