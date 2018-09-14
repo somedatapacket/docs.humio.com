@@ -169,7 +169,6 @@ Humio is distributed as Docker images; use the `humio/humio-core` edition for di
 
     ```properties
     # The stacksize should be at least 2M.
-    # We suggest setting MaxDirectMemory to 50% of physical memory. At least 2G required.
     HUMIO_JVM_ARGS=-Xss2M
     
     # Make Humio write a backup of the data files:
