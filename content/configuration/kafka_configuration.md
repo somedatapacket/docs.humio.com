@@ -7,6 +7,12 @@ storing shared state when running Humio in a cluster setup.
 
 In this section we briefly describe how Humio uses Kafka. Then we discuss how to configure Kafka.
 
+{{% notice note %}}
+Make sure to not apply compression inside Kafka to the queues below. Humio compresses the messages when relevant.
+Letting Kafka apply compression as well slows down the system and also adds problems with GC due to use of JNI in case LZ4 is applied.
+Setting `compression.type` to `producer` is recommended on these queues.
+{{% /notice %}}
+
 ## Queues
 
 Humio creates the following queues in Kafka:
