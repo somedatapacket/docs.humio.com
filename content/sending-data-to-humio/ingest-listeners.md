@@ -47,7 +47,7 @@ sudo sysctl net.core.rmem_max=16777216
 
 Note that this change needs to happen before Humio is started. You
 probably want it done when the system boots. On Debian (e.g. Ubuntu)
-you can achiveve this by creating a file in `/etc/sysctl.d/` with a
+you can achieve this by creating a file in `/etc/sysctl.d/` with a
 name such as `raise_rmem_max.conf` and the contents
 
 ```
