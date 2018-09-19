@@ -3,33 +3,34 @@ title: "Cluster Management API"
 weight: 500
 ---
 
-This page provides information about the HTTP API for managing
-on-premises installations of Humio.
+This page provides information about the HTTP API for managing on-premises installations of Humio.
 
-All requests except the status endpoint require **root-level access**. See [API token for local root access]({{< relref "root-access.md#root-token" >}}).
+All requests except the status endpoint require **root-level access**.
+See [API token for local root access]({{< ref "root-access.md#root-token" >}}).
 
-Note, this API is still very much _work-in-progress_.
-
+You can see the [Cluster Administration Documentation]({{< ref "administration/_index.md" >}})
+for more details on how to perform common tasks like adding and removing nodes from
+a cluster.
 
 ## Available Endpoints
 
-| Endpoint                                                                           | Method                                                                  | Description                                          |
-| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------------- |
-| `/api/v1/clusterconfig/members`                                                    | [GET](#list-cluster-members)                                            | List cluster members                                 |
-| `/api/v1/clusterconfig/members/$HOST`                                              | [GET](#modifying-a-host-in-your-cluster)                                | Get a host in your cluster                           |
-| `/api/v1/clusterconfig/members/$HOST`                                              | [PUT](#modifying-a-host-in-your-cluster)                                | Modifying a host in your cluster                     |
-| `/api/v1/clusterconfig/members/$HOST`                                              | [DELETE](#deleting-a-host-from-your-cluster)                            | Deleting a host from your cluster                    |
+| Endpoint | Method | Description |
+| -------- | ------ | ----------- |
+| `/api/v1/clusterconfig/members`                                                    | [GET](#list-cluster-members)                                            | List cluster nodes                                   |
+| `/api/v1/clusterconfig/members/$NODE_ID`                                              | [GET](#modifying-a-host-in-your-cluster)                                | Get a node in your cluster                           |
+| `/api/v1/clusterconfig/members/$NODE_ID`                                              | [PUT](#modifying-a-host-in-your-cluster)                                | Modifying a node in your cluster                     |
+| `/api/v1/clusterconfig/members/$NODE_ID`                                              | [DELETE](#deleting-a-host-from-your-cluster)                            | Deleting a node from your cluster                    |
 | `/api/v1/clusterconfig/segments/partitions/setdefaults`                            | [POST](#applying-default-partition-settings)                            | Applying default partition settings                  |
-| `/api/v1/clusterconfig/segments/partitions`                                        | [GET, POST](#querying-and-assigning-storage-partitions-to-hosts)        | Querying and assigning storage partitions to hosts   |
-| `/api/v1/clusterconfig/segments/partitions/set-replication-defaults`               | [POST](#assigning-default-storage-partitions-to-hosts)                  | Assigning default storage partitions to hosts        |
-| `/api/v1/clusterconfig/segments/distribute-evenly`                                 | [POST](#moving-existing-segments-between-hosts)                         | Moving existing segments between hosts               |
+| `/api/v1/clusterconfig/segments/partitions`                                        | [GET, POST](#querying-and-assigning-storage-partitions-to-hosts)        | Querying and assigning storage partitions to nodes   |
+| `/api/v1/clusterconfig/segments/partitions/set-replication-defaults`               | [POST](#assigning-default-storage-partitions-to-hosts)                  | Assigning default storage partitions to nodes        |
+| `/api/v1/clusterconfig/segments/distribute-evenly`                                 | [POST](#moving-existing-segments-between-hosts)                         | Moving existing segments between nodes               |
 | `/api/v1/clusterconfig/segments/prune-replicas`                                    | [POST](#pruning-replicas-when-reducing-replica-setting)                 | Pruning replicas when reducing replica setting       |
-| `/api/v1/clusterconfig/segments/distribute-evenly-reshuffle-all`                   | [POST](#moving-existing-segments-between-hosts)                         | Moving existing segments between hosts               |
-| `/api/v1/clusterconfig/segments/distribute-evenly-to-host/$HOST`                   | [POST](#moving-existing-segments-between-hosts)                         | Moving existing segments between hosts               |
-| `/api/v1/clusterconfig/segments/distribute-evenly-from-host/$HOST`                 | [POST](#moving-existing-segments-between-hosts)                         | Moving existing segments between hosts               |
+| `/api/v1/clusterconfig/segments/distribute-evenly-reshuffle-all`                   | [POST](#moving-existing-segments-between-hosts)                         | Moving existing segments between nodes               |
+| `/api/v1/clusterconfig/segments/distribute-evenly-to-host/$NODE_ID`                   | [POST](#moving-existing-segments-between-hosts)                         | Moving existing segments between nodes               |
+| `/api/v1/clusterconfig/segments/distribute-evenly-from-host/$NODE_ID`                 | [POST](#moving-existing-segments-between-hosts)                         | Moving existing segments between nodes               |
 | `/api/v1/clusterconfig/ingestpartitions`                                           | [GET, POST](#ingest-partitions)                                         | Get/Set ingest partitions                            |
 | `/api/v1/clusterconfig/ingestpartitions/setdefaults`                               | [POST](#ingest-partitions)                                              | Set ingest partitions defaults                       |
-| `/api/v1/clusterconfig/ingestpartitions/distribute-evenly-from-host/$HOST`         | [POST](#ingest-partitions)                                              | Move ingest partitions from host                     |
+| `/api/v1/clusterconfig/ingestpartitions/distribute-evenly-from-host/$NODE_ID`         | [POST](#ingest-partitions)                                              | Move ingest partitions from node                     |
 | `/api/v1/clusterconfig/kafka-queues/partition-assignment`                          | [GET, POST](#managing-kafka-queue-settings)                             | Managing kafka queue settings                        |
 | `/api/v1/clusterconfig/kafka-queues/partition-assignment/set-replication-defaults` | [POST](#managing-kafka-queue-settings)                                  | Managing kafka queue settings                        |
 | `/api/v1/listeners`                                                                | [GET,POST](#adding-a-ingest-listener-endpoint)                          | Add tcp listener (used for Syslog)                   |
@@ -38,48 +39,6 @@ Note, this API is still very much _work-in-progress_.
 | `/api/v1/dataspaces/$REPOSITORY_NAME/datasources/$DATASOURCEID/autosharding`       | [GET,POST,DELETE](#configure-auto-sharding-for-high-volume-datasources) | Configure auto-sharding for high-volume datasources. |
 | `/api/v1/status`       							     | [GET](#status-endpoint) 						       | Get status and version of node 	 	      |
 
-
-## Manage your cluster
-
-All cluster operations on the Humio cluster presumes a running Kafka/Zookeeper cluster.
-All Humio instances in a cluster must be hooked up to the same Kafka cluster,
-preferably being able to talk to more than one Kafka and zookeeper server instance.
-
-The humio cluster is conceptually a set of 'Hosts' and 'partitions'.
-There are partitions for "ingest" and for "storage".
-Each host is assigned a (possibly empty) set of partitions of these two kinds.
-You manage the load on each server by assigning partitions to hosts.
-
-When data arrives at humio ("being ingested") it is routed to the host that handles the "ingest partition" selected for that data.
-That host then collects data from that input stream into a segment. Once the segment is full, the host selects a set of hosts, through the storage partitions, to hold the completed segment.
-
-Humio hosts may be added to, or removed from, a running cluster.
-
-
-## Add a host to your cluster
-
-Assuming you have a cluster of one or more humio nodes, add a with these steps:
-
-1.  Add a new server as described in the installation documentation, and configure it to talk to the existing kafka-cluster
-
-1.  Start humio on the new server with an empty "/data/humio-data" directory. Humio needs a way to get hold of a snapshot of the shared state in the cluster, from one of these sources:
-
-    1.  If humio has BACKUP configured, the shared backup folder including long-term copies is also searched for a copy of the current shared state.
-    1.  Humio also fetches a snapshot from the Kafka-queue named "global-snapshots".
-    1.  Humio selects the latest snapshot, in terms of epoch and offset, recorded inside these snapshots. It then continues reading events from the Kafka-queue named "global-events" from the snapshots offset.
-
-1.  The new Humio instance will pull the latest events in the shared state from Kafka queue "global-events", and detect that it is a fresh member of an existing cluster.
-
-1.  The new Humio instance register itself in the cluster, but does not have any partitions assigned.
-    If "BOOTSTRAP_HOST_ID" is set in the configuration, this sets the desired ID.
-    If it is not set, it is auto-selected by the server.
-
-1.  The other hosts in the cluster need to know where to find the new server.
-
-    1.  Use "EXTERNAL_URL" in the configuration to set this before the initial start of the instance.
-    1.  You can you the api to modify this using GET/PUT.
-
-1.  To get the host to do some work, assign partitions to it using the API below.
 
 ## List cluster members
 
@@ -93,21 +52,26 @@ Example:
 curl -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/members"
 ```
 
-## Modifying a host in your cluster
+## Adding a node to your cluster
 
-You can fetch / re-post the object representing the host in the cluster using GET/PUT requests.
-$HOST is the integer-id of the new host.
+[See: Adding a node]({{< ref "adding-a-node.md" >}})
+
+
+## Modifying a node in your cluster
+
+You can fetch / re-post the object representing the node in the cluster using GET/PUT requests.
+$NODE_ID is the integer-id of the new node.
 
 ```
-GET    /api/v1/clusterconfig/members/$HOST
-PUT    /api/v1/clusterconfig/members/$HOST
+GET    /api/v1/clusterconfig/members/$NODE_ID
+PUT    /api/v1/clusterconfig/members/$NODE_ID
 ```
 
 Example:
 
 ```shell
-curl -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/members/1" > host-1.json
-curl -XPUT -d @host-1.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/members/1"
+curl -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/members/1" > node-1.json
+curl -XPUT -d @node-1.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/members/1"
 ```
 
 outputs:
@@ -118,12 +82,14 @@ outputs:
 
 You can edit the fields internalHostUri and displayName in this structure and POST the resulting changes back to the server, preserving the vhost and uuid fields.
 
-## Deleting a host from your cluster
+## Deleting a node from your cluster
 
-If the host does not have any segments files, and no assigned partitions, there is no data loss when deleting a host.
+[See: Removing a node]({{< ref "removing-a-node.md" >}})
+
+If the host does not have any segments files, and no assigned partitions, there is no data loss when deleting a node.
 
 ```
-DELETE    /api/v1/clusterconfig/members/$HOST
+DELETE    /api/v1/clusterconfig/members/$NODE_ID
 ```
 
 Example:
@@ -146,7 +112,7 @@ curl -XDELETE -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/m
 
 ## Applying default partition settings
 
-This is a shortcut to getting all members of a cluster to have the same share of the load on both ingest and storage partitions.
+This is a shortcut to getting all members of a cluster to have the same share of the load on both [digest and storage partitions]({{< ref "ingest-flow.md" >}}).
 
 ```
 POST   /api/v1/clusterconfig/partitions/setdefaults
@@ -158,13 +124,15 @@ Example:
 curl -XPOST -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/partitions/setdefaults"
 ```
 
-## Querying and assigning storage partitions to hosts
+## Querying and assigning storage partitions to nodes
+
+We recommend you read the [docs section about storage rules]({{< ref "storage-rules.md" >}}).
 
 When a data segments is complete, the server select the host(s) to place the segment on by looking up a segment-related key in the storage partition table.
-The partitions map to a set of hosts. All of these hosts are then assigned as owners of the segment, and will start getting their copy shortly after.
+The partitions map to a set of nodes. All of these nodes are then assigned as owners of the segment, and will start getting their copy shortly after.
 
 You can modify the storage partitions at any time.
-Any number of partitions larger than the number of hosts is allowed, but the recommended the number of storage partitions is 24 or similar fairly low number.
+Any number of partitions larger than the number of nodes is allowed, but the recommended the number of storage partitions is 24 or similar fairly low number.
 There is no gain in having a large number of partitions.
 
 Existing segments are not moved when re-assigning partitions. Partitions only affect segments completed after they are POST'ed.
@@ -214,23 +182,23 @@ POST   /api/v1/clusterconfig/segments/prune-replicas
 curl -XPOST -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/segments/prune-replicas"
 ```
 
-## Moving existing segments between hosts
+## Moving existing segments between nodes
 
-There is API for taking the actions moving the eixsting segments between hosts.
+There is API for taking the actions moving the existing segments between nodes.
 
-1.  Moving segments so that all hosts have their "fair share" of the segments, as stated in storage partitioning setting, but as mush as possible leaving segments where they are.
-    It's also possible to apply the current partitioning scheme to all existing segments, possibly moving every segment to a new host.
+1.  Moving segments so that all nodes have their "fair share" of the segments, as stated in storage partitioning setting, but as mush as possible leaving segments where they are.
+    It's also possible to apply the current partitioning scheme to all existing segments, possibly moving every segment to a new node.
 
-1.  It's possible to move all existing segments off a host.
-    If that host is not assigned any partitions at all (both storage and ingest kinds), this then releaves the host of all duties, preparing it to be deleted from the cluster.
+1.  It's possible to move all existing segments off a node.
+    If that node is not assigned any partitions at all (both storage and ingest kinds), this then relieves the node of all duties, preparing it to be deleted from the cluster.
 
-1.  If a new host is added, and you want it to take its fair share of the current stored data, use the "distribute-evenly-to-host" variant.
+1.  If a new node is added, and you want it to take its fair share of the current stored data, use the "distribute-evenly-to-host" variant.
 
 ```
 POST   /api/v1/clusterconfig/segments/distribute-evenly
 POST   /api/v1/clusterconfig/segments/distribute-evenly-reshuffle-all
-POST   /api/v1/clusterconfig/segments/distribute-evenly-to-host/$HOST
-POST   /api/v1/clusterconfig/segments/distribute-evenly-from-host/$HOST
+POST   /api/v1/clusterconfig/segments/distribute-evenly-to-host/$NODE_ID
+POST   /api/v1/clusterconfig/segments/distribute-evenly-from-host/$NODE_ID
 Optional; Add a "percentage=[0..100]" query parameter to only apply the action to a fraction of the full set.
 ```
 
@@ -243,36 +211,38 @@ curl -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN
 curl -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/segments/distribute-evenly-from-host/7"
 ```
 
-## Ingest Partitions
+## Digest Partitions
 
 These route the incoming data while it is "in progress".
 
-Warning: Do not `POST` to this API unless the cluster is running fine,
-with all members connected and active. All ingest traffic stops for a few seconds when being applied.
+We recommend you read the [docs section about digest rules]({{< ref "digest-rules.md" >}}).
 
-Ingest traffic does not start before all hosts are ready, thus if a host is failing, ingest does not resume.
+Warning: Do not `POST` to this API unless the cluster is running fine,
+with all members connected and active. All digest stops for a few seconds when being applied.
+
+Digest does not start before all nodes are ready, thus if a node is failing, digest does not resume.
 
 1.  GET/POST the setting to hand-edit where each partition goes. You cannot reduce the number of partitions.
 
-1.  Invoke "setdefaults" to distribute the current number of partitions evenly among the known hosts in the cluster
+1.  Invoke "setdefaults" to distribute the current number of partitions evenly among the known nodes in the cluster
 
-1.  Invoke "distribute-evenly-from-host" to reassign partitions currently assigned to $HOST to the other hosts in the cluster.
+1.  Invoke "distribute-evenly-from-host" to reassign partitions currently assigned to $NODE_ID to the other nodes in the cluster.
 
 ```
 GET    /api/v1/clusterconfig/ingestpartitions
 POST   /api/v1/clusterconfig/ingestpartitions
 POST   /api/v1/clusterconfig/ingestpartitions/setdefaults
-POST   /api/v1/clusterconfig/ingestpartitions/distribute-evenly-from-host/$HOST
+POST   /api/v1/clusterconfig/ingestpartitions/distribute-evenly-from-host/$NODE_ID
 ```
 
 Example:
 
 ```shell
-curl -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/ingestpartitions" > ingest-partitions.json
-curl -XPOST -d @ingest-partitions.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/ingestpartitions"
+curl -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/ingestpartitions" > digest-rules.json
+curl -XPOST -d @digest-rules.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/ingestpartitions"
 ```
 
-## Managing kafka queue settings
+## Managing Kafka queue settings
 
 The ingest queues are partitions of the Kafka queue named "humio-ingest".
 Humio offers an API for editing the Kafka partition to broker assignments this queue.
@@ -347,7 +317,7 @@ cat << EOF > create-rsyslogd-listener.json
   "vhost": 1
 }
 # "bindInterface" is optional. If set, sets local interface to bind on to select network interface.
-# "vhost" is optional. If set, only the cluster host with that index binds the port.
+# "vhost" is optional. If set, only the cluster node with that index binds the port.
 
 EOF
 curl -XPOST \
@@ -503,7 +473,7 @@ curl -XDELETE -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/dataspaces/$REP
 ```
 
 Humio also supports detecting if there is high load on a datasource, and automatically trigger this auto-sharding on the datasources.
-You will see this happening on "fast" datasources, typically if more than 2 TB/day is delivered to a single datasource. 
+You will see this happening on "fast" datasources, typically if more than 2 TB/day is delivered to a single datasource.
 The events then get an extra tag, `#humioAutoShard` that is assigned a random integer value.
 
 This is configured through the settings `AUTOSHARDING_TRIGGER_DELAY_MS`, which is compared to the time an event spends in the ingest pipeline inside Humio.

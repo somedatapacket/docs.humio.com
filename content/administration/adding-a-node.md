@@ -49,7 +49,7 @@ and it will not be used for digest (processing of events running of real-time qu
 indicated by the `0` in the _Digest_ column.
 
 A node configured like this is called an _Arrival Node_ since its only task
-is to parse messages as it _arrives_ at the Humio cluster.
+is to parse messages arriving at this node or coordinate queries send to this node.
 
 ### Step 2: Assigning digest work to the node
 
@@ -61,7 +61,7 @@ To distribute a fair share of the digest work to the new node you can use the
 Cluster UI and follow these steps:
 
 1. Select the node in the list
-1. In the panel labeled _Node Tasks_ click the item labeled __Start using this node for digest of incoming data__ and then __Add node to Digest Rules__.
+1. In the panel labeled _Actions_ click the item labeled __Start using this node for digest of incoming data__ and then __Add node to Digest Rules__.
 
 This will change the Digest Rules (seen on the right of the screen) to include the new node.
 
@@ -83,7 +83,7 @@ of the worked involved with searching (i.e. executing a query on the cluster).
 To use node for archiving of new events follow these steps:
 
 1. Select the node in the Cluster UI
-1. In the panel labeled _Node Tasks_ click the item labeled __Start using this node for storing incoming data__ and then __Add node to Storage Rules__.
+1. In the panel labeled _Actions_ click the item labeled __Start using this node for storing incoming data__ and then __Add node to Storage Rules__.
 
 This changes the [Storage Rules]({{< ref "storage-rules.md">}}) (seen on the right of the screen) to include the node.
 What this means is that part new incoming data (not existing data) will be stored
@@ -106,7 +106,7 @@ To move a fraction of the total data stored in the cluster to the node, the frac
 follow these steps:
 
 1. Select the node in the Cluster UI
-1. In the panel labeled _Node Tasks_ click the item labeled __Move a share of existing data onto this node__ and then __Move data to node__.
+1. In the panel labeled _Actions_ click the item labeled __Move a share of existing data onto this node__ and then __Move data to node__.
 
 You will see that the "Traffic" column of the node list will indicate that data is
 being moved to the node.

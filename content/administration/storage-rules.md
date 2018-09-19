@@ -1,5 +1,6 @@
 ---
 title: Storage Rules
+aliases: [ref/storage-rules]
 ---
 
 In Humio data is distributed across the cluster nodes. Which nodes store what
@@ -61,7 +62,7 @@ The Cluster Nodes Administration Page can be found under the Account Menu by sel
 `Administration` -> `Cluster Nodes`. On the right-hand side of the screen the
 Storage Rules Table is displayed.
 
-{{< figure src="/pages/ingest-flow/archive-rules.png" class="screenshot" caption="Storage Rules, a cluster of 3 nodes where each node is assigned to 2 out of 3 archive partitions leading to a replication factor of 2." >}}
+{{< figure src="/pages/ingest-flow/storage-rules.png" class="screenshot" caption="Storage Rules, a cluster of 3 nodes where each node is assigned to 2 out of 3 archive partitions leading to a replication factor of 2." >}}
 
 _There is also a tab for [Digest Rules]({{< ref "digest-rules.md" >}}) and it is important to understand that the
 Digest Partitions and Storage Partitions are not related in any way. E.g a Digest Partition with `ID=1` does not contain the same data

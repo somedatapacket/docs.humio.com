@@ -73,7 +73,7 @@ The procedure is mostly the same.
 Instead of mounting the directory using "-v", you specify the location using "BACKUP_DIR".
 A full example configuration is then:
 
-``` shell
+```shell
 BACKUP_NAME=humio-backup
 BACKUP_KEY=mysecretkey-myhost-+R+q(AB9QG86xZMCKGyj
 BACKUP_DIR=/mnt/my-net-server/humio-backup01
@@ -81,7 +81,8 @@ BACKUP_DIR=/mnt/my-net-server/humio-backup01
 
 ## Restoring From Backup {#restore}
 
-Humio can restore all events that were stored in segment files for a Humio node in the `humio-data` dir from the backup.
+Humio can restore all events that were stored in segment files for a Humio node
+in the `humio-data` dir from the backup.
 It can also help a node claim the nodeID of a lost node in a cluster.
 
 ### If you have lost an entire node with the `humio-data` dir
@@ -95,11 +96,12 @@ this file is present in the folder
 /backup/BACKUP-NAME/globaldata/cluster_membership-NODEID-UUID.uuid
 ```
 
-copy this file to
+copy this file to:
 
 ```
 /data/humio-data/cluster_membership.uuid
 ```
 
 ### Restoring lost segment files
-Humio restores missing segment files when it discovers they are missing, and are present in the backup folder.
+Humio restores missing segment files when it discovers they are missing,
+and are present in the backup folder.

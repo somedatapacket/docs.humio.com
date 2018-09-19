@@ -412,24 +412,9 @@ time=*
 
 
 ### Setting a field's default value {#side-effects}
-<!-- TODO(Thomas) I think this entire section should be left our. It is an advanced technique, that is more of a work-around. -->
-If all you want to do is set a default value for a field if the field is not present,
-you don't need case-statements.
-You can simply use the fact that a function that can assign an field
-(such as `eval`) only assigns the field if can resolve a value for all fields involved.
-In other words: if you do {{< query >}}eval(newField=nonExistingField*2){{< /query >}}
-and `nonExistingField` does not exist, nothing happens e.i. `newField` is not assigned.
 
-Using this we can set a default value if some other value is not present.
-Here we set the field `foo` to the value `missing` if there is no `bar` field,
-and otherwise set `foo` to the value of the `bar` field.
-
-```humio
-... | eval(foo="missing") | eval(foo=bar) | ..."
-```
-
-The downside is that it is not actually the field `foo` that gets the default,
-but rather the new field `bar`, which we can use in its place.
+You can use the function {{< function "default" >}} to set the value of a missing
+or empty field.
 
 ## Composite Function Calls {#composite-function-calls}
 

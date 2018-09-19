@@ -9,7 +9,7 @@ Most of the content is mostly relevant for clustered setups.
 ## User Management
 
 - [Adding a new user]({{< ref "user-management.md#adding-a-user" >}})
-- [Removing a user]({{< ref "user-management.md#adding-a-user" >}})
+- [Removing a user]({{< ref "user-management.md#removing-a-user" >}})
 
 ## Cluster Administration
 
@@ -23,3 +23,7 @@ Most of the content is mostly relevant for clustered setups.
 
 - [Changing Retention]({{< ref "retention.md" >}})
 - [Managing Ingest Listeners]({{< ref "ingest-listeners.md" >}})
+
+## Backup
+
+- [Configuring backup]({{< ref "backup.md" >}})
