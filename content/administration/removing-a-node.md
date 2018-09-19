@@ -7,17 +7,10 @@ stored on the node is completely copied to another node before it leaves.
 
 ## Steps to removing a cluster node
 
-<<<<<<< HEAD
 When you want to remove node from a cluster you need to make sure that
 any digest and archiving responsibilities. This means removing the node from
 any Digest and Archive Rules. This will stop the node from accepting any new
 work. The data stored on the node would be copied to another node to keep the
-=======
-When you want to remove node from a cluster it should hand over any digest
-and archiving responsibilities. This means removing the node from
-any Digest and Storage Rules. This will stop the node from accepting any new
-work. The data stored on the node should also be copied to another node to keep the
->>>>>>> 602350b... Align cluster API with rest of docs
 cluster's replication factor stable.
 
 We will be using the Cluster Node UI in this guide, but everything can be
@@ -48,11 +41,7 @@ you need to stop archiving new data by removing the node from all Archive Rules.
 In the Cluster UI follow these steps:
 
 1. Select the node you want to remove in the list of nodes
-<<<<<<< HEAD
-1. In the panel labeled _Node Tasks_ click the item labeled __Stop using this node for storing for incoming data__ and then __Remove node from Archive Rules__.
-=======
 1. In the panel labeled _Actions_ click the item labeled __Stop using this node for storing for incoming data__ and then __Remove node from Storage Rules__.
->>>>>>> 602350b... Align cluster API with rest of docs
 
 This will automatically assign other suitable nodes to the Archive partitions
 currently assigned to the node you want to remove.
