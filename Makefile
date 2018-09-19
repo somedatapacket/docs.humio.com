@@ -5,7 +5,7 @@ clean:
 
 run: deps
 	# CSS gets mashed if we don't use --disableFastRender
-	hugo server --disableFastRender --buildDrafts
+	hugo server --disableFastRender
 
 run-docker: deps
 	# Runs hugo server in a docker container, container is automatically destroyed when stopped

@@ -1,6 +1,5 @@
 ---
 title: "Administration"
-draft: true
 weight: 10
 ---
 
@@ -17,7 +16,7 @@ Most of the content is mostly relevant for clustered setups.
 - [Updating Humio]({{< ref "updating-humio.md" >}})
 - [Adding a Node]({{< ref "adding-a-node.md" >}})
 - [Removing a Node]({{< ref "removing-a-node.md" >}})
-- [Managing Replication]({{ ref "replication.md" }})
+<!--TODO: - [Managing Replication](…) -->
 - [Updating your license]({{< ref "license-management.md" >}})
 
 ## Repository Management

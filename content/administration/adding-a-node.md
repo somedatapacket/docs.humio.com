@@ -1,6 +1,5 @@
 ---
 title: Adding a New Node
-draft: true
 related:
   - removing-a-node.md
   - instance-sizing.md
