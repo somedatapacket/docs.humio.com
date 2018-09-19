@@ -1,6 +1,7 @@
 ---
 title: "Administration"
 weight: 701
+category_title: Overview
 ---
 
 This section explains how to handle common tasks when running a Humio instance.
