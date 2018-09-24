@@ -52,6 +52,12 @@ KAFKA_SERVERS=kafkahost01:9092,kafkahost02:9092
 # If you run Humio on top of an existing Kafka or want to manage this outside of Humio, set this to false.
 KAFKA_MANAGED_BY_HUMIO=true
 
+# It is possible to add extra Kafka configuration properties. by creating a properties file and pointing to it.
+# These properties are added to all Kafka producers and consumers in Humio.
+# For example, this enables Humio to connect to a Kafka cluster using SSL and SASL.
+# Note the file must be mapped into Humio's Docker container - if running Humio as a Docker container
+EXTRA_KAFKA_CONFIGS_FILE=extra_kafka_properties.properties
+
 # Zookeeper servers.
 # Defaults to "localhost:2181", which is okay for a single server system, but
 # should be set to a comma separated host:port pairs string.

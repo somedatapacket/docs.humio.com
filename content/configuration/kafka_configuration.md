@@ -13,6 +13,18 @@ Letting Kafka apply compression as well slows down the system and also adds prob
 Setting `compression.type` to `producer` is recommended on these queues.
 {{% /notice %}}
 
+
+## Configuration
+
+It is possible to use Kafka in 2 modes. Humio can manage its Kafka topics. In this mode Humio will create topics if they do not exists. Humio will also look at the topic configurations and manage them.
+It is also possible to configure Humio to not manage Kafka topics. In this mode Humio will not create topics or change configurations. 
+
+By default Humio will manage its Kafka topics. To disable this set the configuration flag: `KAFKA_MANAGED_BY_HUMIO=true`.
+
+
+It is possible to add extra Kafka configuration properties to Humio's Kafka-consumers and Kafka-producers by pointing to a properties file using `EXTRA_KAFKA_CONFIGS_FILE`. For example, this enables Humio to connect to a Kafka cluster using SSL and SASL.  
+Remember to map the configuration file into the Humio Docker container if running Humio in a Docker container.
+
 ## Queues
 
 Humio creates the following queues in Kafka:
