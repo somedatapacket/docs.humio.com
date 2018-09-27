@@ -2,7 +2,7 @@
 title: "Kafka Configuration"
 ---
 
-Humio uses Kafka internally for queueing incoming messages and for
+Humio uses Kafka internally for queuing incoming messages and for
 storing shared state when running Humio in a cluster setup.
 
 In this section we briefly describe how Humio uses Kafka. Then we discuss how to configure Kafka.
@@ -14,16 +14,43 @@ Setting `compression.type` to `producer` is recommended on these queues.
 {{% /notice %}}
 
 
+### Version requirements when using a Kafka not provided by Humio
+
+Humio requires Kafka protocol version 0.11.x or later. If you use your
+own Kafka, make sure the topics for Humio are configured to allow this
+version (or later), even if your cluster is generally set up to use an
+older version of the protocol. Adding these configs is required only
+if your Kafka is configured to use an older protocol version by
+default.
+
+``` shell
+## Example commands for setting protocol version on topic...
+# See current config for topic, if any:
+kafka-configs.sh --zookeeper localhost:2181 --describe --entity-type topics --entity-name humio-ingest
+# Set protocol version for topic:
+kafka-configs.sh --zookeeper localhost:2181 --alter --entity-type topics --entity-name humio-ingest --add-config message.format.version=0.11.0
+# Remove setting, allowing to use the default of the broker:
+kafka-configs.sh --zookeeper localhost:2181 --alter --entity-type topics --entity-name humio-ingest --delete-config message.format.version
+```
+
 ## Configuration
 
-It is possible to use Kafka in 2 modes. Humio can manage its Kafka topics. In this mode Humio will create topics if they do not exists. Humio will also look at the topic configurations and manage them.
-It is also possible to configure Humio to not manage Kafka topics. In this mode Humio will not create topics or change configurations. 
+It is possible to use Kafka in 2 modes. Humio can manage its Kafka
+topics. In this mode Humio will create topics if they do not
+exists. Humio will also look at the topic configurations and manage
+them.  It is also possible to configure Humio to not manage Kafka
+topics. In this mode Humio will not create topics or change
+configurations.
 
 By default Humio will manage its Kafka topics. To disable this set the configuration flag: `KAFKA_MANAGED_BY_HUMIO=true`.
 
 
-It is possible to add extra Kafka configuration properties to Humio's Kafka-consumers and Kafka-producers by pointing to a properties file using `EXTRA_KAFKA_CONFIGS_FILE`. For example, this enables Humio to connect to a Kafka cluster using SSL and SASL.  
-Remember to map the configuration file into the Humio Docker container if running Humio in a Docker container.
+It is possible to add extra Kafka configuration properties to Humio's
+Kafka-consumers and Kafka-producers by pointing to a properties file
+using `EXTRA_KAFKA_CONFIGS_FILE`. For example, this enables Humio to
+connect to a Kafka cluster using SSL and SASL.  Remember to map the
+configuration file into the Humio Docker container if running Humio in
+a Docker container.
 
 ## Queues
 
