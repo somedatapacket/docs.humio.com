@@ -58,18 +58,18 @@ License | Dependency | Attribution
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.clearspring.analytics # stream # 2.7.0 | Copyright (C) 2012 Clearspring Technologies, Inc.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe # config # 1.3.2 | Copyright (C) 2011-2012 Typesafe Inc.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe # ssl-config-core_2.12 # 0.2.3 | Copyright 2009-2017 Lightbend Inc.
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe.akka # akka-actor_2.12 # 2.5.13 | Copyright 2009-2017 Lightbend Inc.
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe.akka # akka-protobuf_2.12 # 2.5.13 | Copyright 2018 Lightbend Inc.
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe.akka # akka-stream-testkit_2.12 # 2.5.13 | Copyright 2009-2017 Lightbend Inc.
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe.akka # akka-stream_2.12 # 2.5.13 | Copyright 2009-2017 Lightbend Inc.
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe.akka # akka-testkit_2.12 # 2.5.13 | Copyright 2009-2017 Lightbend Inc.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe.akka # akka-actor_2.12 # 2.5.17 | Copyright 2009-2017 Lightbend Inc.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe.akka # akka-protobuf_2.12 # 2.5.17 | Copyright 2018 Lightbend Inc.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe.akka # akka-stream-testkit_2.12 # 2.5.17 | Copyright 2009-2017 Lightbend Inc.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe.akka # akka-stream_2.12 # 2.5.17 | Copyright 2009-2017 Lightbend Inc.
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | com.typesafe.akka # akka-testkit_2.12 # 2.5.17 | Copyright 2009-2017 Lightbend Inc.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | commons-codec # commons-codec # 1.10 | Copyright (c) 2002-2016 The Apache Software Foundation [NOTICE](https://github.com/apache/commons-codec/blob/trunk/NOTICE.txt)
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html) | it.unimi.dsi # fastutil # 6.5.7 | Copyright (C) 2002-2017 Sebastiano Vigna
-[Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0) | com.typesafe.akka # akka-http-core_2.12 # 10.1.3 | Copyright 2009-2017 Lightbend Inc.
-[Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0) | com.typesafe.akka # akka-http-spray-json_2.12 # 10.1.03 | Copyright 2009-2017 Lightbend Inc.
-[Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0) | com.typesafe.akka # akka-http-testkit_2.12 # 10.1.03 | Copyright 2009-2017 Lightbend Inc.
-[Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0) | com.typesafe.akka # akka-http_2.12 # 10.1.03 | Copyright 2009-2017 Lightbend Inc.
-[Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0) | com.typesafe.akka # akka-parsing_2.12 # 10.1.03 | Copyright 2009-2017 Lightbend Inc.
+[Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0) | com.typesafe.akka # akka-http-core_2.12 # 10.1.5 | Copyright 2009-2017 Lightbend Inc.
+[Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0) | com.typesafe.akka # akka-http-spray-json_2.12 # 10.1.05 | Copyright 2009-2017 Lightbend Inc.
+[Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0) | com.typesafe.akka # akka-http-testkit_2.12 # 10.1.05 | Copyright 2009-2017 Lightbend Inc.
+[Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0) | com.typesafe.akka # akka-http_2.12 # 10.1.05 | Copyright 2009-2017 Lightbend Inc.
+[Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0) | com.typesafe.akka # akka-parsing_2.12 # 10.1.05 | Copyright 2009-2017 Lightbend Inc.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | uk.co.real-logic # Agrona # 0.4.11 | Copyright 2014-2017 Real Logic Ltd.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.101tec # zkclient # 0.10 | Copyright 2010 the original author or authors
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.fasterxml.jackson.core # jackson-annotations # 2.9.3 | Copyright (c) 2007- Tatu Saloranta, tatu.saloranta@iki.fi
