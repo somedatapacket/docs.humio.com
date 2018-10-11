@@ -1,6 +1,7 @@
 ---
 title: Bar Chart
 aliases: ['ref/chart/bar-chart']
+weight: 700
 ---
 
 The _Bar Chart_ widget can be used to visualize results of the {{< function "groupBy" >}}

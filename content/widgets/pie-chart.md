@@ -1,6 +1,7 @@
 ---
-title: Pie Chart Widget
+title: Pie Chart
 aliases: ['ref/chart/pie-chart']
+weight: 800
 ---
 
 The _Pie Chart_ widget can be used to visualize results of the {{< function "groupBy" >}}

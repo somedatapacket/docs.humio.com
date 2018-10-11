@@ -1,6 +1,7 @@
 ---
 title: Event List
 aliases: ['ref/chart/event-list']
+weight: 100
 ---
 
 The _Event List_ widget is meant to display events as their roll into Humio. It
@@ -24,7 +25,7 @@ The inspection panel contains buttons to quickly drill down the data.
 
 The event list will as many results as returned by the Humio server which defaults
 to the `200` most recent events of the search interval. You can increase this
-my using the {{< function "tail" >}} function, e.g. {{< code "tail(1000)" >}},
+my using the {{< function "tail" >}} function, e.g. {{< query "tail(1000)" >}},
 but this can cause performance issues in the UI if too elements have to be rendered.  
 
 ### Keyboard Navigation

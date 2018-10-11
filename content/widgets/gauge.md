@@ -1,6 +1,7 @@
 ---
-title: Gauge Widget
+title: Gauge
 aliases: ['ref/chart/gauge']
+weight: 600
 ---
 
 The _Gauge_ Widget be used to display a single number. This is useful for displaying

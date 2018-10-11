@@ -1,6 +1,7 @@
 ---
-title: World Map Widget
+title: World Map
 aliases: ['ref/chart/world-map']
+weight: 500
 ---
 
 The _world map_ widget can display geographical data on a world map. Different

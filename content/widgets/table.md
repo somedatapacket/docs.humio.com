@@ -1,6 +1,7 @@
 ---
-title: Table Widget
+title: Table
 aliases: ['ref/chart/table']
+weight: 300
 ---
 
 The _Table_ widget can be used to display data in rows and columns.
