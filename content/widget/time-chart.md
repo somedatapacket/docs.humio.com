@@ -1,5 +1,6 @@
 ---
 title: Time Chart Widget
+aliases: ['ref/chart/time-chart']
 ---
 
 The _time chart_ widget can display bucketed time series data on a time line. It is

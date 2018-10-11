@@ -1,5 +1,6 @@
 ---
 title: Sankey Widget
+aliases: ['ref/chart/sankey']
 ---
 
 The _Sankey_ Widget can render results as a 2 level sankey diagram. It is good at displaying
