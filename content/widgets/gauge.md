@@ -28,7 +28,7 @@ and red if it is >500.
 If we wanted to show the number of errors a system, we could count them using:
 
 ```humio
-loglevel =~ /error/i | count()
+loglevel = /error/i | count()
 ```
 
 This produces a single result with a field `_count`. If the Gauge widget is
