@@ -41,4 +41,5 @@ If Humio encounters a new user that has been granted access through the IDP it w
 <saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified">Username</saml:NameID>
 ```
 
+By default, the user has no rights.  So unless a user is otherwise granted access rights, he or she will not be able to do anything besides see an empty list of repos.  At present, this means that the user needs to be added explicitly as a member or admin to a repo/view to be able to access it.  A future release will support using SAML roles to control access.
 
