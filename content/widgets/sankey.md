@@ -17,7 +17,7 @@ flows between entities e.g. network flows from one IP to another.
 
 ## Usage
 
-The Sankey widget is must easily used with its companion query function {{< function "sankey" >}}. But
+The Sankey widget is most easily used with its companion query function {{< function "sankey" >}}. But
 can easily be used simply by ensuring the input fields are named as expected.
 
 ### Example 1: Network Traffic
