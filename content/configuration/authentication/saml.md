@@ -7,7 +7,7 @@ aliases: ["ref/saml"]
 
 Humio implements the SAML 2.0 _Web Browser SSO Profile_. This means authentication is delegated to an existing identity provider (IDP) which is responsible of managing user credentials. Examples of IDPs are Active Directory Federation Services (AFDS), Azure AD, Google (G Suite) and Auth0.
 
-Levering an existing SSO solution in an organisation provides users of Humio with a seamless log-on experience: If they are already logged on through their SSO they will not be prompted for credentials. Instead this will be handled transparently by Humio and the IDP. This means Humio will never see the credentials of the user since the authentication is delegated to the IDP.
+Leveraging an existing SSO solution in an organisation provides users of Humio with a seamless log-on experience: If they are already logged on through their SSO they will not be prompted for credentials. Instead this will be handled transparently by Humio and the IDP. This means Humio will never see the credentials of the user since the authentication is delegated to the IDP.
 
 ## Configuration
 
@@ -21,7 +21,7 @@ SAML_IDP_ENTITY_ID=$IDP_ENTITY_ID # e.g. https://accounts.google.com/o/saml2?idp
 SAML_IDP_CERTIFICATE=$PATH_TO_PEM # e.g. /home/humio/GoogleIDPCertificate-humio.com.pem
 ```
 
-When a user tries to access Humio the authentication flow will start by redirecting the user to `$IDP_SIGNON_URL`. Upon a successfull authentication the user will be redirected back to Humio where a Humio specific access token will be issued. For the redirects to work properly a [`PUBLIC_URL`]({{< relref "configuration/_index.md#public_url" >}}) must be configured. For details about the flow see https://en.wikipedia.org/wiki/SAML_2.0#Web_Browser_SSO_Profile.
+When a user tries to access Humio the authentication flow will start by redirecting the user to `$IDP_SIGNON_URL`. Upon a successful authentication the user will be redirected back to Humio where a Humio specific access token will be issued. For the redirects to work properly a [`PUBLIC_URL`]({{< relref "configuration/_index.md#public_url" >}}) must be configured. For details about the flow see https://en.wikipedia.org/wiki/SAML_2.0#Web_Browser_SSO_Profile.
 
 The `$IDP_ENTITY_ID` identifies your IDP and is used internally in the authentication flow.
 
@@ -31,11 +31,11 @@ Read more about [Configuring Humio]({{< relref "configuration/_index.md" >}})
 
 ## Access Token Lifecycle
 
-When the SAML specific authentication flow is finished and successfull a Humio access token is issued by Humio itself. Until the token expires the IDP will not be involved in authentication of the users requests. The lifetime of the access token is 24 hours.
+When the SAML specific authentication flow is finished and successful a Humio access token is issued by Humio itself. Until the token expires the IDP will not be involved in authentication of the users requests. The lifetime of the access token is 24 hours.
 
 ## New User Accounts
 
-If Humio encounters a new user that has been granted access through the IDP it will create the user in the context of Humio. For this purpose the `NameId` in the SAML authentication reponse will be used as the username property of the Humio user.
+If Humio encounters a new user that has been granted access through the IDP it will create the user in the context of Humio. For this purpose the `NameId` in the SAML authentication reponse will be used as the username property of the Humio user. The recommended username is the email.
 
 ```xml
 <saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified">Username</saml:NameID>
