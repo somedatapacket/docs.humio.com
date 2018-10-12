@@ -10,7 +10,7 @@ menuTOC:
   - "#field-operator": "Field Operator (=~)"
   - "#eval": "Eval"
   - "#logical-operators": "Logical Operators (and, or, not)"
-  - "#conditionals": "Conditionals (case)"
+  - "#conditionals": "Conditionals (case, match)"
   - "#composite-function-calls": "Composite Function Calls"
   - "#user-functions": "User Functions"
   - "#comments": "Comments"
@@ -101,7 +101,7 @@ write the regex.
 | {{< query >}}/foo/i{{< /query >}} | Find all events matching "foo" in the `@rawstring`, ignoring case |
 
 
-## Field Filters
+## Field Filters {#field-filters}
 
 Besides the `@rawstring`, you can also query event fields, both as
 text and as numbers.
@@ -367,13 +367,14 @@ style is not well-suited for procedural-style conditions.
 But there are a couple of ways to do conditional evaluation, they are called
 
 - [Case Statements]({{< relref "#case" >}})
+- [Match Statements]({{< relref "#match" >}})
 - [Side Effects]({{< relref "#side-effects" >}})
 
 ### Case Statements {#case}
 
 Using case-statements you can describe alternative flows in your queries.
 It is similar to `case` or `cond` you might know from many other functional programming languages.
-It essentially allows you to write `if-then-else` constructs that work on for events streams.
+It essentially allows you to write `if-then-else` constructs that work on events streams.
 
 The syntax looks like this:
 
@@ -408,6 +409,46 @@ time=*
          "frontend-server" | ip != 192.168.1.1 | type := "frontend";
          Database          | type := "db" }
 | groupBy(type, function=percentile(time)))
+```
+
+
+### Match Statements {#match}
+
+Using match-statements you can describe alternative flows in your queries where the condition all check the same field.
+It is similar to `match ` or `switch` you might know from many other programming languages.
+It essentially allows you to write `if-then-else` constructs that work on events streams.
+The matches on the field support the filters  listed in [Field Filters](#field-filters)
+
+The syntax looks like this:
+
+```humio
+field match {
+  value => expression | expression... ;
+  /regex/ => expression | ...;
+  * => expression | ...
+}
+```
+
+You write a sequence of filter and pipeline clauses to run when the filter matches separated by semicolon (`;`). Humio will apply each clause
+from top to bottom until one emits a value (i.e. matches the input).
+
+You can add wildcard clause {{< query >}}match { ... ; * }{{< /query >}} which
+matches all event as the "default case", essentially the `else` part of an if-statement.
+If you don't add a wildcard clause any events that don't match any of the explicit clauses will
+be dropped. You cannot use the empty clause - you must explicit write `*` to match all.
+
+#### Example
+
+Let's say we have logs from multiple sources that all have a field that holds the time spent on some operation, but in different fields and units.
+We want to get percentiles of the time fields all in the same unit and in one field.
+
+
+```humio
+logtype match {
+    "accesslog" => time:=response_time ;     // Access log is in seconds.
+    /server_\d+/ => time:=server_time*1000 ; // These servers log in millis
+  }
+| groupBy(logtype, function=percentile(time)))
 ```
 
 
