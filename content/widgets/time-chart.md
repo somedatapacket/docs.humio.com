@@ -38,7 +38,7 @@ Notice that we provide several aggregate functions to the `function` parameter.
 This is because we want to work on several fields on each input event.
 In this example it creates three series in the resulting time chart - one for each
 metric. We used the {{< function "max" >}} on each field. This means that when the
-{{<function "timechart" >}} function buckets the data it uses larges number within
+{{<function "timechart" >}} function buckets the data it uses larger number within
 the bucket to represent the value of the series in the bucket. In other words,
 imagine that event `id=3` and `id=4` in JSON events above end up in the same bucket
 (Which is not an unreasonable assumption since their timestamps are only 1 ms apart!).
@@ -85,7 +85,7 @@ timechart(loglevel, function=avg(timeMs))
 
 We can see the average time in milliseconds that a database query takes. Hint:
 The {{< function "percentiles" >}} function is very useful as an aggregate function
-in time charts when you which to measure response times like this.
+in time charts when you wish to visualize response times like this.
 
 ## Further Reading
 
