@@ -1,6 +1,6 @@
 ---
 title: Event List
-aliases: ['ref/chart/event-list']
+aliases: ["ref/charts/event-list"]
 weight: 100
 ---
 

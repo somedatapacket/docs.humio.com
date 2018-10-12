@@ -1,6 +1,6 @@
 ---
 title: Time Chart
-aliases: ['ref/chart/time-chart']
+aliases: ["ref/charts/time-chart"]
 weight: 200
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Gauge
-aliases: ['ref/chart/gauge']
+aliases: ["ref/charts/gauge"]
 weight: 600
 ---
 

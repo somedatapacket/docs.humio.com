@@ -1,6 +1,6 @@
 ---
 title: Pie Chart
-aliases: ['ref/chart/pie-chart']
+aliases: ["ref/charts/pie-chart"]
 weight: 800
 ---
 
