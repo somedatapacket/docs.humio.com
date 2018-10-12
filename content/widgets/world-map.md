@@ -20,7 +20,7 @@ If both `geohash` and `latitude` and `longitude` are specified, `geohash` is ign
 
 ## Usage
 
-The world map widget can used with any input that satisfies the format above, but you
+The world map widget can be used with any input that satisfies the format above, but you
 will usually want to bucket locations using geohashing. Humio provides a function {{< function "worldMap" >}}
 that helps you conform to the format:
 
