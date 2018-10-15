@@ -403,17 +403,17 @@ to the value set in `TAG_HASHING_BUCKETS`.
 IF you happen to read this and is using a hosted Humio instance, please contact support
 if you wish to add grouping rules to your repository.
 
-## Importing a repositories from another Humio instance (BETA)
+## Importing a repository (not view) from another Humio instance (BETA)
 
-You can import ingest tokens, user, dashboards and segments files from another Humio instance.
+You can import users, dashboards and segments files from another Humio instance.
 You need to get a copy of the `/data/humio-data/global-data-snapshot.json` from the origin server.
 
 You also need to copy the segments files that you want to
 import. These must be placed in the folder
-`/data/humio-data/ready*for_import_dataspaces` using the following
+`/data/humio-data/ready_for_import_dataspaces` using the following
 structure:
 
-`/data/humio-data/ready_for_import_dataspaces/dataspace*$NAME`
+`/data/humio-data/ready_for_import_dataspaces/dataspace_$NAME`
 
 You should copy the files for the repository to the server into another
 folder while the copying is happening, and then move it to the proper
@@ -431,7 +431,7 @@ NAME="my-repository-name"
 sudo mkdir /data/humio-data/ready_for_import_dataspaces
 sudo mv /data/dataspaces-from-elsewhere/dataspace_$NAME /data/humio-data/ready_for_import_dataspaces
 sudo chown -R humio /data/humio-data/ready_for_import_dataspaces/
-curl -XPOST -d @from-elsewhere-global-data-snapshot.json  -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/importdataspaces/$NAME"
+curl -XPOST -d @from-elsewhere-global-data-snapshot.json  -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/importrepository/$NAME"
 ```
 
 The `POST` imports the metadata, such as users and dashboards, and moves
