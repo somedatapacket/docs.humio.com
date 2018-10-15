@@ -5,7 +5,7 @@ pipeline:
       - make clean deps
 
   hugo:
-    image: mwldk/drone-hugo
+    image: plugins/hugo
     validate: true
 
   docker-build:
