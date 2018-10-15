@@ -101,17 +101,23 @@ filebeat.inputs:
   fields:
     type: bro-json
 
+queue.mem:
+  events: 6000
+  flush.min_events: 1000 
+  flush.timeout: 1s
+
 #-------------------------- ElasticSearch output ------------------------------
 output.elasticsearch:
   hosts: ["http://${HOST}:8080/api/v1/dataspaces/${REPOSITORY_NAME}/ingest/elasticsearch"]
   username: "${INGEST_TOKEN}"
   compression_level: 5
-  bulk_max_size: 200
+  bulk_max_size: 1000
+  worker: 3
 
 #================================ Logging =====================================
 # Sets log level. The default log level is info.
 # Available log levels are: critical, error, warning, info, debug
-logging.level: debug
+logging.level: info
 
 logging.selectors: ["*"]
 
@@ -129,8 +135,9 @@ If you are running without authentication leave out the whole line `username: ${
 or set the `INGEST_TOKEN` to a dummy value.
 Otherwise [create an ingest token as described here]({{< ref "ingest-tokens.md" >}}).
 
-
 Note, that in the filebeat configuration we specify that Humio should use the built-in parser `bro-json` to parse the data.
+
+As Bro often generates a lot of data we have configured Filebeat to use 3 `workers`, a `bulk_max_size` of 1000 and then configured the in memory queue `queue.mem` accordingly.
 
 
 ### Run Filebeat

@@ -326,3 +326,52 @@ h1 .badge {
   padding: 0;
   margin: 0 0 0 22px;
 }
+
+.mermaid .cluster {
+  padding: 10px;
+}
+
+.screenshot img {
+  border: solid 1px rgb(110, 110, 110);
+}
+
+.related {
+  position: -webkit-sticky;
+  position: sticky;
+  top 0;
+  width: 200px;
+  height: 300px;
+  background-color: red;
+  left: calc(100%);
+}
+
+#page-content {
+  display: grid;
+  grid-gap: 20px;
+  grid-template: "c s" / 904px 300px;
+}
+
+#page-content__content {
+  grid-area: c;
+}
+
+#page-content__related {
+  grid-area: s;
+}
+
+.side-box {
+  border: rgb(173, 173, 173);
+  position: sticky;
+  top: 16px;
+}
+
+.side-box__title {
+  background-color: rgb(74, 37, 103);
+  padding: 4px 16px;
+  color: white;
+}
+
+.side-box__content {
+  padding: 16px;
+  border: solid 1px rgb(117, 64, 133);
+}

@@ -16,7 +16,6 @@ see the documentation for [installation on docker]({{< ref "docker.md" >}}).
 
 ```properties
 # The stacksize should be at least 2M.
-# We suggest setting MaxDirectMemory to 50% of physical memory. At least 2G required.
 HUMIO_JVM_ARGS=-XX:+UseParallelOldGC -Xss2M
 
 # Make Humio write a backup of the data files:
@@ -49,6 +48,16 @@ PUBLIC_URL=https://humio.mycompany.com
 # Example: `my-kafka01:9092` or `kafkahost01:9092,kafkahost02:9092`
 KAFKA_SERVERS=kafkahost01:9092,kafkahost02:9092
 
+# By default Humio will create topics and manage number of replica in Kafka for the topics being used.
+# If you run Humio on top of an existing Kafka or want to manage this outside of Humio, set this to false.
+KAFKA_MANAGED_BY_HUMIO=true
+
+# It is possible to add extra Kafka configuration properties. by creating a properties file and pointing to it.
+# These properties are added to all Kafka producers and consumers in Humio.
+# For example, this enables Humio to connect to a Kafka cluster using SSL and SASL.
+# Note the file must be mapped into Humio's Docker container - if running Humio as a Docker container
+EXTRA_KAFKA_CONFIGS_FILE=extra_kafka_properties.properties
+
 # Zookeeper servers.
 # Defaults to "localhost:2181", which is okay for a single server system, but
 # should be set to a comma separated host:port pairs string.
@@ -60,6 +69,13 @@ KAFKA_SERVERS=kafkahost01:9092,kafkahost02:9092
 # There will be a sub-directory for each combination that exists.
 # (Since v1.1.10)
 MAX_DATASOURCES=10000
+
+# Compresions level for data in segment files. Defaults to 9, range is [1 ; 17]
+# COMPRESSION_LEVEL=9
+
+# (Approximate) limit on the number of hours a segment file can be open for writing
+# before being flushed even if it is not full.
+MAX_HOURS_SEGMENT_OPEN=720
 
 # Let Humio send emails using the Postmark service
 # Create a Postmark account and insert the token here
@@ -102,6 +118,10 @@ MAX_DATASOURCES=10000
 
 # Select the IP to bind the http listening socket to. (Defaults to HUMIO_SOCKET_BIND)
 #HUMIO_HTTP_BIND=0.0.0.0
+
+# Verify checksum of segments files when reading them. Default to true. Allows detecting partial and malformed files.
+# (Since v1.1.16)
+#VERIFY_CRC32_ON_SEGMENT_FILES=true
 
 ```
 

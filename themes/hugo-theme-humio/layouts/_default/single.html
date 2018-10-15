@@ -1,6 +1,25 @@
 {{ partial "header.html" . }}
 
-{{ .Content }}
+<div id="page-content">
+	<div id="page-content__content">
+	{{ .Content }}
+	</div>
+	<!-- <div id="page-content__related">
+		<div class="side-box">
+			<div class="side-box__title">
+				Related Pages
+			</div>
+			<div class="side-box__content">
+				<ul>
+					<li><a href="#" />Foo</li>
+					<li><a href="#" />Bar</li>
+					<li><a href="#" />Baz</li>
+				</ul>
+			</div>
+		</div>
+	</div> -->
+</div>
+
 
 <footer class=" footline" >
 	{{with .Params.LastModifierDisplayName}}

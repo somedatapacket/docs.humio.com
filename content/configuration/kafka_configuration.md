@@ -2,12 +2,13 @@
 title: "Kafka Configuration"
 ---
 
-Humio uses Kafka internally for queueing incoming messages and for
+Humio uses Kafka internally for queuing incoming messages and for
 storing shared state when running Humio in a cluster setup.
 
 In this section we briefly describe how Humio uses Kafka. Then we discuss how to configure Kafka.
 
-## Queues
+
+## Topics
 
 Humio creates the following queues in Kafka:
 
@@ -60,12 +61,61 @@ The queue can have a short retention and it is not important to keep the data, a
 
 Default retention configuration: `retention.ms = 1 hours`
 
+## Minimum Kafka version
+
+Humio requires Kafka version 0.11.0 or later.
+
+Humio requires Kafka protocol version 0.11.x or later on the topics
+used by Humio. If you use your own Kafka, make sure the topics for
+Humio are configured to allow this version (or later), even if your
+cluster is generally set up to use an older version of the
+protocol. Adding these configs is required only if your Kafka is
+configured to use an older protocol version by default.
+
+``` shell
+## Example commands for setting protocol version on topic...
+# See current config for topic, if any:
+kafka-configs.sh --zookeeper localhost:2181 --describe --entity-type topics --entity-name 'humio-ingest'
+# Set protocol version for topic:
+kafka-configs.sh --zookeeper localhost:2181 --alter --entity-type topics --entity-name 'humio-ingest' --add-config 'message.format.version=0.11.0'
+# Remove setting, allowing to use the default of the broker:
+kafka-configs.sh --zookeeper localhost:2181 --alter --entity-type topics --entity-name 'humio-ingest' --delete-config 'message.format.version'
+```
+
 ## Configuration
+
+{{% notice note %}}
+Make sure to not apply compression inside Kafka to the queues below. Humio compresses the messages when relevant.
+Letting Kafka apply compression as well slows down the system and also adds problems with GC due to use of JNI in case LZ4 is applied.
+Setting `compression.type` to `producer` is recommended on these queues.
+{{% /notice %}}
 
 Humio has built-in [API endpoints for controlling Kafka]({{< relref "cluster-management-api.md" >}}).
 Using the API it is possible to specify partition size, replication factor, etc. on the ingest queue.
 
 It is also possible to use other Kafka tools, such as the command line tools included in the Kafka distribution.
+
+### Configuring Humio to not manage topics 
+
+It is possible to use Kafka in 2 modes. Humio can manage its Kafka
+topics. In this mode Humio will create topics if they do not
+exists. Humio will also look at the topic configurations and manage
+them.  It is also possible to configure Humio to not manage Kafka
+topics. In this mode Humio will not create topics or change
+configurations. You must create and properly configure the topics
+listed in the Topics section in Kafka in this mode.
+
+By default Humio will manage its Kafka topics. To disable this set the
+configuration flag: `KAFKA_MANAGED_BY_HUMIO=true`.
+
+### Adding additional Kafka client properties
+
+It is possible to add extra Kafka configuration properties to Humio's
+Kafka-consumers and Kafka-producers by pointing to a properties file
+using `EXTRA_KAFKA_CONFIGS_FILE`. For example, this enables Humio to
+connect to a Kafka cluster using SSL and SASL.  Remember to map the
+configuration file into the Humio Docker container if running Humio in
+a Docker container.
 
 
 ### Setting retention on the ingest queue
@@ -113,5 +163,5 @@ Another option is to configure the global-snapshots topic to allow larger messag
 If you have very large amounts of data (say petabytes) in Humio you may need to increase beyond 100MB.
 
 {{% notice note %}}
-If you run your own Kafka (i.e. not the one provided by Humio) you must increase the max.message.bytes on the global-snapshots topic as desacribed above, or raise the default on your existing brokers.
+If you run your own Kafka (i.e. not the one provided by Humio) you must increase the max.message.bytes on the global-snapshots topic as described above, or raise the default on your existing brokers.
 {{% /notice %}}

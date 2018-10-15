@@ -97,7 +97,7 @@ You must make the following changes to the sample configuration:
 * If all your events are fairly small, you can increase `bulk_max_size` from the default of 200. The default of 200 is fine for most use cases.
   But keep bulk_max_size low, as you may get "Failed to perform any bulk index operations: 413 Request Entity Too Large" if a request ends up being too large, measured in bytes, not in number of events.
 
-* You may want to increase the number of worker instances (`worker`) from the default of 1 to (say) 4 to achieve more throughput if filebeat is not able to keep up with the inputs. But if increasing bulk_max_size is possible then do that instead.
+* You may want to increase the number of worker instances (`worker`) from the default of 1 to (say) 4 to achieve more throughput if filebeat is not able to keep up with the inputs. If increasing bulk_max_size is possible then do that instead, or increase both. 
 
 ## Running Filebeat {#running-filebeat}
 
