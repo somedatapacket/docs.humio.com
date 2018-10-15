@@ -1,21 +1,25 @@
 ---
-title: "Bro"
-menuTitle: Bro Network Security Monitor
+title: "Zeek  (formerly known as Bro)"
+menuTitle: Zeek/Bro Network Security Monitor
 ---
 
-Humio is an excellent tool for analyzing [Bro](https://www.bro.org/) data.  
-This document describes how to get Bro data into Humio
+Humio is an excellent tool for analyzing [Zeek](https://zeek.org) data.  
+This document describes how to get Zeek data into Humio
 
-## Configure Bro
+{{% notice note %}}
+Pre cooked dashboards for Zeek data can be found [further down this page](#dashboards)
+{{% /notice %}}
 
-First let us setup Bro to write logs in the JSON format. That will make it easier to send them to Humio.
+## Configure Zeek
+
+First let us setup Zeek to write logs in the JSON format. That will make it easier to send them to Humio.
 
 [Seth](https://twitter.com/remor) from [Corelight](https://www.corelight.com/)
-has made a nice Bro script to support streaming Bro logs as JSON.
+has made a nice Zeek script to support streaming Zeek logs as JSON.
 
-The script requires Bro 2.5.2+
+The script requires Zeek/Bro 2.5.2+
 
-[Download it here](/bro-files/corelight-logs.bro)
+[Download it here](/zeek-files/corelight-logs.bro)
 
 One way to install the script is to put it in the `<bro-directory>/site/` folder
 and then add the Bro script to the end of `local.bro` like this:
@@ -32,7 +36,7 @@ By default each JSON log file is rotated every 15 minutes, and 4 versions of the
 These files will be monitored by Filebeat and data send to Humio as is described
 below in the section [Configure Filebeat]({{< relref "#configure-filebeat" >}})
 
-Some available configurations options for the Bro script are:
+Some available configurations options for the Zeek script are:
 
 ```
 redef CorelightLogs::disable_default_logs = F;      ## Disable default logs and only log in JSON
@@ -52,8 +56,8 @@ bro -i eth0 <bro-directory-full-path>/site/json-logs-by-corelight.bro
 On Mac the default network interface is `en0`
 {{% /notice %}}
 
-You can follow the above or add the Bro script in a way matching your installation.
-With the script in place, and after a restart, Bro should be logging in JSON format,
+You can follow the above or add the Zeek script in a way matching your installation.
+With the script in place, and after a restart, Zeek should be logging in JSON format,
 formatted as JSON objects separated by newlines.
 Verify this by looking in one of the log files, for example `corelight_conn.log`.
 
@@ -66,38 +70,22 @@ for instructions on how to install Humio.
 If you don't have a [repository]({{< relref "repositories.md" >}}),
 create one by clicking 'Add Repository' on the front page of Humio.
 
-Or you can create it from the command line like this:
-
-```shell
-curl -v '$BASEURL/humio/api/v1/dataspaces/bro' \
-  -X PUT \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  --data-binary '{}'
-```
-
-{{% notice note %}}
-If you are running with authentication or using Humio as a service you need to add your API token
-`-H "Authorization: Bearer $TOKEN"`
-{{% /notice %}}    
-You now have a bro repository.
-
 
 ## Configure Filebeat {#configure-filebeat}
 
-We will use [Filebeat]({{< relref "filebeat.md" >}}) to ship Bro logs to Humio.
+We will use [Filebeat]({{< relref "filebeat.md" >}}) to ship Zeek logs to Humio.
 Filebeat is a light weight, open source agent that can monitor log files and send data to servers like Humio.
-Filebeat must be installed on the server having the Bro logs.
+Filebeat must be installed on the server having the Zeek logs.
 Follow the instructions [here]({{< relref "filebeat.md#installation" >}}) to download and install Filebeat.
 Then return here to configure Filebeat.
 
-Below is a filebeat.yml configuration file for sending Bro logs to Humio:
+Below is a filebeat.yml configuration file for sending Zeek logs to Humio:
 
 ```yaml
 filebeat.inputs:
 - type: log
   paths:
-    - "${BRO_LOG_DIR}/corelight_*.log" #The file path should be a glob matching the json log files
+    - "${ZEEK_LOG_DIR}/corelight_*.log" #The file path should be a glob matching the json log files
   fields:
     type: bro-json
 
@@ -125,7 +113,7 @@ logging.selectors: ["*"]
 
 The configuration file has these parameters:
 
-* `$BRO_LOG_DIR`  
+* `$ZEEK_LOG_DIR`  
 * `$HOST`  
 * `$REPOSITORY_NAME`
 * `$INGEST_TOKEN`  
@@ -137,7 +125,7 @@ Otherwise [create an ingest token as described here]({{< ref "ingest-tokens.md" 
 
 Note, that in the filebeat configuration we specify that Humio should use the built-in parser `bro-json` to parse the data.
 
-As Bro often generates a lot of data we have configured Filebeat to use 3 `workers`, a `bulk_max_size` of 1000 and then configured the in memory queue `queue.mem` accordingly.
+As Zeek often generates a lot of data we have configured Filebeat to use 3 `workers`, a `bulk_max_size` of 1000 and then configured the in memory queue `queue.mem` accordingly.
 
 
 ### Run Filebeat
@@ -148,7 +136,7 @@ Run Filebeat as described [here]({{< relref "filebeat.md#running-filebeat" >}}).
 An example of running Filebeat with the above parameters as environment variables:  
 
 ```shell
-BRO_LOG_DIR=/home/bro/logs REPOSITORY_NAME=bro HOST=localhost INGEST_TOKEN=none /usr/share/filebeat/bin/filebeat -c /etc/filebeat/filebeat.yml
+ZEEK_LOG_DIR=/home/bro/logs REPOSITORY_NAME=bro HOST=localhost INGEST_TOKEN=none /usr/share/filebeat/bin/filebeat -c /etc/filebeat/filebeat.yml
 ```
 
 {{% notice note %}}
@@ -158,15 +146,15 @@ Filebeat log files are by default rotated and only 7 files of 10 megabytes each 
 {{% /notice %}}
 
 
-If there is data in the Bro log files, Filebeat will start shipping the data to Humio.
-Go to the bro repository in Humio and data should be streaming in. Filebeat starts shipping data from the start of the file.
+If there is data in the Zeek log files, Filebeat will start shipping the data to Humio.
+Go to the zeek repository in Humio and data should be streaming in. Filebeat starts shipping data from the start of the file.
 If data is old, widen the default search interval in Humio.
 To see data flowing into Humio in realtime, select a time interval of "1m window". This will "tail" the data as it arrives in Humio.
 
 
-## Search Bro Data
+## Search Zeek Data
 
-With everything in place, Bro data is streaming into Humio.  
+With everything in place, Zeek data is streaming into Humio.  
 
 In the above Filebeat configuration events are given a `#path` tag describing
 from which file they originate. To search for data from the `http.log`:
@@ -197,13 +185,10 @@ timechart(#path, unit="1/minute")
 If you are new to Humio and its search capabilities, try the [online tutorial]({{< ref "tutorial/_index.md">}}).  
 There is a link to the tutorial in the top right corner of the Humio UI.
 
-## Bro Dashboards
 
-We have created two example dashboards. You can add them to your Humio
-installation by running this [script](/bro-files/bro-add-dashboards.sh)  
-Before running the script set the right values for the parameters at the top
+<!-- not sure we can show corelight dashboards to bro users
+## Zeek Dashboards {#dashboards}
 
-***Make the script executable:***
-```shell
-chmod +x <path_to_script>/bro-add-dashboards.sh
-```
+Corelight have created some nice Zeek dashboards. Download them [here](/zeek-files/corelight-dashboards.zip).    
+The daashboards can be added to Humio by extracting the zip file. Then go to dashboards in your selected Humio repository and press the "Add Dashboard" button. Select template file and add the extracted dashboard JSON files.
+-->
