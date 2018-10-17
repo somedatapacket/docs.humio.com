@@ -123,6 +123,10 @@ MAX_HOURS_SEGMENT_OPEN=720
 # (Since v1.1.16)
 #VERIFY_CRC32_ON_SEGMENT_FILES=true
 
+# S3 access keys for archiving of ingested logs
+#S3_ARCHIVING_ACCESSKEY=$ACCESS_KEY
+#S3_ARCHIVING_SECRETKEY=$SECRET_KEY
+
 ```
 
 ## Java virtual machine parameters
