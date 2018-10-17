@@ -138,3 +138,28 @@ EOF
 chmod 755 /etc/cron.weekly/humio-letsencrypt
 ```
 
+#### nginx inside a docker container
+
+The above examples assume that nginx was running as a plain
+systemd-controlled on the host system. If you plan to run nginx inside
+a docker container, nginx still needs to be able to read the
+certificate files. The suggested solution is to add
+
+```
+-v /etc/letsencrypt:/etc/letsencrypt:ro
+```
+
+to the docker run command, keeping letsencrypt outside the docker
+container. We suggest this in order to not loose the files that
+letsencrypt stores in `/etc/letsencrypt` as you have to start over and
+issue from scratch if those files are lost. The renewal then needs to
+restart the docker container instead:
+
+```shell
+cat << EOF > /etc/cron.weekly/humio-letsencrypt
+#!/bin/sh
+## Renewal for nginx wirh nginx inside a docker container:
+letsencrypt renew -a webroot --webroot-path=/var/www/html -m "${YOUR_EMAIL}" && docker restart your-nginx-container
+EOF
+chmod 755 /etc/cron.weekly/humio-letsencrypt
+```
