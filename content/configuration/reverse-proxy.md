@@ -143,7 +143,9 @@ chmod 755 /etc/cron.weekly/humio-letsencrypt
 The above examples assume that nginx was running as a plain
 systemd-controlled on the host system. If you plan to run nginx inside
 a docker container, nginx still needs to be able to read the
-certificate files. The suggested solution is to add
+certificate files. Note that nginx needs to start as root inside the
+container in order to read the mounted files.  The suggested solution
+is to add
 
 ```
 -v /etc/letsencrypt:/etc/letsencrypt:ro
