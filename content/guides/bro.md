@@ -188,5 +188,5 @@ There is a link to the tutorial in the top right corner of the Humio UI.
 
 ## Zeek Dashboards {#dashboards}
 
-Corelight has created some nice Zeek dashboards. Download them [here](/zeek-files/corelight-dashboards.zip).    
-The daashboards can be added to Humio by extracting the zip file. Then go to dashboards in your selected Humio repository and press the "Add Dashboard" button. Select template file and add the extracted dashboard JSON files.
+Corelight has created some nice [Zeek dashboards](/zeek-files/corelight-dashboards.zip).    
+The dashboards can be added to Humio by extracting the zip file. Then go to dashboards in your selected Humio repository and press the "Add Dashboard" button. Select template file and add the extracted dashboard JSON files.
