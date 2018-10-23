@@ -88,8 +88,7 @@ First you'll need to select a type of notifier from the "Notifier Type" dropdown
 All notifiers must be assigned a name.
 
 {{% notice note %}}
-Make sure you give your notifiers a meaningful name, i.e. "OpsTeam",
-"Backlog issues" etc. We will make sure that the type of the notifier is also displayed.
+For on-prem installations remember to set the `PUBLIC_URL` field in the [Humio config]({{<ref "/configuration/_index.md#public_url">}}). This will ensure that links in notifications will go to the correct URL.
 {{% /notice%}}
 
 ### Custom Notifiers
