@@ -1,6 +1,6 @@
 ---
 title: Table
-aliases: ["ref/charts/table"]
+aliases: ["ref/charts/table", "ref/charts/table-view"]
 weight: 300
 ---
 
