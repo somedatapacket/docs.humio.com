@@ -62,8 +62,8 @@ The JSON request body has the following attributes:
 Name        | Type   | Required     | Description
 ----------- | ------ | ------------ | -------------
 `queryString` | string |  Yes         | The actual query. See [Query language](/searching_logs/) for details
-`start`       | Time   |  No          | The start date and time. This parameter tells Humio not to return results from before this date and time. You can learn how to specify a time [here](#time).
-`end`         | Time   |  No          | The end date and time.  This parameter tells Humio not to return results from after this date and time. You can learn how to specify a time [here](#time)
+`start`       | Time   |  No          | The start date and time. This parameter tells Humio not to return results from before this date and time. You can learn how to [specify a time](#time).
+`end`         | Time   |  No          | The end date and time.  This parameter tells Humio not to return results from after this date and time. You can learn how to [specify a time](#time)
 `isLive`      | boolean|  No         | Sets whether this query is live. Defaults to `false`. Live queries are continuously updated.
 `timeZoneOffsetMinutes`      | number|  No   | Set the time zone offset used for `bucket()` and `timechart()` time slices, which is significant if the corresponding `span` is multiples of days.  Defaults to `0` (UTC); positive numbers are to the east of UTC, so for `UTC+01:00` timezone the value `60` should be passed.
 `arguments`   | object|  No   | Dictionary of arguments specified in queries with `?param` or `?{param=defaultValue}` syntax.  Provided arguments must be a simple dictionary of string values. If an argument is given explicitly as in `?query(param=value)` then that value overrides values provided here.
