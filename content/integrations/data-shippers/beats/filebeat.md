@@ -95,7 +95,10 @@ You must make the following changes to the sample configuration:
   If the log files use special, non-ASCII characters, then set the encoding here. For example, `utf-8` or `latin1`.
 
 * If all your events are fairly small, you can increase `bulk_max_size` from the default of 200. The default of 200 is fine for most use cases.
-  But keep bulk_max_size low, as you may get "Failed to perform any bulk index operations: 413 Request Entity Too Large" if a request ends up being too large, measured in bytes, not in number of events.
+  The Humio server does not limit the size of the ingest request. 
+  But keep bulk_max_size low, as you may get the requests timed out if they get too large. In case of timeouts filebeat will back off, thus getting worse performance then with a lower bulk_max_size.
+  (Note! The Humio cloud on cloud.humio.com does limit requests to 32 MB. If you go above this limit, you will get "Failed to perform any bulk index operations: 413 Request Entity Too Large"
+  if a request ends up being too large, measured in bytes, not in number of events. If this happens, lower bulk_max_size as filebeat will otherwise keep retrying that request and not move on to other events.)
 
 * You may want to increase the number of worker instances (`worker`) from the default of 1 to (say) 4 to achieve more throughput if filebeat is not able to keep up with the inputs. If increasing bulk_max_size is possible then do that instead, or increase both. 
 
