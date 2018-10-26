@@ -67,7 +67,7 @@ Take your ingest token from your Humio Repository page…
 Finally, we run a simple Helm command to get the logs rolling:
 
 ```shell
-helm install --version "v0.8.0" stable/fluent-bit --name=humio-agent -f humio-agent.yaml
+helm install stable/fluent-bit --name=humio-agent -f humio-agent.yaml
 ```
 
 {{% notice warn %}}
