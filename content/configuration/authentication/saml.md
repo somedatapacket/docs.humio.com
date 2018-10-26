@@ -55,7 +55,7 @@ By default, the user has no rights.  So unless a user is otherwise granted acces
 Instead of using `NameId` for mapping users from the IDP to Humio an user attribute name can be configured:
 
 ```shell
-SAML_USER_ATTRIBUTE=mail
+SAML_USER_ATTRIBUTE=email
 ```
 
 In this case Humio will use the mail attribute from the IDPs SAML response after a successful authentication.
