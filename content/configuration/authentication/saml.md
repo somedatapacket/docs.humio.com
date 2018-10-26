@@ -28,7 +28,7 @@ The `$IDP_ENTITY_ID` identifies your IDP and is used internally in the authentic
 The provided certificate must be in PEM format (see. https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail). If you are running Humio in docker make sure the file is accessible from the container by e.g. putting it in a readonly directory as described in [docker installation]({{< ref "docker.md" >}}).
 
 {{% notice info %}}
-The redirect back to Humio is handled by the SAML Assertion Consumer Service endpoint located at `http://$HOST:$PORT/api/v1/saml/acs`. The SAML binding used in this interaction is the HTTP Redirect (GET) Binding.
+The redirect back to Humio is handled by the SAML Assertion Consumer Service endpoint located at `http://$HOST:$PORT/api/v1/saml/acs`. The SAML binding used in this interaction is the HTTP POST Binding. While the logon interaction from Humio to the IDP is done via a HTTP Redirect (GET) Binding.
  {{% /notice %}}
  {{% notice info %}}
  Metadata about Humio as a SAML Service Provider is available at `http://$HOST:$PORT/api/v1/saml/metadata`.
