@@ -70,10 +70,6 @@ Finally, we run a simple Helm command to get the logs rolling:
 helm install stable/fluent-bit --name=humio-agent -f humio-agent.yaml
 ```
 
-{{% notice warn %}}
-Due to a bug in the Helm Charts in version 0.9.0 and later you have to specify a specific chart version.
-{{% /notice %}}
-
 Once this is in place, your logs should be up and running.
 
 ### Parsing Logs
