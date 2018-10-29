@@ -61,7 +61,7 @@ The JSON request body has the following attributes:
 
 Name        | Type   | Required     | Description
 ----------- | ------ | ------------ | -------------
-`queryString` | string |  Yes         | The actual query. See [Query language](/searching_logs/) for details
+`queryString` | string |  Yes         | The actual query. See [Query language]({{< ref "/language-syntax/_index.md" >}}) for details
 `start`       | Time   |  No          | The start date and time. This parameter tells Humio not to return results from before this date and time. You can learn how to [specify a time](#time).
 `end`         | Time   |  No          | The end date and time.  This parameter tells Humio not to return results from after this date and time. You can learn how to [specify a time](#time)
 `isLive`      | boolean|  No         | Sets whether this query is live. Defaults to `false`. Live queries are continuously updated.
