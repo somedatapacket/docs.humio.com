@@ -1,6 +1,7 @@
 ---
 title: "FAQ"
 weight: 7
+aliases: ["appendix/faq", "ref/faq"]
 ---
 
 <b>Q: Is Humio cloud only? Is it possible to use Humio on premises?</b>
