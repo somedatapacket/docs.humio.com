@@ -40,6 +40,11 @@ EXTERNAL_URL=https://humio01.example.com
 # It is important to set this property when using OAuth authentication or alerts.
 PUBLIC_URL=https://humio.mycompany.com
 
+## For how long should dashboard queries be kept running if they are not polled.
+## When opening a dashboard, results will be immediately ready if queries are running.
+## Default is 3 days 
+IDLE_POLL_TIME_BEFORE_DASHBOARD_QUERY_IS_CANCELLED_MINUTES=4320
+
 # Specify the replication factor for the Kafka ingest queue
 #INGEST_QUEUE_REPLICATION_FACTOR=2
 
