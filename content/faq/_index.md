@@ -53,3 +53,27 @@ A: "Repository" is the new term. What used to be a "dataspace" in Humio is now a
 
 The HTTP API includes the path `/api/v1/dataspaces/$REPOSITORY_NAME/` to be compatible with existing clients.
 In this context, the `$REPOSITORY_NAME` variable is the name of the repository. (It used to be the name of the dataspace).
+
+
+<hr noshade>
+
+<b>Q: Can I run Humio on IPv6-only, IPv4-only or both?</b>
+
+A: Humio runs on either or both IP versions, depending on what you specify using `HUMIO_JVM_ARGS`. By default the process binds on both IPv4 and IPv6.
+
+If you use the Docker images provided by Humio for Kafka and Zookeeper, or run the "humio/humio" image that includes both of them,
+you need to make sure those processe also get the same options regarding IP protocol as the Humio process.
+
+IPv4 Only:
+```
+HUMIO_JVM_ARGS=-Djava.net.preferIPv4Stack=true
+KAFKA_OPTS=-Djava.net.preferIPv4Stack=true
+ZOOKEEPER_OPTS=-Djava.net.preferIPv4Stack=true
+```
+
+IPv6 Only:
+```
+HUMIO_JVM_ARGS=-Djava.net.preferIPv6Addresses=true
+KAFKA_OPTS=-Djava.net.preferIPv6Addresses=true
+ZOOKEEPER_OPTS=-Djava.net.preferIPv6Addresses=true
+```
