@@ -346,9 +346,14 @@ h1 .badge {
 }
 
 #page-content {
+
+  /*
+  Disabled grid-layout until we get a propper sidebar, since
+  it interfers with float layout and page icons.
+
   display: grid;
   grid-gap: 20px;
-  grid-template: "c s" / 904px 300px;
+  grid-template: "c s" / 904px 300px; */
 }
 
 #page-content__content {
