@@ -8,13 +8,24 @@ pipeline:
     image: plugins/hugo
     validate: true
 
-  docker-build:
+  docker-build-master:
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
     repo: humio/docs
     tags:
-      - ${DRONE_BRANCH/master/latest}
+      - latest
       - ${DRONE_BRANCH}-${DRONE_BUILD_NUMBER}
+    when:
+      branch: master
+
+  docker-build-preview:
+    image: plugins/docker
+    secrets: [ docker_username, docker_password ]
+    repo: humio/docs
+    tags:
+      - ${DRONE_BRANCH/\//-}-${DRONE_BUILD_NUMBER}
+    when:
+      branch: master
 
   deploy-master:
     image: e20co/drone-marathon
