@@ -1,6 +1,6 @@
 ---
-title: Authenticating with SAML 2.0
-menuTitle: SAML 2.0
+title: SAML 2.0
+category_title: Overview
 category: ["Integration"]
 aliases: ["ref/saml"]
 ---

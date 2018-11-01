@@ -22,7 +22,7 @@ Humio supports the following authentication types:
    - [BitBucket]({{< ref "oauth.md#bitbucket" >}})
 * [__Auth0 Integration__]({{< ref "auth0.md" >}})  
   [Auth0](https://auth0.com/) is a cloud service making it possible to login with many different OAuth identity providers e.g. Google and Facebook. You can also create your own database of users in Auth0.
-* [__SAML SSO__]({{< ref "saml.md" >}})
+* [__SAML SSO__]({{< ref "saml" >}})
   Leverages a SAML 2.0 compatible IDP for a seamless single sign-on experience.
 
 Users are authenticated (logged in) using one of the above integrations.
