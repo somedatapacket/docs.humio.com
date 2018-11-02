@@ -60,3 +60,6 @@ SAML_USER_ATTRIBUTE=email
 
 In this case Humio will use the mail attribute from the IDPs SAML response after a successful authentication.
 
+## Common Issues
+
+Often whitelisting of Humio as an SP needs to be configured at the IDP level. Consult your vendor specific IDP documentation.

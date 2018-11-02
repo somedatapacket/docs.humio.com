@@ -17,7 +17,7 @@ When uploading a segment file Humio creates the S3 object key based on the tags,
 
 The following pattern is used:
 
-`REPOSITORY/YEAR/MONTH/DAY/TAG_KEY_1/TAG_VALUE_1/../TAG_KEY_N/TAG_VALUE_N/START_TIME-SEGMENT_ID.gz`
+`REPOSITORY/TYPE/TAG_KEY_1/TAG_VALUE_1/../TAG_KEY_N/TAG_VALUE_N/YEAR/MONTH/DAY/START_TIME-SEGMENT_ID.gz`
 
 Read more about [Tags]({{< relref "concepts/tags.md" >}}).
 
