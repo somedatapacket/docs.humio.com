@@ -96,5 +96,5 @@ The above query shows a line for each host that we have not heard from
 in the last 5 minutes (timestamps in Humio are in milliseconds). You
 should run the query as a live search in a time interval that is
 longer than you "missing" threshold - when the last log from a log
-soures is older than your search time interval the log source will
+sources is older than your search time interval the log source will
 disappear from the result.
