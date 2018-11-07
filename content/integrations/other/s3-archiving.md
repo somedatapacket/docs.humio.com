@@ -42,7 +42,7 @@ S3_ARCHIVING_ACCESSKEY=$ACCESS_KEY
 S3_ARCHIVING_SECRETKEY=$SECRET_KEY
 ```
 
-The keys are used for authenticating the user against the S3 service. For more guidance on how to retrieve S3 access keys see [AWS access keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys). More details on creating a new user in IAM can be found [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html).
+The keys are used for authenticating the user against the S3 service. For more guidance on how to retrieve S3 access keys see [AWS access keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys). More details on [creating a new user in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html).
 
 Configuring the user to have write access to a bucket can be done by attaching a policy to the user.
 
