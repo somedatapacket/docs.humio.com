@@ -55,9 +55,9 @@ Configuring the user to have write access to a bucket can be done by attaching a
 
 ### IAM User Example Policy
 
-The following XML is an example policy configuration.
+The following JSON is an example policy configuration.
 
-```xml
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
