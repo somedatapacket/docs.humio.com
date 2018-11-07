@@ -27,15 +27,60 @@ The default archiving format is [NDJSON](http://ndjson.org) and optionally raw l
 
 ## On-premise Setup
 
-For an on-premise installation of Humio the following configuration is neccesary:
+For an on-premise installation of Humio an [IAM](https://aws.amazon.com/iam/) user with write access to the buckets used for archiving is needed. The user must have programmatic access to S3. E.g. when adding a new user through the AWS console make sure 'programmatic access' is ticked:
+
+![Adding user with programmatic access.](/images/s3-archiving/add_user_1.png)
+
+Later in the process you can retrieve access key and secret key:
+
+![Access key and secret key.](/images/s3-archiving/add_user_2.png)
+
+ Which in Humio is needed in the following configuration:
 
 ```shell
 S3_ARCHIVING_ACCESSKEY=$ACCESS_KEY
 S3_ARCHIVING_SECRETKEY=$SECRET_KEY
 ```
 
-The keys are used for authenticating against the S3 service. In other words the authenticated principal needs to have write access to the S3 buckets involved in the archiving. For guidance on how to retrieve S3 access keys see [AWS access keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys).
+The keys are used for authenticating the user against the S3 service. For more guidance on how to retrieve S3 access keys see [AWS access keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys). More details on creating a new user in IAM can be found [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html).
 
+Configuring the user to have write access to a bucket can be done by attaching a policy to the user.
+
+
+### IAM User Example Policy
+
+The following XML is an example policy configuration.
+
+```xml
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::BUCKET_NAME"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::BUCKET_NAME/*"
+            ]
+        }
+    ]
+}
+```
+
+The policy can be used as an inline policy attached directly to the user through the AWS console:
+
+![Attach inline policy.](/images/s3-archiving/add_user_3.png)
 
 ## Cloud Setup
 
