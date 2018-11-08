@@ -154,6 +154,7 @@ License | Module | Attribution
 [MIT License](http://www.opensource.org/licenses/mit-license.php) | Moment.js | Tim Wood, Iskren Chernev, Moment.js contributors
 [BSD 3-Clause License](https://github.com/isagalaev/highlight.js/blob/master/LICENSE) | Highlight.js | Copyright (c) 2006, Ivan Sagalaev (theme by Louis Barranqueiro)
 [BSD 3-Clause License](https://github.com/webcomponents/webcomponentsjs/blob/master/LICENSE.md) | @webcomponents/webcomponentsjs | Copyright (c) 2015 The Polymer Authors. All rights reserved.
+[BSD 3-Clause License](https://github.com/xarvh/elm-onclickoutside/blob/master/LICENSE) | xarvh/elm-onclickoutside | Copyright (c) 2017 Francesco Orsenigo.
 
 ## Other Resources
 
