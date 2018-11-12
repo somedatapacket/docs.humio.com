@@ -4,9 +4,8 @@ aliases: ["ref/charts/event-list", "ref/charts/list-view"]
 weight: 100
 ---
 
-The _Event List_ widget is meant to display events as their roll into Humio. It
-is the detail widget type on the search page for non-aggregated data e.i. events.
-It is best used with pure filter queries and {{< function "tail" >}}.
+The _Event List_ widget is meant to display events as they are ingested into Humio. It
+is the default visualization on the search page for events.
 
 ## Input Format
 
