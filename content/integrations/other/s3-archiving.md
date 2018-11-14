@@ -31,9 +31,9 @@ Read more about [Tags]({{< relref "concepts/tags.md" >}}).
 
 The default archiving format is [NDJSON](http://ndjson.org) and optionally raw log lines. When using NDJSON the parsed fields will be available along with the raw log line. This incurs some extra storage cost compared to using raw log lines but gives the benefit of ease of use when processing the logs in an external system.
 
-## On-premise Setup
+## On-premises Setup
 
-For an on-premise installation of Humio an [IAM](https://aws.amazon.com/iam/) user with write access to the buckets used for archiving is needed. The user must have programmatic access to S3. E.g. when adding a new user through the AWS console make sure 'programmatic access' is ticked:
+For an on-premises installation of Humio an [IAM](https://aws.amazon.com/iam/) user with write access to the buckets used for archiving is needed. The user must have programmatic access to S3. E.g. when adding a new user through the AWS console make sure 'programmatic access' is ticked:
 
 ![Adding user with programmatic access.](/images/s3-archiving/add_user_1.png)
 
