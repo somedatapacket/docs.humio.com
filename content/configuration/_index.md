@@ -132,6 +132,10 @@ MAX_HOURS_SEGMENT_OPEN=720
 #S3_ARCHIVING_ACCESSKEY=$ACCESS_KEY
 #S3_ARCHIVING_SECRETKEY=$SECRET_KEY
 
+# Initial partition count for digest and storage partitions.
+# Has effect ONLY on first start of first node in the cluster.
+#DEFAULT_PARTITION_COUNT=24
+
 ```
 
 ## Java virtual machine parameters
