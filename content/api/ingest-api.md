@@ -55,7 +55,7 @@ The `fields` section is used to specify fields that should be added to each of t
 It is possible to send events of different types in the same request. That is done by adding a new element to the outer array in the example above.
 Tags can be specified in the parser pointed to by the `type` field
 
-#### Events
+#### Events {#events}
 
 When sending events, you can set the following standard fields:
 
@@ -191,6 +191,7 @@ This request contains three events. The first two are tagged with `server1` and 
 
 
 #### Tags
+
 Tags are key-value pairs.
 
 Events are stored in data sources. A repository has a set of Data Sources.
@@ -199,7 +200,7 @@ matching its tags. If no data source with the exact tags exists it is created.
 Tags are used as query boundaries when searching
 Tags are provided as a JSON object containing key-value pairs. Keys and values
 must be strings, and at least one tag must be specified.
-See the [tags documentation]({{< ref "tags.md" >}}) for more information.
+See the [tags documentation]({{< ref "tagging.md" >}}) for more information.
 
 #### Events
 

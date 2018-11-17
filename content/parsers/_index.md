@@ -5,35 +5,63 @@ date: 2018-03-15T08:19:58+01:00
 weight: 650
 ---
 
-When data arrives at Humio for ingestion it needs to be parsed before it is stored in a repository.
-A parser takes text or JSON data as input and extracts the special [`@timestamp` field]({{< ref "events.md#timestamp" >}}) and custom
-[user fields]({{< ref "events.md#user-fields" >}}) from the data.
+When you send logs and metric to Humio for ingestion it needs to be parsed
+before it is stored in a repository. _This is the case for all input channels
+except Humio's Ingest API, which stores data as-is._
 
-For example, each line from a standard web server log file has status code,
-method, and URL fields.
+A parser takes text as input, it can be structured text (like JSON) or unstructured
+text (like syslog or application stdout). It then extracts fields which are
+stored along with the original text.
 
-You have to specify which parser should be used on the client side. Exactly how
-this is done, depends on [how you send your logs to Humio]({{< ref "sending-data-to-humio/_index.md" >}}).
-E.g. if you are using Filebeat you specify the parser by setting the special `@type` field in the
-configuration.
+<figure>
+{{<mermaid align="center">}}
+graph LR;
+  subgraph External Systems
+    Ext1[Filebeat]
+    Ext2[Logstash]
+    Syslog[Syslog]
+    Json1[Web Application]
+    Json2[Browser JS Client]
+  end
 
-{{% notice tip %}}
-We also have an API for managing parsers: [Parsers API]({{< ref "parser-api.md" >}})
-{{% /notice %}}
+  subgraph Repository A
+  Ext1 --> P1("<em>Parser</em><br/><b>accesslog</b>")
+  Ext2 --> P1
+  Syslog --> P2("<em>Parser</em><br/><b>kv</b>")
+  P1 --> S1("Storage")
+  P2 --> S1
+  end
 
-## Built-in Parsers
+  subgraph Repository B
+  Json1 --> P3("<em>Parser</em><br/><b>custom-parser-1</b>")
+  Json2 --> P3
+  P3 --> S2("Storage")
+  end
+{{< /mermaid >}}
+<figcaption>Five different clients are sending data to Humio. They each have a parser assigned that will be used during ingestion. E.g. <b>Web Application</b> is using a custom parser while <b>Logstash</b> is using the build-in <em>accesslog</em> parser.</figcaption>
+</figure>
 
-Humio comes with a set of [built-in parsers]({{< ref "parsers/built-in-parsers/_index.md" >}}) for
-common log formats, like e.g. accesslog.
+## Choosing a parser
 
-## Custom Parsers
+A client sending data to Humio must specify which repository to storage the data
+in and which parser to use for ingesting the data. You do this either by setting
+the special `#type` field to the name of the parser to use, or by [assigning a
+specific parser to the Ingest API Token]({{ ref "ingest-tokens.md#assign-a-parser"}})
+used to authenticate the client. Assigning a parser to the API Token is the recommended
+approach since it allows you to change parser in Humio without changing the client.  
 
-If the built-in parsers do not support your data type, then you can create
-your own.
+### Build-in parsers
 
-Humio supports two types of custom parsers:
+Humio supports a range of common log formats via the  [built-in parsers]({{< ref "parsers/built-in-parsers/_index.md" >}}).
+They include formats such as `json` and `accesslog`, and are suitable when starting out
+with Humio. Once you get acquainted with how parsers work you will likely want to
+create your own custom parsers.
 
-* [JSON Parsers]({{< ref "json-parsers.md" >}})
-* [Regular Expression Parsers]({{< ref "regexp-parsers.md" >}})
+### Creating a Custom Parser
 
-Next Step: [Creating a Custom Parser]({{< ref "creating-a-parser.md" >}})
+Writing a custom parser allows you to have full control of what is stored and
+during ingest, which fields are extracted from the input and which datasources
+events are saved to.
+
+Creating your own parser involves writing a script in the Humio Language (the same
+you use for searching). Here is a guide for [creating a custom parser]({{< ref "creating-a-parser.md" >}}).

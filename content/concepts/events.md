@@ -55,7 +55,7 @@ described in detail below.
 
 ### Tag Fields {#tags}
 
-[Tags]({{< ref "tags.md" >}}) fields that define how events are physical stored and indexed. They are
+[Tags]({{< ref "tagging.md" >}}) fields that define how events are physical stored and indexed. They are
 used for speeding up queries.
 
 Users can associate custom tags as part of the parsing and ingestion process.

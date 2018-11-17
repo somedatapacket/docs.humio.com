@@ -14,7 +14,7 @@ together. In this scenario, you use Logstash as the log collection and
 parsing agent, and instruct it to send the data to Humio.
 
 {{% notice tip %}}
-__Humio supports the ElasticSearch bulk insertion API__  Just [point the Elastic outputter to Humio](#configuration).
+__Humio supports the ElasticSearch bulk insertion API__  Just [point the Elastic outputter at Humio](#configuration).
 {{% /notice %}}
 
 
@@ -62,7 +62,9 @@ output{
 ```
 
 ### Adding tags to events
-Please read [the section on tags]({{< relref "concepts/tags.md" >}}) before adding tags to your events. Add tags by including them in the "inputs/exec" section:
+
+Please read [the section on tags]({{< ref "tagging.md" >}}) before adding tags
+to your events. Add tags by including them in the "inputs/exec" section:
 
 ```
 input{

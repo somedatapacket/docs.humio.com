@@ -2,22 +2,37 @@
 title: Datasources
 ---
 
-A Data Source is a set of [Events]({{< ref "events.md" >}}) that have the same [Tags]({{< ref "tags.md" >}}).
-Humio divides each [Repository]({{< ref "repositories.md" >}}) into more than one Data Source.
+A _datasource_ is a set of [events]({{< ref "events.md" >}}) that share
+the the same [tags]({{< ref "tagging.md" >}}).
 
-Humio creates Data Sources automatically when it encounters a new combination of Tags. Users cannot create Data Sources directly.
+Each datasource is stored separately on disk and restricting searches to a subset
+means Humio does not have to traverse all data - which can make searches much faster.
 
-Data Sources are the smallest unit of data that you can delete.
-You cannot delete individual Events in a Data Source beyond expiration.<!--GRW: I'm not sure what 'beyond expiration' means. -->
+## Viewing a repository's datasources
 
-Humio represents each Data Source internally as a dedicated directory within the Repository directory.
+In the settings page of repository you can see the list of datasources that have
+been created for during ingest.
 
-{{% notice note %}}
-We recommend that you _do not create more than 1,000 separate tags_, or combinations of tags.
-If you need more combinations we recommend that you use attributes on individual
-events to differentiate them and select them separately.
-{{% /notice %}}
+Datasources are created automatically based on  the tags assigned to incoming
+events - whenever a new combination of tags is encountered during ingest a new datasource is created.
 
-Each Data Source requires Java heap for buffering while building the
-next block of data to be persisted. This amount to roughly 5 MB each. If you have 1,000 Data Sources (across all repositories, in total) on your Humio server, you will need at least 5GB of heap for that on top of the other heap being used. In a clustered environment, only the share of Data sources that are being "digested" on the node need heap for buffers. So more servers can accommodate more Data Sources in the cluster.
+## Deleting a datasource
 
+Datasources are the smallest unit of data that you can delete in Humio.
+You can delete an entire datasource from the repository setting page.
+
+## Memory usage
+
+We recommend that you limit the number of datasources per Humio server to
+a maximum of 1000 distinct datasource across all repositories.
+
+Each datasource requires Java heap space for buffering events while building the
+blocks of data to be persisted to disk - roughly 5 MB per datasource of memory.
+
+In a clustered environment, only the share of datasources that
+are being "digested" on this particular node need heap for buffers.
+So more servers can accommodate more datasources in the cluster.
+
+__Example__  
+If you have 1000 datasources (across all repositories, in total) on a single
+Humio server, you will need at least 5GB of heap just for buffering events.

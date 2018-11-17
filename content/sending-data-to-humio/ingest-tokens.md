@@ -28,3 +28,7 @@ re-provision all agents that send data with a new token. You also don't have to
 create fake "Bot" user accounts.
 
 You can manage your ingest tokens in the **Settings** tab in each repository.
+
+### Assigning a Token to a Parser {#assign-a-parser}
+
+See how to assign a parser to an ingest token in the [parser docs]({{< ref "assigning-parsers-to-ingest-tokens.md" >}}).

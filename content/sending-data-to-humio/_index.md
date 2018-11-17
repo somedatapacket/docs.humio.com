@@ -8,14 +8,14 @@ There are steps to getting your data into Humio:
 
 1. [Generating an Ingest Token]({{< ref "ingest-tokens.md" >}}) Token - A special API token only for the Ingest API.
 1. Sending data - Which is the subject of this page
-1. Parsing and ingesting data - Described in the [Parsers sections]({{< ref "parsers/_index.md" >}})
+1. Parsing and ingesting data - Described in the [Parsers section]({{< ref "parsers/_index.md" >}})
 
 Sending data to Humio (also called _data shipping_) can be done in a couple of ways:
 
 - Using a [**Data Shipper**]({{< ref "#data-shippers" >}}) ([Filebeat]({{< ref "filebeat.md" >}}), [Logstash]({{< ref "logstash.md" >}}), [Rsyslog]({{< ref "rsyslog.md" >}}), etc.)
 - Using a [**Platform Integration**]({{< ref "#platform-integrations" >}}) ([Kubernetes]({{< ref "kubernetes.md" >}}), [Docker]({{< ref "docker.md" >}}), [Mesos]({{< ref "mesos.md" >}}), etc)
 - Using the [**Ingest API**]({{< ref "#ingest-api" >}}) directly
-- Humio supports the [Elasticsearch Bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/6.x/docs-bulk.html), making integration with many log shippers straight forward. 
+- Humio supports the [Elasticsearch Bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/6.x/docs-bulk.html), making integration with many log shippers straight forward.
 
 _In most cases you will want to use a data shipper or one of our platform integrations._
 

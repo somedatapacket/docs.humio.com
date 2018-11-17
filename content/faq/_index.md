@@ -1,6 +1,6 @@
 ---
 title: "FAQ"
-weight: 7
+weight: 1000
 aliases: ["appendix/faq", "ref/faq"]
 ---
 

@@ -14,4 +14,4 @@ _Here is a suggested reading order for some core concepts:_
 1. [Events]({{< ref "events.md" >}})
 1. [Queries]({{< ref "queries.md" >}})
 1. [Live Queries]({{< ref "live-queries.md" >}})
-1. [Tags]({{< ref "tags.md" >}})
+1. [Datasources]({{< ref "datasources.md" >}})

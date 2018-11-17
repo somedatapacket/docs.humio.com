@@ -95,12 +95,12 @@ You must make the following changes to the sample configuration:
   If the log files use special, non-ASCII characters, then set the encoding here. For example, `utf-8` or `latin1`.
 
 * If all your events are fairly small, you can increase `bulk_max_size` from the default of 200. The default of 200 is fine for most use cases.
-  The Humio server does not limit the size of the ingest request. 
+  The Humio server does not limit the size of the ingest request.
   But keep bulk_max_size low, as you may get the requests timed out if they get too large. In case of timeouts filebeat will back off, thus getting worse performance then with a lower bulk_max_size.
   (Note! The Humio cloud on cloud.humio.com does limit requests to 32 MB. If you go above this limit, you will get "Failed to perform any bulk index operations: 413 Request Entity Too Large"
   if a request ends up being too large, measured in bytes, not in number of events. If this happens, lower bulk_max_size as filebeat will otherwise keep retrying that request and not move on to other events.)
 
-* You may want to increase the number of worker instances (`worker`) from the default of 1 to (say) 4 to achieve more throughput if filebeat is not able to keep up with the inputs. If increasing bulk_max_size is possible then do that instead, or increase both. 
+* You may want to increase the number of worker instances (`worker`) from the default of 1 to (say) 4 to achieve more throughput if filebeat is not able to keep up with the inputs. If increasing bulk_max_size is possible then do that instead, or increase both.
 
 ## Running Filebeat {#running-filebeat}
 
@@ -138,9 +138,10 @@ For example, when sending a web server access log file to Humio, you can use the
 
 ### Parsing JSON data
 
-Humio supports [JSON parsers]({{< ref "json-parsers.md" >}}).
+We DO NOT recommend that you use the JSON parsing built into Filebeat, instead Humio has it's own JSON support.
 Filebeat processes logs line by line, so JSON parsing will only work if there is one JSON object per line.
-Customize a JSON parser in Humio (do not use the JSON parsing built into Filebeat).
+By using the [built-in json parser]({{< ref "json.md" >}}) you can get JSON fields extracted during ingest.
+You can also [create a custom JSON parser]({{< ref "creating-a-parser.md" >}}) to get more control over the fields that are created.
 
 
 ## Adding fields
@@ -158,7 +159,7 @@ To avoid having the `@host` and `@source` fields, specify `@host` and `@source` 
 ## Tags
 
 Humio saves data in Data Sources. You can provide a set of Tags to specify which Data Source the data is saved in.  
-See [the section on tags]({{< relref "concepts/tags.md" >}}) for more information about tags and Data Sources.  
+See [the section on tags]({{< ref "tagging.md" >}}) for more information about tags and Data Sources.  
 The `type` configured in Filebeat is always used as tag. Other fields can be used
 as tags as well by defining the fields as `tagFields` in the
 [parser]({{< relref "parsers/_index.md" >}}) pointed to by the `type`.  

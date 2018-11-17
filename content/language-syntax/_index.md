@@ -164,9 +164,9 @@ that do not have the field `foo`.
 ### Tag Filters {#tag-filters}
 
 Tag filters are a special kind of field filter. They behave in the same way as
-regular [filters]({{< ref "#field-filters" >}}).
+regular [filters]({{< relref "#field-filters" >}}).
 
-In the example shown in the previous section ([Basic Query Components]({{< ref "#pipeline" >}})),
+In the example shown in the previous section ([Basic Query Components]({{< relref "#pipeline" >}})),
 we have separated the tag filters from the rest of the query by a pipe character `|`.
 
 We recommend that you include the pipe character before tag filters in your
@@ -177,7 +177,7 @@ recognize tag filters, and use this
 information to narrow  down the number of data sources to search.
 This feature decreases query time.
 
-See the [tags documentation]({{< ref "tags.md" >}}) for more on tags.
+See the [tags documentation]({{< ref "tagging.md" >}}) for more on tags.
 
 ## Logical Operators: `and`, `or`, `not`, and `!` {#logical-operators}
 
