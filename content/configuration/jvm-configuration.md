@@ -21,7 +21,12 @@ on others, however we recommend one of these:
 | `11`                     | [AdoptOpenJDK.net](https://adoptopenjdk.net/releases.html?variant=openjdk11&jvmVariant=hotspot) OpenJDK 11 (HotSpot)
 
 We develop and run Humio using the Azul provided Zulu JVM version 11 and find it to be a stable well maintained OpenJDK distribution.
-NOTE: The OpenJDK build called "OpenJ9" is known not to work properly at this time, we are investigating and hope to include it as a supported JVM in the future.
+
+What about:
+* IBM/OpenJ9 - The OpenJDK build called "OpenJ9" is known not to work properly at this time, we are investigating and hope to include it as a supported JVM in the future.
+* Corretto - Amazon is now providing an OpenJDK distribution called "Corretto" which currently only ships with feature level 8 (1.8) and is not supported at this time.
+* Azul Zing - While we haven't tried Zing ourselves our experience with Zulu leads us to believe that it is likely to work and there may be benefits to using their C4 concurrent GC.
+* Oracle Graal - Is an interesting alterntiave C2 compiler for OpenJDK-based JVMs but is not yet supported for use with Humio as it is only available for Java feature level 8 (1.8).
 
 ## Garbage Collection
 
