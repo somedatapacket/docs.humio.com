@@ -76,7 +76,7 @@ case {
 We could now create a [view]({{< ref "views.md" >}}) for the users that don't
 have access rights to look at the data marked as `secret=true`.
 
-We created a new field as part of the parsing process. Had I not defined `secret` as a tagging
+Note that we created a new field as part of the parsing process. Had I not defined `secret` as a tagging
 field the view would still work perfectly fine. In fact I would get the exact same
 results - albeit without the performance enhancement of the tag based search.
 
