@@ -2,19 +2,21 @@
 title: "Configuring Webhooks to Trigger Shell Scripts"
 ---
 
-Alerts are actionable and one way to service them is by triggering a script on a particular host.  For example, a log line letting you know that the root partition on a system is filling up requires cleanup to free up space before it becomes a critical could be automated so as not to require human intervention.  Humio can identify this log line and fire an alert which notifies via webhook the remote system in need of attention to execute a script and perform the necessary cleanup.
+Alerts are actionable and one way to service them is by triggering a script on a particular host.  For example, while exploring your logs and metrics using Humio you might notice that occasionally a message arrives informing you that a system's root partition is filling up.  You decide to make this into an alert and notify everyone via Slack so that someone can ssh into that system and run `sudo apt-get -y autoremove` (assuming you're on a Debian-based system).  But then you realize that the cleanup required could be automated, you could write a script that fixes this issue without human intervention and one fewer notification in Slack that might go unseen for too long.  Great idea, but how can Humio trigger a cleanup script living on some other host?  Here is where webhooks can bridge the gap.  This guide will show you how to setup and run a program that will listen for these alerts by providing "hooks" that are really just RESTful HTTP GET or POST calls, which is where the name comes from, "web" + "hooks".  These simple web services or "hooks" then execute the scripts on the system they are running on.  In this way you can use Humio to automate and resolve all sorts of issues without anyone needing to get a human involved in the process.  And don't forget to write more log messages from these scripts and feed those back into Humio as well, just so you can be sure everything is working as intended.
 
-This guide will show you the steps required to enable this process.  We assume for the sake of simplicity that you have the following:
+Here is an outline of the steps required to enable this process.  We assume for the sake of simplicity that you have the following:
+
 * Humio is setup, operational, and ingesting your log data.
 * A separate host system, let's call it the "target", where you'd like to run a script when alerted.
 * A script, or other executable you'd like to trigger on that host system
 * A network that allows traffic to routed from Humio to the target system.
 
-## Setup on the target system
+## Setup on the target system, where the script will run
 
 Webhooks are user-defined HTTP callbacks.  In our case it's the Humio server making an HTTP request using a URL you supply.  This is just another use of a RESTful pattern in practice.  Humio will issue an HTTP POST to the supplied URL and include in that request's body the information you provide.  The target system then runs a process that is essentially a simple web server listening for requests, that's the URL.
 
 In this example, the target system has:
+
 * a DNS name `target.example.com` that resolves to a routable IP address, and
 * a script in `/var/scripts/cleanup.sh` that you'd like to trigger.
 
@@ -25,7 +27,7 @@ Find the [release](https://github.com/adnanh/webhook/releases) appropriate for y
 
 Once you have the `webhook` binary in your path you'll need to write a simple configuration script in JSON.  The configuration file lists the endpoints to make available on this system and associates them with the script to execute when that endpoint is triggered.  You can have as many endpoint/script pairs as you'd like.  The target can been a script or any other executable file you designate.
 
-Begin by creating an empty file named `hooks.json`.  This file will contain an array of hooks the `webhook` will serve.  Check [Hook definition page](docs/Hook-Definition.md) to see the detailed description of what properties a hook can contain, and how to use them.
+Begin by creating an empty file named `hooks.json`.  This file will contain an array of hooks the `webhook` will serve.  Check the [hook definition page](https://github.com/adnanh/webhook/wiki/Hook-Definition) to see the detailed description of what properties a hook can contain, and how to use them.
 
 Let's define a simple hook named `cleanup-webhook` that will run our `cleanup.sh` script located in `/var/scripts/cleanup.sh`.  Make sure that your bash script has `#!/bin/sh` shebang on top and is executable (`chmod +x cleanup.sh`).
 
