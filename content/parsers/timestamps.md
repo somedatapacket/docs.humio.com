@@ -4,16 +4,15 @@ title: Timestamps
 
 In Humio the time at which an event occurred is stored in the field `@timestamp`.
 Everything (be it logs or metrics) must have a `@timestamp` and if one is not assigned
-by the parser, Humio will automatically assign the current system time to `@timestamp`.
+by the parser Humio will automatically assign the current system time to `@timestamp`.
 
 ## Parsing Timestamps
 
-The most important job a parser has to do is to assign the events' timestamps.
-The `@timestamp` field must be formatted as Millisecond Unix Time, e.g. `1542400149000` for the
+The most important job a parser has to do is to assign timestamps to events.
+The `@timestamp` field must be formatted as Unix Time in milliseconds, e.g. `1542400149000` for
 `11/16/2018 @ 8:29pm (UTC)`.
 
-The problem is that most incoming data will contain the timestamp in some other
-(more human-readable) format, e.g. ISO 8601.
+The problem is that most incoming data will contain the timestamp in some other more human-readable format, e.g. ISO 8601.
 
 That is why most parsers will take a formatted timestamp from the input event
 and convert it to Unix Time using the {{< function "parseTimestamp" >}} function.
@@ -37,7 +36,7 @@ i.e. `yyyy-MM-dd'T'HH:mm:ss[.SSS]XXX`.
 
 ## Timezones
 
-Since Humio stores timestamps Millisecond Unit Time the timezone present on the
+Since Humio stores timestamps in Unix Time the timezone present on the
 input (if any) is stored in a separate field called `@timezone`.
 
 In most cases this field will have the value `Z` (UTC).
