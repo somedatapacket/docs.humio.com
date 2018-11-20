@@ -5,8 +5,8 @@ aliases: ["ref/creating-a-parser", "parsers/json-parsers", "parsers/regexp-parse
 ---
 
 A parser is a piece of code that transforms incoming data into [events]({{< ref "events.md" >}}).
-Humio has built-in parsers for common log format like `accesslog`, but if none of them fit your
-data format or want to extract more fields, do transformation on the data or assign datasources,
+Humio has built-in parsers for common log formats like `accesslog`. But if none of them fit your
+data format or you want to extract more fields, do transformations on the data or assign datasources,
 you can build your own parser.
 
 In this guide we will go through the steps of creating a parser from scratch.
@@ -16,15 +16,14 @@ In this guide we will go through the steps of creating a parser from scratch.
 ## Step 1. Creating a new parser
 
 Go the the `Parsers` section of the repository you want to create the parser for.
-Then click the `New Parser` button and give it a name. _The name of a parser is
-important since it is what the API uses to uniquely identify the target parser._
+Then click the `New Parser` button and give it a name. _The name is important since it is what the API uses to uniquely identify the parser._
 
 
-## Step 2. Writing a parser script
+## Step 2. Writing a parser
 
 Once you have created your parser you will be presented with a code editor.
 
-The programming language used for creating a parser is exactly the same as you
+The programming language used for creating a parser is the same as you
 use to write queries on the search page. The main difference between writing a
 parser and writing a search query is that you cannot use aggregate functions
 like e.g. {{< function "groupBy" >}} as the parser acts on one event at a time.
@@ -36,7 +35,7 @@ No matter what you send to Humio, the text value will be put in the
 field called `@rawstring` which is the input to the parser.
 
 {{% notice "info" %}}
-__Example: Elastic Search__ When using the elastic search ingest API, the value of the field `message`
+__Example: Elastic Search.__ When using the Elastic Search bulk API, the value of the field `message`
 will put into the field `@rawstring` and is accessible in the parser script.
 {{% /notice %}}
 
@@ -50,12 +49,12 @@ That means the parser should:
 1. Assign the special `@timestamp` and `@timezone` fields.
 1. Extract additional fields that should be stored along with your event.
 
-Let us take a look at a couple of parsers and try to understand how they work.
+Let's take a look at a couple of parsers and try to understand how they work.
 
 
 #### Example: Parsing Log Lines {#log-lines}
 
-Lets assume that we have a system producing los like the following two lines:
+Assume we have a system producing logs like the following two lines:
 
 ```
 2018-10-15T12:51:40+00:00 [INFO] This is an example log entry. id=123 fruit=banana
@@ -65,7 +64,7 @@ Lets assume that we have a system producing los like the following two lines:
 We want the parser to produce two events (one per line) and use the timestamp of each line as
 the time at which the event occurred - i.e. assign it to the field `@timestamp` and `@timezone`.
 
-To do this we could write a parser script like:
+To do this we could write a parser like:
 
 ```humio
 // Create field called "ts" by extracting the first part of each
@@ -99,8 +98,8 @@ pair in the log line, e.g. `id=123` `fruit=banana`.
 
 #### Example: Parsing JSON {#json}
 
-We've seen how to create a parser for unstructured log lines. Now lets try to
-parser for JSON input. Lets use the following example input to our parser:
+We've seen how to create a parser for unstructured log lines. Now let's create a
+parser for JSON logs based on the following example input:
 
 ```json
 {
@@ -121,7 +120,7 @@ unstructured logs.
 
 The JSON is accessible as a string in the field `@rawstring`. We can extract fields
 from the JSON by using the {{< function "parseJson" >}} function.
-It takes a field containing a JSON string (in this case the field `@rawstring`)
+It takes a field containing a JSON string (in this case `@rawstring`)
 and extracts fields automatically, like e.g:
 
 ```humio
@@ -130,7 +129,7 @@ parseJson(field=@rawstring) |
 @timezone := "Z"
 ```
 
-This will result in events with fields for each property in the input JSON,
+This will result in events with a field for each property in the input JSON,
 e.g. `username` and `host`, and will use the value of `ts` as the timestamp.
 
 ## Next Steps
@@ -151,29 +150,6 @@ that allows you to name sub-matches, e.g:
 /(?<firstname>\S+)\s(?<lastname>\S+)/
 ```
 
-This defines a regex that expects the input to contain names, first and last. It then extracts
-the first and last names into two fields `firstname` and `lastname`. The `\S` means
-any character that is not a whitespace and `\s` is a any whitespace character.
-
-
-### Key-value {#key-value}
-
-When creating a regular expression parser, you can add key-value parsing.
-When you enable key-value parsing, Humio runs an extra parser on the incoming event.
-This extra parser looks for key-value fields of the form:
-
- * `key=value`
- * `key="value"`
- * `key='value'`
-
-So for a log line like this:
-
-`2017-02-22T13:14:01.917+0000 [main thread] INFO  UserService -  creating new user id=123, name='john doe' email=john@doe`
-
- The key-value parser extracts the fields:
-
- * `id: 123`
- * `name: john doe`
- * `email: john@doe`
-
-As developers start to use Humio, they can start to use the key-value pattern when logging. This gives a lot of structure to the logs in Humio.
+This defines a regex that expects the input to contain a first name and  a last name. It then extracts
+the names into two fields `firstname` and `lastname`. The `\S` means
+any character that is not a whitespace and `\s` is any whitespace character.
