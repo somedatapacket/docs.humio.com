@@ -3,14 +3,14 @@ title: Parser Errors
 ---
 
 When a parser fails to parse incoming input Humio automatically
-adds the following fields to the event and stores:
+adds the following fields to the event:
 
  * `@error=true`
  * `@event_parsed=false`
  * `@error_msg`: contains the error message
 
-You can search for these fields to determine the what happened and update the
-parser's script accordingly. When you find an error it can be a good idea to
+You can search for these fields to determine what happened and update the
+parser accordingly. When you find an error it can be a good idea to
 add the `@rawstring` of any events that fail to parse as a test case for your parser.
 
 ## Finding errors in your repository's parsers
@@ -33,7 +33,7 @@ or group results by error message:
 @error=* | groupBy(@error_msg)
 ```
 
-## FAQ: How do I re-parse an event in Humio
-
+{{% notice info %}}
 There is no way for Humio to re-parse data once it is stored. Even if there is
 an error on the event. You will have to resend the event through the ingest API.
+{{% /notice %}}
