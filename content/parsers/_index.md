@@ -5,9 +5,9 @@ date: 2018-03-15T08:19:58+01:00
 weight: 650
 ---
 
-When you send logs and metric to Humio for ingestion it needs to be parsed
+When you send logs and metrics to Humio for ingestion it needs to be parsed
 before it is stored in a repository. _This is the case for all input channels
-except Humio's Ingest API, which stores data as-is._
+except Humio's structured ingest endpoint which stores data as-is._
 
 A parser takes text as input, it can be structured text (like JSON) or unstructured
 text (like syslog or application stdout). It then extracts fields which are
@@ -43,25 +43,23 @@ graph LR;
 
 ## Choosing a parser
 
-A client sending data to Humio must specify which repository to storage the data
+A client sending data to Humio must specify which repository to store the data
 in and which parser to use for ingesting the data. You do this either by setting
-the special `#type` field to the name of the parser to use, or by [assigning a
+the special `#type` field to the name of the parser to use or by [assigning a
 specific parser to the Ingest API Token]({{ ref "ingest-tokens.md#assign-a-parser"}})
 used to authenticate the client. Assigning a parser to the API Token is the recommended
 approach since it allows you to change parser in Humio without changing the client.  
 
-### Build-in parsers
+### Built-in parsers
 
-Humio supports a range of common log formats via the  [built-in parsers]({{< ref "parsers/built-in-parsers/_index.md" >}}).
-They include formats such as `json` and `accesslog`, and are suitable when starting out
-with Humio. Once you get acquainted with how parsers work you will likely want to
+Humio supports common log formats via the  [built-in parsers]({{< ref "parsers/built-in-parsers/_index.md" >}}).
+They include formats such as `json` and `accesslog` and are suitable when starting out
+with Humio. Once you get better acquainted with your data and how parsers work you will likely want to
 create your own custom parsers.
 
 ### Creating a Custom Parser
 
-Writing a custom parser allows you to have full control of what is stored and
-during ingest, which fields are extracted from the input and which datasources
-events are saved to.
+Writing a custom parser allows you to take full control of which fields are extracted during ingest and which datasources events are stored in.
 
-Creating your own parser involves writing a script in the Humio Language (the same
+Parsers are written in the Humio query language (the same
 you use for searching). Here is a guide for [creating a custom parser]({{< ref "creating-a-parser.md" >}}).
