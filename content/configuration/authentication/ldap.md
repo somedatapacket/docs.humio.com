@@ -20,9 +20,9 @@ LDAP_DOMAIN_NAME=your-domain.com     # (example: example.com)
 `ldap://` or `ldaps://`, which selects plain and SSL connections respectively.
 
 `LDAP_AUTH_PRINCIPAL` can be left unset, in which case the username is used directly when binding to the server.
-If it is set, the token `HUMIOUSERNAME` is replaced with the username, and the resulting string is used as principal.
+If it is set, the token `HUMIOUSERNAME` is replaced with the username entered in the login prompt, and the resulting string is used as principal.
 
-`LDAP_DOMAIN_NAME` can be used if your ldap is only hosting 1 domain. When setting this, users do not need to provide the domain. They can login with foo instead of foo@your-organisation.com. It is always possible to add the domain when logging in. 
+`LDAP_DOMAIN_NAME` can be used if your ldap is only hosting 1 domain. When setting this, users do not need to provide the domain. They can login with `foo` instead of `foo@example.com`. It is always possible to add the domain when logging in. 
 
 
 The URL can be `ldap:/` or `ldaps:/`.  If using `ldaps:/`, you can configure Humio to work with the a server
@@ -30,11 +30,13 @@ using a self-signed certificate by specifying `LDAP_AUTH_PROVIDER_CERT` to be th
 
 Since docker does not support newlines i environment variables, replace newlines with `\n` using something like this:
 
-```cat my.crt | perl -pe 's/\n/\\n/g'```
+```shell
+cat my.crt | perl -pe 's/\n/\\n/g'
+```
 
 The result should look like this:
 
-```shell
+```
 -----BEGIN CERTIFICATE-----\nMII...gWc=\n-----END CERTIFICATE-----\n
 ```
 
