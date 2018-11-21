@@ -11,7 +11,7 @@ parsing them and outputting them to other systems.
 
 You can use Logstash alongside Humio to process and analyze logs
 together. In this scenario, you use Logstash as the log collection and
-parsing agent, and instruct it to send the data to Humio.
+parsing agent and instruct it to send the data to Humio.
 
 {{% notice tip %}}
 __Humio supports the ElasticSearch bulk insertion API__  Just [point the Elastic outputter at Humio](#configuration).
@@ -29,7 +29,7 @@ extensible architecture of Logstash to parse many kinds of data:
 
 ## Installation
 
-To download Logstash, visit the [Logstash downloads page](https://www.elastic.co/downloads/logstash).
+To download Logstash visit the [Logstash downloads page](https://www.elastic.co/downloads/logstash).
 
 {{% notice note %}}
 You can find the complete documentation for Logstash at [the Reference page of the official Logstash website](https://www.elastic.co/guide/en/logstash/current/index.html).
@@ -61,6 +61,10 @@ output{
 }
 ```
 
+An important next step is [assigning a specific parser to the Ingest API Token]({{< ref "assigning-parsers-to-ingest-tokens.md" >}}).
+
+For more information on parsers, see [parsing]({{< relref "parsers/_index.md" >}}).
+
 ### Adding tags to events
 
 Please read [the section on tags]({{< ref "tagging.md" >}}) before adding tags
@@ -81,7 +85,7 @@ input{
 {{< partial "common-rest-params" >}}
 
 {{% notice warning %}}
-Logstash uses 9200 as the default port, if no port is specified. So if Humio is listening on the default ports 80 or 443, these ports should be explicitly put in the $BASEURL
+Logstash uses 9200 as the default port if no port is specified. So if Humio is listening on the default ports 80 or 443 these ports should be explicitly put in the $BASEURL
 {{% /notice %}}
 
 In the above example, Logstash calls the Linux `date` command every
@@ -108,9 +112,9 @@ Humio treats some fields as special cases:
 
 | Name                     |   Description |
 ---------------------------|---------------|
-| `@timestamp`             | This field must be present, and contain the timestamp in ISO 8601 format. This format is: `yyyy-MM-dd'THH:mm:ss.SSSZ`. <br /><br />You can specify the timezone (like +00:02) in the timestamp. Specify the time zone if you want Humio to save this information. Logstash adds the `@timestamp` field automatically. <br /><br />Depending on the configuration, the timestamp can be the time at which Logstash handles the event, or the actual timestamp in the data. If the timestamp is present in the data, you can configure logstash to parse it, for example, by using the date filter. |
-| `message`                | If present, Humio treats this field as the rawstring of the event. <br /><br />Humio maps this field to the `@rawstring` field, which is textual representation of the raw event in Humio. <br /><br />If you do not provide the message or rawstring field, then the rawstring representation is the JSON structure as text. |
-| `rawstring`              | This field is similar to the `message` field. <br /><br />If you provide both fields, then Humio uses the `message` field. The reason for having both is that some Logstash integrations automatically set a message field representing the raw string. <br /><br />In Humio, we use the name rawstring. |
+| `@timestamp`             | This field must be present, and contain the timestamp in ISO 8601 format. This format is: `yyyy-MM-dd'THH:mm:ss.SSSZ`. <br /><br />You can specify the timezone (like +00:02) in the timestamp. Specify the time zone if you want Humio to save this information. Logstash adds the `@timestamp` field automatically. <br /><br />Depending on the configuration the timestamp can be the time at which Logstash handles the event, or the actual timestamp in the data. If the timestamp is present in the data you can configure logstash to parse it, for example, by using the date filter. |
+| `message`                | If present, Humio treats this field as the rawstring of the event. <br /><br />Humio maps this field to the `@rawstring` field which is the textual representation of the raw event in Humio. <br /><br />If you do not provide the message or rawstring field the rawstring representation is the JSON structure as text. |
+| `rawstring`              | This field is similar to the `message` field. <br /><br />If you provide both fields Humio uses the `message` field. The reason for having both is that some Logstash integrations automatically set a message field representing the raw string. <br /><br />In Humio, we use the name rawstring. |
 
 ### Dropping fields
 

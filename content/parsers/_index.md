@@ -46,7 +46,7 @@ graph LR;
 A client sending data to Humio must specify which repository to store the data
 in and which parser to use for ingesting the data. You do this either by setting
 the special `#type` field to the name of the parser to use or by [assigning a
-specific parser to the Ingest API Token]({{ ref "ingest-tokens.md#assign-a-parser"}})
+specific parser to the Ingest API Token]({{< ref "parsers/assigning-parsers-to-ingest-tokens.md" >}})
 used to authenticate the client. Assigning a parser to the API Token is the recommended
 approach since it allows you to change parser in Humio without changing the client.  
 

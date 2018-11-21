@@ -99,7 +99,7 @@ You must make the following changes to the sample configuration:
 
 * You may want to increase the number of worker instances (`worker`) from the default of 1 to (say) 4 to achieve more throughput if filebeat is not able to keep up with the inputs. If increasing bulk_max_size is possible then do that instead, or increase both.
 
-An important next step is [choosing a parser for your filebeat events]({{< relref "filebeat.md#running-filebeat" >}}).
+An important next step is [choosing a parser for your filebeat events]({{< relref "filebeat.md#parsing-data" >}}).
 
 ## Running Filebeat {#running-filebeat}
 
@@ -128,7 +128,7 @@ For more information on parsers, see [parsing]({{< relref "parsers/_index.md" >}
 Take a look at Humio's [built-in parsers]({{< ref "parsers/built-in-parsers/_index.md" >}}).
 {{% /notice %}}
 
-The recommended way of choosing a parser is by [assigning a specific parser to the Ingest API Token]({{ ref "ingest-tokens.md#assign-a-parser"}})
+The recommended way of choosing a parser is by [assigning a specific parser to the Ingest API Token]({{< ref "assigning-parsers-to-ingest-tokens.md" >}})
 used to authenticate the client. This allows you to change parser in Humio without changing the client. Alternatively you can specify the parser/type for each monitored file using the `type` field in the fields section in the Filebeat configuration. E.g:
 
 ``` yaml
