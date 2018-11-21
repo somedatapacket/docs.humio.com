@@ -10,7 +10,6 @@ user to search for the given user.
 
 ## Prerequisites
 
-
 Before configuring LDAP you need to ensure that a root account exists
 on the system. You can do this either by adding the user name (the
 full name including domain name) via the [administration
