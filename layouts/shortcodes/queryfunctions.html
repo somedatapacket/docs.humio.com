@@ -23,7 +23,7 @@
     </thead>
     <tbody>{{ range .parameters }}
     <tr>
-        <td>{{ .name}}</td>
+        <td>{{if eq .name "as" }}<a href="/language-syntax/#assignment-operator">{{.name}}</a>{{else}}{{ .name}}{{end}}</td>
         <td>{{ .type}}</td>
         <td>{{ if .isRequired }}Yes{{ else }}No{{ end }}</td>
         <td>{{ .defaultValue}}</td>

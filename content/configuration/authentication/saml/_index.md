@@ -1,6 +1,6 @@
 ---
-title: Authenticating with SAML 2.0
-menuTitle: SAML 2.0
+title: SAML 2.0
+category_title: Overview
 category: ["Integration"]
 aliases: ["ref/saml"]
 ---
@@ -60,3 +60,6 @@ SAML_USER_ATTRIBUTE=email
 
 In this case Humio will use the mail attribute from the IDPs SAML response after a successful authentication.
 
+## Common Issues
+
+Often whitelisting of Humio as an SP needs to be configured at the IDP level. Consult your vendor specific IDP documentation.

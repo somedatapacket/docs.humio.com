@@ -83,8 +83,7 @@ Below is a filebeat.yml configuration file for sending Zeek logs to Humio:
 
 ```yaml
 filebeat.inputs:
-- type: log
-  paths:
+- paths:
     - "${ZEEK_LOG_DIR}/corelight_*.log" #The file path should be a glob matching the json log files
   fields:
     type: bro-json
@@ -125,7 +124,7 @@ Otherwise [create an ingest token as described here]({{< ref "ingest-tokens.md" 
 
 Note, that in the filebeat configuration we specify that Humio should use the built-in parser `bro-json` to parse the data.
 
-As Zeek often generates a lot of data we have configured Filebeat to use 3 `workers`, a `bulk_max_size` of 1000 and then configured the in memory queue `queue.mem` accordingly.
+As Zeek often generates a lot of data we have configured Filebeat to use 3 `workers`, a `bulk_max_size` of 1000 and then configured the in memory queue `queue.mem` accordingly. Experiment with increasing this if filebeat cannot keep up with sending data.
 
 
 ### Run Filebeat

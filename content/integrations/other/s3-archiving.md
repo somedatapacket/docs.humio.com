@@ -11,13 +11,19 @@ Archiving works by running a periodic job inside all Humio nodes which looks for
 
 An admin user needs to setup archiving per repository. After selecting a repository on the Humio front page the configuration page is available under Settings.
 
+{{% notice info %}}
+For slow moving data sources it can take some time before segments files are completed on disk and then made available for the archiving job. In the worst case a segment file must either contain a gigabyte of uncompressed data or 7 days must pass before it's completed. This limitation will be removed in a future version of Humio.
+{{% /notice %}}
+
+More on [segments files]({{< relref "concepts/ingest-flow" >}}) and [data sources]({{< relref "concepts/datasources" >}}).
+
 ## S3 Layout
 
 When uploading a segment file Humio creates the S3 object key based on the tags, start date and repository name of the segment file. The resulting object key makes the archived data browseable through the S3 management console.
 
 The following pattern is used:
 
-`REPOSITORY/YEAR/MONTH/DAY/TAG_KEY_1/TAG_VALUE_1/../TAG_KEY_N/TAG_VALUE_N/START_TIME-SEGMENT_ID.gz`
+`REPOSITORY/TYPE/TAG_KEY_1/TAG_VALUE_1/../TAG_KEY_N/TAG_VALUE_N/YEAR/MONTH/DAY/START_TIME-SEGMENT_ID.gz`
 
 Read more about [Tags]({{< ref "tagging.md" >}}).
 
@@ -25,20 +31,62 @@ Read more about [Tags]({{< ref "tagging.md" >}}).
 
 The default archiving format is [NDJSON](http://ndjson.org) and optionally raw log lines. When using NDJSON the parsed fields will be available along with the raw log line. This incurs some extra storage cost compared to using raw log lines but gives the benefit of ease of use when processing the logs in an external system.
 
-## On-premise Setup
+## On-premises Setup
 
-For an on-premise installation of Humio the following configuration is necessary:
+For an on-premises installation of Humio an [IAM](https://aws.amazon.com/iam/) user with write access to the buckets used for archiving is needed. The user must have programmatic access to S3. E.g. when adding a new user through the AWS console make sure 'programmatic access' is ticked:
+
+![Adding user with programmatic access.](/images/s3-archiving/add_user_1.png)
+
+Later in the process you can retrieve access key and secret key:
+
+![Access key and secret key.](/images/s3-archiving/add_user_2.png)
+
+ Which in Humio is needed in the following configuration:
 
 ```shell
 S3_ARCHIVING_ACCESSKEY=$ACCESS_KEY
 S3_ARCHIVING_SECRETKEY=$SECRET_KEY
 ```
 
-The keys are used for authenticating against the S3 service. In other words
-the authenticated principal needs to have write access to the S3 buckets
-involved in the archiving. For guidance on how to retrieve S3 access keys
-see [AWS access keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys).
+The keys are used for authenticating the user against the S3 service. For more guidance on how to retrieve S3 access keys see [AWS access keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys). More details on [creating a new user in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html).
 
+Configuring the user to have write access to a bucket can be done by attaching a policy to the user.
+
+
+### IAM User Example Policy
+
+The following JSON is an example policy configuration.
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::BUCKET_NAME"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::BUCKET_NAME/*"
+            ]
+        }
+    ]
+}
+```
+
+The policy can be used as an inline policy attached directly to the user through the AWS console:
+
+![Attach inline policy.](/images/s3-archiving/add_user_3.png)
 
 ## Cloud Setup
 
@@ -63,3 +111,6 @@ to determine whether a log file is relevant.
 {{% notice note %}}
 S3 archiving is only available in version >= 1.1.27.
 {{% /notice %}}
+
+
+
