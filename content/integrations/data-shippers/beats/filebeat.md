@@ -59,7 +59,7 @@ filebeat.inputs:
     - $PATH_TO_LOG_FILE
   encoding: utf-8
   fields:
-    "type": $TYPE
+    aField: value
 
 output:
   elasticsearch:
@@ -80,9 +80,6 @@ You must make the following changes to the sample configuration:
 * Insert a `path` section for each log file you want to monitor in `$PATH_TO_LOG_FILE`.
   It is possible to insert a input configuration (with `paths` and `fields` etc) for each file that filebeat should monitor
 
-* Specify the type of the events in `$TYPE`. Humio will use the type field to decide which parser it will use to parse the incoming events.
-  This is done by specifying the `type` field in the fields section. See the Parsing Data section below.
-
 * Add other fields in the fields section. These fields, and their values, will be added to each event.
 
 * Insert the URL containing the Humio host in the `$BASEURL` field in the ElasticSearch output. For example `https://cloud.humio.com:443`
@@ -102,6 +99,8 @@ You must make the following changes to the sample configuration:
 
 * You may want to increase the number of worker instances (`worker`) from the default of 1 to (say) 4 to achieve more throughput if filebeat is not able to keep up with the inputs. If increasing bulk_max_size is possible then do that instead, or increase both.
 
+An important next step is [choosing a parser for your filebeat events]({{< relref "filebeat.md#running-filebeat" >}}).
+
 ## Running Filebeat {#running-filebeat}
 
 Run Filebeat as a service on Linux with the following commands
@@ -119,48 +118,58 @@ On linux Filebeat is often placed at `/usr/share/filebeat/bin/filebeat`
 To test it can be run like `/usr/share/filebeat/bin/filebeat -c /etc/filebeat/filebeat.yml`
 {{% /notice %}}
 
-## Parsing data
+## Parsing data {#parsing-data}
 
 Humio uses parsers to parse the data from Filebeat into events.
-Parsers can extract fields from the text strings an add structure to the events.
+Parsers can extract fields from the input data thereby adding structure to the log events.
 For more information on parsers, see [parsing]({{< relref "parsers/_index.md" >}}).
 
 {{% notice note %}}
-Take a look at Humio's [built-in parsers](/sending-data/parsers/built_in_parsers/).
+Take a look at Humio's [built-in parsers]({{< ref "parsers/built-in-parsers/_index.md" >}}).
 {{% /notice %}}
 
-You can specify the parser/type for each monitored file using the `type` field in the fields section in the Filebeat configuration.  
-If not specifying a type, Humio's built in key value parser (`kv`) will be used.
-The key value parser expects the incoming string to start with a timestamp formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
-It will also look for key value pairs in the string on the form a=b
+The recommended way of choosing a parser is by [assigning a specific parser to the Ingest API Token]({{ ref "ingest-tokens.md#assign-a-parser"}})
+used to authenticate the client. This allows you to change parser in Humio without changing the client. Alternatively you can specify the parser/type for each monitored file using the `type` field in the fields section in the Filebeat configuration. E.g:
 
-For example, when sending a web server access log file to Humio, you can use the built-in Humio access log parser by specifying `type=accesslog`.
+``` yaml
+filebeat.inputs:
+- paths:
+    - $PATH_TO_LOG_FILE`
+  encoding: utf-8
+  fields:
+    "type": $TYPE
+```
+
+If no parser is specified Humio's built in key value parser (`kv`) will be used.
+The key value parser expects the incoming string to start with a timestamp formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
+It will also look for key value pairs in the string on the form `a=b`.
+
 
 ### Parsing JSON data
 
-We DO NOT recommend that you use the JSON parsing built into Filebeat, instead Humio has it's own JSON support.
+We DO NOT recommend that you use the JSON parsing built into Filebeat. Instead Humio has it's own JSON support.
 Filebeat processes logs line by line, so JSON parsing will only work if there is one JSON object per line.
 By using the [built-in json parser]({{< ref "json.md" >}}) you can get JSON fields extracted during ingest.
 You can also [create a custom JSON parser]({{< ref "creating-a-parser.md" >}}) to get more control over the fields that are created.
 
 
 ## Adding fields
-It is possible to add fields with static values using the fields section. These fields will be added to the each event.
+It's possible to add fields with static values using the fields section. These fields will be added to each event.
 
 ### Default fields
 
 Filebeat automatically sends the host (`beat.hostname`) and filename (`source`) along with the data. Humio adds these fields to each event.
-The fields are added as `@host` and `@source` (to try not to collide with other fields in the event).
+The fields are added as `@host` and `@source` in order to not collide with other fields in the event.
 
 {{% notice tip %}}
-To avoid having the `@host` and `@source` fields, specify `@host` and `@source` in the `fields` section and provide an empty value.
+To avoid having the `@host` and `@source` fields specify `@host` and `@source` in the `fields` section with an empty value.
 {{% /notice %}}
 
 ## Tags
 
 Humio saves data in Data Sources. You can provide a set of Tags to specify which Data Source the data is saved in.  
 See [the section on tags]({{< ref "tagging.md" >}}) for more information about tags and Data Sources.  
-The `type` configured in Filebeat is always used as tag. Other fields can be used
+If a `type` is configured in Filebeat it's always used as tag. Other fields can be used
 as tags as well by defining the fields as `tagFields` in the
 [parser]({{< relref "parsers/_index.md" >}}) pointed to by the `type`.  
 In Humio tags always start with a #. When turning a field into a tag it will
@@ -199,7 +208,7 @@ filebeat:
     - paths:
         - /var/log/nginx/access.log
       fields:
-        type: accesslog
+        aField: value
     - paths:
         - humio_std_out.log
       fields:
@@ -230,10 +239,9 @@ logging:
 
 ### Adding `tags` through client configuration
 
-Humio recommends adding tags through the `parser` set using the `type`
-field.  But if you want to add tags through configuration of filebeat
+Humio recommends adding tags through the chosen `parser`.  But if you want to add tags through configuration of filebeat
 only, add the following to the `fields` section.  This example makes
-`@host` into a tag thus renaming it to `#host` in Humio. You should
+`@host` a tag thus renaming it to `#host` in Humio. You should
 always include the field "type" if you set this list, as that is the
 default tag in Humio, if you do not provide a "@tags" field.
 
