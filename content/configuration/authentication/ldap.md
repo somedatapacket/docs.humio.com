@@ -45,7 +45,7 @@ using a self-signed certificate by specifying `LDAP_AUTH_PROVIDER_CERT` to be th
 Since docker does not support newlines i environment variables, replace newlines with `\n` using something like this:
 
 ```shell
-cat my.crt | perl -pe 's/\n/\\n/g'
+cat my.crt | sed -e 's/\n/\\n/g'
 ```
 
 The result should look like this:
