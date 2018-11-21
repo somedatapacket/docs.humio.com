@@ -4,6 +4,21 @@ title: Authenticating with LDAP
 pageImage: /integrations/ldap.svg
 ---
 
+We have 2 ways to authenticate using LDAP. `ldap` which checks that a
+user can bind to the LDAP server and `ldap-search` witch uses a bind
+user to search for the given user.
+
+## Prerequisites
+
+
+Before configuring LDAP you need to ensure that a root account exists
+on the system. You can do this either by adding the user name (the
+full name including domain name) via the [administration
+section]({{<ref "/configuration/user-management.md">}}), or by the
+API: [root access]({{<ref "/configuration/root-access.md">}}).
+
+## LDAP
+
 It is possible to check the password of your users using an ldap server,
 such as an AD. Set the following parameters in `humio-config.env`:
 
