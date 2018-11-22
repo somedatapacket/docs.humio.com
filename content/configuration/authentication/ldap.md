@@ -16,11 +16,6 @@ full name including domain name) via the [administration
 section]({{<ref "/configuration/user-management.md">}}), or by the
 API: [root access]({{<ref "/configuration/root-access.md">}}).
 
-{{% notice info %}}
-Make sure to create a user with root privileges that can login with LDAP before LDAP is enabled.
-{{% /notice %}}
-
-
 
 ## LDAP
 
