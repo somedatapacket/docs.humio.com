@@ -33,6 +33,8 @@ or group results by error message:
 @error=* | groupBy(@error_msg)
 ```
 
+The original log input is available in @rawstring.
+
 {{% notice info %}}
 There is no way for Humio to re-parse data once it is stored. Even if there is
 an error on the event. You will have to resend the event through the ingest API.
