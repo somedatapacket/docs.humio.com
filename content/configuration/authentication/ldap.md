@@ -5,7 +5,7 @@ pageImage: /integrations/ldap.svg
 ---
 
 We have 2 ways to authenticate using LDAP. `ldap` which checks that a
-user can bind to the LDAP server and `ldap-search` witch uses a bind
+user can bind to the LDAP server and `ldap-search` which uses a bind
 user to search for the given user.
 
 ## Prerequisites
