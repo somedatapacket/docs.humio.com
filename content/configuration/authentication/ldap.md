@@ -5,7 +5,7 @@ pageImage: /integrations/ldap.svg
 ---
 
 We have 2 ways to authenticate using LDAP. `ldap` which checks that a
-user can bind to the LDAP server and `ldap-search` witch uses a bind
+user can bind to the LDAP server and `ldap-search` which uses a bind
 user to search for the given user.
 
 ## Prerequisites
@@ -16,6 +16,7 @@ full name including domain name) via the [administration
 section]({{<ref "/configuration/user-management.md">}}), or by the
 API: [root access]({{<ref "/configuration/root-access.md">}}).
 
+
 ## LDAP
 
 It is possible to check the password of your users using an ldap server,
@@ -23,9 +24,10 @@ such as an AD. Set the following parameters in `humio-config.env`:
 
 ```shell
 AUTHENTICATION_METHOD=ldap
-LDAP_AUTH_PROVIDER_URL=your-url      # (example: ldap://ldap.forumsys.com:389)
-LDAP_AUTH_PRINCIPAL=your-principal   # (example: cn=HUMIOUSERNAME,dc=example,dc=com)
-LDAP_DOMAIN_NAME=your-domain.com     # (example: example.com)
+LDAP_AUTH_PROVIDER_URL=your-url             # (example: ldap://ldap.forumsys.com:389)
+LDAP_AUTH_PRINCIPAL=your-principal          # optional (example: cn=HUMIOUSERNAME,dc=example,dc=com)
+LDAP_DOMAIN_NAME=your-domain.com            # optional (example: example.com)
+AUTO_CREATE_USER_ON_SUCCESSFULL_LOGIN=true  # default is false 
 ```
 
 `AUTHENTICATION_METHOD=ldap` turns on "simple" ldap checking using an ldap bind.
@@ -36,7 +38,9 @@ LDAP_DOMAIN_NAME=your-domain.com     # (example: example.com)
 `LDAP_AUTH_PRINCIPAL` can be left unset, in which case the username is used directly when binding to the server.
 If it is set, the token `HUMIOUSERNAME` is replaced with the username entered in the login prompt, and the resulting string is used as principal.
 
-`LDAP_DOMAIN_NAME` can be used if your ldap is only hosting 1 domain. When setting this, users do not need to provide the domain. They can login with `foo` instead of `foo@example.com`. It is always possible to add the domain when logging in. 
+`LDAP_DOMAIN_NAME` can be used if your ldap is only hosting 1 domain. When setting this, users do not need to provide the domain. They can login with `foo` instead of `foo@example.com`. It is always possible to add the domain when logging in.
+
+`AUTO_CREATE_USER_ON_SUCCESSFULL_LOGIN` if false - which is the default, users must be created in Humio before they can login. If set to true, users are auto created if they login successfully 
 
 
 The URL can be `ldap:/` or `ldaps:/`.  If using `ldaps:/`, you can configure Humio to work with the a server
@@ -69,12 +73,13 @@ To enable this, use this alternative property set:
 
 ```shell
 AUTHENTICATION_METHOD=ldap-search
-LDAP_AUTH_PROVIDER_URL=your-url       # (example: ldap://ldap.forumsys.com:389)
-LDAP_DOMAIN_NAME=your-domain          # (example: example.com)
-LDAP_SEARCH_BASE_DN=search-prefix     # (example: ou=DevOps,dc=example,dc=com)
-LDAP_SEARCH_BIND_NAME=bind-principal  # (example: cn=Bind User,dc=example,dc=com)
+LDAP_AUTH_PROVIDER_URL=your-url             # (example: ldap://ldap.forumsys.com:389)
+LDAP_DOMAIN_NAME=your-domain                # (example: example.com)
+LDAP_SEARCH_BASE_DN=search-prefix           # (example: ou=DevOps,dc=example,dc=com)
+LDAP_SEARCH_BIND_NAME=bind-principal        # (example: cn=Bind User,dc=example,dc=com)
 LDAP_SEARCH_BIND_PASSWORD=bind-password
-LDAP_SEARCH_FILTER=custom-search-filter # (Optional, example: (uid={0}))
+LDAP_SEARCH_FILTER=custom-search-filter     # (Optional, example: (uid={0}))
+AUTO_CREATE_USER_ON_SUCCESSFULL_LOGIN=true  # default is false
 ```
 
 If `LDAP_SEARCH_FILTER` is set, Humio makes a search for a DN matching the provided filter

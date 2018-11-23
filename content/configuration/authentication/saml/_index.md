@@ -16,9 +16,10 @@ Humio needs to know the specifics about the IDP. This is configured through:
 ```shell
 AUTHENTICATION_METHOD=saml
 PUBLIC_URL=$YOUR_SERVERS_BASE_URL
-SAML_IDP_SIGN_ON_URL=$IDP_SIGNON_URL # e.g. https://accounts.google.com/o/saml2/idp?idpid=C0453
-SAML_IDP_ENTITY_ID=$IDP_ENTITY_ID # e.g. https://accounts.google.com/o/saml2?idpid=C0453
-SAML_IDP_CERTIFICATE=$PATH_TO_PEM # e.g. /home/humio/GoogleIDPCertificate-humio.com.pem
+SAML_IDP_SIGN_ON_URL=$IDP_SIGNON_URL        # e.g. https://accounts.google.com/o/saml2/idp?idpid=C0453
+SAML_IDP_ENTITY_ID=$IDP_ENTITY_ID           # e.g. https://accounts.google.com/o/saml2?idpid=C0453
+SAML_IDP_CERTIFICATE=$PATH_TO_PEM           # e.g. /home/humio/GoogleIDPCertificate-humio.com.pem
+AUTO_CREATE_USER_ON_SUCCESSFULL_LOGIN=true  # default is false 
 ```
 
 When a user tries to access Humio the authentication flow will start by redirecting the user to `$IDP_SIGNON_URL`. Upon a successful authentication the user will be redirected back to Humio where a Humio specific access token will be issued. For the redirects to work properly a [`PUBLIC_URL`]({{< relref "configuration/_index.md#public_url" >}}) must be configured. For details about the flow see https://en.wikipedia.org/wiki/SAML_2.0#Web_Browser_SSO_Profile.
@@ -33,6 +34,8 @@ The redirect back to Humio is handled by the SAML Assertion Consumer Service end
  {{% notice info %}}
  Metadata about Humio as a SAML Service Provider is available at `http://$HOST:$PORT/api/v1/saml/metadata`.
 {{% /notice %}}
+
+`AUTO_CREATE_USER_ON_SUCCESSFULL_LOGIN` if false - which is the default, users must be created in Humio before they can login. If set to true, users are auto created if they login successfully
 
 Read more about [Configuring Humio]({{< relref "configuration/_index.md" >}})
 

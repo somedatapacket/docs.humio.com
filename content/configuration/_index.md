@@ -20,14 +20,14 @@ HUMIO_JVM_ARGS=-XX:+UseParallelOldGC -Xss2M
 
 # Make Humio write a backup of the data files:
 # Backup files are written to mount point "/backup".
-#BACKUP_NAME=my-backup-name
-#BACKUP_KEY=my-secret-key-used-for-encryption
+BACKUP_NAME=my-backup-name
+BACKUP_KEY=my-secret-key-used-for-encryption
 
 # ID to choose for this server when starting up the first time.
 # Leave commented out to autoselect the next available ID.
 # If set, the server refuses to run unless the ID matches the state in data.
 # If set, must be a (small) positive integer.
-#BOOTSTRAP_HOST_ID=1
+BOOTSTRAP_HOST_ID=1
 
 # The URL that other humio hosts in the cluster can use to reach this server.
 # Required for clustering. Examples: https://humio01.example.com  or  http://humio01:8080
@@ -46,7 +46,7 @@ PUBLIC_URL=https://humio.mycompany.com
 IDLE_POLL_TIME_BEFORE_DASHBOARD_QUERY_IS_CANCELLED_MINUTES=4320
 
 # Specify the replication factor for the Kafka ingest queue
-#INGEST_QUEUE_REPLICATION_FACTOR=2
+INGEST_QUEUE_REPLICATION_FACTOR=2
 
 # Kafka bootstrap servers list. Used as `bootstrap.servers` towards kafka.
 # should be set to a comma separated host:port pairs string.
@@ -68,7 +68,7 @@ EXTRA_KAFKA_CONFIGS_FILE=extra_kafka_properties.properties
 # should be set to a comma separated host:port pairs string.
 # Example: zoohost01:2181,zoohost02:2181,zoohost03:2181
 # Note, there is NO security on the zookeeper connections. Keep inside trusted LAN.
-#ZOOKEEPER_URL=localhost:2181
+ZOOKEEPER_URL=localhost:2181
 
 # Maximum number of datasources (unique tag combinations) in a repo.
 # There will be a sub-directory for each combination that exists.
@@ -76,7 +76,7 @@ EXTRA_KAFKA_CONFIGS_FILE=extra_kafka_properties.properties
 MAX_DATASOURCES=10000
 
 # Compresions level for data in segment files. Defaults to 9, range is [1 ; 17]
-# COMPRESSION_LEVEL=9
+ COMPRESSION_LEVEL=9
 
 # (Approximate) limit on the number of hours a segment file can be open for writing
 # before being flushed even if it is not full.
@@ -84,7 +84,7 @@ MAX_HOURS_SEGMENT_OPEN=720
 
 # Let Humio send emails using the Postmark service
 # Create a Postmark account and insert the token here
-#POSTMARK_SERVER_SECRET=abc2454232
+POSTMARK_SERVER_SECRET=abc2454232
 
 # Let Humio send emails using an SMTP server. ONLY put a password here
 # if you also enable starttls. Otherwise you will expose your password.
@@ -98,43 +98,49 @@ MAX_HOURS_SEGMENT_OPEN=720
 #SMTP_PASSWORD=your-secret-password
 #
 # Example using a local clear-text non-authenticated SMTP server
-#SMTP_HOST=localhost
-#SMTP_PORT=25
-#SMTP_SENDER_ADDRESS=you@domain.com
-#SMTP_USE_STARTTLS=false
+SMTP_HOST=localhost
+SMTP_PORT=25
+SMTP_SENDER_ADDRESS=you@domain.com
+SMTP_USE_STARTTLS=false
 
 
 # Use a HTTP proxy for sending alert notifications
 # This can be usefull if Humio is not allowed direct access to the internet
 #
-#HTTP_PROXY_HOST=proxy.myorganisation.com
-#HTTP_PROXY_PORT=3129
-#HTTP_PROXY_USERNAME=you
-#HTTP_PROXY_PASSWORD=your-secret-password
+HTTP_PROXY_HOST=proxy.myorganisation.com
+HTTP_PROXY_PORT=3129
+HTTP_PROXY_USERNAME=you
+HTTP_PROXY_PASSWORD=your-secret-password
 
 # Select the TCP port to listen for http.
-#HUMIO_PORT=8080
+HUMIO_PORT=8080
 # Select the TCP port for ElasticSearch Bulk API
-#ELASTIC_PORT=9200
+ELASTIC_PORT=9200
 
 # Select the IP to bind the udp/tcp/http listening sockets to.
 # Each listener entity has a listen-configuration. This ENV is used when that is not set.
-#HUMIO_SOCKET_BIND=0.0.0.0
+HUMIO_SOCKET_BIND=0.0.0.0
 
 # Select the IP to bind the http listening socket to. (Defaults to HUMIO_SOCKET_BIND)
-#HUMIO_HTTP_BIND=0.0.0.0
+HUMIO_HTTP_BIND=0.0.0.0
 
 # Verify checksum of segments files when reading them. Default to true. Allows detecting partial and malformed files.
 # (Since v1.1.16)
 #VERIFY_CRC32_ON_SEGMENT_FILES=true
 
 # S3 access keys for archiving of ingested logs
-#S3_ARCHIVING_ACCESSKEY=$ACCESS_KEY
-#S3_ARCHIVING_SECRETKEY=$SECRET_KEY
+S3_ARCHIVING_ACCESSKEY=$ACCESS_KEY
+S3_ARCHIVING_SECRETKEY=$SECRET_KEY
+
+# Users need to be created in Humio before they can login with external authentication methods like SAML/LDAP/OAUTH etc.
+# set this parameter to true - then users are automatically created in Humio when successfully logging with external authentication methods.
+# Users will not have access to any existing repositories except for a personal sandbox repository when they are created.
+# if false - users must be explicitly created in Humio before they can login.
+AUTO_CREATE_USER_ON_SUCCESSFULL_LOGIN=false
 
 # Initial partition count for digest and storage partitions.
 # Has effect ONLY on first start of first node in the cluster.
-#DEFAULT_PARTITION_COUNT=24
+DEFAULT_PARTITION_COUNT=24
 
 ```
 
