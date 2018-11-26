@@ -138,9 +138,13 @@ S3_ARCHIVING_SECRETKEY=$SECRET_KEY
 # if false - users must be explicitly created in Humio before they can login.
 AUTO_CREATE_USER_ON_SUCCESSFULL_LOGIN=false
 
-# Initial partition count for digest and storage partitions.
+# Initial partition count for storage partitions.
 # Has effect ONLY on first start of first node in the cluster.
 DEFAULT_PARTITION_COUNT=24
+
+# Initial partition count for digest partitions.
+# Has effect ONLY on first start of first node in the cluster.
+INGEST_QUEUE_INITIAL_PARTITIONS=24
 
 ```
 
