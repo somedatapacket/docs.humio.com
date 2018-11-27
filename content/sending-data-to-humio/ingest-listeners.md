@@ -8,6 +8,7 @@ Ingest Listeners is a great way of shipping data to Humio through raw sockets, v
 
 * syslog
 * [StatsD]({{< ref "integrations/data-shippers/statsd" >}})
+* [GELF]({{< ref "integrations/data-shippers/others.md" >}})
 
 An Ingest listener binds a UDP or TCP port on an network interface to a repository with a [parser]({{< ref "parsers" >}}). Meaning that all data sent to a network port will be parsed up with a parser before it's inserted into the repository.
 
@@ -28,8 +29,8 @@ Creating a new ingest listener is all about mapping a port on a network interfac
 The ingest listener needs the following details
 
 * **Name** a name usually describing the purpose of the ingest listener.
-* **Protocol** Transport protocol for the ingest listener. This can be one of TCP, UDP or Netflow/UDP.
-* **Parser** A [parser]({{< ref "parsers" >}}) to send each line on the socket through to extract fields from the line. Usually a timestamp. Netflow/UDP does not need a parser it has a rather complex syntax.
+* **Protocol** Transport protocol for the ingest listener. This can be one of TCP, Gelf/TCP, UDP Gelf/UDP, or Netflow/UDP.
+* **Parser** A [parser]({{< ref "parsers" >}}) to send each event  on the socket through to extract fields from the line. Usually a timestamp. Netflow/UDP does not need a parser as it has a rather complex syntax, and a built-in handler. "Gelf" variants currently use only the "Tags" aspect of the parser, as the Gelf format already has a timestamp specified.
 * **Port** Network port to accept data. Note that you are not running your Docker images with `--net=host` this port needs to be exposed via `--publish` Docker argument
 * **Bind interface** The ip of the interface that this ingest listener should listen on.
 * **Charset** The charset used to decode the event stream. The value must be a supported Charset in the JVM that Humio is running on.
@@ -41,7 +42,7 @@ Humio will try to increase the buffer to up to 128MB, but will accept whatever t
 ```shell
 # Get the current limit from the kernel (in bytes)
 sysctl net.core.rmem_max
-# Set to 16MB. Decide on a value of (say) 0.1 - 1 seconds worth of inbound UDP packets.
+# Set to 16MB. Decide on a value of (say) 0.5 - 2 seconds worth of inbound UDP packets.
 sudo sysctl net.core.rmem_max=16777216
 ```
 
