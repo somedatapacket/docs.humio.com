@@ -98,3 +98,14 @@ should run the query as a live search in a time interval that is
 longer than you "missing" threshold - when the last log from a log
 sources is older than your search time interval the log source will
 disappear from the result.
+
+### A menu item in the Humio UI appears to be missing
+
+We have had reports of browser extensions such as "uBlock Origin" and
+other plugins that modify the page mistakenly remove or hide parts of
+the UI.  Try disabling the plugin(s) on the pages of Humio if you
+suspect something is wrong. And please notify the Humio team when it
+happens, as we can likely change the specific element in the Humio
+page to not get filtered even if Humio is not really to blame in these
+cases...
+
