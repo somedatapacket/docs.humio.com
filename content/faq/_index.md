@@ -102,10 +102,8 @@ disappear from the result.
 ### A menu item in the Humio UI appears to be missing
 
 We have had reports of browser extensions such as "uBlock Origin" and
-other plugins that modify the page mistakenly remove or hide parts of
-the UI.  Try disabling the plugin(s) on the pages of Humio if you
+other plugins that modify the page mistakenly by removing or hiding parts of
+the UI. Try disabling the plugin(s) on the pages of Humio if you
 suspect something is wrong. And please notify the Humio team when it
 happens, as we can likely change the specific element in the Humio
-page to not get filtered even if Humio is not really to blame in these
-cases...
-
+page to not get filtered.
