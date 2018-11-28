@@ -2,8 +2,6 @@
 title: "Role Based Authorization"
 ---
 
-* THIS FEATURE IS PRE-RELEASE AND ONLY AVAILABLE ON REQUEST *
-
 For on-prem installations, Humio supports role-based authoriation.  At present this only works in combination with LDAP or SAML authentication.
 
 With these configurations, it is possible to (a) import the role assignments from the authentication mechanism, and (b) designate what data/repos can be viewed and queried, and (c) set role-specific query prefixes that control which data is visible to specific users.
