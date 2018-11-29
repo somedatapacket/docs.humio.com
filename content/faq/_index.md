@@ -107,3 +107,22 @@ the UI. Try disabling the plugin(s) on the pages of Humio if you
 suspect something is wrong. And please notify the Humio team when it
 happens, as we can likely change the specific element in the Humio
 page to not get filtered.
+
+### Can I set the license key via the API
+
+Yes, via our [GraphQL API]({{< ref "/api/graphql">}}) (you need to
+be a root user). Below is a curl example to get you going.
+
+Example:
+```
+HUMIO_SERVER=<the IP or domain name of your humio server>
+API_TOKEN=<you can find this in your account details>
+LICENSE=<your license string>
+
+curl -v https://${HUMIO_SERVER}/graphql \
+-H "Authorization: Bearer ${API_TOKEN}" \
+-H "Content-type: application/json" \
+-d @- << EOF
+{"query":"mutation {updateLicenseKey(license: \"${LICENSE}\") {__typename}}"}
+EOF
+```
