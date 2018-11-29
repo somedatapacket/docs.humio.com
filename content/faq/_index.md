@@ -115,11 +115,11 @@ be a root user). Below is a curl example to get you going.
 
 Example:
 ```
-HUMIO_SERVER=<the IP or domain name of your humio server>
+HUMIO_BASE_URL=<example: https://example.com>
 API_TOKEN=<you can find this in your account details>
 LICENSE=<your license string>
 
-curl -v https://${HUMIO_SERVER}/graphql \
+curl ${HUMIO_BASE_URL}/graphql \
 -H "Authorization: Bearer ${API_TOKEN}" \
 -H "Content-type: application/json" \
 -d @- << EOF
