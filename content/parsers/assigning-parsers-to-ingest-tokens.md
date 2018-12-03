@@ -13,8 +13,3 @@ by the clients in question.
 Assigning a parser to the API Token is the recommended way of specifying the parser to use for ingest
 since it allows you to change parser in Humio without changing the client.  
 
-
-{{% notice info %}}
-In the case that a #type field exists and a parser is also available trough the token, the parser assigned to the token  will take precedence.
-{{% /notice %}}
-

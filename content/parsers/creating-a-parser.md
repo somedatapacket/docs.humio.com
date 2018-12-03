@@ -31,13 +31,9 @@ like e.g. {{< function "groupBy" >}} as the parser acts on one event at a time.
 The input data is usually log lines or JSON objects, but could be any text format
 like a stack trace or CSV.
 
-No matter what you send to Humio, the text value will be put in the
-field called `@rawstring` which is the input to the parser.
-
-{{% notice "info" %}}
-__Example: Elastic Search.__ When using the Elastic Search bulk API, the value of the field `message`
-will put into the field `@rawstring` and is accessible in the parser script.
-{{% /notice %}}
+When sending data to Humio the text string for the input is put in the field called `@rawstring`.
+Depending on how data is shipped to Humio, other fields can be set as well.    
+For example when sending data with Filebeat, the fields @host and @source will also be set. And it is possible to add more fields using the [Filebeat configuration](/integrations/data-shippers/beats/filebeat).
 
 Let's write our first parser!
 
@@ -68,33 +64,36 @@ To do this we could write a parser like:
 
 ```humio
 // Create field called "ts" by extracting the first part of each
-// log line using a regular expression. See https://docs.humio.com/query-functions/#regex.
+// log line using a regular expression. See https://docs.humio.com{{< ref "query-functions/_index.md#regex" >}}.
 // The syntax `?<ts>` is called a "named group". It means whatever is matched will produce
 // a field with that name - in this case a field named "ts".
 /^(?<ts>\S+)/ |
 
-// Humio expects the timestamp to be in the Unix Time format, so next we take
-// the text value we just extracted to "ts" and convert it using the parseTimestamp function.
+// To set the timestamp for the event use the function parseTimestamp
+// parseTimestamp uses the field ts we just extracted and parses the string value into a timestamp. It sets the the timestamp for the event by setting the field @timestamp.
+// Note the timezone is also parsed and set using the field @timezone
+// See https://docs.humio.com{{< ref "query-functions/_index.md#parseTimestamp" >}}.
 parseTimestamp("yyyy-MM-dd'T'HH:mm:ss[.SSS]XXX", field=ts)
 ```
 
-This parser just assigns the `@timestamp` and `@timezone` fields, which is the minimum you we can
+This parser assigns the `@timestamp` and `@timezone` fields, which is the minimum you we can
 do to create events from the examples above. At this point we have a fully valid parser.
 
 But the two log lines actually contains more useful information, like the `INFO` and `ERROR` log levels.
-We can extract those using a regular expression:
+We can extract those by extending the regular expression:
 
 ```humio
-/^(?<ts>\S+)/ |
+//first the timestamp is extracted. Then the regex matches the loglevel. For example [INFO] or [ERROR]
+/^(?<ts>\S+) \[(?<loglevel>[^\]]+)\]/ |
 @timestamp := parseTimestamp("yyyy-MM-dd'T'HH:mm:ss[.SSS]XXX", field=ts) |
-// The next regex matches things like [INFO] or [ERROR]
-/\[(?<log_level>[^\]+])\]/ |
 // The next line finds key value pairs and creates a field for each
 kvParse()
 ```
 
-The events will now have a field called `log_level`, and one for each `key=value`
-pair in the log line, e.g. `id=123` `fruit=banana`.
+The events will now have a field called `loglevel`.
+ 
+At the bottom of the parser we also added the function [kvParse]({{< ref "query-functions/_index.md#kvParse" >}}).
+This function will look for keyvalue pairs in the log line and extract them into fields, e.g. `id=123` `fruit=banana`.
 
 #### Example: Parsing JSON {#json}
 
@@ -130,7 +129,7 @@ parseJson(field=@rawstring) |
 ```
 
 This will result in events with a field for each property in the input JSON,
-e.g. `username` and `host`, and will use the value of `ts` as the timestamp.
+e.g. `username` and `host`, and will use the value of `ts` as the timestamp. If the timestamp is a string it can be parsed using the {{< function "parseTimestamp" >}} function
 
 ## Next Steps
 
