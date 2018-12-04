@@ -121,3 +121,15 @@ curl ${HUMIO_BASE_URL}/graphql \
 EOF
 ```
 
+
+## How is timezones handled when sharing queries with people in different timezones
+
+The browser sends its timezone to the server and that determines
+cutoff for say `timechart(span=1day)`.  The timezone is not embedded
+in the URL, so if a query is shared across timezones the day cutoff
+will differ.
+
+The `bucket()` and `timechart()` functions lets you specify an
+explicit timezone (`timechart(..., timezone=Z)`). This will overrule
+the timezone of the browser.  Note, that the x-axis of timecharts is
+still shown in localtime.
