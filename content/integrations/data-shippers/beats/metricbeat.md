@@ -64,7 +64,7 @@ metricbeat.modules:
       - socket # linux only
 
 output.elasticsearch:
-  hosts: ["https://$BASEURL/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+  hosts: ["https://$BASEURL/api/v1/ingest/elastic-bulk"]
   username: $INGEST_TOKEN
 ```
 
