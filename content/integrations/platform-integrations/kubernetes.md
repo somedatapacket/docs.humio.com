@@ -2,6 +2,7 @@
 title: "Kubernetes"
 categories: ["Integration", "Platform"]
 pageImage: /integrations/kubernetes.svg
+aliases: ["sending_logs_to_humio/integrations/kubernetes"]
 ---
 
 When it comes to managing micro-services in a Kubernetes cluster, Humio is a

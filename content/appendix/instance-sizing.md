@@ -56,6 +56,7 @@ blocks.
 
 - One vCPU/hyperthread can ingest 250GB/day.
 - Search speed is 1 GB per vCPU/hyperthread (for data in RAM or on fast disks).
+- Note that a vCPU can do only one of the above at any point in time - Search speed is thus influenced by time spent on ingest. 
 - Compression ratio * RAM is how much data can be kept in memory (Using OS-level file system cache).
 - Fast SSDs can achieve as good search speeds as when data is in RAM.
 - For better performance, the disk subsystem should be able to read data at at least 150MB/s/core when not cached.
@@ -118,11 +119,14 @@ to a separate network drive such that data loss is prevented even for ephemeral 
 
 ## Live Queries / Dashboards
 
-Running many live queries / dashboards is less of an issue with Humio than
-most other similar products, because these are kept in-memory as a sort of
-in-memory materialized view.  When initializing such queries, it does need to
-run a historic query to fill in past data, and that can take some time if
-it extends beyond what fits within the compressed-memory horizon.
+Running many live queries / dashboards is less of an issue with Humio
+than most other similar products, because these are kept in-memory as
+a sort of in-memory materialized view. The time spent on updating them
+is part of the ingest flow and thus having many live queries increase
+the cpu usage for the ingest process.  When initializing such queries,
+it does need to run a historic query to fill in past data, and that
+can take some time in particular if it extends beyond what fits within
+the compressed-data in memory horizon.
 
 ## Testing disk performance
 

@@ -10,6 +10,7 @@ Humio supports the following APIs for data ingestion:
 
 - [Humio's Ingest API]({{< ref "#humio-api" >}})
 - [ElasticSearch Bulk API]({{< ref "#elastic-api" >}})
+- [Graylog Extended Log Format (GELF)]({{< ref "#gelf-api" >}})
 
 ## Humio's Ingest API {#humio-api}
 
@@ -27,3 +28,10 @@ configuration options.
 
 Contact us if you have trouble getting this working e.g. getting errors when trying
 to make a client work against the API.
+
+## Graylog Extended Log Format (GELF) {#gelf-api}
+Humio is compatible with the [Graylog Extended Log Format (GELF)](http://docs.graylog.org/en/2.4/pages/gelf.html) using UDP or TCP as transport. Refer to [Ingest listeners]({{< ref "sending-data-to-humio/ingest-listeners.md" >}}) to setup such a listener.
+
+GELF over HTTP is not yet implemented. Please get in touch with us if you need it.
+
+
