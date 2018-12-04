@@ -63,7 +63,7 @@ filebeat.inputs:
 
 output:
   elasticsearch:
-    hosts: ["$BASEURL/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+    hosts: ["$BASEURL/api/v1/ingest/elastic-bulk"]
     username: $INGEST_TOKEN
     compression_level: 5
     bulk_max_size: 200
@@ -212,7 +212,7 @@ filebeat:
     - paths:
         - humio_std_out.log
       fields:
-        type: humio
+        service: humio
       multiline:
         pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}'
         negate: true
@@ -220,7 +220,7 @@ filebeat:
 
 output:
   elasticsearch:
-    hosts: ["https://cloud.humio.com:443/api/v1/dataspaces/test/ingest/elasticsearch"]
+    hosts: ["https://cloud.humio.com:443/api/v1/ingest/elastic-bulk"]
     username: "ingest-token"
     compression_level: 5
     bulk_max_size: 200
@@ -235,20 +235,4 @@ logging:
     name: filebeat.log
     keepfiles: 3
 
-```
-
-### Adding `tags` through client configuration
-
-Humio recommends adding tags through the chosen `parser`.  But if you want to add tags through configuration of filebeat
-only, add the following to the `fields` section.  This example makes
-`@host` a tag thus renaming it to `#host` in Humio. You should
-always include the field "type" if you set this list, as that is the
-default tag in Humio, if you do not provide a "@tags" field.
-
-``` yaml
-[...]
-      fields:
-        type: $NAME_OF_PARSER
-        "@tags": ["type", "@host"]
-[...]
 ```
