@@ -131,5 +131,5 @@ will differ.
 
 The `bucket()` and `timechart()` functions lets you specify an
 explicit timezone (`timechart(..., timezone=Z)`). This will overrule
-the timezone of the browser.  Note, that the x-axis of timecharts is
-still shown in localtime.
+the timezone of the browser.  Note, that the x-axis of time charts is
+still shown in local time.
