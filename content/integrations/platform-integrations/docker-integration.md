@@ -68,14 +68,10 @@ metricbeat.modules:
     period: 10s
 
 output.elasticsearch:
-  hosts: ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+  hosts: ["https://$BASEURL/api/v1/ingest/elastic-bulk"]
   username: $INGEST_TOKEN
 ```
 
-Where:
-
-* `$HOST` - is the name of your Humio server.
-* `$REPOSITORY_NAME` - is the name of your repository on your server.
-* `$INGEST_TOKEN` - is the [ingest token]({{< relref "ingest-tokens.md" >}}) for your repository.
+{{< partial "common-rest-params.html" >}}
 
 See also the page on [Beats]({{< relref "sending_data/data-shippers/beats/_index.md" >}}) for more information.

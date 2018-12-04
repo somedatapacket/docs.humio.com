@@ -95,7 +95,7 @@ The JSON with connector properties could look like below:
     "schema.ignore": true,
     "behavior.on.malformed.documents": "warn",
     "drop.invalid.message": true,
-    "connection.url": "http://$HOST:$PORT/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch",
+    "connection.url": "http://$HOST:$PORT/api/v1/ingest/elastic-bulk",
     "type.name": "kafka-ingest",
     "max.retries": 1000
   }

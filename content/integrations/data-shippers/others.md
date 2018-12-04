@@ -1,5 +1,5 @@
 ---
-title: "Others Data Shippers"
+title: "Other Data Shippers"
 weight: 1000
 ---
 

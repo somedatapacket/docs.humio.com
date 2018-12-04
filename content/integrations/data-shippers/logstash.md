@@ -54,35 +54,15 @@ input{
 }
 output{
   elasticsearch{
-    hosts => ["https://$BASEURL/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch/"]
+    hosts => ["https://$BASEURL/api/v1/ingest/elastic-bulk"]
     user => "$INGEST_TOKEN"
     password => "notused" # a password has to be set, but Humio does not use it
   }
 }
 ```
 
-An important next step is [assigning a specific parser to the Ingest API Token]({{< ref "assigning-parsers-to-ingest-tokens.md" >}}).
-
-For more information on parsers, see [parsing]({{< relref "parsers/_index.md" >}}).
-
-### Adding tags to events
-
-Please read [the section on tags]({{< ref "tagging.md" >}}) before adding tags
-to your events. Add tags by including them in the "inputs/exec" section:
-
-```
-input{
-  exec{
-    command => "date"
-    interval => "5"
-    add_field => { "[@tags][customer]" => "CustomerName" }
-  }
-}
-```
-
-
-
 {{< partial "common-rest-params" >}}
+
 
 {{% notice warning %}}
 Logstash uses 9200 as the default port if no port is specified. So if Humio is listening on the default ports 80 or 443 these ports should be explicitly put in the $BASEURL
@@ -90,6 +70,7 @@ Logstash uses 9200 as the default port if no port is specified. So if Humio is l
 
 In the above example, Logstash calls the Linux `date` command every
 five seconds. It passes the output from this command to Humio.
+
 
 ### Field mappings
 
@@ -108,16 +89,21 @@ configuration looks like this:
 Humio maps each JSON object into an Event. Each field in the JSON
 object becomes a field in the Humio Event.
 
-Humio treats some fields as special cases:
+`@timestamp` is a special field in the Elastic protocol. It must be present, and contain the timestamp in ISO 8601 format (`yyyy-MM-dd'THH:mm:ss.SSSZ`).   
+It is possible to specify the timezone (like +00:02) in the timestamp. Specify the time zone if you want Humio to save this information. 
+Logstash adds the `@timestamp` field automatically. <br /><br />Depending on the configuration the timestamp can be the time at which Logstash handles the event, or the actual timestamp in the data. 
+If the timestamp is present in the data you can configure logstash to parse it, for example, by using the date filter.  
+Another option is to handle parsing the timestamp in Humio by connecting a parser to the ingest token.
 
-| Name                     |   Description |
----------------------------|---------------|
-| `@timestamp`             | This field must be present, and contain the timestamp in ISO 8601 format. This format is: `yyyy-MM-dd'THH:mm:ss.SSSZ`. <br /><br />You can specify the timezone (like +00:02) in the timestamp. Specify the time zone if you want Humio to save this information. Logstash adds the `@timestamp` field automatically. <br /><br />Depending on the configuration the timestamp can be the time at which Logstash handles the event, or the actual timestamp in the data. If the timestamp is present in the data you can configure logstash to parse it, for example, by using the date filter. |
-| `message`                | If present, Humio treats this field as the rawstring of the event. <br /><br />Humio maps this field to the `@rawstring` field which is the textual representation of the raw event in Humio. <br /><br />If you do not provide the message or rawstring field the rawstring representation is the JSON structure as text. |
-| `rawstring`              | This field is similar to the `message` field. <br /><br />If you provide both fields Humio uses the `message` field. The reason for having both is that some Logstash integrations automatically set a message field representing the raw string. <br /><br />In Humio, we use the name rawstring. |
+### Adding Parsers in Humio
+Humio can do further parsing/transformation of the data it receives by [connecting a parser to the ingest token]({{< ref "assigning-parsers-to-ingest-tokens.md" >}}). 
+For more information on parsers, see [parsing]({{< relref "parsers/_index.md" >}}).
+
 
 ### Dropping fields
 
 Logstash often adds fields like `host` and `@version` to events. You
 can remove these fields using a filter and the `drop_field` function
 in Logstash.
+
+

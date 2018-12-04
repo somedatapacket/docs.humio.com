@@ -54,7 +54,7 @@ You can use the following `elasticsearch` output configuration template:
 ``` yaml
 output:
   elasticsearch:
-    hosts: ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+    hosts: ["https://$BASEURL/api/v1/ingest/elastic-bulk"]
     username: $INGEST_TOKEN
 ```
 

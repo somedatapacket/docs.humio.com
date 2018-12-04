@@ -35,7 +35,7 @@ filebeat.inputs:
     "@type": accesslog
 
 output.elasticsearch:
-  hosts: ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+  hosts: ["https://$BASEURL/api/v1/ingest/elastic-bulk"]
   username: $INGEST_TOKEN
 ```
 
@@ -46,7 +46,7 @@ See the page on [Filebeat](/sending-data/data-shippers/beats/filebeat/) for furt
 The above Filebeat configuration uses the [built-in parser `accesslog`](/sending-data/parsers/built_in_parsers/#accesslog).
 The parser can parse logs formatted in the default Nginx log configuration.
 If your log Nginx configuration is modified, create a [custom parser]({{< relref "parsers/_index.md" >}}), by copying the accesslog parser and modifying it.
-Then replace the parser name in the Filebeat configuration.
+Then [connect the parser to the ingest token]({{< ref "assigning-parsers-to-ingest-tokens.md" >}}) or put its name as the value of the @type field in the Filebeat configuration.
 
 {{% notice note %}}
 ***Response time***  
@@ -148,7 +148,7 @@ metricbeat.modules:
     processes: ['.*nginx.*']
 
 output.elasticsearch:
-  hosts: ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+  hosts: ["https://$BASEURL/api/v1/ingest/elastic-bulk"]
   username: $INGEST_TOKEN
 ```
 
