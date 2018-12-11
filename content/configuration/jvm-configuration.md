@@ -44,3 +44,8 @@ As of Java 11 there are two fully concurrent, non-generational collectors with e
 
 To use these collectors replace `-XX:+UseG1GC` with either `-XX:+UseZGC` or `-XX:+UseShenandoahGC` and be sure to include `-XX:+UnlockExperimentalVMOptions`.
 -XX:+UseShenandoahGC
+
+## Resources
+
+* [Java JVM Options Explorer](https://chriswhocodes.com/hotspot_options_jdk11.html)
+
