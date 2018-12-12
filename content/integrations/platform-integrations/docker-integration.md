@@ -68,7 +68,7 @@ metricbeat.modules:
     period: 10s
 
 output.elasticsearch:
-  hosts: ["https://$BASEURL/api/v1/ingest/elastic-bulk"]
+  hosts: ["$BASEURL/api/v1/ingest/elastic-bulk"]
   username: $INGEST_TOKEN
 ```
 
