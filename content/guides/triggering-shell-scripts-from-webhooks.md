@@ -2,7 +2,7 @@
 title: "Configuring Webhooks to Trigger Shell Scripts"
 ---
 
-Alerts are actionable and one way to service them is by triggering a script on a particular host.  For example, while exploring your logs and metrics using Humio you might notice that occasionally a message arrives informing you that a system's root partition is filling up.  You decide to make this into an alert and notify everyone via Slack so that someone can ssh into that system and run `sudo apt-get -y autoremove` (assuming you're on a Debian-based system).  But then you realize that the cleanup required could be automated, you could write a script that fixes this issue without human intervention and one fewer notification in Slack that might go unseen for too long.  Great idea, but how can Humio trigger a cleanup script living on some other host?  Here is where webhooks can bridge the gap.  This guide will show you how to setup and run a program that will listen for these alerts by providing "hooks" that are really just RESTful HTTP GET or POST calls, which is where the name comes from, "web" + "hooks".  These simple web services or "hooks" then execute the scripts on the system they are running on.  In this way you can use Humio to automate and resolve all sorts of issues without anyone needing to get a human involved in the process.  And don't forget to write more log messages from these scripts and feed those back into Humio as well, just so you can be sure everything is working as intended.
+Alerts are actionable and one way to service them is by triggering a script on a particular host.  For example, while exploring your logs and metrics using Humio you might notice that occasionally a message arrives informing you that a system's root partition is filling up.  You decide to make this into an alert and notify everyone via Slack so that someone can ssh into that system and run `sudo apt-get -y autoremove` (assuming you're on a Debian-based system).  But then you realize that the cleanup required could be automated, you could write a script that fixes this issue without human intervention.  Great idea, but how can Humio execute a shell script or other executable that resides on some other host?  Here is where webhooks can bridge the gap.  This guide will show you how to setup and run a program that will listen for these alerts by providing "hooks" that are really just RESTful HTTP GET or POST calls.  These simple web services listen for requests and execute scripts on the target system.  In this way you can use Humio to automate and resolve all sorts of issues without anyone needing a human involved in the process.  And don't forget to write more log messages from these scripts and feed those back into Humio as well, just so you can be sure everything is working as intended.
 
 Here is an outline of the steps required to enable this process.  We assume for the sake of simplicity that you have the following:
 
@@ -71,6 +71,48 @@ Give your new webhook a name, in this example we'll call it "Cleanup YourServer 
 http://yourserver:9000/hooks/redeploy-webhook
 ```
 
-The "message body template" can be blank or contain information your webhook will recieve and potentially use.  This will be the body of the POST request which the `webhook` tool makes available to scripts, for this example it's not necessary.
+The "message body template" is initially filled in with a JSON template that includes all the information pertaining to the alert and event(s) that triggered it.
+```json
+{
+  "repository": "{repo_name}",
+  "timestamp": {alert_triggered_timestamp},
+  "alert": {
+    "name": "{alert_name}",
+    "description": "{alert_description}",
+    "query": {
+      "queryString": "{query_string} ",
+      "end": "{query_time_end}",
+      "start": "{query_time_start}"
+    },
+    "notifierID": "{alert_notifier_id}",
+    "id": "{alert_id}",
+    "linkURL": "{url}"
+  },
+  "warnings": "{warnings}",
+  "events": {events},
+  "numberOfEvents": {event_count}
+}
+```
+Because the default template body is formatted as JSON we've added a default `Content-Type` header of `application-json`.  You can use this default body template or edit it to suit your needs.  It need not be JSON, but using JSON enables you to use features of `webhook` that allow you to select pieces of the JSON document to pass to your script as command line arguments or environment variables.
+
+To test simply startup the `webhook` execuable in verbose mode and watch it execute your script.
+```bash
+./webhook -verbose -port 9999
+[webhook] 2018/12/12 12:09:48 version 2.6.9 starting
+[webhook] 2018/12/12 12:09:48 setting up os signal watcher
+[webhook] 2018/12/12 12:09:48 attempting to load hooks from hooks.json
+[webhook] 2018/12/12 12:09:48 os signal watcher ready
+[webhook] 2018/12/12 12:09:48 found 1 hook(s) in file
+[webhook] 2018/12/12 12:09:48 	loaded: cleanup-webhook
+[webhook] 2018/12/12 12:09:48 serving hooks on http://0.0.0.0:9999/hooks/{id}
+[webhook] 2018/12/12 12:11:23 [7415e3] incoming HTTP request from [::1]:44872
+[webhook] 2018/12/12 12:11:23 [7415e3] cleanup-webhook got matched
+[webhook] 2018/12/12 12:11:23 [7415e3] error parsing JSON payload EOF
+[webhook] 2018/12/12 12:11:23 [7415e3] cleanup-webhook hook triggered successfully
+[webhook] 2018/12/12 12:11:23 200 | 132.063µs | localhost:9999 | POST /hooks/cleanup-webhook 
+[webhook] 2018/12/12 12:11:23 [7415e3] executing /var/scripts/cleanup-webhook.sh (/var/scripts/cleanup-webhook.sh) with arguments ["/var/scrpits/cleanup-webhook.sh"] and environment [HOOK_payload={ ... JSON ...}} HOOK_headers={"Accept":"*/*","Content-Type":"application/json"} HOOK_query={}] using /tmp as cwd
+[webhook] 2018/12/12 12:11:23 [7415e3] command output: 
+[webhook] 2018/12/12 12:11:23 [7415e3] finished handling cleanup-webhook
+```
 
 That's it, save your notifier and start the `webhook` server and the next time the alert fires your script on the remote system will be triggered.
