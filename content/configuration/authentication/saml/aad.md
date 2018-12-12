@@ -22,12 +22,12 @@ SAML_IDP_ENTITY_ID=https://sts.windows.net/<YOUR_AAD_GUID>/
 SAML_IDP_CERTIFICATE=/certs/humio-AAD-SSO.pem
 ```
 
-#### Mapping SAML roles to prefix queries.
+#### Mapping SAML roles to prefix queries (If using role-based authorization)
 
 To also apply prefixes and repo memberships based on roles in AAD, these additional settings are required. See [role-based authoriation]({{< relref "configuration/authentication/role-based-auth.md" >}}) for details on how mapping roles to prefixes work and the format of the configration files.
 ```
-# You'll need to create this attribute in your AAD Enterprise App and name it "role" (or whatever the value you set here.)
-SAML_GROUP_MEMBERSHIP_ATTRIBUTE=role
+# You'll need to create this attribute in your AAD Enterprise App and map it to user.assignedroles
+SAML_GROUP_MEMBERSHIP_ATTRIBUTE=http://schemas.microsoft.com/ws/2008/06/identity/claims/role
 
 AUTO_UPDATE_GROUP_MEMBERSHIPS_ON_SUCCESSFUL_LOGIN=true
 PREFIX_AUTHORIZATION_ENABLED=true
@@ -59,7 +59,7 @@ PREFIX_AUTHORIZATION_ENABLED=true
 1. Copy the value from the Login URL box to `SAML_IDP_SIGN_ON_URL`
 2. Copy the value from the Azure AD Identiier to `SAML_IDP_ENTITY_ID`
 
-### Create Roles (If using role-based authoriation)
+### Create Roles (If using role-based authorization)
 
 1. In AAD, go to App Registrations
 * Open the app you just created
@@ -91,13 +91,14 @@ PREFIX_AUTHORIZATION_ENABLED=true
 
 Ensure your indentations are good, then save.
 
-#### Assign Roles
+#### Assign Users
 
 1. Open your app under Enterprise Applications
 * Select Users and Groups
-* Assign users (or groups) to your app, the assign them to one of the two roles you just created
+* Assign users (or groups) to your app 
+* If using roles, assign the user (or group) to one of the roles you just created
 
-#### Create authorizations for your roles
+#### Create authorizations for your roles (If using role-based authorization)
 
 Save the sample 'view-role-prefix-auth.json' file from the top of this page to your humio data directory (Usually `/data/humio-data`)
 
