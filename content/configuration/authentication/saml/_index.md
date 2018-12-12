@@ -19,7 +19,7 @@ PUBLIC_URL=$YOUR_SERVERS_BASE_URL
 SAML_IDP_SIGN_ON_URL=$IDP_SIGNON_URL        # e.g. https://accounts.google.com/o/saml2/idp?idpid=C0453
 SAML_IDP_ENTITY_ID=$IDP_ENTITY_ID           # e.g. https://accounts.google.com/o/saml2?idpid=C0453
 SAML_IDP_CERTIFICATE=$PATH_TO_PEM           # e.g. /home/humio/GoogleIDPCertificate-humio.com.pem
-AUTO_CREATE_USER_ON_SUCCESSFULL_LOGIN=true  # default is false 
+AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN=true  # default is false 
 ```
 
 When a user tries to access Humio the authentication flow will start by redirecting the user to `$IDP_SIGNON_URL`. Upon a successful authentication the user will be redirected back to Humio where a Humio specific access token will be issued. For the redirects to work properly a [`PUBLIC_URL`]({{< relref "configuration/_index.md#public_url" >}}) must be configured. For details about the flow see https://en.wikipedia.org/wiki/SAML_2.0#Web_Browser_SSO_Profile.
@@ -35,7 +35,7 @@ The redirect back to Humio is handled by the SAML Assertion Consumer Service end
  Metadata about Humio as a SAML Service Provider is available at `http://$HOST:$PORT/api/v1/saml/metadata`.
 {{% /notice %}}
 
-`AUTO_CREATE_USER_ON_SUCCESSFULL_LOGIN` if false - which is the default, users must be created in Humio before they can login. If set to true, users are auto created if they login successfully
+`AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN` if false - which is the default, users must be created in Humio before they can login. If set to true, users are auto created if they login successfully
 
 Read more about [Configuring Humio]({{< relref "configuration/_index.md" >}})
 
@@ -51,7 +51,7 @@ If Humio encounters a new user that has been granted access through the IDP it w
 <saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified">Username</saml:NameID>
 ```
 
-By default, the user has no rights.  So unless a user is otherwise granted access rights, he or she will not be able to do anything besides see an empty list of repos.  At present, this means that the user needs to be added explicitly as a member or admin to a repo/view to be able to access it.  A future release will support using SAML roles to control access.
+By default, the user has no rights.  So unless a user is otherwise granted access rights, he or she will not be able to do anything besides see an empty list of repos.  You can use SAML roles to control access. Otherwise, the user needs to be added explicitly as a member or admin to a repo/view to be able to access it.
 
 ## User Attribute Mapping
 
