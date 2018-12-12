@@ -165,3 +165,13 @@ letsencrypt renew -a webroot --webroot-path=/var/www/html -m "${YOUR_EMAIL}" && 
 EOF
 chmod 755 /etc/cron.weekly/humio-letsencrypt
 ```
+
+### Adding TLS to nginx using a certificate from other providers.
+
+Start from the template for letsencrypt above, then edit the following lines
+
+```nginx
+ssl_certificate /path/to/your/public_key_fullchain.pem;
+ssl_certificate_key /path/to/your/cert_private_key.pem;
+```
+
