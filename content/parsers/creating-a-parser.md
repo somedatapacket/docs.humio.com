@@ -1,4 +1,4 @@
- ---
+---
 title: Creating a Parser
 weight: 200
 aliases: ["ref/creating-a-parser", "parsers/json-parsers", "parsers/regexp-parsers"]
@@ -118,7 +118,7 @@ Each object is a separate event and will be parsed separately, just like with
 unstructured logs.
 
 The JSON is accessible as a string in the field `@rawstring`. We can extract fields
-from the JSON by using the {{< function "parseJson" >}} function.
+from the JSON by using the {{< function "parseJson" >}} function.S
 It takes a field containing a JSON string (in this case `@rawstring`)
 and extracts fields automatically, like e.g:
 
