@@ -37,13 +37,11 @@ This configuration works on Java 9 or 11.
 java -server -Xms10g  -Xmx10g -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC
 ```
 
-As of Java 11 there are two fully concurrent, non-generational collectors with excellent potential for Humio workloads:
-
+At this time we recommend using the Garbage First collector in production (`G1GC`), however as of Java 12 there will be two fully concurrent, non-generational collectors with excellent potential for Humio workloads:
 * [Z Garbage Collector](https://wiki.openjdk.java.net/display/zgc/Main) included with most OpenJDK 11 builds and
 * [ShenandoahGC](https://wiki.openjdk.java.net/display/shenandoah/Main) included on RedHat or available for download [here](https://builds.shipilev.net/openjdk-shenandoah-jdk11/).
 
 To use these collectors replace `-XX:+UseG1GC` with either `-XX:+UseZGC` or `-XX:+UseShenandoahGC` and be sure to include `-XX:+UnlockExperimentalVMOptions`.
--XX:+UseShenandoahGC
 
 ## Resources
 
