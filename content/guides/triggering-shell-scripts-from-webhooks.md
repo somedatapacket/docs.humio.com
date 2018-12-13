@@ -109,9 +109,9 @@ To test simply startup the `webhook` execuable in verbose mode and watch it exec
 [webhook] 2018/12/12 12:11:23 [7415e3] cleanup-webhook got matched
 [webhook] 2018/12/12 12:11:23 [7415e3] error parsing JSON payload EOF
 [webhook] 2018/12/12 12:11:23 [7415e3] cleanup-webhook hook triggered successfully
-[webhook] 2018/12/12 12:11:23 200 | 132.063µs | localhost:9999 | POST /hooks/cleanup-webhook 
+[webhook] 2018/12/12 12:11:23 200 | 132.063µs | localhost:9999 | POST /hooks/cleanup-webhook
 [webhook] 2018/12/12 12:11:23 [7415e3] executing /var/scripts/cleanup-webhook.sh (/var/scripts/cleanup-webhook.sh) with arguments ["/var/scrpits/cleanup-webhook.sh"] and environment [HOOK_payload={ ... JSON ...}} HOOK_headers={"Accept":"*/*","Content-Type":"application/json"} HOOK_query={}] using /tmp as cwd
-[webhook] 2018/12/12 12:11:23 [7415e3] command output: 
+[webhook] 2018/12/12 12:11:23 [7415e3] command output:
 [webhook] 2018/12/12 12:11:23 [7415e3] finished handling cleanup-webhook
 ```
 
