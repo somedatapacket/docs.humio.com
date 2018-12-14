@@ -146,6 +146,11 @@ DEFAULT_PARTITION_COUNT=24
 # Has effect ONLY on first start of first node in the cluster.
 INGEST_QUEUE_INITIAL_PARTITIONS=24
 
+# A configuration flag to limit state in Humio searches. 
+# For example this is used to limit the number of groups in the groupBy function.
+# This is necessary to limit how much memory searches can use and avoid out of memory etc. 
+MAX_STATE_LIMIT=20000
+
 ```
 
 ## Java virtual machine parameters
