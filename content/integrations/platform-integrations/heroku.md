@@ -15,7 +15,7 @@ use your [Sandbox Repository]({{< ref "the-sandbox.md" >}}).
 The command to set up logging for your Heroku app is then:
 
 ```shell
-heroku drains:add https://$INGEST_TOKEN@$HOST/api/v1/dataspaces/$REPOSITORY_NAME/logplex -a myapp
+heroku drains:add https://$INGEST_TOKEN@$HOST/api/v1/ingest/logplex -a myapp
 ```
 
 {{< partial "common-rest-params.html" >}}
@@ -32,3 +32,6 @@ Anything after that is specific to the particular kind of log.
 ```
 
 To deal with this, you can define a parser with the name of the application and the process (sans the `.3`) `"heroku_${app}_${process}"` (in this case `heroku_app_web`).    If such a parser exists in the repository, then it will be used to do further data extration in the log's message.
+
+Finally, you can apply a parser by [assigning a
+                                specific parser to the Ingest API Token]({{< ref "parsers/assigning-parsers-to-ingest-tokens.md" >}}) used to authenticate the client.
