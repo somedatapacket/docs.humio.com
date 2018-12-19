@@ -193,7 +193,6 @@ Name            | Required      | Description
 `timezone`      | no            | The `timezone` is only required if you specify the `timestamp` in milliseconds. The timezone specifies the local timezone for the event. Note that you must still specify the `timestamp` in Zulu time.
 `attributes`    | no            | A JSON object representing key-value pairs for the Event. <br /><br />These key-value pairs adds structure to Events, making it easier to search. Attributes can be nested JSON objects, however, we recommend limiting the amount of nesting.
 `rawstring`     | no            | The raw string representing the Event. The default display for an Event in Humio is the `rawstring`. If you do not provide the `rawstring` field, then the response defaults to a JSON representation of the `attributes` field.
-`kvparse`       | no            | If you set this field to true, then Humio parses the `rawstring` field looking for key-value pairs of the form `a=b` or `a="hello world"`.
 
 #### Event examples
 
@@ -231,8 +230,7 @@ Name            | Required      | Description
 ``` json
 {
     "timestamp": "2016-06-06T12:00:01+02:00",
-    "rawstring": "starting service=coordinator transactionid=42",
-    "kvparse" : true
+    "rawstring": "starting service=coordinator transactionid=42"
 }
 ```
 
