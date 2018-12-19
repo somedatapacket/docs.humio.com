@@ -23,7 +23,7 @@ can easily be used simply by ensuring the input fields are named as expected.
 ### Example 1: Network Traffic
 
 Here we are using the companion query function to visualize data flowing from
-`src_ip` to `src_ip`. We use the {{< function "sum" >}} to calculate the total
+`src_ip` to `dst_ip`. We use the {{< function "sum" >}} to calculate the total
 number of bytes sent - where `pkt_size` is a field containing the packet size.
 
 ```humio
