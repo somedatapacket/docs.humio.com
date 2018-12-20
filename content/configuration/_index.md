@@ -153,9 +153,9 @@ MAX_STATE_LIMIT=20000
 
 # SECONDARY_DATA_DIRECTORY enables using a secondary file system to
 # store segment files. When enabled Humio monitors the amount of space
-# used (in total) on the primary data location and deletes segment
-# files from the primary humio data dir, but only once they have been
-# copied to the secondary. when to delete is controlled by
+# used (in total) on the primary data location and moves segment
+# files from the primary humio data dir to the secondary.
+# When to move the files is controlled by
 # PRIMARY_STORAGE_PERCENTAGE
 
 # SECONDARY_DATA_DIRECTORY is not enabled by default.  When using
@@ -164,9 +164,8 @@ SECONDARY_DATA_DIRECTORY=/secondaryMountPoint/humio-data
 
 # PRIMARY_STORAGE_PERCENTAGE options decides the amount of data (Humio
 # and otherwise) that the drive holding the data dir must at least hold
-# before Humio decides to remove any primary copies. Make sure leave space
-# available for at least one hour of peak traffic on the primary data
-# dir. (Default 80)
+# before Humio decides to move any segments files to the secondary location.
+# (Default 80)
 PRIMARY_STORAGE_PERCENTAGE=80
 
 ```
@@ -211,27 +210,33 @@ Secondary storage is intended for usages where the primary is
 "high-latency but very large", such as a SAN spanning many spinning
 disks.
 
-When enabled Humio will copy segment files to secondary storage
-shortly after the segment file is complete, and much earlier than it
-deletes the file from the primary data dir, thus most segment files on
-the primary disk will also be present on the secondary.
+When enabled Humio will copy segment files to secondary storage once
+the primary disk reaches the usage threshold set using
+`PRIMARY_STORAGE_PERCENTAGE`.  Humio does not check what is using the
+space, it react based on asking the OS for "disk space used" and "disk
+space total" for the mount point that the primary data dir is on.
 
-The extra storage gained is thus
-`sizeOf(secondary)-sizeOf(primary)`. Thus it only makes sense to
-enable this feature when the secondary file system is much larger than
-the primary file system, or the primary file system is being used for
-many other purposes as well. Humio does not remove any files from the
-primary data dir unless they are present on the secondary at that
-point in time.
+When the threshold is exceeded Humio will copy files totaling the
+excess number of bytes to the secondary storage, validate that the
+internal CRC in the resulting copies check out, and then delete the
+segment file from the primary data dir. The files are selected based
+on the latest event timestamp in them, to keep most recent events on
+the primary disk. This is done to get the best possible query
+performance from the assumed faster primary drive, since Humio is
+normally used for querying the latest data.
 
-Humio uses the primary when querying copy if present. This is done to
-get the best possible query performance from the fast drives.
+The extra storage gained is thus almost the available space on of the
+secondary data dir, as only a single segment file can be on both
+volumes at once.
 
-An example configuration would be a server with 1TB NVME being used
-for system files, Kafka data and Humio data. Adding a 10TB SAN
-connection (or 4x5TB local spinning disks in raid-10) and then
-designating those as secondary allows Humio to store up to the 10TB,
-while still querying the latest ~750GB from the NVME, and also keeping
-and segment files still being constructed on the NVME.  When searching
+Note that the secondary dir needs to be private to the Humio node,
+just like the primary dir does. Never share data directories across Humio
+nodes!
+
+An example configuration: A server with 1TB NVME being used for system
+files, Kafka data and Humio data. Adding a 2TB SAN connection (or
+2x2TB local spinning disks in a mirror) and then designating that as
+secondary storage directory allows Humio to store up to 2.8TB, while
+still querying the latest ~800GB from the NVME, and also keeping and
+segment files still being constructed on the NVME.  When searching
 beyond what the NVME holds, Humio will read from the slower disks.
-
