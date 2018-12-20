@@ -51,16 +51,15 @@ Humio will read from the slower disks.
 
 Humio needs to be told where to store the secondary copies i.e. the location of the fileystem on the slower drive.
 
-```
-# SECONDARY_DATA_DIRECTORY enables using a secondary file system to
-# store segment files. When enabled Humio monitors the amount of space
-# used (in total) on the primary data location and moves segment
-# files from the primary humio data dir to the secondary.
-# When to move the files is controlled by
-# PRIMARY_STORAGE_PERCENTAGE
+{{% notice note %}}
+When using docker, make sure to mount the secondary directory
+into the container as well.
+{{% /notice %}}
 
-# SECONDARY_DATA_DIRECTORY is not enabled by default.  When using
-# docker, make sure to mount the volume into the container as well.
+
+```
+# SECONDARY_DATA_DIRECTORY enables the feature
+# and sets where to store the files.
 SECONDARY_DATA_DIRECTORY=/secondaryMountPoint/humio-data2
 
 # PRIMARY_STORAGE_PERCENTAGE options decides the amount of data (Humio

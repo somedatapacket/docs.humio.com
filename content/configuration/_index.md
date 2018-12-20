@@ -151,6 +151,15 @@ INGEST_QUEUE_INITIAL_PARTITIONS=24
 # This is necessary to limit how much memory searches can use and avoid out of memory etc. 
 MAX_STATE_LIMIT=20000
 
+# SECONDARY_DATA_DIRECTORY enables using a secondary file system to
+# store segment files. When to move the files is controlled by
+# PRIMARY_STORAGE_PERCENTAGE
+# Secondary_storage is not enabled by default.
+# Note! When using docker, make sure to mount the volume
+# into the container as well.
+# See te page on "Secondary storage" for more information.
+SECONDARY_DATA_DIRECTORY=/secondaryMountPoint/humio-data2
+PRIMARY_STORAGE_PERCENTAGE=80
 ```
 
 ## Java virtual machine parameters
