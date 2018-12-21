@@ -63,7 +63,7 @@ cat << EOF > events.json
 }
 EOF
 
-curl $BASEURL/services/collector/event \
+curl $BASEURL/api/v1/ingest/hec \
  -X POST \
  -H "Content-Type: text/plain; charset=utf-8" \
  -H "Authorization: Bearer $API_TOKEN" \
