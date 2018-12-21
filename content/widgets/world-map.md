@@ -39,7 +39,7 @@ worldMap(lat=myLatitudeField, lon=myLongitudeField, magnitude=avg(responseTime))
 ### Example 3: Alternative
 
 You do not have to use the {{< function "worldMap" >}} function in order to use the widget.
-You can also just provide data that conforms to the input format. The results in [Example 2]({{ relref "#example-2" }})
+You can also just provide data that conforms to the input format. The results in [Example 2]({{< relref "#example-2" >}})
 can be reproduced using the following query:
 
 ```humio
