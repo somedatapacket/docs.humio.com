@@ -157,7 +157,7 @@ This live query returns an empty search, finding all events in a time window goi
 Notice the `ACCEPT` header. This tells the server to stream data as [Newline Delimited JSON](http://specs.frictionlessdata.io/ndjson/).
 
 ```shell
-curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/query \
+curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/query \
   -X POST \
   -H "Authorization: Bearer $API_TOKEN" \
   -H 'Content-Type: application/json' \
@@ -171,7 +171,7 @@ curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/query \
 This query groups results by service and counts the number of events for each service. The query blocks until it is complete and returns events as a JSON array:
 
 ``` shell
-curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/query \
+curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/query \
   -X POST \
   -H "Authorization: Bearer $API_TOKEN" \
   -H 'Content-Type: application/json' \
@@ -222,7 +222,7 @@ using the HTTP GET method (see [below](#poll)).
 #### Example
 
 ``` shell
-curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/queryjobs \
+curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/queryjobs \
  -X POST \
  -H 'Authorization: Bearer $API_TOKEN' \
  -H 'Content-Type: application/json' \
@@ -280,7 +280,7 @@ Live queries keep running for an hour without being polled.
 #### Example
 
 ```shell
-curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID \
+curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID \
   -H "Authorization: Bearer $API_TOKEN"
 ```
 
@@ -303,7 +303,7 @@ Standard HTTP response codes.
 #### Example
 
 ```shell
-curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID \
+curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID \
  -X DELETE \
  -H "Authorization: Bearer $API_TOKEN"
 ```

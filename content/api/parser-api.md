@@ -56,7 +56,7 @@ The output format is similar to the input format in [Add Parser](#add-parser).
 **Example**
 
 ``` shell
-curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers \
+curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers \
  -H "Authorization: Bearer $API_TOKEN"
 ```
 
@@ -97,7 +97,7 @@ Standard HTTP response codes.
 **Example**
 
 ``` shell
-curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_NAME \
+curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_NAME \
  -XPUT \
  -H "Authorization: Bearer $API_TOKEN" \
  -H "Content-Type: application/json" \
@@ -130,7 +130,7 @@ field has the timestamp.
 **Example**
 
 ``` shell
-curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_NAME \
+curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_NAME \
  -XPUT \
  -H "Authorization: Bearer $API_TOKEN" \
  -H "Content-Type: application/json" \
@@ -170,7 +170,7 @@ Standard HTTP response codes.
 **Example**
 
 ``` shell
-curl https://demo.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_NAME \
+curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_NAME \
  -XDELETE \
  -H "Authorization: Bearer $API_TOKEN"
 ```
