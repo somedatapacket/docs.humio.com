@@ -14,11 +14,17 @@
         {{ end }}
         {{ range .Site.Data.releases }}
         <item>
-            <title>{{ .version }}</title>
+            <title>Humio {{ .version }}: {{ .title }}</title>
             <link>https://docs.humio.com/release-notes/#{{ .timestamp | dateFormat "2006-01-02" }}</link>
             <pubDate>{{ .timestamp | safeHTML }}</pubDate>
             <guid>https://repo.humio.com/repository/maven-public/com/humio/server/{{ .version }}/server-{{ .version }}.jar</guid>
             <description>
+                &lt;h1/&gt;{{ .title }}&lt;/h1&gt;
+                {{ with .brief }} &lt;p&gt;{{ . | markdownify | htmlEscape | safeHTML }}&lt;/p&gt;{{ end }}
+                Version: {{ .version }}&lt;br/&gt;
+                Data migrations: {{ .data_migrations }}&lt;br/&gt;
+                Configuration changes: {{ .configuration_changes | markdownify }}&lt;br/&gt;
+                Changelog: &lt;br/&gt;
                 {{ with .changelog }}
                     {{ . | markdownify | htmlEscape | safeHTML }}
                 {{ else }}
