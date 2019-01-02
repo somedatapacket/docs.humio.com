@@ -1,0 +1,31 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Humio releases</title>
+        <link>{{ .Permalink }}release-notes/</link>
+        <description>Feed of Humio releases</description>
+        <generator>Hugo -- gohugo.io</generator>{{ with .Site.LanguageCode }}
+        <language>{{.}}</language>{{end}}{{ with .Site.Author.email }}
+        <managingEditor>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</managingEditor>{{end}}{{ with .Site.Author.email }}
+        <webMaster>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</webMaster>{{end}}{{ with .Site.Copyright }}
+        <copyright>{{.}}</copyright>{{end}}{{ if not .Date.IsZero }}
+        <lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
+        {{ with .OutputFormats.Get "RSS" }}
+        {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
+        {{ end }}
+        {{ range .Site.Data.releases }}
+        <item>
+            <title>{{ .version }}</title>
+            <link>https://docs.humio.com/release-notes/#{{ .timestamp | dateFormat "2006-01-02" }}</link>
+            <pubDate>{{ .timestamp | safeHTML }}</pubDate>
+            <guid>https://repo.humio.com/repository/maven-public/com/humio/server/{{ .version }}/server-{{ .version }}.jar</guid>
+            <description>
+                {{ with .changelog }}
+                    {{ . | markdownify | htmlEscape | safeHTML }}
+                {{ else }}
+                    N/A
+                {{ end }}
+            </description>
+        </item>
+        {{ end }}
+    </channel>
+</rss>
