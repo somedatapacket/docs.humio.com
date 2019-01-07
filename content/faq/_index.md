@@ -133,3 +133,10 @@ The `bucket()` and `timechart()` functions lets you specify an
 explicit timezone (`timechart(..., timezone=Z)`). This will overrule
 the timezone of the browser.  Note, that the x-axis of time charts is
 still shown in local time.
+
+## Can I send multiline events to Humio
+
+Yes! Humio does support receiving events with multiple lines.
+What Humio does **not** support is correlating multiple events into a single multiline event, which means that it is up to the log shipper to detect wether an event spans across multiple lines.
+
+Filebeat has support for detecting [multiline events]({{< ref "/integrations/data-shippers/beats/filebeat.md#multiline-events">}}).
