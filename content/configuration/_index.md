@@ -146,6 +146,18 @@ DEFAULT_PARTITION_COUNT=24
 # Has effect ONLY on first start of first node in the cluster.
 INGEST_QUEUE_INITIAL_PARTITIONS=24
 
+
+# How big a backlog of events in Humio is allowed before Humio starts responding
+# http-status=503 on the http interfaces and reject ingesting messages on http?
+# Measured in seconds worth of latency from an event arrive at Humio until it has
+# been fully processed.
+# (Note that typical latency in normal conditions is is zero to one second.)
+# Set to a large number, such as 31104000 (~1 year as seconds) to avoid
+# having this kind of back pressure towards the ingest clients.
+# Range: Min=300, Max=2147483647.
+MAX_INGEST_DELAY_SECONDS=3600
+
+
 # A configuration flag to limit state in Humio searches. 
 # For example this is used to limit the number of groups in the groupBy function.
 # This is necessary to limit how much memory searches can use and avoid out of memory etc. 
