@@ -46,7 +46,7 @@ cat << EOF > events.json
   "source" : "/var/log/application.log",
   "sourcetype" : "applog",
   "fields" : {
-    "#env" : "prod",
+    "#env" : "prod"
   }
 }
 
