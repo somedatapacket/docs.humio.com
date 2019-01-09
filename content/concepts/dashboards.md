@@ -7,7 +7,7 @@ Humio can display a collection of different widgets, each with their
 own set of queries, in a browser typically used on a passive monitor
 without requiring authenticating as a user. The URL in itself is then
 accepted as authentication and when accessed in that manner the
-dashboard is not interacgive: You can only execute the exact queries
+dashboard is not interactive: You can only execute the exact queries
 that are saved on the shared dashboard.
 
 This is great for "big screens" for display of statistics on your
