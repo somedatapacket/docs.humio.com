@@ -24,12 +24,12 @@ If you want to run a clustered mode please refer to [cluster setup]({{< ref "clu
 
 ## Guides
 
-<!-- - Running Humio on Kubernetes -->
 - [Running in Docker]({{< ref "docker.md" >}})
 - [Running on Bare Metal]({{< ref "bare-metal.md" >}})
 - [Provisioning with Ansible]({{< ref "ansible.md" >}})
 - [Running on AWS]({{< ref "aws.md" >}})
 - [Running on Nomad]({{< ref "nomad.md" >}})
+- [Running on Kubernetes]({{< ref "kubernetes_deployment.md" >}})
 
 ## Hardware Requirements
 
