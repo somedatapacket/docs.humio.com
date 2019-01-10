@@ -2,7 +2,71 @@
 title: "Role Based Authorization"
 ---
 
-For on-prem installations, Humio supports role-based authoriation.  At present this only works in combination with LDAP or SAML authentication.
+Authentication is the subject of establishing the identity of the user. Authorization is the subject of deciding which actions a user proving to have that identity may perform.
+
+All authorization in humio is based on group memberhips, with the exception of "root access", which is a per-user property and independent of roles.
+
+Roles in Humio are based on group memberships. For the sake of discussing autorization here consider roles and groups aliases; Being in a role is the same as being member of that group.
+
+
+<figure>
+{{<mermaid align="center">}}
+graph LR;
+  subgraph Users
+    Ext1[User 1]
+  end
+
+  subgraph Group memberships
+    Ext1 --> A1("Member-of")
+    Ext1 --> A2("Member-of")
+    Ext1 --> A3("Member-of")
+  end
+
+  subgraph Groups
+    A1 --> P1["WebLog-users"]
+    A2 --> P2["Backend-users"]
+    A3 --> P3["bofh"]
+           P4["audit-logs"]
+  end
+{{< /mermaid >}}
+<figcaption>Each user is member of a number of groups.</figcaption>
+</figure>
+
+All access to views and repositories is governed by roles. All access to objects related to a repository such as dashboards and alerts are checked against the roles for the user on the repository.
+
+<figure>
+{{<mermaid align="center">}}
+graph LR;
+  subgraph Groups
+    G1["WebLog-users"]
+    G2["Backend-users"]
+    G3["bofh"]
+  end
+  
+  subgraph Permissions for Repo
+    G1 --> P1["queryPrfix: *<br>canEditDashboard"]
+    G2 --> P2["queryPrfix: Restricted=N"]
+    G3 --> P3["queryPrfix: *<br>canEditDashboard<br>canEditSavedQueries<br>canManageIngestTokens"]
+  end
+
+  subgraph Repo
+  P1 --> R1("Weblogs01 repo")
+  P2 --> R1
+  P3 --> R1
+  end
+
+{{< /mermaid >}}
+<figcaption>Each group may provide a number of permissions on each repo.</figcaption>
+</figure>
+
+
+
+The group memberships usually stem from an external directory, such as
+your LDAP tree or similar. It is also possible to edit the group
+memberships through the UI to support cases where the login mechanism
+only supplies the identity of the user and not the group memberships.
+
+## Here starts the old version of this document.
 
 With these configurations, it is possible to (a) import the role assignments from the authentication mechanism, and (b) designate what data/repos can be viewed and queried, and (c) set role-specific query prefixes that control which data is visible to specific users.
 
