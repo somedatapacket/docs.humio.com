@@ -2,12 +2,26 @@
 title: "Role Based Authorization"
 ---
 
-Authentication is the subject of establishing the identity of the user. Authorization is the subject of deciding which actions a user proving to have that identity may perform.
+We we use the strict distinction that "authentication" is the subject
+of establishing the identity of the user only, and "authorization" is
+the subject of deciding which actions a (authenticated) user may
+perform.
 
-All authorization in humio is based on group memberhips, with the exception of "root access", which is a per-user property and independent of roles.
+Roles in Humio are based on group memberships. For the sake of
+discussing autorization here please consider roles and groups
+synonymous; Being in a role is the same as being member of a group
+with that name.
 
-Roles in Humio are based on group memberships. For the sake of discussing autorization here consider roles and groups aliases; Being in a role is the same as being member of that group.
+Except for "root access", all authorization in humio is based on group memberhips. "Root access" is a per-user property and independent of roles and groups.
 
+### Group memberships
+
+A user may be member of zero or more groups.
+
+The group memberships usually stem from an external directory, such as
+your LDAP tree or similar. It is also possible to edit the group
+memberships through the UI to support cases where the login mechanism
+only supplies the identity of the user and not the group memberships.
 
 <figure>
 {{<mermaid align="center">}}
@@ -32,43 +46,7 @@ graph LR;
 <figcaption>Each user is member of a number of groups.</figcaption>
 </figure>
 
-All access to views and repositories is governed by roles. All access to objects related to a repository such as dashboards and alerts are checked against the roles for the user on the repository.
-
-<figure>
-{{<mermaid align="center">}}
-graph LR;
-  subgraph Groups
-    G1["WebLog-users"]
-    G2["Backend-users"]
-    G3["bofh"]
-  end
-  
-  subgraph Permissions for Repo
-    G1 --> P1["queryPrfix: *<br>canEditDashboard"]
-    G2 --> P2["queryPrfix: Restricted=N"]
-    G3 --> P3["queryPrfix: *<br>canEditDashboard<br>canEditSavedQueries<br>canManageIngestTokens"]
-  end
-
-  subgraph Repo
-  P1 --> R1("Weblogs01 repo")
-  P2 --> R1
-  P3 --> R1
-  end
-
-{{< /mermaid >}}
-<figcaption>Each group may provide a number of permissions on each repo.</figcaption>
-</figure>
-
-
-
-The group memberships usually stem from an external directory, such as
-your LDAP tree or similar. It is also possible to edit the group
-memberships through the UI to support cases where the login mechanism
-only supplies the identity of the user and not the group memberships.
-
-## Here starts the old version of this document.
-
-With these configurations, it is possible to (a) import the role assignments from the authentication mechanism, and (b) designate what data/repos can be viewed and queried, and (c) set role-specific query prefixes that control which data is visible to specific users.
+Group memberships can be edited using the Humio UI. But for most use cases it makes more sense to automatically generate the memberships from an external source tied to the authentication mechanism being applied.
 
 In order for the login mechanism to capture the roles from the authentication mechanism, the follwing configurations must be set:
 
@@ -99,7 +77,46 @@ AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN=true
 
 With the auto-create user option (and role-based authorization enabled) the user is only allowed to login if that would result in said user having access to some data.  I.e., the access rights for at least one of the roles that the user has must already be setup.
 
-## Setting up Authorization Rules
+
+### Permissions based on group memberships
+
+All access to views and repositories is governed by roles. All access
+to objects related to a repository such as dashboards and alerts are
+checked against the roles of the current user on the repository.
+
+<figure>
+{{<mermaid align="center">}}
+graph LR;
+  subgraph Groups
+    G1["WebLog-users"]
+    G2["Backend-users"]
+    G3["bofh"]
+  end
+  
+  subgraph Repository-Permissions
+    G1 --> P1["queryPrefix: *<br>canEditDashboard"]
+    G2 --> P2["queryPrefix: Restricted=N"]
+    G3 --> P3["queryPrefix: *<br>canEditDashboard<br>canEditSavedQueries<br>canManageIngestTokens"]
+  end
+
+  subgraph Repo
+  P1 --> R1("Weblogs01 repo")
+  P2 --> R1
+  P3 --> R1
+  end
+
+{{< /mermaid >}}
+<figcaption>Each group may provide a number of permissions on each repo.</figcaption>
+</figure>
+
+The "Repository-Permissions" can come from multiple sources, depending on configuration.
+
+* They can be imported from a file by a job inside Humio that runs at short intervals to refresh them.
+* They can be editd in the UI, if your user has "Root access" or the required permission on the Repository.
+* They can be updated from an external system by interacting with the same API that the UI uses when editing.
+
+
+#### Setting up Authorization Rules from a file
 
 This must be set on all nodes:
 
