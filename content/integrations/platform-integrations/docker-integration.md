@@ -6,11 +6,6 @@ slug: docker
 pageImage: /integrations/docker.svg
 ---
 
-There are two key steps to getting logs from Docker containers into Humio:
-
-1. Shipping the container logs to Humio
-2. Parsing the logs
-
 In this guide, we assume that you use Docker in the standard way, where
 logs are captured from `stdout` and `stderr`.
 
@@ -18,43 +13,59 @@ logs are captured from `stdout` and `stderr`.
 Looking for how to run Humio in a Docker container? Try the [Docker installation guide]({{< ref "docker.md" >}}) instead.
 {{% /notice %}}
 
-## 1. Shipping container logs to Humio
+## Container Logs
+As of Humio version [1.2.6]({{< ref "/release-notes/_index.md#2019-01-10" >}}) we now have full support for the [Docker Splunk logging driver](https://docs.docker.com/config/containers/logging/splunk/).
 
-The easiest way to get logs from Docker containers is using the
-[`docker2humio`](https://hub.docker.com/r/pmech/docker2humio/)
-container.
+Getting logs from a Docker container is as simple as setting the logging driver and adding the `splunk-url` and `splunk-token` logging options to the container, i.e.
 
-With `docker2humio`, you configure and run a shipper container on each
-Docker host. Then, you hook up all the containers for which you want
-logs using the fluentd log-driver.
+```bash
+docker run --rm -it \
+  --log-driver=splunk \
+  --log-opt splunk-url=$BASEURL \
+  --log-opt splunk-token=$INGEST_TOKEN \
+  alpine ping 8.8.8.8
+```
 
-{{% notice info %}}
-You should set the __log types__ for your containers so Humio can parse the logs.  
-Humio can accept logs even when it does not know their type. So just start sending
-logs to Humio, and then create and enhance the relevant parsers afterwards.
-{{% /notice %}}
+Where:
 
-Go to the [`docker2humio` container page](https://hub.docker.com/r/pmech/docker2humio/)
-for further documentation on running the container.
+* `$BASEURL` - is the base URL of your Humio server (e.g. `https://cloud.humio.com` or `http://localhost:8080`)
+* `$INGEST_TOKEN` - is the [ingest token]({{< ref "/sending-data-to-humio/ingest-tokens.md" >}}) for your repository, (e.g. a string such as `fS6Kdlb0clqe0UwPcc4slvNFP3Qn1COzG9DEVLw7v0Ii`).
 
+### Parsing the logs
 
-## 2. Parsing the logs
+Since Docker just handles log lines from `stdout` as text blobs, you must parse the lines to get the full value from them.
 
-Since Docker just handles log lines from `stdout` as text blobs, you must parse
-the lines to get the full value from them.
-
-To do this, you can either use a built-in parser, or create new ones for your log
-types. For more details on creating parsers, see the [parsing page]({{< ref "parsers/_index.md" >}}).
+To do this, you can either use a built-in parser, or create new ones for your log types. For more details on creating parsers, see the [parsing page]({{< ref "parsers/_index.md" >}}).
 
 {{% notice tip %}}
 In terms of log management, Docker is just a transport layer.  
 Before writing a custom parser, see the [built in parsers]({{< ref "parsers/built-in-parsers/_index.md" >}}) page to see if Humio already supports your log type.
 {{% /notice %}}
 
-## 3. Metrics
+### Configuring Docker daemon
 
-To get standard host level metrics for your docker containers, use
-[Metricbeat](https://www.elastic.co/guide/en/beats/metricbeat/current/index.html).
+To configure the Docker daemon to forward all logs for all containers by default you'll have to update the [`daemon.json` configuration file](https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file) with the following parameters
+
+```json
+{
+  "log-driver" : "splunk",
+  "log-opts" : {
+    "splunk-token" : "$INGEST_TOKEN",
+    "splunk-url" : "$BASEURL"
+  }
+}
+```
+
+Don't forget to restart Docker daemon.
+
+To excluding from log forwarding you can run your container with the default `json-file` logging driver, i.e.
+```bash
+docker run --log-driver=json-file --rm alpine whoami
+```
+
+## Docker daemon Metrics
+
+To get standard host level metrics for your docker containers, use [Metricbeat](https://www.elastic.co/guide/en/beats/metricbeat/current/index.html).
 It includes a [docker module](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-docker.html).
 
 ### Example Metricbeat Configuration
