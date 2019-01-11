@@ -24,7 +24,7 @@ There are currently five official Beats. The Elastic documentation site and Humi
 
 * **[Metricbeat](https://www.elastic.co/guide/en/beats/metricbeat/current/index.html)** - Ships metrics from your OS and common services.
     * [Get Started](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-getting-started.html)
-    * [Humio's Metricbeat documentation](/sending-data/data-shippers/beats/metricbeat/)
+    * [Humio's Metricbeat documentation]({{< ref "metricbeat.md" >}})
 
 * **[Packetbeat](https://www.elastic.co/guide/en/beats/packetbeat/current/index.html)** - Analyzes network packets and common protocols like HTTP
     * [Get Started](https://www.elastic.co/guide/en/beats/packetbeat/current/packetbeat-getting-started.html)

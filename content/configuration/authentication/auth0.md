@@ -42,7 +42,7 @@ AUTH0_DOMAIN=$YOUR_AUTH0_DOMAIN
 PUBLIC_URL=$YOUR_SERVERS_BASE_URL
 ```
 
-_See the [installation overview page](/operation/installation) on how to set
+_See the [configuration overview page]({{< ref "/configuration/_index.md" >}}) on how to set
 these settings for your Humio cluster._
 
 ## Setting the Callback URI

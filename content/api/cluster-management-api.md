@@ -266,7 +266,7 @@ curl -XPOST -d @kafka-ingest-settings.json -H "Content-Type: application/json" -
 
 ## Adding a ingest listener endpoint
 
-You can ingest events using one of the many [existing integration](/sending-data/integrations/) but when your requirements do
+You can ingest events using one of the many [existing integration]({{< ref "integrations/_index.md" >}}) but when your requirements do
 not match, perhaps you can supply a stream of events on TCP, separated by line feeds.
 This API allows you to create and configure a TCP listener for such events.
 Use cases include accepting "rsyslogd forward format" and similar plain-text event streams.

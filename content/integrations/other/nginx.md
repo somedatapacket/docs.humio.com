@@ -41,9 +41,9 @@ output.elasticsearch:
 
 {{< partial "common-rest-params.html" >}}
 
-See the page on [Filebeat](/sending-data/data-shippers/beats/filebeat/) for further details.
+See the page on [Filebeat]({{< ref "filebeat.md" >}}) for further details.
 
-The above Filebeat configuration uses the [built-in parser `accesslog`](/sending-data/parsers/built_in_parsers/#accesslog).
+The above Filebeat configuration uses the [built-in parser `accesslog`]({{< ref "/parsers/built-in-parsers/accesslog.md" >}}).
 The parser can parse logs formatted in the default Nginx log configuration.
 If your log Nginx configuration is modified, create a [custom parser]({{< relref "parsers/_index.md" >}}), by copying the accesslog parser and modifying it.
 Then [connect the parser to the ingest token]({{< ref "assigning-parsers-to-ingest-tokens.md" >}}) or put its name as the value of the @type field in the Filebeat configuration.
@@ -154,5 +154,5 @@ output.elasticsearch:
 
 {{< partial "common-rest-params.html" >}}
 
-See also the page on [Metricbeat](/sending-data/data-shippers/beats/metricbeat/) for more
+See also the page on [Metricbeat]({{< ref "/integrations/data-shippers/beats/metricbeat.md" >}}) for more
 information.

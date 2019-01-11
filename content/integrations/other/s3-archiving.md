@@ -1,7 +1,7 @@
 ---
 title: "S3 Archiving"
 categories: ["Integration", "OtherIntegration"]
-pageImage: /integrations/aws-s3.svg
+pageImage: /integrations/aws.svg
 aliases: ["ref/s3"]
 ---
 

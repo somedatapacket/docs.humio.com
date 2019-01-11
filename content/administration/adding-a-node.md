@@ -35,7 +35,7 @@ performed and automated using [Cluster Management GraphQL API]({{< ref "graphql.
 ### 1. Starting a new Humio Node
 
 The first step is to start the Humio node and point it at the cluster. You can
-read about how to configure a node in the [cluster installation guide]({{ ref "cluster_setup.md#running-humio"}}).
+read about how to configure a node in the [cluster installation guide]({{< ref "cluster_setup.md#running-humio" >}}).
 
 The important part is that the `KAFKA_SERVERS` configuration option
 points at the Kafka servers for the existing cluster.

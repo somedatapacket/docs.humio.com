@@ -99,7 +99,7 @@ To limit the downtime of your node you should copy node's data directory before 
 shutting down the original node, this will ensure you only have to copy the most recent
 data when the node is taken offline.
 
-#### __Step 1__: Use RSync or similar to copy the data directory to the new storage (this includes the [UUID File]({{< ref "#uuid" >}})).
+#### __Step 1__: Use RSync or similar to copy the data directory to the new storage (this includes the [UUID File](#uuid)).
 
 #### __Step 2__: Assign another node to any Digest Rules where this node is assigned.
 
