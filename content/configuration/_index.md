@@ -114,8 +114,12 @@ HTTP_PROXY_PASSWORD=your-secret-password
 
 # Select the TCP port to listen for http.
 HUMIO_PORT=8080
+
 # Select the TCP port for ElasticSearch Bulk API
 ELASTIC_PORT=9200
+
+# Select the TCP port for exporting Prometheus metrics. Disabled by default
+PROMETHEUS_METRICS_PORT=8081
 
 # Select the IP to bind the udp/tcp/http listening sockets to.
 # Each listener entity has a listen-configuration. This ENV is used when that is not set.
