@@ -12,11 +12,11 @@ discussing autorization here please consider roles and groups
 synonymous; Being in a role is the same as being member of a group
 with that name.
 
-Except for "root access", all authorization in humio is based on group memberhips. "Root access" is a per-user property and independent of roles and groups.
+Except for "root access", all authorization in humio is based on group memberhips. "Root access" is a per-user property and independent of roles and groups. See [root access]({{<ref "/configuration/root-access.md">}}).
 
 ### Group memberships
 
-A user may be member of zero or more groups.
+A user may be member of zero or more groups. Users not member of any groups can login but can not access anything but the personal sandbox.
 
 The group memberships usually stem from an external directory, such as
 your LDAP tree or similar. It is also possible to edit the group
@@ -78,7 +78,7 @@ AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN=true
 With the auto-create user option (and role-based authorization enabled) the user is only allowed to login if that would result in said user having access to some data.  I.e., the access rights for at least one of the roles that the user has must already be setup.
 
 
-### Permissions based on group memberships
+### Authorization is through group memberships
 
 All access to views and repositories is governed by roles. All access
 to objects related to a repository such as dashboards and alerts are
@@ -96,7 +96,7 @@ graph LR;
   subgraph Repository-Permissions
     G1 --> P1["queryPrefix: *<br>canEditDashboard"]
     G2 --> P2["queryPrefix: Restricted=N"]
-    G3 --> P3["queryPrefix: *<br>canEditDashboard<br>canEditSavedQueries<br>canManageIngestTokens"]
+    G3 --> P3["queryPrefix: *<br>canEditDashboard<br>canEditSavedQueries<br>canManageIngestTokens<br>canEditParsers<br>canEditRepositoryPermissions"]
   end
 
   subgraph Repo
@@ -115,16 +115,21 @@ The "Repository-Permissions" can come from multiple sources, depending on config
 * They can be editd in the UI, if your user has "Root access" or the required permission on the Repository.
 * They can be updated from an external system by interacting with the same API that the UI uses when editing.
 
+#### Who can edit Repository-Permissions
+
+All Repository permissions on a view can be edited by a user if that
+user is member of a group related to that view that has
+`canEditRepositoryPermissions` on that relation. In the examples above
+that is members of the group `bofh`.
 
 #### Setting up Authorization Rules from a file
 
-This must be set on all nodes:
+Setting up authorization rules is currently done via a JSON file placed on any one of the nodes in the Humio cluster.  The file should be named `humio-data/view-role-prefix-auth.json`, containing a JSON structure like described below.
 
+This config must be set on all nodes, as all nodes must run the same authentication configuration.
 ```
 PREFIX_AUTHORIZATION_ENABLED=true
 ```
-
-Setting up authorization rules is currently done via a JSON file placed on any one of the nodes in the Humio cluster.  The file should be named `humio-data/view-role-prefix-auth.json`, containing a JSON structure like described below.
 
 Currently, we only support this model; a future release will enable editig these rules in the UI.
 
@@ -132,13 +137,23 @@ Currently, we only support this model; a future release will enable editig these
 {
   "views" : {
      "REPO1" : {
-        "ROLE1" : "QUERY1",
-        "ROLE2" : "QUERY2"
+        "ROLE1" : {
+	    "queryPrefix": "QUERY1",
+	    "canEditDashboard": true
+	}
+        "ROLE2" : {
+	    "queryPrefix": "QUERY2",
+	    "canEditDashboard": false
+	}
      },
       
      "REPO2" : {
-        "ROLE2" : "QUERY3",
-        "ROLE3" : "QUERY4"
+        "ROLE2" : {
+	    "queryPrefix": "QUERY3"
+	}
+        "ROLE3" : {
+	    "queryPrefix": "QUERY4"
+	}
      },
      
       ...
