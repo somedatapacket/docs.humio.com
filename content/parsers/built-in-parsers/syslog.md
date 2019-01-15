@@ -8,7 +8,7 @@ This parser aims to be compatible with a variety of syslog formats seen in the w
 ## Example Input
 
 ```
-<34>1 2003-10-11T22:14:15.003Z mymachine.example.com su - ID47 - BOM'su root' failed for lonvick on /dev/pts/8
+<34>1 2003-10-11T22:14:15.003Z mymachine.example.com su - ID47 - BOM'su root' failed for foo on /dev/pts/8
 ```
 
 ```
@@ -16,11 +16,11 @@ This parser aims to be compatible with a variety of syslog formats seen in the w
 ```
 
 ```
-<34>Oct 11 22:14:15 mymachine su: 'su root' failed for lonvick on /dev/pts/8
+<34>Oct 11 22:14:15 mymachine su: 'su root' failed for foo on /dev/pts/8
 ```
 
 ```
-Oct 11 22:14:15 su: 'su root' failed for lonvick on /dev/pts/8
+Oct 11 22:14:15 su: 'su root' failed for foo on /dev/pts/8
 ```
 
 
