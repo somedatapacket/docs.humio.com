@@ -57,6 +57,11 @@ KAFKA_SERVERS=kafkahost01:9092,kafkahost02:9092
 # If you run Humio on top of an existing Kafka or want to manage this outside of Humio, set this to false.
 KAFKA_MANAGED_BY_HUMIO=true
 
+# When KAFKA_MANAGED_BY_HUMIO=true Humio does not know if using deletes on the ingest topic is safe and 
+# doing deletes are thus off by default in this case.
+# If you want to get deletes applied to your ingest topic in the case, turn on KAFKA_MANAGED_BY_HUMIO=true
+KAFKA_DELETES_ALLOWED=false
+
 # It is possible to add extra Kafka configuration properties. by creating a properties file and pointing to it.
 # These properties are added to all Kafka producers and consumers in Humio.
 # For example, this enables Humio to connect to a Kafka cluster using SSL and SASL.
