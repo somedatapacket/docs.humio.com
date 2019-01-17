@@ -6,8 +6,7 @@ slug: docker
 pageImage: /integrations/docker.svg
 ---
 
-In this guide, we assume that you use Docker in the standard way, where
-logs are captured from `stdout` and `stderr`.
+In this guide, we assume that you use Docker in the standard way, where logs are captured from `stdout` and `stderr`.
 
 {{% notice tip %}}
 Looking for how to run Humio in a Docker container? Try the [Docker installation guide]({{< ref "docker.md" >}}) instead.
@@ -38,7 +37,7 @@ Since Docker just handles log lines from `stdout` as text blobs, you must parse 
 To do this, you can either use a built-in parser, or create new ones for your log types. For more details on creating parsers, see the [parsing page]({{< ref "parsers/_index.md" >}}).
 
 {{% notice tip %}}
-In terms of log management, Docker is just a transport layer.  
+In terms of log management, Docker is just a transport layer.<br/><br/>
 Before writing a custom parser, see the [built in parsers]({{< ref "parsers/built-in-parsers/_index.md" >}}) page to see if Humio already supports your log type.
 {{% /notice %}}
 
