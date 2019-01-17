@@ -62,6 +62,14 @@ To excluding from log forwarding you can run your container with the default `js
 docker run --log-driver=json-file --rm alpine whoami
 ```
 
+## Notes on blocking behaviour
+
+By default Docker logging drivers are blocking, meaning that it will prevent the process from printing to `stdout` and `stderr` while logs are being handled. This can, and should be, controlled by the [`mode` log-opt](https://docs.docker.com/config/containers/logging/configure/#configure-the-delivery-mode-of-log-messages-from-container-to-log-driver).
+
+In addition to the mode, the Splunk logging driver has it's own [buffer](https://docs.docker.com/config/containers/logging/splunk/#advanced-options), which will postpone the process pausing somewhat.
+
+Finally it should be noted that Docker will throw away the oldest logs in `non-blocking` mode when the buffer runs full. 
+
 ## Docker daemon Metrics
 
 To get standard host level metrics for your docker containers, use [Metricbeat](https://www.elastic.co/guide/en/beats/metricbeat/current/index.html).
