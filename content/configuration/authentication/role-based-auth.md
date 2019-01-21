@@ -183,3 +183,18 @@ The query `"*"` gives access to all data, so here is an example where a user in 
   }
 }
 ```
+
+In addition to the `views` section key you can create a section called `global` in order to reference all views.
+
+```
+{
+   "views" : {
+    ...
+  },
+  "global" : {
+     "humio-audit" : {
+       "CN=Admins,OU=Security Groups,OU=serverusers,DC=humio,DC=com" : "*"
+     }
+  }
+}
+```
