@@ -173,3 +173,74 @@ If you have very large amounts of data (say petabytes) in Humio you may need to 
 {{% notice note %}}
 If you run your own Kafka (i.e. not the one provided by Humio) you must increase the max.message.bytes on the global-snapshots topic as described above, or raise the default on your existing brokers.
 {{% /notice %}}
+
+
+### Default kafka.properties file
+
+{{% notice note %}}
+It is important to set `log.dirs` to the location where
+Kafka should store the data. Without such a setting, Kafka default to
+/tmp/kafka-logs, which is very likely NOT where you want it. Note that
+this is the *actual Kafka data* not the debug log.
+{{% /notice %}}
+
+
+```
+############################# Server Basics #############################
+
+# The id of the broker. This must be set to a unique integer for each broker.
+broker.id=0
+
+############################# Socket Server Settings #############################
+
+listeners=PLAINTEXT://localhost:9092
+        
+##setup to allow large messages - our snapshots can get big
+replica.fetch.max.bytes=104857600
+
+#max message size
+message.max.bytes=104857600
+
+#use compression
+compression.type=producer
+
+############################# Log Basics #############################
+
+# A comma seperated list of directories under which to store log files
+log.dirs=/data/kafka-data
+        
+############################# Log Retention Policy #############################
+
+# The following configurations control the disposal of log segments. The policy can
+# be set to delete segments after a period of time, or after a given size has accumulated.
+# A segment will be deleted whenever *either* of these criteria are met. Deletion always happens
+# from the end of the log.
+
+# The minimum age of a log file to be eligible for deletion
+log.retention.hours=48
+
+# A size-based retention policy for logs. Segments are pruned from the log as long as the remaining
+# segments don't drop below log.retention.bytes.
+#log.retention.bytes=1000073741824
+
+# The interval at which log segments are checked to see if they can be deleted according
+# to the retention policies
+log.retention.check.interval.ms=300000
+auto.create.topics.enable=false
+unclean.leader.election.enable=false
+
+############################# Zookeeper #############################
+zookeeper.connect=localhost:2181
+```
+
+### Default zookeeper.properties file contents
+```
+# the directory where the snapshot is stored.
+dataDir=/data/zookeeper-data
+# the port at which the clients will connect
+clientPort=2181
+clientPortAddress=localhost
+tickTime=2000
+initLimit=5
+syncLimit=2
+```

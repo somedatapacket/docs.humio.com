@@ -68,7 +68,7 @@ For each machine do:
     $ chown -R humio:humio /data/zookeeper-data
     ```
 
-4. Create a configuration file for Zookeeper. Replace the `HOST_1-3` variables with the DNS name or IP addresses of your hosts; here is the configuration file for `HOST`. Save it a known location, such as `/etz/humio/zookeeper.properties`
+4. Create a configuration file for Zookeeper. Replace the `HOST_1-3` variables with the DNS name or IP addresses of your hosts; here is the configuration file for `HOST`. Save it a known location, such as `/etc/humio/zookeeper.properties`
 
     ```properties
     dataDir=/data/zookeeper-data
@@ -96,10 +96,11 @@ For each machine do:
     $ chown -R humio:humio /data/kafka-data
     ```
 
-7. Create a configuration file for Kafka. Each server needs to have a unique name and an `broker.id`  (`1`, `2` or `3`). Make sure the listener is something the humio instances can reach. If in doubt, please refer to the Kafka documentation. Here is the configuration file for `HOST`, remember to set `broker.id` and `listeners` accordingly. Save it a known location, such as `/etz/humio/kafka.properties`
+7. Create a configuration file for Kafka. Each server needs to have a unique name and an `broker.id`  (`1`, `2` or `3`). Make sure the listener is something the humio instances can reach. If in doubt, please refer to the Kafka documentation. Here is the configuration file for `HOST`, remember to set `broker.id` and `listeners` accordingly. Save it a known location, such as `/etc/humio/kafka.properties`
 
     ```properties
     broker.id=1
+    log.dirs=/data/kafka-data
     zookeeper.connect=${HOST_1}:2181,${HOST_2}:2181,${HOST_3}:2181
     listeners=PLAINTEXT://${HOST}:9092
     replica.fetch.max.bytes=104857600
