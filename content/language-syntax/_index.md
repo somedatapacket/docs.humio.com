@@ -147,7 +147,7 @@ In addition to globbing (`*` appearing in match strings) you can match fields us
 | {{< query >}}400 > statuscode{{< /query >}} | This comparison generates an error. You can only perform a comparison between numbers. In this example, `statuscode` is not a number, and `400` is the name of an field.|
 
 {{% notice note %}}
-The left-hand-side of the operator is interpreted an field name.
+The left-hand-side of the operator is interpreted as a field name.
 If you write `200 = statuscode`, Humio tries to find an field
 named `200` and test if its value is `"statuscode"`.
 {{% /notice %}}
