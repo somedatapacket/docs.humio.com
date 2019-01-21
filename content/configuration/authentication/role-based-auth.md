@@ -2,6 +2,10 @@
 title: "Role Based Authorization"
 ---
 
+Humio supports Role based authentication and access control (RBAC). This enables authorization of users based on Roles with different sets of permissions.  
+Roles can be defined in Humio or in external systems and integrated with through SAML and LDAP. 
+
+
 We we use the strict distinction that "authentication" is the subject
 of establishing the identity of the user only, and "authorization" is
 the subject of deciding which actions a (authenticated) user may
