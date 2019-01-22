@@ -10,15 +10,16 @@ when selecting and configuring the JVM for Humio.
 Humio runs on feature version 9 or 11 of a few well known JVM distributions.  It may function perfectly well
 on others, however we recommend one of these:
 
-| Feature Level  | Provider                                                   |
-|----------------|------------------------------------------------------------|
-| `9`            | [Azul Systems](https://www.azul.com/downloads/zulu/) OpenJDK 9 Zulu certified build
-| `9`            | [Oracle](https://jdk.java.net/archive/) OpenJDK 9
-| `9`            | [AdoptOpenJDK.net](https://adoptopenjdk.net/releases.html?variant=openjdk9&jvmVariant=hotspot) OpenJDK 9 (HotSpot)
-| `11`           | [Oracle](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html) Java SE 11
-| `11`           | [Oracle](https://jdk.java.net/archive/) OpenJDK 11
-| `11`           | [Azul Systems](https://www.azul.com/downloads/zulu/) OpenJDK 11 Zulu certified build
-| `11`           | [AdoptOpenJDK.net](https://adoptopenjdk.net/releases.html?variant=openjdk11&jvmVariant=hotspot) OpenJDK 11 (HotSpot)
+| Feature Level  | Provider                                             | Name                | Architectures |
+|----------------|----------------------------------------------------------------------------|---------------|
+| `9`            | [Azul Systems](https://www.azul.com/downloads/zulu/) | OpenJDK 9 Zulu      | x86_64        |
+| `9`            | [Oracle](https://jdk.java.net/archive/)              | OpenJDK 9           | x86_64        |
+| `9`            | [AdoptOpenJDK.net](https://adoptopenjdk.net/releases.html?variant=openjdk9&jvmVariant=hotspot)  | OpenJDK 9 (HotSpot)  | x86_64        |
+| `11`           | [Oracle](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html) | Java SE 11           | x86_64        |
+| `11`           | [Oracle](https://jdk.java.net/archive/)              | OpenJDK 11          | x86_64        |
+| `11`           | [Azul Systems](https://www.azul.com/downloads/zulu/) | OpenJDK 11 Zulu     | x86_64        |
+| `11`           | [BellSoft](https://bell-sw.com/pages/java-11.0.2)    | OpenJDK 11 Liberica | x86_64, ARMv8 |
+| `11`           | [AdoptOpenJDK.net](https://adoptopenjdk.net/releases.html?variant=openjdk11&jvmVariant=hotspot) | OpenJDK 11 (HotSpot) | x86_64        |
 
 We develop and run Humio using the Azul provided Zulu JVM version 11 and find it to be a stable well maintained OpenJDK distribution.
 
@@ -46,4 +47,3 @@ To use these collectors replace `-XX:+UseG1GC` with either `-XX:+UseZGC` or `-XX
 ## Resources
 
 * [Java JVM Options Explorer](https://chriswhocodes.com/hotspot_options_jdk11.html)
-
