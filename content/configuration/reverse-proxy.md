@@ -8,6 +8,18 @@ browser to Humio "Sticky" towards the same Humio node, at least as
 long as that node is alive if you have multiple Humio nodes in a
 clustered setup.
 
+### Sharing query results across users
+
+If two or more users or dashboards execute the same query then Humio
+can make them all share the same search internally, provided the same
+Humio node in the cluster is being used as the http endpoint from
+those browsers. To help achieve this the humio UI adds a header named
+`Humio-Query-Session` to search requests that one can use as the input
+to select the desired backend server in your load balancer. Only
+searches have this header, as all other requests can ask any of the
+Humio backends in the cluster. (The header was added in Humio version
+1.2.10.)
+
 {{% notice warning %}}
 It is important that the proxy does not rewrite urls, when forwarding to Humio.
 {{% /notice %}}
@@ -38,7 +50,7 @@ location /internal/humio {
     proxy_set_header        Host $host;
 
     proxy_pass          http://localhost:8080;
-    proxy_read_timeout  10;
+    proxy_read_timeout  25;
     proxy_redirect http:// https://;
     expires off;
     proxy_http_version 1.1;
@@ -48,6 +60,40 @@ location /internal/humio {
 If it is not feasible for you to add the header `X-Forwarded-Prefix` in your proxy,
 there is a fall-back solution: You can set `PROXY_PREFIX_URL` in
 your `/home/humio/humio-config.env`.
+
+#### Example for a cluster with multiple hosts
+
+```nginx
+upstream humio-backends {
+  zone humio 32000000;
+  hash $hashkey consistent;
+  server 10.0.2.1:8080 max_fails=0 fail_timeout=10s max_conns=256;
+  server 10.0.2.2:8080 max_fails=0 fail_timeout=10s max_conns=256;
+  server 10.0.2.3:8080 max_fails=0 fail_timeout=10s max_conns=256;
+}
+
+location /internal/humio {
+
+    proxy_set_header        X-Forwarded-Prefix /internal/humio;
+    proxy_set_header        X-Forwarded-Proto $scheme;
+    proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header        X-Real-IP $remote_addr;
+    proxy_set_header        Host $host;
+
+    # Use hash query hash from request when present, otherwise try to be random.
+    # (nginx names all headers using lowercase with "_". The header is actually "Humio-Query-Session")
+    # Requires Humio version 1.2.10 or later.
+    set $hashkey "${connection} ${msec}";
+    if ($http_humio_query_session ~ .) {
+      set $hashkey $http_humio_query_session;
+    }
+    proxy_pass          http://humio-backends;
+    proxy_read_timeout  25;
+    proxy_redirect http:// https://;
+    expires off;
+    proxy_http_version 1.1;
+  }
+```
 
 ### Adding TLS to nginx using letsencrypt
 
