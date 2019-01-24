@@ -18,6 +18,8 @@ Most of the content is mostly relevant for clustered setups.
 - [Adding a Node]({{< ref "adding-a-node.md" >}})
 - [Removing a Node]({{< ref "removing-a-node.md" >}})
 <!--TODO: - [Managing Replication](…) -->
+- [Blacklisting Queries]({{< ref "blacklisting-queries.md" >}})
+- [Disabling Ingest]({{< ref "disabling-ingest.md" >}})
 - [Updating your license]({{< ref "license-management.md" >}})
 
 ## Repository Management

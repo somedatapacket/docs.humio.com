@@ -38,7 +38,8 @@ Humio requires the proxy to add the header `X-Forwarded-Prefix` only when Humio
 is hosted at at a non-empty prefix.
 
 Thus hosting Humio at "http://humio.example.com/" works without adding a header.
-An example configuration snippet for an nginx location is:
+An example configuration snippet for an nginx location (a portion of the total
+nginx configuration required) is:
 
 ```nginx
 location /internal/humio {
@@ -95,6 +96,27 @@ location /internal/humio {
   }
 ```
 
+{{% notice tip %}}
+If you're not an nginx expert then we recommend reading the docs and trying out the
+configuration wizard at [nginxconfig](https://nginxconfig.io) which helps to generate
+a well structured and complete nginx configuration.
+{{% notice %}}
+
+{{% notice tip %}}
+It's common to terminate TLS sessions at the load balancer, nginx in this case, and
+pass traffic on.  To force clients to use the HTTPS endpoint add this `server` block
+to your configuration.
+
+```nginx
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  server_name _;
+  return 301 https://$host$request_uri;
+}
+```
+{{% notice %}}
+
 ### Adding TLS to nginx using letsencrypt
 
 If you turn on authentication in Humio we recommend that you also run
@@ -107,7 +129,7 @@ parts here will likely be the same regardless of proxy, except perhaps
 the command that need executing to get the proxy to reload the
 certificate files
 
-#### Making nginx use the certificate
+#### Configuring nginx to use the certificate from letsencrypt
 
 The following snippet sets up nginx to use the certificate issued and
 renewed above and tells nginx to use port 443 for TLS connections, and
@@ -159,6 +181,16 @@ Reload nginx
 ```shel
 sudo systemctl reload nginx
 ```
+
+{{% notice tip %}}
+Configuring TSL is complext and easy to get wrong.  Standards change and config files are
+complex.  To work around this we recommend using either (or both) the
+[SSL Config Generator](https://mozilla.github.io/server-side-tls/ssl-config-generator/) from
+Mozilla or [Cipherli.st](https://cipherli.st/).  These sites, as well as
+[nginxconfig](https://nginxconfig.io) mentioned earlier, help you choose the proper and most
+secure configuration possible.  It's important to also put a recurring notice in your calendar
+to force a periodic review of these settings, they change quite a bit over time!
+{{% /notice %}}
 
 #### Getting the initial certificate
 
@@ -220,4 +252,3 @@ Start from the template for letsencrypt above, then edit the following lines
 ssl_certificate /path/to/your/public_key_fullchain.pem;
 ssl_certificate_key /path/to/your/cert_private_key.pem;
 ```
-
