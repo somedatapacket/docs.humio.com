@@ -100,22 +100,7 @@ location /internal/humio {
 If you're not an nginx expert then we recommend reading the docs and trying out the
 configuration wizard at [nginxconfig](https://nginxconfig.io) which helps to generate
 a well structured and complete nginx configuration.
-{{% notice %}}
-
-{{% notice tip %}}
-It's common to terminate TLS sessions at the load balancer, nginx in this case, and
-pass traffic on.  To force clients to use the HTTPS endpoint add this `server` block
-to your configuration.
-
-```nginx
-server {
-  listen 80 default_server;
-  listen [::]:80 default_server;
-  server_name _;
-  return 301 https://$host$request_uri;
-}
-```
-{{% notice %}}
+{{% /notice %}}
 
 ### Adding TLS to nginx using letsencrypt
 
@@ -128,6 +113,21 @@ documentation for that proxy on how to enable TLS. The letsencrypt
 parts here will likely be the same regardless of proxy, except perhaps
 the command that need executing to get the proxy to reload the
 certificate files
+
+#### Configuring nginx to redirect traffic from HTTP to HTTPS
+
+It's common to require an HTTPS connection rather than HTTP.  If you are using
+nginx this is quite easy to do, simply add this `server` block to your
+configuration.
+
+```nginx
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  server_name _;
+  return 301 https://$host$request_uri;
+}
+```
 
 #### Configuring nginx to use the certificate from letsencrypt
 
