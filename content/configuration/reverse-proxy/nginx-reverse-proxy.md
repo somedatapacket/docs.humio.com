@@ -1,30 +1,6 @@
 ---
-title: Reverse Proxy Setup
+title: NGINX reverse proxy
 ---
-
-It is possible to put Humio behind a proxy server. You can use any
-reverse proxy you want, as long as it can keep the connection from the
-browser to Humio "Sticky" towards the same Humio node, at least as
-long as that node is alive if you have multiple Humio nodes in a
-clustered setup.
-
-### Sharing query results across users
-
-If two or more users or dashboards execute the same query then Humio
-can make them all share the same search internally, provided the same
-Humio node in the cluster is being used as the http endpoint from
-those browsers. To help achieve this the humio UI adds a header named
-`Humio-Query-Session` to search requests that one can use as the input
-to select the desired backend server in your load balancer. Only
-searches have this header, as all other requests can ask any of the
-Humio backends in the cluster. (The header was added in Humio version
-1.2.10.)
-
-{{% notice warning %}}
-It is important that the proxy does not rewrite urls, when forwarding to Humio.
-{{% /notice %}}
-
-## Example setup using nginx
 
 For this example the proxy server will accept all request at `http://example.com`
 and expose Humio on `http://example.com/internal/humio/`.
@@ -62,7 +38,7 @@ If it is not feasible for you to add the header `X-Forwarded-Prefix` in your pro
 there is a fall-back solution: You can set `PROXY_PREFIX_URL` in
 your `/home/humio/humio-config.env`.
 
-#### Example for a cluster with multiple hosts
+## Example for a cluster with multiple hosts
 
 ```nginx
 upstream humio-backends {
@@ -102,7 +78,7 @@ configuration wizard at [nginxconfig](https://nginxconfig.io) which helps to gen
 a well structured and complete nginx configuration.
 {{% /notice %}}
 
-### Adding TLS to nginx using letsencrypt
+## Adding TLS to nginx using letsencrypt
 
 If you turn on authentication in Humio we recommend that you also run
 the Humio UI on TLS only and not on plain HTTP. This section shows an
@@ -114,7 +90,7 @@ parts here will likely be the same regardless of proxy, except perhaps
 the command that need executing to get the proxy to reload the
 certificate files
 
-#### Configuring nginx to redirect traffic from HTTP to HTTPS
+### Configuring nginx to redirect traffic from HTTP to HTTPS
 
 It's common to require an HTTPS connection rather than HTTP.  If you are using
 nginx this is quite easy to do, simply add this `server` block to your
@@ -129,7 +105,7 @@ server {
 }
 ```
 
-#### Configuring nginx to use the certificate from letsencrypt
+### Configuring nginx to use the certificate from letsencrypt
 
 The following snippet sets up nginx to use the certificate issued and
 renewed above and tells nginx to use port 443 for TLS connections, and
@@ -192,7 +168,7 @@ secure configuration possible.  It's important to also put a recurring notice in
 to force a periodic review of these settings, they change quite a bit over time!
 {{% /notice %}}
 
-#### Getting the initial certificate
+### Getting the initial certificate
 
 Issue the certificate using letsencrypt. The letsencrypt servers must
 be able to lookup the name in DNS and get in touch with the server
@@ -205,7 +181,7 @@ certificates)
 sudo letsencrypt certonly -a webroot --webroot-path=/var/www/html -m "${YOUR_EMAIL}" --agree-tos --domains "${FQDN}"
 ```
 
-#### Auto-renewal through letsencrypt
+### Auto-renewal through letsencrypt
 The following snippet sets up a crontab entry that checks if the certificate needs renewal and renews it if needed. If the certificate is renewed then nginx gets reloaded to use the new certificate.
 
 ```shell
@@ -216,7 +192,7 @@ EOF
 chmod 755 /etc/cron.weekly/humio-letsencrypt
 ```
 
-#### nginx inside a docker container
+### nginx inside a docker container
 
 The above examples assume that nginx was running as a plain
 systemd-controlled on the host system. If you plan to run nginx inside
@@ -244,7 +220,7 @@ EOF
 chmod 755 /etc/cron.weekly/humio-letsencrypt
 ```
 
-### Adding TLS to nginx using a certificate from other providers.
+## Adding TLS to nginx using a certificate from other providers.
 
 Start from the template for letsencrypt above, then edit the following lines
 
