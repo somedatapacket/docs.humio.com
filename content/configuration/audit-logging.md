@@ -65,3 +65,12 @@ Regardless of value of ENFORCE_AUDITABLE Humio users with root role can always:
 * Add users to a repository and remove users from a repository, and change their permissions on the repository. This includes adding the root user it self to a repository.
 * Perform cluster related administration tasks, such as adding and deleting servers.
 * Manage ingest listeners and tokens.
+
+
+## Searching the events in the audit log
+
+Special access restrictions apply. A user can get access to search the
+`humio-audit` repo using the same set of rules as any other repo. But
+any user who does not have access through those rules can search the
+repo while being restricted to searching only the events that has said
+user as the "actor" that did the event.
