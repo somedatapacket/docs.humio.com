@@ -61,10 +61,16 @@ filebeat.inputs:
   fields:
     aField: value
 
+queue.mem:
+  events: 8000
+  flush.min_events: 1000
+  flush.timeout: 1s
+
 output:
   elasticsearch:
     hosts: ["$BASEURL/api/v1/ingest/elastic-bulk"]
-    username: $INGEST_TOKEN
+    username: anything
+    password: $INGEST_TOKEN
     compression_level: 5
     bulk_max_size: 200
     worker: 1
@@ -86,7 +92,7 @@ You must make the following changes to the sample configuration:
   Note that the URL specifies the repository that Humio sends events to.
   In the example, the URL points to Humio in the cloud, which is fine if you are using our hosted service.  
   It is important to specify the port number in the URL otherwise Filebeat defaults to using 9200.
-* Insert an [ingest token]({{< relref "ingest-tokens.md" >}}) from the repository as the username.
+* Insert an [ingest token]({{< relref "ingest-tokens.md" >}}) from the repository as the password. Set the username to anything - it will get logged in the access log of any proxy on the path so using e.g. the hostname of the sender is a good option.
 
 * Specify the text encoding to use when reading files using the `encoding` field.
   If the log files use special, non-ASCII characters, then set the encoding here. For example, `utf-8` or `latin1`.
@@ -97,7 +103,7 @@ You must make the following changes to the sample configuration:
   (Note! The Humio cloud on cloud.humio.com does limit requests to 32 MB. If you go above this limit, you will get "Failed to perform any bulk index operations: 413 Request Entity Too Large"
   if a request ends up being too large, measured in bytes, not in number of events. If this happens, lower bulk_max_size as filebeat will otherwise keep retrying that request and not move on to other events.)
 
-* You may want to increase the number of worker instances (`worker`) from the default of 1 to (say) 4 to achieve more throughput if filebeat is not able to keep up with the inputs. If increasing bulk_max_size is possible then do that instead, or increase both.
+* You may want to increase the number of worker instances (`worker`) from the default of 1 to (say) 5 or 10 to achieve more throughput if filebeat is not able to keep up with the inputs. If increasing bulk_max_size is possible then do that too.
 
 An important next step is [choosing a parser for your filebeat events]({{< relref "filebeat.md#parsing-data" >}}).
 
@@ -218,10 +224,16 @@ filebeat:
         negate: true
         match: after
 
+queue.mem:
+  events: 8000
+  flush.min_events: 1000
+  flush.timeout: 1s
+
 output:
   elasticsearch:
     hosts: ["https://cloud.humio.com:443/api/v1/ingest/elastic-bulk"]
-    username: "ingest-token"
+    username: from-me
+    password: "some-ingest-token"
     compression_level: 5
     bulk_max_size: 200
     worker: 1
