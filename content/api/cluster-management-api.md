@@ -393,12 +393,20 @@ datasources that have a non-empty value for that field and filter the events to 
 
 For non-grouped tag fields, using a wildcard at either end of the value string to match is efficient.
 
-Humio also support auto-grouping of tags using the configuration variables
-`MAX_DISTINCT_TAG_VALUES` (default is `1000`) and `TAG_HASHING_BUCKETS` (default is `16`).
-When an event arrive with a tag field with a new value, the number of distinct
-values for the tag is checked against `MAX_DISTINCT_TAG_VALUES`.
-It this threshold is exceeded, a new grouping rule is added with the modulus set
-to the value set in `TAG_HASHING_BUCKETS`.
+Humio also support auto-grouping of tags using the configuration
+variables `MAX_DISTINCT_TAG_VALUES` (default is `1000`) and
+`TAG_HASHING_BUCKETS` (default is `16`).  Humio checks the number of
+distinct values for each key in each tag combination against
+`MAX_DISTINCT_TAG_VALUES` at regular intervals.  It this threshold is
+exceeded, a new grouping rule is added with the modulus set to the
+value set in `TAG_HASHING_BUCKETS`. But only if there is no rule for
+that tag key. You can thus configure rules using the API above and
+decide the number of buckets there. This is preferable to
+auto-detecting, as the auto-detection works after the fact and thus
+leaves a large number of unused datasources that will need to get
+deleted by retention at some point. The auto-grouping support is meant
+as a safety measure to avoid suddenly creating many datasources by
+mistake for a single tag key.
 
 IF you happen to read this and is using a hosted Humio instance, please contact support
 if you wish to add grouping rules to your repository.
