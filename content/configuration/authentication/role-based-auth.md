@@ -194,10 +194,8 @@ In addition to the `views` section key you can create a section called `defaults
 ```
 {
   "defaults" : {
-     "humio-audit" : {
-         "CN=Admins,OU=Security Groups,OU=serverusers,DC=humio,DC=com" : {
-            "queryPrefix" : "*"
-         }
+     "CN=Admins,OU=Security Groups,OU=serverusers,DC=humio,DC=com" : {
+        "queryPrefix" : "*"
      }
   },
   "views" : {
