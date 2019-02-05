@@ -145,7 +145,6 @@ Currently, we only support this model; a future release will enable editig these
         "GROUP1" : {
 	    "queryPrefix": "QUERY1",
 	    "canEditDashboards": true,
-        "
 	}
         "GROUP2" : {
 	    "queryPrefix": "QUERY2",
