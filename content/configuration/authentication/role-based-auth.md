@@ -98,9 +98,9 @@ graph LR;
   end
   
   subgraph Repository-Permissions
-    G1 --> P1["queryPrefix: *<br>canEditDashboard"]
+    G1 --> P1["queryPrefix: *<br>canEditDashboards"]
     G2 --> P2["queryPrefix: Restricted=N"]
-    G3 --> P3["queryPrefix: *<br>canEditDashboard<br>canEditSavedQueries<br>canManageIngestTokens<br>canEditParsers<br>canEditRepositoryPermissions"]
+    G3 --> P3["queryPrefix: *<br>canEditDashboards<br>canEditQueries<br>canWriteEvents<br>canEditParsers<br>canEditMembers"]
   end
 
   subgraph Repo
@@ -123,17 +123,18 @@ The "Repository-Permissions" can come from multiple sources, depending on config
 
 All Repository permissions on a view can be edited by a user if that
 user is member of a group related to that view that has
-`canEditRepositoryPermissions` on that relation. In the examples above
+`canEditMembers` on that relation. In the examples above
 that is members of the group `bofh`.
 
 #### Setting up Authorization Rules from a file
 
-Setting up authorization rules is currently done via a JSON file placed on any one of the nodes in the Humio cluster.  The file should be named `humio-data/view-role-prefix-auth.json`, containing a JSON structure like described below.
+Setting up authorization rules is currently done via a JSON file placed on any one of the nodes in the Humio cluster.  The file should be named `humio-data/view-group-permissions.json`, containing a JSON structure like described below.
 
 This config must be set on all nodes, as all nodes must run the same authentication configuration.
 ```
-PREFIX_AUTHORIZATION_ENABLED=true
+READ_GROUP_PERMISSIONS_FROM_FILE=true
 ```
+(In previous releases, this was named `PREFIX_AUTHORIZATION_ENABLED`)
 
 Currently, we only support this model; a future release will enable editig these rules in the UI.
 
@@ -141,21 +142,22 @@ Currently, we only support this model; a future release will enable editig these
 {
   "views" : {
      "REPO1" : {
-        "ROLE1" : {
+        "GROUP1" : {
 	    "queryPrefix": "QUERY1",
-	    "canEditDashboard": true
+	    "canEditDashboards": true,
+        "
 	}
-        "ROLE2" : {
+        "GROUP2" : {
 	    "queryPrefix": "QUERY2",
-	    "canEditDashboard": false
+	    "canEditDashboards": false
 	}
      },
       
      "REPO2" : {
-        "ROLE2" : {
+        "GROUP2" : {
 	    "queryPrefix": "QUERY3"
 	}
-        "ROLE3" : {
+        "GROUP3" : {
 	    "queryPrefix": "QUERY4"
 	}
      },
@@ -167,8 +169,9 @@ Currently, we only support this model; a future release will enable editig these
 
 This means that 
 
-- if a user is in `"ROLE1"` then the user has access to `"REPO1"`, and anything he or she does is limited to data that matches the query `"QUERY1"`. 
-- if a user is in `"ROLE2"` then the user has access to `"REPO1"` and `"REPO2"`, and anything he or she does in `REPO1` is limited to data that matches the query `"QUERY2"`, whereas anything he or she does in `REPO2` is limited to data that matches the query `QUERY3`.
+- if a user is in `"GROUP1"` then the user has access to `"REPO1"`, and anything he or she does is limited to data that matches the query `"QUERY1"`. 
+- if a user is in `"GROUP2"` then the user has access to `"REPO1"` and `"REPO2"`, and anything he or she does in `REPO1` is limited to data that matches the query `"QUERY2"`, whereas anything he or she does in `REPO2` is limited to data that matches the query `QUERY3`.
+- a user in `"GROUP3"`  can only search `"REPO2"`, and only such data that matches the query `QUERY4`.
 
 The file `humio-data/view-role-prefix-auth.json` is re-read every 30 seconds.  It is recommended to just put it on only one of the servers.
 
@@ -178,23 +181,50 @@ The query `"*"` gives access to all data, so here is an example where a user in 
 {
    "views" : {
      "humio-audit" : {
-       "CN=Admins,OU=Security Groups,OU=serverusers,DC=humio,DC=com" : "*"
+     "CN=Admins,OU=Security Groups,OU=serverusers,DC=humio,DC=com" : {
+           "queryPrefix" : "*"
+        }
      } 
   }
 }
 ```
 
-In addition to the `views` section key you can create a section called `global` in order to reference all views.
+In addition to the `views` section key you can create a section called `defaults` in order provide default values that apply in all views.  
 
 ```
 {
-   "views" : {
-    ...
-  },
-  "global" : {
+  "defaults" : {
      "humio-audit" : {
-       "CN=Admins,OU=Security Groups,OU=serverusers,DC=humio,DC=com" : "*"
+         "CN=Admins,OU=Security Groups,OU=serverusers,DC=humio,DC=com" : {
+            "queryPrefix" : "*"
+         }
      }
+  },
+  "views" : {
+    ...
   }
 }
 ```
+
+### Permissions
+
+| permission | description |
+|---|---|
+| `canEditMembers`|  Allow editing members of this view/repo and assign them permissions  |
+| `canEditAlerts`| Allow creating and updating alerts  |
+| `canEditDashboards`|  Allow creating and updating dashboards |
+| `canEditFiles`|  Allow creating and updating uploaded CSV 'filed' |
+| `canEditParsers`| Allow creating and updating parsers  |
+| `canEditQueries`|  Allow creating and updating saved queries |
+| `canEditIngestListeners`|  Allow creating and updating ingest listeners  |
+| `canDeleteEvents`| The ability to be able to delete events  |
+| `canEditRetention`| Allow editing retention on a repository  |
+| `canDeleteDatasources`|  Allow deleting data sources |
+| `canDeleteDataspace`|  Allow deletion of repositories and views |
+| `canChangeDeleteEventsPermission`|  Special permission needed to be able to assign the  permissions (deleteEvent, deleteDatasource, deleteDataspace and editRetention).  |
+| `canEditSearchSettings`| Allow editing the default search query and time interval  |
+| `canEditS3Archiving`| Allow editing the configuration for S3 archiving |
+| `canConnectView`| Allow creation of views that involve connecting to this view |
+| `canReadEvents`| Allow reading data (this defaults to `true` if the query prefix is anything but `"false"`. |
+| `canWriteEvents`| Allow creating and editing ingest tokens |
+
