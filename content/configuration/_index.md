@@ -199,11 +199,29 @@ HUMIO_JVM_ARGS=-XX:+UseParallelOldGC -Xss2M
 ```
 
 ## Number of CPU Cores
-You can specify the number of processors for the machine running Humio by
-setting the `CORES` property. Humio uses this number when parallelizing queries.
 
-By default, Humio uses the Java [available processors function](https://docs.oracle.com/javase/9/docs/api/java/lang/Runtime.html#availableProcessors--)
-to get the number of CPU cores. This is usually the optimal number.
+You can specify the number of processors for the machine running Humio
+by setting the `CORES` property. Humio uses this number when
+parallelizing queries and other internal tasks.
+
+By default, Humio uses the Java [available processors
+function](https://docs.oracle.com/javase/9/docs/api/java/lang/Runtime.html#availableProcessors--)
+to get the number of CPU cores. This is usually the optimal number. Be
+aware that the auto-detected number can be too high when running in a
+containerized environment where JVM does not always detect the proper
+number of cores.
+
+Derived from the number of CPU cores, Humio internally sets
+`QUERY_EXECUTOR_CORES` and `DIGEST_EXECUTOR_CORES` to half that number
+(but minimum of 2) to reduce pressure on context switching due to
+hyper-threading since the numer of CPU cores usually include
+hyper-threads. If the number of cores set through CORES is number of
+actual physical cores and not hyperthreads, you may want to set these
+to the same number as CORES.  Note that raising this number above the
+default may lead to an unstable and slow system due to context
+switching costs growing to a point where no real work gets done when
+the system gets loaded, while it may appear to work fine when not
+fully utilized.
 
 ## Configuring Authentication
 
