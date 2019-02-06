@@ -493,25 +493,6 @@ release - that is why we put parentheses at the end.
 $"My Saved Query"() | $filterOutFalsePositive() | ...
 ```
 
-<!---
-Saved queries can also have arguments.  These are identified as
-`?{arg="foo"}` which gives the query parameter `arg` the default value `foo`.
-Arguments can be used anywhere a string, number or identifier is allowed.
-
-Now, when you invoke a saved query as a macro, you can pass new values for the
-arguments.  You do this like this:
-
-```
-$"saved query name"(arg1=value, arg2=value, ...) | ...
-```
-
-or the more programming-language like:
-
-```
-$SavedQueryName(arg1=value, arg2=value, ...) | ...
-```
--->
-
 ## Comments
 
 Queries can have comments.  This is useful for long multi-line queries,
