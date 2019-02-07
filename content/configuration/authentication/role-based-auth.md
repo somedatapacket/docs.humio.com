@@ -20,7 +20,7 @@ Except for "root access", all authorization in humio is based on group memberhip
 
 ### Group memberships
 
-A user may be member of zero or more groups. Users not member of any groups can login but can not access anything but the personal sandbox and the system repos that provide access to data on thrie own actions and metrics.
+A user may be member of zero or more groups. Users not member of any groups can login but can not access anything but the personal sandbox and the system repos that provide access to data on their own actions and metrics.
 
 The group memberships usually stem from an external directory, such as
 your LDAP tree or similar. It is also possible to edit the group
@@ -43,7 +43,7 @@ graph LR;
   subgraph Groups
     A1 --> P1["WebLog-users"]
     A2 --> P2["Backend-users"]
-    A3 --> P3["bofh"]
+    A3 --> P3["both"]
            P4["audit-logs"]
   end
 {{< /mermaid >}}
