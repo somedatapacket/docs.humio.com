@@ -6,7 +6,7 @@ Humio supports Role based authentication and access control (RBAC). This enables
 Roles can be defined in Humio or in external systems and integrated with through SAML and LDAP. 
 
 
-We we use the strict distinction that "authentication" is the subject
+We use the strict distinction that "authentication" is the subject
 of establishing the identity of the user only, and "authorization" is
 the subject of deciding which actions a (authenticated) user may
 perform.
@@ -20,7 +20,7 @@ Except for "root access", all authorization in humio is based on group memberhip
 
 ### Group memberships
 
-A user may be member of zero or more groups. Users not member of any groups can login but can not access anything but the personal sandbox.
+A user may be member of zero or more groups. Users not member of any groups can login but can not access anything but the personal sandbox and the system repos that provide access to data on thrie own actions and metrics.
 
 The group memberships usually stem from an external directory, such as
 your LDAP tree or similar. It is also possible to edit the group
@@ -52,7 +52,7 @@ graph LR;
 
 Group memberships can be edited using the Humio UI. But for most use cases it makes more sense to automatically generate the memberships from an external source tied to the authentication mechanism being applied.
 
-In order for the login mechanism to capture the roles from the authentication mechanism, the follwing configurations must be set:
+In order for the login mechanism to capture the roles from the authentication mechanism, the following configuration must be set:
 
 ```
 AUTO_UPDATE_GROUP_MEMBERSHIPS_ON_SUCCESSFUL_LOGIN=true
@@ -73,7 +73,7 @@ LDAP_GROUP_FILTER="(& (objectClass=group) (member:1.2.840.113556.1.4.1941:={0}))
 
 Once setup, a user can see his or her assigned roles in the *Account Settings* pane.
 
-It is also useful to set the following, which creates the user inside Humio once a successful login is established.  That way, operators do not have to add inidividual users.
+It is also useful to set the following, which creates the user inside Humio once a successful login is established.  That way, operators do not have to add individual users.
 
 ```
 AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN=true
@@ -86,7 +86,7 @@ With the auto-create user option (and role-based authorization enabled) the user
 
 All access to views and repositories is governed by roles. All access
 to objects related to a repository such as dashboards and alerts are
-checked against the roles of the current user on the repository.
+checked against the roles of the current user in the repository.
 
 <figure>
 {{<mermaid align="center">}}
@@ -116,7 +116,7 @@ graph LR;
 The "Repository-Permissions" can come from multiple sources, depending on configuration.
 
 * They can be imported from a file by a job inside Humio that runs at short intervals to refresh them.
-* They can be editd in the UI, if your user has "Root access" or the required permission on the Repository.
+* They can be edited in the UI, if your user has "Root access" or the required permission on the Repository.
 * They can be updated from an external system by interacting with the same API that the UI uses when editing.
 
 #### Who can edit Repository-Permissions
@@ -136,7 +136,7 @@ READ_GROUP_PERMISSIONS_FROM_FILE=true
 ```
 (In previous releases, this was named `PREFIX_AUTHORIZATION_ENABLED`)
 
-Currently, we only support this model; a future release will enable editig these rules in the UI.
+Currently, we only support this model; a future release will enable editing these rules in the UI.
 
 ```
 {
@@ -172,7 +172,7 @@ This means that
 - if a user is in `"GROUP2"` then the user has access to `"REPO1"` and `"REPO2"`, and anything he or she does in `REPO1` is limited to data that matches the query `"QUERY2"`, whereas anything he or she does in `REPO2` is limited to data that matches the query `QUERY3`.
 - a user in `"GROUP3"`  can only search `"REPO2"`, and only such data that matches the query `QUERY4`.
 
-The file `humio-data/view-role-prefix-auth.json` is re-read every 30 seconds.  It is recommended to just put it on only one of the servers.
+The file `humio-data/view-group-permissions.json` is re-read every 30 seconds.  It is recommended to just put it on only one of the servers.
 
 The query `"*"` gives access to all data, so here is an example where a user in the LDAP group `CN=Admins,OU=Security Groups,OU=serverusers,OU=User administration,DC=humio,DC=com` is given all-access to the `humio-audit` repository.
 
