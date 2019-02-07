@@ -1,4 +1,4 @@
-RELEASE?=1.2.12
+RELEASE?=1.3.0
 
 
 clean:
