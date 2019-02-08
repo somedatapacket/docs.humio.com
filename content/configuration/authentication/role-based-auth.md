@@ -144,8 +144,8 @@ Currently, we only support this model; a future release will enable editing thes
      "REPO1" : {
         "GROUP1" : {
 	    "queryPrefix": "QUERY1",
-	    "canEditDashboards": true,
-	}
+	    "canEditDashboards": true
+	},
         "GROUP2" : {
 	    "queryPrefix": "QUERY2",
 	    "canEditDashboards": false
@@ -155,7 +155,7 @@ Currently, we only support this model; a future release will enable editing thes
      "REPO2" : {
         "GROUP2" : {
 	    "queryPrefix": "QUERY3"
-	}
+	},
         "GROUP3" : {
 	    "queryPrefix": "QUERY4"
 	}
