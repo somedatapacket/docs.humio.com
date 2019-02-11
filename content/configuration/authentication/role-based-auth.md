@@ -203,6 +203,24 @@ In addition to the `views` section key you can create a section called `defaults
 }
 ```
 
+The query `false` gives block to all data. For example you may want to block off access to `humio-audit` for generic users.
+```
+{
+  "defaults" : {
+     "CN=Admins,OU=Security Groups,OU=serverusers,DC=humio,DC=com" : {
+        "queryPrefix" : "*"
+     }
+  },
+   "views" : {
+     "humio-audit" : {
+     "OU=serverusers,DC=humio,DC=com" : {
+           "queryPrefix" : false
+        }
+     } 
+  }
+}
+```
+
 ### Permissions
 
 | permission | description |
