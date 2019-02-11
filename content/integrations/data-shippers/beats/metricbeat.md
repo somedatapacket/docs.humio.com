@@ -125,7 +125,7 @@ queries, such as the following examples:
 | system.diskio.read.bytes=*
 | timechart(
    series=system.diskio.name,
-   function=counterrate(system.diskio.read.bytes), span=1m
+   function=counterAsRate(system.diskio.read.bytes), span=1m
   )
 ```
 
