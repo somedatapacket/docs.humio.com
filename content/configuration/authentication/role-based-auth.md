@@ -203,7 +203,12 @@ In addition to the `views` section key you can create a section called `defaults
 }
 ```
 
-The query `false` gives block to all data. For example you may want to block off access to `humio-audit` for generic users.
+The query `false` gives block to all data. For example you may want to
+block off access to `humio-audit` for generic users. Note that not
+listing any rules for humio-audit allows users to query just their own
+actions - this build-in rule gets overriden by the below example that
+completely blocks access to the audit log.
+
 ```
 {
   "defaults" : {
