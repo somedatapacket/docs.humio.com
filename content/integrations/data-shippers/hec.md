@@ -69,3 +69,8 @@ curl $BASEURL/api/v1/ingest/hec \
  -H "Authorization: Bearer $API_TOKEN" \
   --data "@events.json"
 ```
+You must make the following changes to the sample configuration:
+
+* Add other fields in the fields section. These fields, and their values, will be added to each event.
+
+* Insert the URL containing the Humio host in the `$BASEURL` field . For example `https://cloud.humio.com`
