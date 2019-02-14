@@ -486,7 +486,8 @@ The events then get an extra tag, `#humioAutoShard` that is assigned a random in
 
 This is configured through the settings `AUTOSHARDING_TRIGGER_DELAY_MS`, which is compared to the time an event spends in the ingest pipeline inside Humio.
 When the delay threshold is exceeded, the number of shards on that datasource (combination of tags) is doubled.
-The default value for `AUTOSHARDING_TRIGGER_DELAY_MS` is 60000 ms (60 seconds).
+The default value for `AUTOSHARDING_TRIGGER_DELAY_MS` is 5000 ms (5 seconds).
+The delay needs to be increasing as well, as noted two times in a row at an interval of `AUTOSHARDING_CHECKINTERVAL_MS` which defaults to 20000 (20 seconds).
 
 The setting `AUTOSHARDING_MAX` controls how many different datasources get created this way for each "real" datasource. Default value is 128. Internally, the number of cores and hosts reading from the ingest queue is also taken into consideration, aiming at not creating more shards than totoal number of cores in the ingest part of the cluster.
 

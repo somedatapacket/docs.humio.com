@@ -84,8 +84,17 @@ MAX_DATASOURCES=10000
  COMPRESSION_LEVEL=9
 
 # (Approximate) limit on the number of hours a segment file can be open for writing
-# before being flushed even if it is not full.
-MAX_HOURS_SEGMENT_OPEN=720
+# before being flushed even if it is not full. (Full is set using BLOCKS_PER_SEGMENT)
+# Default: version < 1.4.x had 720, 1.4.x has 24
+MAX_HOURS_SEGMENT_OPEN=24
+
+# How long can a mini-segment stay open. How long back is a fail-over likely to go?
+FLUSH_BLOCK_SECONDS=1800
+
+# Desired number of blocks (each ~1MB before compression) in a final segment after merge
+# Segments will get closed earlier if expried due to MAX_HOURS_SEGMENT_OPEN.
+BLOCKS_PER_SEGMENT=2000
+
 
 # Let Humio send emails using the Postmark service
 # Create a Postmark account and insert the token here
