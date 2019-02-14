@@ -74,3 +74,5 @@ You must make the following changes to the sample configuration:
 * Add other fields in the fields section. These fields, and their values, will be added to each event.
 
 * Insert the URL containing the Humio host in the `$BASEURL` field . For example `https://cloud.humio.com`
+
+* `$INGEST_TOKEN` - is the [ingest token](/sending-data-to-humio/ingest-tokens/) for your repository, (e.g. a string such as `fS6Kdlb0clqe0UwPcc4slvNFP3Qn1COzG9DEVLw7v0Ii`).
