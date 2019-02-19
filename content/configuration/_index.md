@@ -154,7 +154,7 @@ S3_ARCHIVING_SECRETKEY=$SECRET_KEY
 # set this parameter to true - then users are automatically created in Humio when successfully logging with external authentication methods.
 # Users will not have access to any existing repositories except for a personal sandbox repository when they are created.
 # if false - users must be explicitly created in Humio before they can login.
-AUTO_CREATE_USER_ON_SUCCESSFULL_LOGIN=false
+AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN=false
 
 # Initial partition count for storage partitions.
 # Has effect ONLY on first start of first node in the cluster.

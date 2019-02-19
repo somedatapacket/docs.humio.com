@@ -50,7 +50,7 @@ AUTHENTICATION_METHOD=oauth
 PUBLIC_URL=$YOUR_SERVERS_BASE_URL
 GOOGLE_OAUTH_CLIENT_ID=$CLIENT_ID #The client_id from your Google OAuth App
 GOOGLE_OAUTH_CLIENT_SECRET=$CLIENT_SECRET The #client_secret your Google OAuth App
-AUTO_CREATE_USER_ON_SUCCESSFULL_LOGIN=true  # default is false
+AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN=true  # default is false
 ```
 
 Read more about [Configuring Humio]({{< relref "configuration/_index.md" >}})
@@ -75,7 +75,7 @@ AUTHENTICATION_METHOD=oauth
 PUBLIC_URL=$YOUR_SERVERS_BASE_URL
 GITHUB_OAUTH_CLIENT_ID=$CLIENT_ID # The client_id from your GitHub OAuth App
 GITHUB_OAUTH_CLIENT_SECRET=$CLIENT_SECRET # The client_secret your GitHub OAuth App
-AUTO_CREATE_USER_ON_SUCCESSFULL_LOGIN=true  # default is false
+AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN=true  # default is false
 ```
 
 Read more about [Configuring Humio]({{< relref "configuration/_index.md" >}})
@@ -105,7 +105,7 @@ AUTHENTICATION_METHOD=oauth
 PUBLIC_URL=$YOUR_SERVERS_BASE_URL
 BITBUCKET_OAUTH_CLIENT_ID=$CLIENT_ID # The Key from your BitBucket OAuth Consumer
 BITBUCKET_OAUTH_CLIENT_SECRET=$CLIENT_SECRET # The Secret your BitBucket OAuth Consumer
-AUTO_CREATE_USER_ON_SUCCESSFULL_LOGIN=true  # default is false 
+AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN=true  # default is false 
 ```
 
 Read more about [Configuring Humio]({{< relref "configuration/_index.md" >}})
