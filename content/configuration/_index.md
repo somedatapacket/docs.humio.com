@@ -95,6 +95,21 @@ FLUSH_BLOCK_SECONDS=1800
 # Segments will get closed earlier if expried due to MAX_HOURS_SEGMENT_OPEN.
 BLOCKS_PER_SEGMENT=2000
 
+# Select roles for node, with current options being "all" or
+# "httponly". The latter allows the node to avoid spending cpu time on
+# tasks that are irrelevant to a nodes that has never had any local
+# segments files and that will never any assigned either. Leave as
+# "all" unless the node is a stateless http frontend or ingest
+# listener only.
+NODE_ROLES=all
+
+# How long should the digest worker thread keep working on
+# flushing the contents of in-memory buffers when Humio is told to shut down
+# using "sigterm" (normal shutdown). Default to 300 seconds as millis.
+# If too low, then the next startup will need to start further back in
+# time on the ingest queue.
+#SHUTDOWN_ABORT_FLUSH_TIMEOUT_MILLIS=300000
+
 
 # Let Humio send emails using the Postmark service
 # Create a Postmark account and insert the token here
