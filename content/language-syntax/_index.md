@@ -153,9 +153,9 @@ named `200` and test if its value is `"statuscode"`.
 {{% /notice %}}
 
 {{% notice warning %}}
-If the specified field is not present in an event, then the comparison always fails.
+If the specified field is not present in an event, then the comparison always fails -- unless it is `!=`.
 You can use this behavior to match events that do not have a given field,
-using either `not (foo=*)` or the equivalent `foo!=*` to find events
+using either `not (foo = *)` or the equivalent `foo != *` to find events
 that do not have the field `foo`.
 {{% /notice %}}
 
