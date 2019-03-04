@@ -92,8 +92,14 @@ MAX_HOURS_SEGMENT_OPEN=24
 FLUSH_BLOCK_SECONDS=1800
 
 # Desired number of blocks (each ~1MB before compression) in a final segment after merge
-# Segments will get closed earlier if expried due to MAX_HOURS_SEGMENT_OPEN.
+# Segments will get closed earlier if expired due to MAX_HOURS_SEGMENT_OPEN.
+# Defaults to 2000.
 BLOCKS_PER_SEGMENT=2000
+
+# Desired number of blocks (each ~1MB before compression)
+# in a mini-segment before merge. Defaults to 64.
+# Mini-segments will get closed earlier if expired due to FLUSH_BLOCK_SECONDS
+#BLOCKS_PER_MINISEGMENT=64
 
 # Select roles for node, with current options being "all" or
 # "httponly". The latter allows the node to avoid spending cpu time on
@@ -170,6 +176,12 @@ S3_ARCHIVING_SECRETKEY=$SECRET_KEY
 # Users will not have access to any existing repositories except for a personal sandbox repository when they are created.
 # if false - users must be explicitly created in Humio before they can login.
 AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN=false
+
+# Allows disabling use of personal API tokens. This may be relevant when e.g.
+# ldap or saml is set as authentication mechanism, as the personl API tokens
+# never expire and thus allows a user to access Humio even when the ldap/saml
+# account has been closed or deleted. Defaults to true.
+# ENABLE_PERSONAL_API_TOKENS = true
 
 # Initial partition count for storage partitions.
 # Has effect ONLY on first start of first node in the cluster.
