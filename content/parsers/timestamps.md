@@ -28,7 +28,7 @@ parseJson() | parseTimestamp("MM/dd/yyyy @ h:mma (z)", field=ts)
 ```
 
 Getting the timestamp format exactly right is important and can be difficult.
-Look at [Java's DateTimeFormatter documentation](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html)
+Look at [Java's DateTimeFormatter documentation](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html)
 for details on how to define the timestamp format.
 
 The default timestamp format used by `parseTimestamp` is [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601),
