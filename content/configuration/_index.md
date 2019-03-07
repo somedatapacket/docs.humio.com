@@ -68,6 +68,11 @@ KAFKA_DELETES_ALLOWED=false
 # Note the file must be mapped into Humio's Docker container - if running Humio as a Docker container
 EXTRA_KAFKA_CONFIGS_FILE=extra_kafka_properties.properties
 
+#Add a prefix to the topic names in Kafka. 
+#Adding a prefix is recommended if you share the Kafka installation with applications other than Humio
+# The default is not to add a prefix.
+HUMIO_KAFKA_TOPIC_PREFIX=
+
 # Zookeeper servers.
 # Defaults to "localhost:2181", which is okay for a single server system, but
 # should be set to a comma separated host:port pairs string.

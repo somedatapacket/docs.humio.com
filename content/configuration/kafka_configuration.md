@@ -13,7 +13,6 @@ In this section we briefly describe how Humio uses Kafka. Then we discuss how to
 Humio creates the following queues in Kafka:
 
 * [global-events]({{< ref "#global-events" >}})
-* [global-snapshots]({{< ref "#global-snapshots" >}})
 * [humio-ingest]({{< ref "#humio-ingest" >}})
 * [transientChatter-events]({{< ref "#transientChatter-events" >}})
 
@@ -35,14 +34,6 @@ No log data is saved to this queue. There should be a high number of replicas fo
 
 Default retention configuration: `retention.ms = 30 days`</br>
 Compression should be set to: `compression.type=producer`</br>
-
-### global-snapshots
-This is Humio's database snapshot queue. This queue will contain few but fairly large events, and has a pretty low throughput.
-No log data is saved to this queue. There should be a high number of replicas for this queue. Humio will raise the number of replicas on this queue to 3 if there are at least 3 brokers in the Kafka cluster.
-
-Default retention configuration: `retention.ms = 30 days`</br>
-Compression should be set to: `compression.type=producer`</br>
-Support compaction settings allowing Kafka to retain only the latest copy: `cleanup.policy=compact`</br>
 
 ### humio-ingest
 Ingested events are send to this queue, before they are stored in Humio. Humio's
@@ -151,29 +142,12 @@ The setting `retention.bytes` is per partition. By default Humio has 24 partitio
 {{% /notice %}}
 
 ## Kafka broker settings
-If your Humio instance has a lot of data then the "global-snapshots" topic requires large messages.
 If you use the Kafka brokers only for humio, you can configure the kafka brokers to allow large message on all topics. This example allows up to 100MB in each message. Note that larger sizes makes the brokers need more memory for replication.
 
 ```
-# setup to allow large messages - messages on "global-snapshots" can get big
-replica.fetch.max.bytes=104857600
-
 # max message size for all topics by default:
 message.max.bytes=104857600
 ```
-
-Another option is to configure the global-snapshots topic to allow larger messages on that topic only:
-
-```shell
-<kafka_dir>/bin/kafka-configs.sh --zookeeper $HOST:2181 --entity-name global-snapshots --entity-type topics --alter  --add-config max.message.bytes=104857600
-```
-
-If you have very large amounts of data (say petabytes) in Humio you may need to increase beyond 100MB.
-
-{{% notice note %}}
-If you run your own Kafka (i.e. not the one provided by Humio) you must increase the max.message.bytes on the global-snapshots topic as described above, or raise the default on your existing brokers.
-{{% /notice %}}
-
 
 ### Default kafka.properties file
 
@@ -193,14 +167,7 @@ broker.id=0
 
 ############################# Socket Server Settings #############################
 
-listeners=PLAINTEXT://localhost:9092
-        
-##setup to allow large messages - our snapshots can get big
-replica.fetch.max.bytes=104857600
-
-#max message size
-message.max.bytes=104857600
-
+listeners=PLAINTEXT://localhost:9092 
 #use compression
 compression.type=producer
 
