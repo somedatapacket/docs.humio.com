@@ -7,9 +7,8 @@ when selecting and configuring the JVM for Humio.
 
 ## Which JVM?
 
-Humio runs on Java 11.  
-Of the many excellent and well tested distributions
-of the Java JVM runtime we test and recommend the use of one of these:
+Humio requires Java 11.  We recommend one of the following excellent and well tested distributions
+of the Java JVM runtime.
 
 ### Java Version 11
 
@@ -24,14 +23,14 @@ of the Java JVM runtime we test and recommend the use of one of these:
 
 
 At Humio we operate Humio's [hosted offering](https://cloud.humio.com/) using the Azul provided Zulu JVM
-version 11 as it is well tested, maintained and stable OpenJDK distribution.  We are also very impressed with the
+version 11 as it is well tested, maintained and stable OpenJDK distribution.  We are also impressed with the
 BellSoft provided Liberica distribution and are happy to see it support ARMv8 as well as Intel CPUs.
 
 
 ## What about...
 
  * Azul Zing - While we haven't tried Zing ourselves our experience with Zulu leads us to believe that it is likely to work and there may be benefits to using their proprietary, commercially supported C4 concurrent, non-generational garbage collector.
- * Oracle Graal - Is an interesting alternative C2 HotSpot JIT and native binary compiler for Java programs and potentially other languages as well.  It is not yet supported for production use with Humio as it is only available for Java feature level 8.  We plan to investigate and support it as it matures and becomes available for Java 11.
+ * Oracle Graal - Is an interesting alternative C2 HotSpot JIT and native binary compiler for Java programs and potentially other languages as well.  It is not yet supported for production use with Humio as it is only available for Java version 8.  We plan to investigate and support it as it matures and becomes available for Java 11.
  * Java 12 - We have yet to test and certify Humio on any Java 12 JVM however we plan to do this soon after it becomes generally available.
 
 ## Garbage Collection
@@ -39,7 +38,7 @@ BellSoft provided Liberica distribution and are happy to see it support ARMv8 as
 Here are some sample configurations.  We have seen good results running the G1 collector in production here shown with a 10GiB heap.
 This configuration works on Java 11.
 ```bash
-java -server -Xms10g  -Xmx10g -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC
+java -server -Xms10g  -Xmx10g -Xss2M -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC
 ```
 
 At this time we recommend using the Garbage First collector in production (`G1GC`), however as of Java 12 there will be two fully concurrent, non-generational collectors with excellent potential for Humio workloads:
