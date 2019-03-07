@@ -241,7 +241,7 @@ by setting the `CORES` property. Humio uses this number when
 parallelizing queries and other internal tasks.
 
 By default, Humio uses the Java [available processors
-function](https://docs.oracle.com/javase/9/docs/api/java/lang/Runtime.html#availableProcessors--)
+function](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Runtime.html#availableProcessors())
 to get the number of CPU cores. This is usually the optimal number. Be
 aware that the auto-detected number can be too high when running in a
 containerized environment where JVM does not always detect the proper
