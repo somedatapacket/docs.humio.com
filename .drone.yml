@@ -18,15 +18,6 @@ pipeline:
     when:
       branch: master
 
-  docker-build-preview:
-    image: plugins/docker
-    secrets: [ docker_username, docker_password ]
-    repo: humio/docs
-    tags:
-      - ${DRONE_BRANCH/\//-}-${DRONE_BUILD_NUMBER}
-    when:
-      branch: master
-
   deploy-master:
     image: e20co/drone-marathon
     server: http://marathon.mesos:8080
