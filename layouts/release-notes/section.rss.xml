@@ -22,6 +22,7 @@
                 &lt;h1/&gt;{{ .title }}&lt;/h1&gt;
                 {{ with .brief }} &lt;p&gt;{{ . | markdownify | htmlEscape | safeHTML }}&lt;/p&gt;{{ end }}
                 Version: {{ .version }}&lt;br/&gt;
+                Minimum old version: {{ .minimum_old_version }}&lt;br/&gt;
                 Data migrations: {{ .data_migrations }}&lt;br/&gt;
                 Configuration changes: {{ .configuration_changes | markdownify }}&lt;br/&gt;
                 Changelog: &lt;br/&gt;
