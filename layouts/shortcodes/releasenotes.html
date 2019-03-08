@@ -4,6 +4,7 @@
 <p>
     {{ .title }}<br/>
     Version: {{ .version}}<br/>
+    Minimun old version: {{ .minimum_old_version}}<br/>
     Data migrations: {{ .data_migrations }}<br/>
     Configuration changes: {{ .configuration_changes | markdownify }}<br/>
     {{ if .brief }}{{ .brief }}<br/> {{ end }}
