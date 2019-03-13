@@ -159,7 +159,7 @@ sudo systemctl reload nginx
 ```
 
 {{% notice tip %}}
-Configuring TSL is complext and easy to get wrong.  Standards change and config files are
+Configuring TLS is complex and easy to get wrong.  Standards change and config files are
 complex.  To work around this we recommend using either (or both) the
 [SSL Config Generator](https://mozilla.github.io/server-side-tls/ssl-config-generator/) from
 Mozilla or [Cipherli.st](https://cipherli.st/).  These sites, as well as
