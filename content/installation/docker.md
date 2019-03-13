@@ -75,7 +75,6 @@ That is possible like this: `-p 8080:8080`. But then you need to forward all
 the ports you configure Humio to use. By default Humio is only using port 8080.
 {{% /notice %}}
 
-
 {{% notice note %}}
 On a Mac there can be issues with using the host network (`--net=host`). In
 that case use `-p 8080:8080` to forward port 8080 on the host network to the Docker container.  
@@ -93,3 +92,8 @@ An example is adding `--detach --restart=always` to the above docker run:
 ```shell
 docker run ... --detach --restart=always
 ```
+
+{{% notice info %}}
+If you’re running the humio containers with a host with SElinux in `enforcing` mode - the container has to be started
+with the `--privileged` flag set.
+{{% /notice %}}
