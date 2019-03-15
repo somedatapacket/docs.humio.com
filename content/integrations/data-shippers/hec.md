@@ -7,7 +7,7 @@ categories_weight: -90
 
 Humio's HEC API is an alternative HTTP ingest endpoint.
 
-You will find it at `/api/v1/ingest/hec`.
+You will find it at `/api/v1/ingest/hec` and at `/services/collector`
 
 
 ### Format of data
