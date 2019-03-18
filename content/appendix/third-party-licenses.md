@@ -124,6 +124,7 @@ License | Dependency | Attribution
 [Apache License, Version 2](http://www.apache.org/licenses/LICENSE-2.0) | nc.com # ExponentialSmoothing # 1.0 | Copyright 2011 [Nishant Chandra](https://github.com/nchandra/ExponentialSmoothing)
 [Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html) | etherip.util.Hexdump | Derivative of single file. Copyright (c) 2012 Oak Ridge National Laboratory. Author: Kay Kasemir.
 [Go License](http://golang.org/LICENSE) | com.google.re2j # re2j # 1.2 | Copyright (C) 2018 by The Go Authors
+[BSD 3-Clause](https://github.com/ankurdave/part/blob/master/LICENSE) | com.ankurdave # part # 0.1 | Copyright (c) 2015, Armon Dadgar, Ankur Dave
 
 ## Elm/JS Dependencies
 
