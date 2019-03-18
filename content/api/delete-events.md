@@ -14,7 +14,7 @@ would be if an application by mistake had logged some secret into the
 log-stream. Or a customer exercising the rights under the GDPR laws to
 request all information on him/her to be deleted.
 
-The goal of the delete-events if *not* to save space or speed up the
+The goal of the delete-events is *not* to save space or speed up the
 searches for other records after the delete has completed. It is only
 here for the exceptional cases such as the above examples where a small
 fraction of the events must be deleted for legal or technical reasons.
@@ -43,5 +43,3 @@ of the delete in some other system.
 The Graphql mutation is `deleteEvents`, and the list of pending
 deletes being processed in the background is available under that name
 as well.
-
-
