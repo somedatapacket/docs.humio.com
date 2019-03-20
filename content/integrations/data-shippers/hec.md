@@ -34,7 +34,18 @@ You will need to provide a [Humio Ingest Token](https://docs.humio.com/sending-d
 
 The ingest token contains the name of the repository the data stored in, and ingested events will be stored in the repository corresponding to the ingest token.
 
-If the Humio configuration variable `ALLOW_CHANGE_REPO_ON_EVENTS=true` is set, then HEC allows ingest to any repository specified as `"index": "<repository-name>"` in the body of a message, as long as the ingest token is valid for any existing repository on the humio server.  This is a potential security issue on a public API endpoint, so this option should only be used inside a trusted environment.
+If the Humio configuration variable `ALLOW_CHANGE_REPO_ON_EVENTS=true`
+is set, then HEC allows ingest to any repository specified as
+`"index": "<repository-name>"` in the body of a message, as long as
+the ingest token is valid for any existing repository on the humio
+server. If the named repo does not exist then the event remains in the
+repo designated by the ingest token.
+
+This is a potential security issue on a public API endpoint, so this
+option should only be used inside a trusted environment. For the same
+reason this feature is not enabled on cloud.humio.com.
+
+This is a potential security issue on a public API endpoint, so this option should only be used inside a trusted environment.
 
 ### Example
 

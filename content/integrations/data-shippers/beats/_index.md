@@ -73,3 +73,19 @@ fields:
     service: user-service
     datacenter: dc-a
 ```
+
+
+### Ingesting to multiple repos using a single ingest token
+
+If the Humio configuration variable `ALLOW_CHANGE_REPO_ON_EVENTS=true`
+is set, then Humio allows ingest to any repository specified as `#repo
+= <repository-name>` in the tags of an event, as long as the ingest
+token is valid for any existing repository on the humio server. The
+`#repo` can also be set by the parser for the same effect as if the
+value was provided by the original shipper. If the named repo does not
+exist then the event remains in the repo designated by the ingest
+token.
+
+This is a potential security issue on a public API endpoint, so this
+option should only be used inside a trusted environment. For the same
+reason this feature is not enabled on cloud.humio.com.
