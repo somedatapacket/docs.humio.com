@@ -45,6 +45,10 @@ PUBLIC_URL=https://humio.mycompany.com
 ## Default is 3 days 
 IDLE_POLL_TIME_BEFORE_DASHBOARD_QUERY_IS_CANCELLED_MINUTES=4320
 
+## Warn when ingest is delayed
+## How much should the ingest delay fall behind before a warning is shown in the search UI
+WARN_ON_INGEST_DELAY_MILLIS=30000
+
 # Specify the replication factor for the Kafka ingest queue
 INGEST_QUEUE_REPLICATION_FACTOR=2
 
