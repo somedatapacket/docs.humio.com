@@ -59,4 +59,4 @@ If you cannot find it there, you can always go to _Settings_ for your repository
 and create a new Ingest Token from there.
 
 For more information about the Beats data shippers, please take a look at
-[Beats section]({{< relref "sending-data/data-shippers/beats/_index.md" >}}).
+[Beats section]({{< relref "integrations/data-shippers/beats/_index.md" >}}).

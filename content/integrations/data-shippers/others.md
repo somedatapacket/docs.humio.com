@@ -23,7 +23,7 @@ Humio is compatible with the [ElasticSearch Bulk ingest API](https://www.elastic
 
 If you have a log shipper that supports the ElasticSearch Bulk API,
 there is a good change that you can use this to send logs to Humio.
-See the [Beats documentation]({{< ref "sending-data/data-shippers/beats/_index.md" >}}) for an example of
+See the [Beats documentation]({{< ref "integrations/data-shippers/beats/_index.md" >}}) for an example of
 configuration options.
 
 Contact us if you have trouble getting this working e.g. getting errors when trying
@@ -33,5 +33,3 @@ to make a client work against the API.
 Humio is compatible with the [Graylog Extended Log Format (GELF)](http://docs.graylog.org/en/2.4/pages/gelf.html) using UDP or TCP as transport. Refer to [Ingest listeners]({{< ref "sending-data-to-humio/ingest-listeners.md" >}}) to setup such a listener.
 
 GELF over HTTP is not yet implemented. Please get in touch with us if you need it.
-
-
