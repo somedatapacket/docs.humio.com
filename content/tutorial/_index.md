@@ -86,7 +86,7 @@ Now you are all set, choose one of the following guides:
 - [Use one of our platform integration (Kubernetes, Docker, DC/OS, etc.)]({{< relref "integrations/_index.md" >}}),
 - [or ingest through Humio's REST API]({{< relref "ingest-api.md" >}})
 
-You can read more about these methods in the [sending data to humio]({{< ref "sending-data/_index.md" >}}) section.
+You can read more about these methods in the [sending data to humio]({{< ref "sending-data-to-humio/_index.md" >}}) section.
 
 _Tip: If you are already using ElasticSearch ELK you can also take a look at how easy it is to
 [migrate from an Elastic Stack]({{< ref "moving-from-elastic-stack.md" >}}) to Humio._
