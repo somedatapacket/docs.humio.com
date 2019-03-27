@@ -7,8 +7,8 @@ categories: ["Integration", "DataShipper"]
 pageImage: /integrations/elastic.svg
 ---
 
-The [Elastic Beats](https://www.elastic.co/products/beats) are a
-great group of data shippers. They are cross-platform, lightweight, and can ship data to a number of tools **including Humio**.
+The [OSS Elastic Beats](https://www.elastic.co/products/beats) are a
+great group of data shippers. They are cross-platform, lightweight, and can ship data to a number of tools **including Humio** as long as you stick to the **OSS** builds.
 
 All Beats are built using the [libbeat library](https://github.com/elastic/beats). Along with the official Beats, there are a growing number of
 [community Beats](https://www.elastic.co/guide/en/beats/libbeat/current/community-beats.html).
@@ -16,7 +16,11 @@ All Beats are built using the [libbeat library](https://github.com/elastic/beats
 
 ## Available Beats
 
-There are currently five official Beats. The Elastic documentation site and Humio's documentation offer resources that describe how to use each of them:
+{{% notice note %}}
+Starting from version 6.7.0 of the libbeat only the OSS versions can ship to Humio. The non-OSS beats check that the server is a licensed elastic server due to this change to the beats client library: ["Check license x-pack"](https://github.com/elastic/beats/pull/11296)
+{{% /notice %}}
+
+There are currently five official Beats. The Elastic documentation site and Humio's documentation offer resources that describe how to use each of them.
 
 * **[Filebeat](https://www.elastic.co/guide/en/beats/filebeat/current/index.html)** - Ships regular log files.
     * [Get Started](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-getting-started.html)

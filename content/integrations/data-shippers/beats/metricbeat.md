@@ -27,7 +27,7 @@ You can read all the official documentation on Metricbeats [at the Metricbeat we
 
 ## Installation
 
-To download Metricbeat, visit the [Metricbeat downloads page](https://www.elastic.co/downloads/beats/metricbeat).
+To download Metricbeat, visit the [Metricbeat OSS downloads page](https://www.elastic.co/downloads/beats/metricbeat-oss).
 
 {{% notice note %}}
 ***Installation documentation***  

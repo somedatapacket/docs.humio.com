@@ -33,7 +33,7 @@ Check out Filebeat's [official documentation](https://www.elastic.co/guide/en/be
 
 ## Installation
 
-To download Filebeat, visit the [Filebeat downloads page](https://www.elastic.co/downloads/beats/filebeat)
+To download Filebeat, visit the [Filebeat OSS downloads page](https://www.elastic.co/downloads/beats/filebeat-oss)
 
 {{% notice note %}}
 ***Installation documentation***  
