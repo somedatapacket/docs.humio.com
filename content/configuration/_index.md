@@ -218,6 +218,15 @@ MAX_INGEST_DELAY_SECONDS=3600
 MAX_STATE_LIMIT=20000
 
 
+# The maximum allowed value for the "limit" parameter on timechart (and bucket)
+MAX_SERIES_LIMIT=50
+
+
+# The maximum allowed number of points in a timechart (or bucket result)
+# When this is hit the result will become approximate and discard input.
+MAX_BUCKET_POINTS=10000
+
+
 # SECONDARY_DATA_DIRECTORY enables using a secondary file system to
 # store segment files. When to move the files is controlled by
 # PRIMARY_STORAGE_PERCENTAGE
