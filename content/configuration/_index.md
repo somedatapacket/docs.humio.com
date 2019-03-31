@@ -221,6 +221,12 @@ MAX_STATE_LIMIT=20000
 # The maximum allowed value for the "limit" parameter on timechart (and bucket)
 MAX_SERIES_LIMIT=50
 
+# Maximum allowed file size that can be uploaded to Humio, when uploading csv or json files.
+# Used to set a limit on how big files can be.
+MAX_FILEUPLOAD_SIZE=104857600
+
+# Limits how many entries are allowed when using the match and lookup function
+EXACT_MATCH_LIMIT=1000000 
 
 # The maximum allowed number of points in a timechart (or bucket result)
 # When this is hit the result will become approximate and discard input.
