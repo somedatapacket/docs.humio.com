@@ -103,7 +103,7 @@ You must make the following changes to the sample configuration:
   (Note! The Humio cloud on cloud.humio.com does limit requests to 32 MB. If you go above this limit, you will get "Failed to perform any bulk index operations: 413 Request Entity Too Large"
   if a request ends up being too large, measured in bytes, not in number of events. If this happens, lower bulk_max_size as filebeat will otherwise keep retrying that request and not move on to other events.)
 
-* You may want to increase the number of worker instances (`worker`) from the default of 1 to (say) 5 or 10 to achieve more throughput if filebeat is not able to keep up with the inputs. If increasing bulk_max_size is possible then do that too.
+* You may want to increase the number of worker instances (`worker`) from the default of 1 to (say) 5 or 10 to achieve more throughput if filebeat is not able to keep up with the inputs. To get higher throughput also increase queue.mem.events to (say) 32000 to allow buffering for more workers.
 
 An important next step is [choosing a parser for your filebeat events]({{< relref "filebeat.md#parsing-data" >}}).
 
