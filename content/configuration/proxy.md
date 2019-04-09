@@ -4,7 +4,7 @@ title: Proxy Setup
 
 It is possible to configure Humio to access the internet through a proxy server.
 
-At the moment this is possible for sending alert notifications.  
+At the moment this is possible for sending alert notifications and S3 archiving.  
 To setup a proxy use the following configuration properties:
 
 ``` shell
