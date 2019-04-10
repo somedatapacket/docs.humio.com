@@ -20,4 +20,4 @@ Service Fabric Platform events are available as an [Event Tracing](https://docs.
 
 ## Application logs
 
-The [detailed guide](https://github.com/humio/service-fabric-humio) contains a solution for configuring .NET applications with [Serilog](https://serilog.net) and Humio. Humio provides a [built-in Serilog parser](/parsers/built-in-parsers/serilog.md) that works together with the suggested configuration. Filebeat is used for [shipping the logs to Humio](/integrations/data-shippers/beats/filebeat.md).
+The [detailed guide](https://github.com/humio/service-fabric-humio) contains a solution for configuring .NET applications with [Serilog](https://serilog.net) and Humio. Humio provides a [built-in Serilog parser](/parsers/built-in-parsers/serilog) that works together with the suggested configuration. Filebeat is used for [shipping the logs to Humio](/integrations/data-shippers/beats/filebeat).
