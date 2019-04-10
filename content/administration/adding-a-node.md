@@ -44,7 +44,7 @@ Once the node has successfully joined the cluster it will appear in the
 Cluster UI's list of nodes.
 
 Notice that the columns _Storage_ and _Digest_ both say `0 / X`. That is because
-at this point you the new node's storage will note be used - indicated by the `0` in the _Storage_ column) -
+at this point you the new node's storage will not be used - indicated by the `0` in the _Storage_ column) -
 and it will not be used for digest (processing of events running of real-time queries) -
 indicated by the `0` in the _Digest_ column.
 
