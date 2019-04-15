@@ -16,7 +16,7 @@ see the documentation for [installation on docker]({{< ref "docker.md" >}}).
 
 ```properties
 # The stacksize should be at least 2M.
-HUMIO_JVM_ARGS=-XX:+UseParallelOldGC -Xss2M
+HUMIO_JVM_ARGS=-Xss2M
 
 # Make Humio write a backup of the data files:
 # Backup files are written to mount point "/backup".
@@ -251,11 +251,11 @@ DUMP_THREADS_SECONDS=10
 ```
 
 ## Java virtual machine parameters
-You can specify Java virtual machine parameters to pass to Humio using the
-property `HUMIO_JVM_ARGS`. The defaults are:
+You can [supplement or tune the Java virtual machine parameters]({{< ref "configuration/jvm-configuration" >}}) used
+when running Humio with the `HUMIO_JVM_ARGS` environment variable. The defaults are:
 
 ```properties
-HUMIO_JVM_ARGS=-XX:+UseParallelOldGC -Xss2M
+HUMIO_JVM_ARGS=-XX:-Xss2M
 ```
 
 ## Number of CPU Cores
