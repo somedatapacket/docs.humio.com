@@ -17,20 +17,19 @@ a cluster.
 | Endpoint | Method | Description |
 | -------- | ------ | ----------- |
 | `/api/v1/clusterconfig/members`                                                    | [GET](#list-cluster-members)                                            | List cluster nodes                                   |
-| `/api/v1/clusterconfig/members/$NODE_ID`                                              | [GET](#modifying-a-host-in-your-cluster)                                | Get a node in your cluster                           |
-| `/api/v1/clusterconfig/members/$NODE_ID`                                              | [PUT](#modifying-a-host-in-your-cluster)                                | Modifying a node in your cluster                     |
-| `/api/v1/clusterconfig/members/$NODE_ID`                                              | [DELETE](#deleting-a-host-from-your-cluster)                            | Deleting a node from your cluster                    |
+| `/api/v1/clusterconfig/members/$NODE_ID`                                           | [GET, PUT](#modifying-a-node-in-your-cluster)                           | Get or modify a node in your cluster                 |
+| `/api/v1/clusterconfig/members/$NODE_ID`                                           | [DELETE](#deleting-a-node-from-your-cluster)                            | Deleting a node from your cluster                    |
 | `/api/v1/clusterconfig/segments/partitions/setdefaults`                            | [POST](#applying-default-partition-settings)                            | Applying default partition settings                  |
-| `/api/v1/clusterconfig/segments/partitions`                                        | [GET, POST](#querying-and-assigning-storage-partitions-to-hosts)        | Querying and assigning storage partitions to nodes   |
-| `/api/v1/clusterconfig/segments/partitions/set-replication-defaults`               | [POST](#assigning-default-storage-partitions-to-hosts)                  | Assigning default storage partitions to nodes        |
-| `/api/v1/clusterconfig/segments/distribute-evenly`                                 | [POST](#moving-existing-segments-between-hosts)                         | Moving existing segments between nodes               |
+| `/api/v1/clusterconfig/segments/partitions`                                        | [GET, POST](#querying-and-assigning-storage-partitions-to-nodes)        | Querying and assigning storage partitions to nodes   |
+| `/api/v1/clusterconfig/segments/partitions/set-replication-defaults`               | [POST](#assigning-default-storage-partitions-to-nodes)                  | Assigning default storage partitions to nodes        |
+| `/api/v1/clusterconfig/segments/distribute-evenly`                                 | [POST](#moving-existing-segments-between-nodes)                         | Moving existing segments between nodes               |
 | `/api/v1/clusterconfig/segments/prune-replicas`                                    | [POST](#pruning-replicas-when-reducing-replica-setting)                 | Pruning replicas when reducing replica setting       |
-| `/api/v1/clusterconfig/segments/distribute-evenly-reshuffle-all`                   | [POST](#moving-existing-segments-between-hosts)                         | Moving existing segments between nodes               |
-| `/api/v1/clusterconfig/segments/distribute-evenly-to-host/$NODE_ID`                   | [POST](#moving-existing-segments-between-hosts)                         | Moving existing segments between nodes               |
-| `/api/v1/clusterconfig/segments/distribute-evenly-from-host/$NODE_ID`                 | [POST](#moving-existing-segments-between-hosts)                         | Moving existing segments between nodes               |
-| `/api/v1/clusterconfig/ingestpartitions`                                           | [GET, POST](#ingest-partitions)                                         | Get/Set ingest partitions                            |
-| `/api/v1/clusterconfig/ingestpartitions/setdefaults`                               | [POST](#ingest-partitions)                                              | Set ingest partitions defaults                       |
-| `/api/v1/clusterconfig/ingestpartitions/distribute-evenly-from-host/$NODE_ID`         | [POST](#ingest-partitions)                                              | Move ingest partitions from node                     |
+| `/api/v1/clusterconfig/segments/distribute-evenly-reshuffle-all`                   | [POST](#moving-existing-segments-between-nodes)                         | Moving existing segments between nodes               |
+| `/api/v1/clusterconfig/segments/distribute-evenly-to-host/$NODE_ID`                | [POST](#moving-existing-segments-between-nodes)                         | Moving existing segments between nodes               |
+| `/api/v1/clusterconfig/segments/distribute-evenly-from-host/$NODE_ID`              | [POST](#moving-existing-segments-between-nodes)                         | Moving existing segments between nodes               |
+| `/api/v1/clusterconfig/ingestpartitions`                                           | [GET, POST](#digest-partitions)                                         | Get/Set digest partitions                            |
+| `/api/v1/clusterconfig/ingestpartitions/setdefaults`                               | [POST](#digest-partitions)                                              | Set digest partitions defaults                       |
+| `/api/v1/clusterconfig/ingestpartitions/distribute-evenly-from-host/$NODE_ID`      | [POST](#digest-partitions)                                              | Move digest partitions from node                     |
 | `/api/v1/clusterconfig/kafka-queues/partition-assignment`                          | [GET, POST](#managing-kafka-queue-settings)                             | Managing kafka queue settings                        |
 | `/api/v1/clusterconfig/kafka-queues/partition-assignment/set-replication-defaults` | [POST](#managing-kafka-queue-settings)                                  | Managing kafka queue settings                        |
 | `/api/v1/listeners`                                                                | [GET,POST](#adding-a-ingest-listener-endpoint)                          | Add tcp listener (used for Syslog)                   |
@@ -149,15 +148,15 @@ curl -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/segments/p
 curl -XPOST -d @segments-partitions.json -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/clusterconfig/segments/partitions"
 ```
 
-## Assigning default storage partitions to hosts
+## Assigning default storage partitions to nodes
 
-When the set of hosts has been modified, you likely want to make the storage partitions distribute the storage load evenly among the current set of hosts.
+When the set of nodes has been modified, you likely want to make the storage partitions distribute the storage load evenly among the current set of nodes.
 The following API allows doing that, while also selecting the number of replicas to use.
 
-Any number of partitions larger than the number of hosts is allowed, but the recommended the number of storage partitions is 24 or similar fairly low number.
+Any number of partitions larger than the number of nodes is allowed, but the recommended the number of storage partitions is 24 or similar fairly low number.
 There is no gain in having a large number of partitions.
 
-The number of replicas must be at least one, and at most the number of hosts in the cluster. The replicas selects how many hosts should keep a copy of each completed segment.
+The number of replicas must be at least one, and at most the number of nodes in the cluster. The replicas selects how many nodes should keep a copy of each completed segment.
 
 ```
 POST   /api/v1/clusterconfig/segments/partitions/set-replication-defaults
