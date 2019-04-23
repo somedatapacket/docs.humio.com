@@ -61,10 +61,10 @@ KAFKA_SERVERS=kafkahost01:9092,kafkahost02:9092
 # If you run Humio on top of an existing Kafka or want to manage this outside of Humio, set this to false.
 KAFKA_MANAGED_BY_HUMIO=true
 
-# When KAFKA_MANAGED_BY_HUMIO=true Humio does not know if using deletes on the ingest topic is safe and 
-# doing deletes are thus off by default in this case.
-# If you want to get deletes applied to your ingest topic in the case, turn on KAFKA_MANAGED_BY_HUMIO=true
-KAFKA_DELETES_ALLOWED=false
+# Deletes events from the ingest queue when they have been saved in Humio.
+# Still it is important to configure Kafka retention on the ingest queue. 
+# The Kafka retentionn defines how long data can be kept on the ingest queue and thus how much time Humio has to read the data and store it internally.
+DELETE_ON_INGEST_QUEUE=true
 
 # It is possible to add extra Kafka configuration properties. by creating a properties file and pointing to it.
 # These properties are added to all Kafka producers and consumers in Humio.
