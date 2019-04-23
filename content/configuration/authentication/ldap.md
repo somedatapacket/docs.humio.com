@@ -52,11 +52,19 @@ unencrypted or TLS/SSL transport respectively.  We recommend using a secure conn
 credentials are not transmitted in the clear.
 
 `LDAP_AUTH_PRINCIPAL` is optional.  We provide this so that you can transform the username provided to Humio during
-login into something that your LDAP server will accept.  To do this you simply supply a pattern and include the
-special token `HUMIOUSERNAME` which we will replace with the username provided at login before attempting to bind
-to the LDAP server.  This is how you can specify the principal provided to your LDAP server.  So, if you provide
-`cn=HUMIOUSERNAME,dc=example,dc=com` and attempt to login to Humio with the username of `john@example.com` we will
-bind using a principal name `cn=john,dc=example,dc=com` and the password provided at the login prompt.
+login (e.g. `john@example.com` is the HUMIOUSERNAME `john`) into something that your LDAP server will authenticate.
+To do this you simply supply a pattern and include the special token `HUMIOUSERNAME` which we will replace with the
+username provided at login before attempting to bind to the LDAP server.  This is how you can specify the principal
+provided to your LDAP server.  So, if you provide `cn=HUMIOUSERNAME,dc=example,dc=com` and attempt to login to Humio
+with the username of `john@example.com` we will bind using a principal name `cn=john,dc=example,dc=com` and the
+password provided at the login prompt.  If you have users in more than one location within LDAP you can separate the
+multiple patterns and Humio will try to authenticate in order the options you've provided.  Split the value set in
+`LDAP_AUTH_PRINCIPAL` using `LDAP_AUTH_PRINCIPALS_REGEX` pattern.  This doesn't apply when using the `ldap-search`
+method.
+```bash
+LDAP_AUTH_PRINCIPALS_REGEX=';'
+LDAP_AUTH_PRINCIPAL='cn=HUMIOUSERNAME,dc=example,dc=com;cn=HUMIOUSERNAME,dc=foo,dc=com;cn=HUMIOUSERNAME,dc=bar,dc=com'
+```
 
 `LDAP_DOMAIN_NAME` can be used if your directory service is only hosting single domain (e.g. `example.com`) and you'd
 like to allow your users to login to Humio with their username and not domain name (e.g. `john` rather than
