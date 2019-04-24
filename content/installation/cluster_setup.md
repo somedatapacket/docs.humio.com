@@ -95,6 +95,13 @@ For each machine do:
     $ mkdir -p /data/kafka-data
     $ chown -R humio:humio /data/kafka-data
     ```
+{{% notice info %}}
+Make sure Kafka's mount point is on a separate volume from the others. Kafka is notorious for
+consuming large amounts of disk space, so it's important to protect the other services from
+running out of disk by using a separate volume in production deployments.
+Make sure all volumes are being appropriately monitored as well. If your installation does
+run out of disk space and gets into a bad state, you can find recovery instructions [here]({{< ref "configuration/kafka-switch.md" >}}).
+{{% /notice %}}
 
 7. Create a configuration file for Kafka. Each server needs to have a unique name and an `broker.id`  (`1`, `2` or `3`). Make sure the listener is something the humio instances can reach. If in doubt, please refer to the Kafka documentation. Here is the configuration file for `HOST`, remember to set `broker.id` and `listeners` accordingly. Save it a known location, such as `/etc/humio/kafka.properties`
 

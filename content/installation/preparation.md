@@ -51,3 +51,18 @@ EOF
 **These settings apply to the next login of the Humio user, not to any running processes.**
 
 If you run Humio using Docker then you can raise the limit using the `--ulimit="nofile=8192:8192"` option on the `docker run` command.
+
+## Use a Separate Disk for Kafka Data
+
+For production usage, you should ensure Kafka's data volume is on a separate
+disk/volume from the other Humio services. This is because it's quite easy for
+Kafka to fill the disk it's using if Humio ingestion is slowed down for any
+reason. If it fills its disk, having it on a separate disk/volume than the other
+services will prevent them from crashing along with Kafka and will make recovery
+easier. If Kafka is running as separate servers or containers, you will likely be
+covered already, so this is primarily for situations where you're running the
+all-in-one docker image we supply.
+
+We also **highly** recommend setting up your own disk usage monitoring to alert
+when disks get > 80% full so you can take corrective action before the disk fills
+completely.

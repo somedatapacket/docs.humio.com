@@ -36,11 +36,19 @@ These settings are for a machine with 8GB of RAM or more.
 
 **Step 3**
 
-Create an empty directory on the host machine to store data for Humio:
+Create empty directories on the host machine to store data for Humio:
 
 ```shell
-mkdir humio-data
+mkdir -p mounts/data mounts/kafka-data
 ```
+
+{{% notice info %}}
+Separate mount points help isolate Kafka from the other services. Kafka is notorious for
+consuming large amounts of disk space, so it's important to protect the other services from
+running out of disk by using a separate volume in production deployments.
+Make sure all volumes are being appropriately monitored as well. If your installation does
+run out of disk space and gets into a bad state, you can find recovery instructions [here]({{< ref "configuration/kafka-switch.md" >}}).
+{{% /notice %}}
 
 **Step 4**
 
@@ -55,12 +63,14 @@ docker pull humio/humio
 Run the Humio Docker image as a container:
 
 ```shell
-docker run -v $HOST_DATA_DIR:/data -v $PATH_TO_READONLY_FILES:/etc/humio:ro --net=host --name=humio --ulimit="nofile=8192:8192" --env-file=$PATH_TO_CONFIG_FILE humio/humio
+docker run -v $HOST_DATA_DIR:/data -v $HOST_KAFKA_DATA_DIR:/data/kafka-data -v $PATH_TO_READONLY_FILES:/etc/humio:ro --net=host --name=humio --ulimit="nofile=8192:8192" --env-file=$PATH_TO_CONFIG_FILE humio/humio
 ```
 
-Replace `$HOST_DATA_DIR` with the path to the humio-data directory you created
-on the host machine, and `$PATH_TO_CONFIG_FILE` with the path of the
-configuration file you created. The directory `$PATH_TO_READONLY_FILES` provides a place to put files that are needed at runtime by humio such as certificates for SAML authentication.
+Replace `$HOST_DATA_DIR` with the path to the mounts/data directory you created
+on the host machine, `$HOST_KAFKA_DATA_DIR` with the path to the mounts/kafka-data
+directory, and `$PATH_TO_CONFIG_FILE` with the path of the configuration file you
+created. The directory `$PATH_TO_READONLY_FILES` provides a place to put files that
+are needed at runtime by humio such as certificates for SAML authentication.
 
 **Step 6**
 
