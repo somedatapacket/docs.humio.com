@@ -24,7 +24,7 @@ There are currently five official Beats. The Elastic documentation site and Humi
 
 * **[Filebeat](https://www.elastic.co/guide/en/beats/filebeat/current/index.html)** - Ships regular log files.
     * [Get Started](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-getting-started.html)
-    * [Humio's Filebeat documentation](/sending-data/data-shippers/beats/filebeat/)
+    * [Humio's Filebeat documentation](/integrations/data-shippers/beats/filebeat/)
 
 * **[Metricbeat](https://www.elastic.co/guide/en/beats/metricbeat/current/index.html)** - Ships metrics from your OS and common services.
     * [Get Started](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-getting-started.html)

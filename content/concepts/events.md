@@ -68,7 +68,7 @@ and `#source` tags, containing the hostname and file the event was read from.
 ### User Fields {#user-fields}
 
 Any field that is not a tag or metadata is a user field. They are extracted at
-ingest by a parser or [at query time by a regular expression]({{< ref "searching/_index.md#extracting-fields" >}}).
+ingest by a parser or [at query time by a regular expression]({{< ref "language-syntax/_index.md#extracting-fields" >}}).
 User fields are usually the interesting part of an event, containing application
 specific information.
 
@@ -81,8 +81,8 @@ nothing is thrown away at ingest. This allows you to do free-text searching acro
 all logs, and to extract virtual fields at query time - fields for parts of the
 data you did not even know would be important.
 
-You can read more [free-text search]({{< ref "searching/_index.md#grepping" >}}) and
-about [extracting fields]({{< ref "searching/_index.md#extracting-fields" >}}) in
+You can read more [free-text search]({{< ref "language-syntax/_index.md#grepping" >}}) and
+about [extracting fields]({{< ref "language-syntax/_index.md#extracting-fields" >}}) in
 the search documentation.
 
 ### Field: @timestamp {#timestamp}
