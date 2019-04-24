@@ -101,6 +101,15 @@ suspect something is wrong. And please notify the Humio team when it
 happens, as we can likely change the specific element in the Humio
 page to not get filtered.
 
+## The Humio UI is responding slower than expected
+
+We have had reports of browser extensions such as "LastPass" for
+Chrome and other plugins that scan and/or modify the page slow down
+the UI a lot: The extensions think they need to inspect the full page
+for every change to the page, and the Humio UI changes the page
+content a lot...  Please disable all browser plugin(s) on the pages of
+Humio.
+
 
 ## Can I set the license key via the API
 
