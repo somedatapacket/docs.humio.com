@@ -18,12 +18,12 @@ When [sending data to humio]({{< relref "sending-data/_index.md" >}}) it will en
 ## Views
 
 The repository has a close cousin called [Views]({{< relref "views.md">}}).
-Views are similarly to the views you may know from SQL databases.
+Views are similar to the views you may know from SQL databases.
 
 Views lets you search across multiple repositories. They also have user management and search filters, making it possible to define which users can see what data.
-This is how fine grained access controls is implemented in Humio
+This is how fine grained access controls are implemented in Humio
 
-You can search directly in a repository, or search through a
+You can search directly in a repository or search using a
 view.
  Using a view can give added benefits, e.g.:
 
@@ -38,7 +38,7 @@ You can read more about views in [their doc section]({{< relref "views.md">}}).
 
 All accounts have a special _private_ repository called [the sandbox]({{< relref "the-sandbox.md" >}}). Unlike other
 repositories you cannot add additional users or change retention. You can use the sandbox for testing things out
-or as the your main repo if your needs are simple.
+or as your main repo if your needs are simple.
 
 {{% notice cloud %}}
 If you are using a the free version of [Humio Cloud](https://cloud.humio.com) the sandbox
