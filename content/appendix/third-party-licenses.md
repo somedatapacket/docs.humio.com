@@ -118,7 +118,8 @@ License | Dependency | Attribution
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.lmax # disruptor # 3.4.2 | Copyright 2017 LMAX-Exchange
 [MIT License](http://www.opensource.org/licenses/mit-license.php) | org.slf4j # slf4j-api # 1.7.25 | Copyright (c) 2004-2017 QOS.ch
 [MIT License](http://www.opensource.org/licenses/mit-license.php) | net.sf.jopt-simple # jopt-simple # 5.0.4 | Copyright (c) 2004-2016 Paul R. Holser, Jr.
-[MIT License](https://raw.githubusercontent.com/auth0/java-jwt/master/LICENSE) | com.auth0 # java-jwt # 3.4.1 | Copyright (c) 2015 Auth0, Inc.
+[MIT License](https://raw.githubusercontent.com/auth0/java-jwt/master/LICENSE) | com.auth0 # java-jwt # 3.0.1 | Copyright (c) 2015 Auth0, Inc.
+[MIT License](https://raw.githubusercontent.com/auth0/java-jwt/master/LICENSE) | com.auth0 # java-jwt # 3.8.0 | Copyright (c) 2015 Auth0, Inc.
 [Bouncy Castle Licence](http://www.bouncycastle.org/licence.html) | org.bouncycastle # bcprov-jdk15on # 1.55 | Copyright (c) 2000 - 2017 The Legion of the Bouncy Castle Inc. (https://www.bouncycastle.org)
 [JSON License](http://json.org/license.html) | org.json # json # 20180813 | Copyright (c) 2002 JSON.org
 [Apache License, Version 2](http://www.apache.org/licenses/LICENSE-2.0) | nc.com # ExponentialSmoothing # 1.0 | Copyright 2011 [Nishant Chandra](https://github.com/nchandra/ExponentialSmoothing)
