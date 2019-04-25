@@ -32,7 +32,7 @@ from a web server and steps you through searching and visualizing the logs.
 Once you have completed the tutorial move on to [step 2]({{< ref "#step-2" >}}).
 
 {{% notice tip %}}
-You can use the UI's build-in function documentation by hitting {{% keybinding "alt+enter" %}} while
+You can use the UI's built in function documentation by hitting {{% keybinding "alt+enter" %}} while
 focusing the search field. We also have documentation and examples for all
 functions in the [query function reference]({{< relref "query-functions/_index.md" >}}).
 {{% /notice %}}
@@ -48,7 +48,7 @@ you can work with your own data. It is time to start sending logs to Humio.
 First you need a [repository]({{< ref "repositories.md" >}}) to store the data in.
 You can either use your [sandbox repository]({{< ref "the-sandbox.md" >}}) or if you are running Humio
 locally you can create a new dedicated repository (make sure to pick a "Repository"
-and not "View" since they cannot be used for storage).
+and not "View" since views cannot be used for storage).
 
 {{< figure src="/pages/hello-world/new-repo.png" >}}
 
@@ -66,25 +66,25 @@ and copying the default token (or creating a new one).
 
 ## 3. Choosing a Parser
 
-When data arrive at Humio it needs to be parsed. Therefore you have to specify
-which parser should be used to interpret your data. Which one your need depends
-your data format. A safe bet is the `kv` (Key-Value) parser.
+When data arrives at Humio it needs to be parsed therefore you have to specify
+which parser should be used to interpret your data. The parser that you select
+is based on the format of your data. One of the most common choices is the 
+`kv` (Key-Value) parser. It looks at incoming events and finds `key=value` 
+pairs - producing a field `key` with the value `"value"` on the stored event.
 
-It looks at incoming events and finds `key=value` pairs - producing a field `key`
-with the value `"value"` on the stored event.
-
-You can go to the "Parsers" menu item in the top menu of the UI to explore. But
-for now, it is a good idea to stick with one of the built-in parsers for your first
-experiments with Humio.
+You can go to the "Parsers" menu item in the top menu of the UI to explore the parsers
+that are available but for now it is a good idea to stick with one of the built-in 
+parsers for your first experiments with Humio.
 
 
 ## 4. Sending Data
 
-Now you are all set, choose one of the following guides:
+Having created a repository, copied your ingest token, and selected a parser, you are 
+now ready to read one of the following guides on how to ship data to Humio:
 
 - [Configure a data shipper (Rsyslog, FileBeat, Logstash, etc.)]({{< relref "integrations/data-shippers/_index.md" >}}),
 - [Use one of our platform integration (Kubernetes, Docker, DC/OS, etc.)]({{< relref "integrations/_index.md" >}}),
-- [or ingest through Humio's REST API]({{< relref "ingest-api.md" >}})
+- [Or ingest through Humio's REST API]({{< relref "ingest-api.md" >}})
 
 You can read more about these methods in the [sending data to humio]({{< ref "sending-data-to-humio/_index.md" >}}) section.
 
@@ -93,10 +93,11 @@ _Tip: If you are already using ElasticSearch ELK you can also take a look at how
 
 ### 4.1 Extra: Custom Parsers
 
-While Humio has build-in support for the most popular logging formats (e.g. AccessLog, JSON)
-and can rip out almost anything with the `kv` <!-- TODO: Missing Link --> parser, you still
-may have special needs for your custom application logs. If that is the case you need to
-[create your own custom parser]({{< relref "parsers/_index.md" >}}).
+While Humio has built in support for the most popular logging formats (e.g. AccessLog, JSON),
+and can rip out almost anything with the [`kv`]({{< relref "parsers/built-in-parsers/kv.md" >}}). parser, you 
+may have special needs for your custom application logs. Fortunately Humio allows you to 
+create your own custom parsers as documented here: [create your own custom parser]({{< relref "parsers/creating-a-parser.md" >}}).
+
 
 ## 5. Next Steps
 
