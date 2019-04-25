@@ -52,3 +52,33 @@ to `%PUBLIC_URL%/auth/auth0`, e.g. https://www.example.com/auth/auth0, where
 `%PUBLIC_URL%` is the value of the Humio configuration option `PUBLIC_URL`.
 
 _Using Auth0 authentication for Humio requires that you set the `PUBLIC_URL` configuration option.
+
+## Mapping Auth0 Roles
+
+Using the _Auth0 Authorization Extension_ you can define Auth0 roles and have them mapped to Humio groups.
+
+> Note: The users/roles defined at top-level in the Auth0 dashboard do not work with this.  This only works for users/roles defined inside the _Auth0 Authroization Extension_, which is found in the left side _Extensions_ menu item.
+
+The _Auth0 Authorization Extension_  requires it's own _Auth0 Rule_ installed to work, and additionally you need to create a rule to copy the roles into the token returned by Auth0 to Humio.
+
+```
+// rule to copy user's roles into the returned token
+function (user, context, callback) {
+  context.idToken["https://auth0-example.humio.com/roles"] = user.roles;
+  callback(null, user, context);
+}
+```
+
+If you configure `AUTH0_ROLES_KEY=https://auth0-example.humio.com/roles` (in Humio) and add this _Auth0 Rule_ in the Auth0 dashboard, the the assighed roles are transferred to humio in the AWT token.
+
+There are several way to apply these Auth0 roles in humio.
+
+- Create roles in Auth0 named `view.member`, `view.admin`, ... for relevant views/repos in Humio will control access rights directly.
+- Alternatively (if more detailed permissions are desired),  Group/repo appings can be [defined in a separate file]({{< ref "/configuration/authentication/role-based-auth.md#setting-up-authorization-rules-from-a-file" >}}).
+
+Either way, it usually makes sense to also define these options in humio as also [described on this page]({{< ref "/configuration/authentication/role-based-auth.md" >}).
+
+```
+AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN=true
+AUTO_UPDATE_GROUP_MEMBERSHIPS_ON_SUCCESSFUL_LOGIN=true
+```
