@@ -76,7 +76,7 @@ There are several way to apply these Auth0 roles in humio.
 - Create roles in Auth0 named `view.member`, `view.admin`, ... for relevant views/repos in Humio will control access rights directly.
 - Alternatively (if more detailed permissions are desired),  Group/repo appings can be [defined in a separate file]({{< ref "/configuration/authentication/role-based-auth.md#setting-up-authorization-rules-from-a-file" >}}).
 
-Either way, it usually makes sense to also define these options in humio as also [described on this page]({{< ref "/configuration/authentication/role-based-auth.md" >}).
+Either way, it usually makes sense to also define these options in humio as also [described on this page]({{< ref "/configuration/authentication/role-based-auth.md" >}}).
 
 ```
 AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN=true
