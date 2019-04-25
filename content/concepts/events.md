@@ -2,7 +2,7 @@
 title: Events
 ---
 
-The data stored in Humio is called events. An event is a piece of data and an
+The data stored in Humio are called events. An event is a piece of data and an
 associated timestamp.
 
 Examples of events include:
@@ -45,7 +45,7 @@ There are three types of fields:
 
 ### Metadata Fields {#metadata}
 
-Each even has some metadata attached to it on ingestion, e.g. all events will
+Each event has some metadata attached to it on ingestion, e.g. all events will
 have an `@id`, `@timestamp`, `@timezone`, `@display` and `@rawstring` field.
 
 Notice that metadata fields start with all `@` to make them easy to identity.
@@ -55,15 +55,15 @@ described in detail below.
 
 ### Tag Fields {#tags}
 
-[Tags]({{< ref "tagging.md" >}}) fields that define how events are physical stored and indexed. They are
-used for speeding up queries.
+[Tags]({{< ref "tagging.md" >}}) fields define how events are physically stored and 
+indexed. They are also used for speeding up queries.
 
-Users can associate custom tags as part of the parsing and ingestion process.
-But their use is usually very limited. The only built-in tags are `#repo`, `#type`,
+Users can associate custom tags as part of the parsing and ingestion process but 
+their use is usually very limited. The only built-in tags are `#repo` and `#type` and 
 both are described in detail below.
 
 Usually the client sending data to Humio will be configured to include `#host`
-and `#source` tags, containing the hostname and file the event was read from.
+and `#source` tags that contain the hostname and file that the event was read from.
 
 ### User Fields {#user-fields}
 
@@ -74,58 +74,57 @@ specific information.
 
 ### Field: @rawstring {#rawstring}
 
-Humio represents the original text of the event in the attribute `@rawstring`.
+Humio represents the original text of the event in the `@rawstring` attribute.
 
-One of the greatest strengths of Humio is that the original data is kept and
+One of the greatest strengths of Humio is that it keeps the original data and
 nothing is thrown away at ingest. This allows you to do free-text searching across
-all logs, and to extract virtual fields at query time - fields for parts of the
+all logs and to extract virtual fields at query time for parts of the
 data you did not even know would be important.
 
-You can read more [free-text search]({{< ref "language-syntax/_index.md#grepping" >}}) and
-about [extracting fields]({{< ref "language-syntax/_index.md#extracting-fields" >}}) in
+You can read more about [free-text search]({{< ref "language-syntax/_index.md#grepping" >}}) and 
+[extracting fields]({{< ref "language-syntax/_index.md#extracting-fields" >}}) in
 the search documentation.
 
 ### Field: @timestamp {#timestamp}
 
 The timestamp of an event is represented in the `@timestamp` field. This field
-defines where the event is stored in the Humio's database, and is what defined
+defines where the event is stored in Humio's database and is what defines
 wether an event is included in search results when searching a time range.
 
-It needs [special treatment when parsing incoming data]({{< ref "creating-a-parser.md#parsing-timestamps">}}) at ingest time.
-
+The timestamp needs [special treatment when parsing incoming data]({{< ref "creating-a-parser.md#parsing-timestamps">}}) during ingestion.
 
 ### Field: @display {#display}
 
-By default the Humio will display the content of the field `@rawstring` in the
+By default Humio will display the content of the `@rawstring` field in the
 Event List. Sometimes this is not what you want, e.g the message could be very
 long and the relevant information be at the end of `@rawstring`, or you might
-want to be able to see a single field.
+want to be able to see a single field contained in the message.
 
-You can fix this my assigning a value to the field `@display`.
-Let's take an example: Say in our example data you only want to se the fields
-`method` and `url`. You can use the [format]({{< ref "query-functions/_index.md#format">}}) function and the `@display` field to achieve this.
+You can fix this by assigning a value to the `@display` field.
+For example you might only want to see the `method` and `url` fields from your event data. 
+To achieve this you can use Humio's [format]({{< ref "query-functions/_index.md#format">}}) function
+combined with the `@display` field to achieve this.
 
-Say you have an access log for a web server, and don't want to see all the details
-but just lines like:
+The following query extracts the `method` and `url` fields from the event data and sets 
+the `@display` field using the `format` function:
+
+``` humio
+@display := format("%s %s", field=[method, url])
+```
+
+and outputs the results as demonstrated in the example below:
 
 ```
 GET /path/to/page
 POST /path/to/other/page
 ```
 
-By setting the `@display` field you can achieve using the following in you query:
-
-``` humio
-@display := format("%s %s", field=[method, url])
-```
-
-As you can see we use a printf-like in format to format the resulting message,
-and now the entries in the Event List.
+As you can see Humio uses a printf-like syntx to format the resulting message.
 
 ### Field: #repo {#repo}
 
-All event have a special `#repo` tag that denotes the [repository]({{< ref "repositories.md" >}}) the event is stored in.
-This is useful in cross-repository searches when using [views]({{< ref "views.md" >}}).
+All events have a special `#repo` tag that denotes the [repository]({{< ref "repositories.md" >}}) that 
+the event is stored in. This is useful in cross-repository searches when using [views]({{< ref "views.md" >}}).
 
 ### Field #type {#type}
 

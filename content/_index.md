@@ -19,7 +19,7 @@ events as they occur – in Real-Time. And when we say real-time, we mean sub-se
 from data arriving for ingestion before it is displayed on a live dashboard.
 
 Finally, built-in support for alerting and integrations with popular operations platforms (like
-PageDuty, OpsGene or VictorOps) means Humio can be the backbone of your operations infrastructure,
+PagerDuty, Opsgenie or VictorOps) means Humio can be the backbone of your operations infrastructure,
 a power tool for your help-desk teams and your trusted navigator on an ocean of data.
 
 
