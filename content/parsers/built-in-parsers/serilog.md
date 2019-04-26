@@ -11,7 +11,7 @@ Example serilog configuration:
                 .WriteTo.File(formatter: new JsonFormatter(renderMessage: true), path:logPath, rollingInterval: RollingInterval.Day)
 ```
 
-Note the required `renderMessage: true` part of the configuration. Humio will display the rendered message outputted by Serilog instead of the raw event. The parser achieves this by setting the [@display]({{< relref "concepts/events.md#metadata" >}}) field to the rendered message.
+Note the required `renderMessage: true` part of the configuration. Humio will display the rendered message outputted by Serilog instead of the raw event. The parser achieves this by setting the [@display]({{< relref "/concepts/events.md#metadata" >}}) field to the rendered message.
 
 
 ## Example Input
