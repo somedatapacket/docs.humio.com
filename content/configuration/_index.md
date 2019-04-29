@@ -12,6 +12,13 @@ When running Humio in Docker you can pass set the `--env-file=` flag and keep
 your configuration in a file. For a quick intro to setting configuration options
 see the documentation for [installation on docker]({{< ref "docker.md" >}}).
 
+{{% notice info %}}
+Docker only loads the environment file **when the container is initially created**.
+As such, if you make changes to the settings in your environment file, simply
+stopping and starting the container will not work. You need to `docker rm` the
+container and `docker run` it again to pick up changes.
+{{% /notice %}}
+
 ## Example configuration {#example-configuration-file-with-comments}
 
 ```properties

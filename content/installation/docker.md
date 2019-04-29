@@ -20,6 +20,13 @@ For example, `humio.conf`.
 
 You can use this file to pass on JVM arguments to the Humio Java process.
 
+{{% notice info %}}
+Docker only loads the environment file **when the container is initially created**.
+As such, if you make changes to the settings in your environment file, simply
+stopping and starting the container will not work. You need to `docker rm` the
+container and `docker run` it again to pick up changes.
+{{% /notice %}}
+
 **Step 2**
 
 Enter the following settings into the configuration file:

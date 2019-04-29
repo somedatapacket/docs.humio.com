@@ -218,6 +218,12 @@ Humio is distributed as Docker images; use the `humio/humio-core` edition for di
     # Select the IP to bind the http listening socket to. (Defaults to HUMIO_SOCKET_BIND)
     #HUMIO_HTTP_BIND=0.0.0.0
     ```
+{{% notice info %}}
+Docker only loads the environment file **when the container is initially created**.
+As such, if you make changes to the settings in your environment file, simply
+stopping and starting the container will not work. You need to `docker rm` the
+container and `docker run` it again to pick up changes.
+{{% /notice %}}
 
 3. Create an empty directory on the host machine to store data for Humio:
 
