@@ -18,18 +18,18 @@ pipeline:
     when:
       branch: master
 
-  deploy-master:
-    image: e20co/drone-marathon
-    server: http://marathon.mesos:8080
-    marathonfile: marathon.json
-    environment:
-      - MARATHON_ID=docs
-    values:
-      - marathon_id
-      - drone_branch
-      - drone_build_number
-    when:
-      branch: master
+#  deploy-master:
+#    image: e20co/drone-marathon
+#    server: http://marathon.mesos:8080
+#    marathonfile: marathon.json
+#    environment:
+#      - MARATHON_ID=docs
+#    values:
+#      - marathon_id
+#      - drone_branch
+#      - drone_build_number
+#    when:
+#      branch: master
 
   deploy-preview:
     image: e20co/drone-marathon
