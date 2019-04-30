@@ -82,60 +82,25 @@ full collection.
 -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC
 ```
 
-## Verify memory available for caching
+## Verify Physical Memory is Available for Filesystem Buffer Cache
 
-Once you have Humio (and perhaps also Kafka, Zookeeper and other
-software) running on your server, verify that there is ample memory
-remaining for caching files using the command `free -h`. On a server
-with e.g. 128 GB of RAM we usually see around 90 GB as
-"available". If the number is much lower, due to e.g. a large number
-being either "used" or "shared", then you may want to improve on
-that. Unless...
+Once you have Humio (and perhaps also Kafka, Zookeeper and other software) running on your server, verify that there is
+ample memory remaining for caching files using the command `free -h`. On a server with e.g. 128 GB of RAM we usually
+see around 90 GB as "available".  If the number is much lower, due to a large amount being either "used" or "shared",
+then you may want to improve on that.
+ 
+However if you have a very fast IO subsystem, such one based on a RAID 0 stripe of fast NVMe drives, where you may find
+that using memory for caching has no effect on query performance.
 
-...Unless you have a very fast IO subsystem, such one based on a
-stripe of fast NVME drives, where you may find that using memory for caching
-has no effect on query performance.
+You can check by dropping the OS file cache using `sudo sysctl -w vm.drop_caches=3` which will drop any cached files,
+and then compare the speed when running the same trivial query multiple times.  Using the same fixed time interval,
+query of a simple `count()` twice on a set of data that makes the query take 5-10 seconds to execute is a good test.
+If you benefit from the page cache you will see a much faster response on the second and following runs compared to the
+first run.
 
-You can check by dropping the OS file cache using `sudo sysctl -w
-vm.drop_caches=3` which will drop any cached files, and then compare
-the speed when running the same trivial query multiple times.  Using
-the same fixed time interval, query of a simple "count()" twice on a
-set of data that makes the query take 5-10 seconds to execute is a
-good test. If you benefit from the page cache you will see a much
-faster response on the second and following runs compared to the first
-run.
-
-Another way to validater that the IO subsystem is fast is to inspect
-the output of "iostat -xm 2" while running a query on top of a dropped
-cache: If the nvme-drives are close to a 100% utilized, then you will
-benefit from having memory for page caching.
-
-
-## A note on NUMA (multi-socket) systems
-
-NUMA aware JVM will partition the heap with respect to the NUMA nodes, and when a thread creates a new object, the
-object is allocated in the NUMA node of the core that runs that thread (if the same thread later uses it, the object
-will be in the local memory). Also when compacting the heap the NUMA aware JVM avoids moving large data chunks between
-nodes (and reduces the length of stop-the-world events).
-
-So on any NUMA hardware and for any Java application the `-XX:+UseNUMA` option should be enabled.
-
-[JEP 345](https://openjdk.java.net/jeps/345): [NUMA-Aware Memory Allocation for G1](https://bugs.openjdk.java.net/browse/JDK-8210473) is `Unresolved`
-
-Shenandoah does not support NUMA and the ZGC has only [basic NUMA support](https://wiki.openjdk.java.net/display/zgc/Main) and [is enabled by default on multi-socket systems](https://wiki.openjdk.java.net/display/zgc/Main#Main-EnablingNUMASupport) or can be explicitly requested with the `-XX:+UseNUMA` option.
-
-The parallel collector (enabled by by -XX:+UseParallelGC) has been NUMA-aware for many years
-
-Humio fully utilizes the available IO channels, physical memory and CPU during query execution.  Coordinating memory
-accross cores can slow Humio down.  We recommend that a single JVM be run on each separate CPU (socket, not core) and
-that you instruct the operating system that the process should remain on that socket using only memory most tightly
-bound to it.  On Linux you can use the `numactl` executable to do this.
-
-```-XX:+UseNUMA```
-
-```bash
-/usr/bin/numactl --cpunodebind=%i --membind=%i
-``` 
+Another way to validate that the IO subsystem is fast is to inspect the output of `iostat -xm 2` while running a query
+after dropping filesystem buffer cached data as shown above.  If the NVMe-drives are close to a 100% utilized, then you
+will benefit from having memory for page caching.
 
 ## Helpful Java/JVM Resources
 
