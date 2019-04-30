@@ -24,7 +24,7 @@ described here.
 We have created a [Github repository](https://github.com/humio/provision-humio-cluster) with scripts to help install and configure Humio.
 We suggest you read through the documentation below and have a look at repository. Check out the scripts and modify them for your environment.
 
-You should also look at the [reference Ansible project](https://github.com/humio/ansible-humio)
+You should also look at the [reference Ansible project](https://github.com/humio/ansible-demo)
 for an example of this in practice.
 
 ### Running the Zookeeper and Kafka Docker images
