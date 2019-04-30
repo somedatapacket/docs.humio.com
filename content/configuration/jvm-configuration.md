@@ -54,9 +54,13 @@ for use as filesystem buffers.
 
 ## Garbage Collection
 
-Humio has been tested and run using the Garbage First (G1) and the Z collectors.  Both work quite well with our standard
-workload.  The Z collector is now standard in Java 11 and you can enable it with `-XX:+UseZGC`.  This is the collector
-we use in our docker configuration and run on our managed offering.
+Humio has been tested and run using the Garbage First (`-XX:+UseG1`) and the old parallel (`-XX:+UseParallelOldGC`)
+collectors.  Both work quite well with our standard workload.
+
+We have discovered that the ZGC reserves memory as "shared memory" which has the effect of lowering the amount available
+for disk caching.  As Humio is generally IO bound the ability to cache as much of the block device into RAM is related
+to providing lower latency and higher throughput.  We recommend against using the ZGC until we have tested the
+implications of the [JEP 351](https://openjdk.java.net/jeps/351) which we hope addresses this issue.
 
 Regardless of which collector you use we recommend that you configure the JVM for verbose garbage collector logging and
 then store and monitor those logs within Humio itself.
@@ -72,15 +76,31 @@ full collection.
 -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC
 ```
 
-At this time we recommend using the Garbage First collector in production (`G1GC`), however as of Java 12 there will be two fully concurrent, non-generational collectors with excellent potential for Humio workloads:
+## A note on NUMA (multi-socket) systems
 
- * [Z Garbage Collector](https://wiki.openjdk.java.net/display/zgc/Main) included with most OpenJDK 11 builds and
- * [ShenandoahGC](https://wiki.openjdk.java.net/display/shenandoah/Main) included in Liberica, Zulu and on RedHat in Java 12 or for download [here](https://builds.shipilev.net/openjdk-shenandoah-jdk11/) from the team who did the implementation.
+NUMA aware JVM will partition the heap with respect to the NUMA nodes, and when a thread creates a new object, the
+object is allocated in the NUMA node of the core that runs that thread (if the same thread later uses it, the object
+will be in the local memory). Also when compacting the heap the NUMA aware JVM avoids moving large data chunks between
+nodes (and reduces the length of stop-the-world events).
 
-To use these collectors replace `-XX:+UseG1GC` with either:
+So on any NUMA hardware and for any Java application the `-XX:+UseNUMA` option should be enabled.
 
- * `-XX:+UseZGC` or
- * `-XX:+UnlockExperimentalVMOptions -XX:+UseShenandoahGC`
+[JEP 345](https://openjdk.java.net/jeps/345): [NUMA-Aware Memory Allocation for G1](https://bugs.openjdk.java.net/browse/JDK-8210473) is `Unresolved`
+
+Shenandoah does not support NUMA and the ZGC has only [basic NUMA support](https://wiki.openjdk.java.net/display/zgc/Main) and [is enabled by default on multi-socket systems](https://wiki.openjdk.java.net/display/zgc/Main#Main-EnablingNUMASupport) or can be explicitly requested with the `-XX:+UseNUMA` option.
+
+The parallel collector (enabled by by -XX:+UseParallelGC) has been NUMA-aware for many years
+
+Humio fully utilizes the available IO channels, physical memory and CPU during query execution.  Coordinating memory
+accross cores can slow Humio down.  We recommend that a single JVM be run on each separate CPU (socket, not core) and
+that you instruct the operating system that the process should remain on that socket using only memory most tightly
+bound to it.  On Linux you can use the `numactl` executable to do this.
+
+```-XX:+UseNUMA```
+
+```bash
+/usr/bin/numactl --cpunodebind=%i --membind=%i
+``` 
 
 ## Helpful Java/JVM Resources
 
