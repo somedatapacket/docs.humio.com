@@ -54,8 +54,14 @@ for use as filesystem buffers.
 
 ## Garbage Collection
 
-Humio has been tested and run using the Garbage First (`-XX:+UseG1`) and the old parallel (`-XX:+UseParallelOldGC`)
-collectors.  Both work quite well with our standard workload.
+Humio has been tested and run using the Garbage First (`-XX:+UseG1`)
+and the old parallel (`-XX:+UseParallelOldGC`) collectors.  Both work
+quite well with our standard workload. The preference is for
+throughput rather than for low latency: Humio has been optimized to
+avoid allocations as much as possible and is thus better suited for
+garbage collectors that add little overhead to the running code
+(i.e. don't add extra read or write barriers) than those that accept
+the overhead in return for lower latency.
 
 We have discovered that the ZGC reserves memory as "shared memory" which has the effect of lowering the amount available
 for disk caching.  As Humio is generally IO bound the ability to cache as much of the block device into RAM is related
@@ -75,6 +81,35 @@ full collection.
 ```bash
 -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC
 ```
+
+## Verify memory available for caching
+
+Once you have Humio (and perhaps also Kafka, Zookeeper and other
+software) running on your server, verify that there is ample memory
+remaining for caching files using the command `free -h`. On a server
+with e.g. 128 GB of RAM we usually see around 90 GB as
+"available". If the number is much lower, due to e.g. a large number
+being either "used" or "shared", then you may want to improve on
+that. Unless...
+
+...Unless you have a very fast IO subsystem, such one based on a
+stripe of fast NVME drives, where you may find that using memory for caching
+has no effect on query performance.
+
+You can check by dropping the OS file cache using `sudo sysctl -w
+vm.drop_caches=3` which will drop any cached files, and then compare
+the speed when running the same trivial query multiple times.  Using
+the same fixed time interval, query of a simple "count()" twice on a
+set of data that makes the query take 5-10 seconds to execute is a
+good test. If you benefit from the page cache you will see a much
+faster response on the second and following runs compared to the first
+run.
+
+Another way to validater that the IO subsystem is fast is to inspect
+the output of "iostat -xm 2" while running a query on top of a dropped
+cache: If the nvme-drives are close to a 100% utilized, then you will
+benefit from having memory for page caching.
+
 
 ## A note on NUMA (multi-socket) systems
 
