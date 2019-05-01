@@ -33,7 +33,7 @@ This is Humio's event sourced database queue. This queue will contain small even
 No log data is saved to this queue. There should be a high number of replicas for this queue. Humio will raise the number of replicas on this queue to 3 if there are at least 3 brokers in the Kafka cluster.
 
 Default required replicas: `min.insync.replicas = 2` (provided there are 3 brokers when Humio creates the topic)</br>
-Default retention configuration: `retention.bytes = 1073741824` (1 GB) </br>
+Default retention configuration: `retention.bytes = 1073741824` (1 GB) and `retention.ms = -1` (to disable time based retention). </br>
 Compression should be set to: `compression.type=producer`</br>
 
 
