@@ -1,3 +1,4 @@
+---
 kind: pipeline
 name: default
 
@@ -10,7 +11,7 @@ steps:
 - name: hugo
   image: plugins/hugo
   settings:
-    hugo_version: 0.46
+    hugo_version: 0.55.4
     validate: true
 
 - name: docker-build-master
