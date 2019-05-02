@@ -11,7 +11,7 @@ steps:
 - name: hugo
   image: plugins/hugo
   settings:
-    hugo_version: 0.55.4
+    hugo_version: "0.50"
     validate: true
 
 - name: docker-build-master
