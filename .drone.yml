@@ -1,25 +1,35 @@
-pipeline:
-  make:
-    image: golang
-    commands:
-      - make clean deps
+kind: pipeline
+name: default
 
-  hugo:
-    image: plugins/hugo
+steps:
+- name: make
+  image: golang
+  commands:
+  - make clean deps
+
+- name: hugo
+  image: plugins/hugo
+  settings:
+    hugo_version: 0.46
     validate: true
 
-  docker-build-master:
-    image: plugins/docker
-    secrets: [ docker_username, docker_password ]
+- name: docker-build-master
+  image: plugins/docker
+  settings:
+    secrets:
+    docker_username: cihumio
+    docker_password:
+      from_secret: docker_password
     repo: humio/docs
     tags:
       - latest
       - ${DRONE_BRANCH}-${DRONE_BUILD_NUMBER}
-    when:
-      branch: master
+  when:
+    branch: master
 
-#  deploy-master:
-#    image: e20co/drone-marathon
+#- name: deploy-master
+#  image: e20co/drone-marathon
+#  settings:
 #    server: http://marathon.mesos:8080
 #    marathonfile: marathon.json
 #    environment:
@@ -30,16 +40,3 @@ pipeline:
 #      - drone_build_number
 #    when:
 #      branch: master
-
-  deploy-preview:
-    image: e20co/drone-marathon
-    server: http://marathon.mesos:8080
-    marathonfile: marathon.json
-    environment:
-      - MARATHON_ID=docs-preview
-    values:
-      - marathon_id
-      - drone_branch
-      - drone_build_number
-    when:
-      branch: preview
