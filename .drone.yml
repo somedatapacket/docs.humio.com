@@ -18,8 +18,8 @@ steps:
   image: plugins/docker
   settings:
     secrets:
-    docker_username: cihumio
-    docker_password:
+    username: cihumio
+    password:
       from_secret: docker_password
     repo: humio/docs
     tags:
