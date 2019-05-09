@@ -1,6 +1,7 @@
 ---
 title: "Kubernetes"
-categories: ["Integration", "Platform"]
+categories: ["Integration", "DataShipper"]
+categories_weight: -110
 pageImage: /integrations/kubernetes.svg
 aliases: ["sending_logs_to_humio/integrations/kubernetes"]
 ---
