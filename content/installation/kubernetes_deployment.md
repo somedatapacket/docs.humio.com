@@ -1,7 +1,6 @@
 ---
 title: Running Humio on Kubernetes
 menuTitle: Kubernetes
-pageImage: /integrations/kubernetes.svg
 weight: 410
 categories: ["Integration", "Platform"]
 ---
@@ -10,6 +9,7 @@ categories: ["Integration", "Platform"]
 If you are looking for how to ship data from a Kubernetes cluster to Humio, please see our [Kubernetes platform integration documentation](/integrations/platform-integrations/kubernetes).
 {{% /notice %}}
 
+<img src="/integrations/kubernetes.svg" width="100" height="100" style="float: right" />
 At this time we do not recommend running Humio inside a Kubernetes cluster. We are exploring approaches for deploying both standalone and clustered Humio environments on Kubernetes and will provide best practices in the future.
 
 ## Community Resources
