@@ -42,7 +42,7 @@ metricbeat.modules:
       - network
 
 output.elasticsearch:
-  hosts: ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+  hosts: ["https://$HOST:443/api/v1/ingest/elastic-bulk"]
   username: $INGEST_TOKEN
 ```
 
@@ -71,7 +71,7 @@ filebeat.inputs:
     "@type": syslog-utc
 
 output.elasticsearch:
-  hosts: ["https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch"]
+  hosts: ["https://$HOST:443/api/v1/ingest/elastic-bulk"]
   username: $INGEST_TOKEN
 ```
 

@@ -35,7 +35,7 @@ To make all beats point to Humio, just change the `output.elasticsearch` section
 
 ```yaml
 output.elasticsearch:
-  hosts: ["https://<HOST>:443/api/v1/dataspaces/<REPOSITORY_NAME>/ingest/elasticsearch"]
+  hosts: ["https://<HOST>:443/api/v1/ingest/elastic-bulk"]
   username: <INGEST_TOKEN>
 ```
 

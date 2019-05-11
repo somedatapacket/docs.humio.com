@@ -54,7 +54,7 @@ the table below.  -->
 To start a query, POST the query to:
 
 ```
-POST /api/v1/dataspaces/$REPOSITORY_NAME/query
+POST /api/v1/repositories/$REPOSITORY_NAME/query
 ```
 
 The JSON request body has the following attributes:
@@ -157,7 +157,7 @@ This live query returns an empty search, finding all events in a time window goi
 Notice the `ACCEPT` header. This tells the server to stream data as [Newline Delimited JSON](http://specs.frictionlessdata.io/ndjson/).
 
 ```shell
-curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/query \
+curl https://cloud.humio.com/api/v1/repositories/$REPOSITORY_NAME/query \
   -X POST \
   -H "Authorization: Bearer $API_TOKEN" \
   -H 'Content-Type: application/json' \
@@ -171,7 +171,7 @@ curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/query \
 This query groups results by service and counts the number of events for each service. The query blocks until it is complete and returns events as a JSON array:
 
 ``` shell
-curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/query \
+curl https://cloud.humio.com/api/v1/repositories/$REPOSITORY_NAME/query \
   -X POST \
   -H "Authorization: Bearer $API_TOKEN" \
   -H 'Content-Type: application/json' \
@@ -201,7 +201,7 @@ of the Query Jobs poll endpoint).
 To start a Query Job, POST the query to:
 
 ```
-POST /api/v1/dataspaces/$REPOSITORY_NAME/queryjobs
+POST /api/v1/repositories/$REPOSITORY_NAME/queryjobs
 ```
 
 The request body is similar to the [request body](#request) in the query endpoint.
@@ -222,7 +222,7 @@ using the HTTP GET method (see [below](#poll)).
 #### Example
 
 ``` shell
-curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/queryjobs \
+curl https://cloud.humio.com/api/v1/repositories/$REPOSITORY_NAME/queryjobs \
  -X POST \
  -H 'Authorization: Bearer $API_TOKEN' \
  -H 'Content-Type: application/json' \
@@ -243,7 +243,7 @@ To poll a running Query Job, make an HTTP GET request to the job.
 In the following example request, replace `$ID` with the ID from the response of the [Query Job create request](#create):
 
 ```
-GET     /api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID
+GET     /api/v1/repositories/$REPOSITORY_NAME/queryjobs/$ID
 ```
 
 #### Response
@@ -280,7 +280,7 @@ Live queries keep running for an hour without being polled.
 #### Example
 
 ```shell
-curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID \
+curl https://cloud.humio.com/api/v1/repositories/$REPOSITORY_NAME/queryjobs/$ID \
   -H "Authorization: Bearer $API_TOKEN"
 ```
 
@@ -293,7 +293,7 @@ Stops running Query Jobs.
 To stop a Query Job, you can issue a `DELETE` request to the URL of the Query Job:
 
 ```
-DELETE     /api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID
+DELETE     /api/v1/repositories/$REPOSITORY_NAME/queryjobs/$ID
 ```
 
 #### Response
@@ -303,7 +303,7 @@ Standard HTTP response codes.
 #### Example
 
 ```shell
-curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/queryjobs/$ID \
+curl https://cloud.humio.com/api/v1/repositories/$REPOSITORY_NAME/queryjobs/$ID \
  -X DELETE \
  -H "Authorization: Bearer $API_TOKEN"
 ```

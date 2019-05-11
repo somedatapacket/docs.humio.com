@@ -28,7 +28,7 @@ The user must be authorized to execute "delete events".
 
 This is an example using the REST API deleting all events with a password field in the specified time interval in milliseconds.
 ```
-curl -v https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/deleteevents \
+curl -v https://cloud.humio.com/api/v1/repositories/$REPOSITORY_NAME/deleteevents \
   -X POST \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \

@@ -22,7 +22,7 @@ web servers. It also allows for custom parsers.
 To list all parsers for a given repository:
 
 ```
-GET     /api/v1/dataspaces/$REPOSITORY_NAME/parsers
+GET     /api/v1/repositories/$REPOSITORY_NAME/parsers
 ```
 
 **Response**
@@ -56,7 +56,7 @@ The output format is similar to the input format in [Add Parser](#add-parser).
 **Example**
 
 ``` shell
-curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers \
+curl https://cloud.humio.com/api/v1/repositories/$REPOSITORY_NAME/parsers \
  -H "Authorization: Bearer $API_TOKEN"
 ```
 
@@ -68,13 +68,13 @@ curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers \
 To create a parser for a given repository:
 
 ```
-POST     /api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_ID
+POST     /api/v1/repositories/$REPOSITORY_NAME/parsers/$PARSER_ID
 ```
 
 or to updated an existing parser use
 
 ```
-PUT     /api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_ID
+PUT     /api/v1/repositories/$REPOSITORY_NAME/parsers/$PARSER_ID
 ```
 
 The JSON request body has the following attributes:
@@ -97,7 +97,7 @@ Standard HTTP response codes.
 **Example**
 
 ``` shell
-curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_NAME \
+curl https://cloud.humio.com/api/v1/repositories/$REPOSITORY_NAME/parsers/$PARSER_NAME \
  -XPUT \
  -H "Authorization: Bearer $API_TOKEN" \
  -H "Content-Type: application/json" \
@@ -130,7 +130,7 @@ field has the timestamp.
 **Example**
 
 ``` shell
-curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_NAME \
+curl https://cloud.humio.com/api/v1/repositories/$REPOSITORY_NAME/parsers/$PARSER_NAME \
  -XPUT \
  -H "Authorization: Bearer $API_TOKEN" \
  -H "Content-Type: application/json" \
@@ -160,7 +160,7 @@ Note the use of `\\` to escape backslashes:
 To delete a parser from a given repository, make the following request:
 
 ```
-DELETE     /api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_NAME
+DELETE     /api/v1/repositories/$REPOSITORY_NAME/parsers/$PARSER_NAME
 ```
 
 **Response**
@@ -170,7 +170,7 @@ Standard HTTP response codes.
 **Example**
 
 ``` shell
-curl https://cloud.humio.com/api/v1/dataspaces/$REPOSITORY_NAME/parsers/$PARSER_NAME \
+curl https://cloud.humio.com/api/v1/repositories/$REPOSITORY_NAME/parsers/$PARSER_NAME \
  -XDELETE \
  -H "Authorization: Bearer $API_TOKEN"
 ```

@@ -227,7 +227,7 @@ the JSON configuration (`humio-connect.json`):
     "schema.ignore": true,
     "behavior.on.malformed.documents": "warn",
     "drop.invalid.message": true,
-    "connection.url": "https://$HOST:443/api/v1/dataspaces/$REPOSITORY_NAME/ingest/elasticsearch",
+    "connection.url": "https://$HOST:443/api/v1/ingest/elastic-bulk",
     "type.name": "mytype",
     "max.retries": 1000
   }

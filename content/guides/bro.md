@@ -95,7 +95,7 @@ queue.mem:
 
 #-------------------------- ElasticSearch output ------------------------------
 output.elasticsearch:
-  hosts: ["http://${HOST}:8080/api/v1/dataspaces/${REPOSITORY_NAME}/ingest/elasticsearch"]
+  hosts: ["http://${HOST}:8080/api/v1/ingest/elastic-bulk"]
   username: "${INGEST_TOKEN}"
   compression_level: 5
   bulk_max_size: 1000
