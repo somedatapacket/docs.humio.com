@@ -33,7 +33,7 @@ POST	/api/v1/ingest/humio-unstructured
 
 Example sending 4 accesslog lines to Humio
 
-``` json
+```json
 [
   {
     "fields": {
@@ -44,7 +44,7 @@ Example sending 4 accesslog lines to Humio
        "192.168.1.49 - user1 [02/Nov/2017:13:48:33 +0000] \"POST /humio/api/v1/ingest/elastic-bulk HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.014 657 0.014",
        "192.168.1..21 - user2 [02/Nov/2017:13:49:09 +0000] \"POST /humio/api/v1/ingest/elastic-bulk HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.013 565 0.013",
        "192.168.1.54 - user1 [02/Nov/2017:13:49:10 +0000] \"POST /humio/api/v1/ingest/elastic-bulk HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.015 650 0.015"
-    ]`
+    ]
   }
 ]
 ```
@@ -69,7 +69,7 @@ Name            | Required      | Description
 
 Previous example as a curl command:
 
-``` shell
+```shell
 curl -v -X POST localhost:8080/api/v1/ingest/humio-unstructured \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $INGEST_TOKEN" \
@@ -100,7 +100,7 @@ POST	/api/v1/ingest/humio-structured
 
 The following example request contains two events. Both these events share the same tags:
 
-``` json
+```json
 [
   {
     "tags": {
@@ -131,7 +131,7 @@ You can also batch events with different tags into the same request as shown in 
 
 This request contains three events. The first two are tagged with `server1` and the third is tagged with `server2`:
 
-``` json
+```json
 [
   {
     "tags": {
@@ -196,7 +196,7 @@ Name            | Required      | Description
 
 #### Event examples
 
-``` json
+```json
 {
     "timestamp": "2016-06-06T12:00:00+02:00",
     "attributes": {
@@ -206,7 +206,7 @@ Name            | Required      | Description
 }
 ```
 
-``` json
+```json
 {
     "timestamp": 1466105321,
     "attributes": {
@@ -216,7 +216,7 @@ Name            | Required      | Description
 }
 ```
 
-``` json
+```json
 {
     "timestamp": 1466105321,
     "timezone": "Europe/Copenhagen",
@@ -227,7 +227,7 @@ Name            | Required      | Description
 }
 ```
 
-``` json
+```json
 {
     "timestamp": "2016-06-06T12:00:01+02:00",
     "rawstring": "starting service=coordinator transactionid=42"
@@ -240,7 +240,7 @@ Standard HTTP response codes.
 
 #### Example
 
-``` shell
+```shell
 curl $BASEURL/api/v1/ingest/humio-structured \
  -X POST \
  -H "Content-Type: application/json" \
