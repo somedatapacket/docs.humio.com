@@ -1,6 +1,6 @@
 ---
 title: Cluster Nodes
-aliases: ["ref/cluster-nodes"]
+aliases: ["/ref/cluster-nodes"]
 ---
 
 Humio can run as distributed system in a cluster.
