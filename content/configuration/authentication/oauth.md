@@ -3,7 +3,7 @@ title: Authenticating with OAuth 2.0
 menuTitle: OAuth 2.0
 category: ["Integration"]
 pageImage: /integrations/oauth.svg
-aliases: ["ref/oauth"]
+aliases: ["/ref/oauth"]
 ---
 
 Humio supports the OAuth 2.0 login flow for the following providers:
