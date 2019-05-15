@@ -1,5 +1,5 @@
 ---
-title: Embedding Dashboard Widget in an External Page
+title: Embedding iFrame Widgets
 ---
 
 You can embed a single Humio dashboard widget into an external HTML site using an iframe or in other media.
@@ -20,9 +20,9 @@ want to embed to it. That way it is easy to keep track of all exposed widgets.
 
 4. Hover over the widget you want to share and click the fullscreen icon that appears.
 
-// TODO: Image
+![Icon to access a widget in fullscreen](/images/dashboards/pages/embed-widget.png)
 
-This will make the widget go full screen and the URL in the browsers address bar can
+This will make the widget go full screen and the URL in the browser's address bar can
 be used for e.g. an iframe.
 
 5. Copy the browser's address bar URL
@@ -32,7 +32,7 @@ be used for e.g. an iframe.
 Here is an example iframe, you will need to add the URL and customize its height and width to
 match your needs.
 
-```
+``` html
 <iframe width="600" height="400" src="http://cloud.humio.com/humioshared/dashboards?token=C6OTXOXvIh5mABlznmbwmdrJ&widget=ab01ae6e-cf74-40c3-90e3-2a4436e11c12" frameborder="0" allowfullscreen></iframe>
 ```
 
@@ -41,4 +41,4 @@ match your needs.
 ### Do I have to make a dashboard to share a single widget
 
 Yes, unfortunaly adding a widget to a shared dashboard is currently the only way of exposing
-a widget. This is because the security security model uses the same mechanism as shared secret URLs. 
+a widget. 

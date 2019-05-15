@@ -1,10 +1,11 @@
 ---
-title: ""
+title: "Sharing Dashboards"
 aliases: ["/shared-dashboards", "/wall-monitors", "/ref/dashboards/sharing"]
+menuTitle: Wall Monitor Dashboards
 ---
 
-If you want to put a dashboard up on a wall monitor or grant read-only to widgets or entire dashboard
-publiclly or to a limited group you can use Humio's "Shared Secret URLs" feature.
+If you want to put a dashboard up on a wall monitor or grant read-only access to individual widgets or entire dashboard
+publically or to a limited group you can use Humio's "Shared Secret URLs" feature.
 
 A shared secret URL is a URL containing a special authentication token that grants read-only
 access to anyone that has the link.
@@ -15,19 +16,19 @@ access to anyone that has the link.
 
 2. Click the "More" menu item (icon with three dots).
 
-// TODO: Image
+![The more menu](/images/pages/dashboards/more-menu.png)
 
 3. Click "Wall Monitors & Shared URLs"
 
-// TODO: Image
+![Accessing the shared links menu](/images/pages/dashboards/wall-monitors.png)
 
 4. Give the link a name and click "Create Link"
 
-// TODO: Image
+![Creating a shared link](/images/pages/dashboards/links.png)
 
 5. Visit the shard URL by clicking the Link in the URL column.
 
-You can now use this link the the browser of your wall monitor or send it to people
+You can now use this link in the browser of your wall monitor or send it to people
 that should have read-only access.
 
 ## FAQ
@@ -35,8 +36,8 @@ that should have read-only access.
 ### Why not just make a seperate user for wall monitors?
 
 Humio's security model will force a user to re-authenticate after the session expires,
-since wall monitors are usually non-interactive (don't have a keyboard) - and you don't
-want to go around logging in on the wall monitors all the time - that won't work.
+since wall monitors are usually non-interactive (don't have a keyboard) - if you do it
+this way you will need to figure out how to make the browser re-authenticate periodically.
 
 ### Are shared secret URLs safe
 
