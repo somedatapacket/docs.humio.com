@@ -20,7 +20,7 @@ want to embed to it. That way it is easy to keep track of all exposed widgets.
 
 4. Hover over the widget you want to share and click the fullscreen icon that appears.
 
-![Icon to access a widget in fullscreen](/images/dashboards/pages/embed-widget.png)
+![Icon to access a widget in fullscreen](/images/pages/dashboards/embed-widget.png)
 
 This will make the widget go full screen and the URL in the browser's address bar can
 be used for e.g. an iframe.

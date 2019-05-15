@@ -1,18 +1,18 @@
 ---
+title: Dashboards
+category_title: Overview
+weight: 400
 ---
 
-## What is a dashboard
+Dashboards are one of the primary ways of interacting with Humio.
+This section gives a quick outline of how to use dashboards, how to create widgets, and customize them to suit your needs.
 
-## Adding widgets
+At its core, dashboards are a way to group widgets and compare their results side by side.
 
-## Changing time
+![Sample dashboard](/images/pages/dashboards/overview.png)
 
-- Select a time range in a timechart 
-- Use the time selector to change global time
+Here are some key ways of using dashboards:
 
-## Parameters
-
-## Filters
-
-## Sharing
- 
+- [Adding a dashboard widget]({{ref <"adding-a-widget-to-a-dashboard.md">}})
+- [Sharing dashboards]({{ref <"sharing-dashboards.md">}})
+- [Parameters]({{ref <"parameters.md">}})
