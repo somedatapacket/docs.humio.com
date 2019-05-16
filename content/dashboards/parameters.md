@@ -1,6 +1,7 @@
 ---
 title: Working with Dashboard Parameters
 menuTitle: Parameters
+aliases: ["/ref/parameters"]
 ---
 
 Dashboard parameters allow you to interact with dashboards doing filtering and do drill-down
