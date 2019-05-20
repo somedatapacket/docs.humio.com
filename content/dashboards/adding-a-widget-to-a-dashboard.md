@@ -15,7 +15,7 @@ on the repository or view in question.
 timechart(hostname)
 ```
 
-This will automatically select the [Time Chart]({{ ref "timechart.md" }}) widget type,
+This will automatically select the [Time Chart]({{< ref "time-chart.md" >}}) widget type,
 and you can style the widget by clicking the "Style" button on the left side of the screen.
 
 2. Click the "Save as..." button and select "Dashboard Widget"
