@@ -13,6 +13,6 @@ At its core, dashboards are a way to group widgets and compare their results sid
 
 Here are some key ways of using dashboards:
 
-- [Adding a dashboard widget]({{ref <"adding-a-widget-to-a-dashboard.md">}})
-- [Sharing dashboards]({{ref <"sharing-dashboards.md">}})
-- [Parameters]({{ref <"parameters.md">}})
+- [Adding a dashboard widget]({{< ref "adding-a-widget-to-a-dashboard.md" >}})
+- [Sharing dashboards]({{< ref "sharing-dashboards.md">}})
+- [Parameters]({{< ref "parameters.md">}})

@@ -128,7 +128,7 @@ character in URLs.
 ### Where can parameters be used in a query?
 
 A parameter must be can only be assigned simple values, you cannot for instance assign
-a [regex literal]({{ ref "language-syntax.md#extracting-fields" }}) (e.g. `/error/i`),
+a [regex literal]({{< ref "language-syntax/_index.md#extracting-fields" >}}) (e.g. `/error/i`),
 an array argument or a sub query (e.g. `foo AND bar`).
 
 You can work around these restrictions by using multiple parameters or by using functions
