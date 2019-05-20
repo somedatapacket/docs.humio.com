@@ -21,10 +21,10 @@ page, but usually consists of a number of timecharts and tables all
 based on "live queries". If you add a non-live query to a dashboard,
 the widget will not get updated.
 
-To create a new dashboard, click "Save as" on on the search page of
+To create a new dashboard, click "Save as" on the search page of
 the first widget you want to have in the dashboard.
 
-To add more widgets to an existing dashboard, click "Save as" on on
+To add more widgets to an existing dashboard, click "Save as" on
 the search page of any search you want to add to an existing
 dashboard. The dialog that shows there allows you to select which
 dashboard to add the widget to.
