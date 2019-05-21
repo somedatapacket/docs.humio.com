@@ -21,6 +21,7 @@ Most of the content is mostly relevant for clustered setups.
 - [Blacklisting Queries]({{< ref "blacklisting-queries.md" >}})
 - [Disabling Ingest]({{< ref "disabling-ingest.md" >}})
 - [Updating your license]({{< ref "license-management.md" >}})
+- [Metrics]({{< ref "metrics.md">}})
 
 ## Repository Management
 

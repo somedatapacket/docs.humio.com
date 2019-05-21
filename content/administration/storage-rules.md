@@ -1,5 +1,6 @@
 ---
 title: Storage Rules
+weight: 80
 aliases: [ref/storage-rules]
 ---
 

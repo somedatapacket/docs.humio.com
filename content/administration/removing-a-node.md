@@ -1,5 +1,6 @@
 ---
 title: Removing a Node
+weight: 60
 ---
 
 To safely remove a node from a Humio cluster you need to ensure that the data

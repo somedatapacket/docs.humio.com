@@ -1,5 +1,6 @@
 ---
 title: Updating Humio to a newer version
+weight: 90
 aliases: ["configuration/upgrading"]
 ---
 

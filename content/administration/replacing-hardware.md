@@ -1,5 +1,6 @@
 ---
 title: Replacing Hardware
+weight: 70
 ---
 
 If you want to replace a node in your cluster, say due to faulty hardware or
