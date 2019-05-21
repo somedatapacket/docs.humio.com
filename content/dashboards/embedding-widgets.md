@@ -14,7 +14,7 @@ and you can only embed widgets that are accessible with a shared secret URL.
 Tip: You can create a special dashboard called e.g. "Embedded Widgets" and add all the widgets you
 want to embed to it. That way it is easy to keep track of all exposed widgets. 
 
-2. Create a shared secret URL for the dashboard ([Follow this guide]({{ ref "sharing-dashboards.md" }}))
+2. Create a shared secret URL for the dashboard ([Follow this guide]({{< ref "sharing-dashboards.md" >}}))
 
 3. Visit the dashboard using the secret URL
 
