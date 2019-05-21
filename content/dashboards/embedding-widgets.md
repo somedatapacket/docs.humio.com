@@ -4,7 +4,7 @@ title: Embedding iFrame Widgets
 
 You can embed a single Humio dashboard widget into an external HTML site using an iframe or in other media.
 
-The feature relies on the security model of [Shared Secret URLs]({{ ref "sharing-dashboards.md" }}),
+The feature relies on the security model of [Shared Secret URLs]({{< ref "sharing-dashboards.md" >}}),
 and you can only embed widgets that are accessible with a shared secret URL.
 
 ## Embedding a widget in an iframe
