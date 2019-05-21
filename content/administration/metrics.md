@@ -9,27 +9,25 @@ operate Humio itself.
 
 The metrics are available in different ways:
 
-***JMX***
+- **JMX**
 
-Humio exposes all metrics over JMX. To enable it, you need to set the
-standard JMX options to your JVM by adding them to the
-[HUMIO_JVM_ARGS]({{< ref"configuration/_index.md#example-configuration-file-with-comments" >}}) configuration configuration.
+    Humio exposes all metrics over JMX. To enable it, you need to set the standard JMX options to your JVM by adding them to the [HUMIO_JVM_ARGS]({{< ref"configuration/_index.md#example-configuration-file-with-comments" >}}) configuration configuration.
 
-Example: `HUMIO_JVM_ARGS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false  -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=<jmx_port>`
+    Example: ```HUMIO_JVM_ARGS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false  -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=<jmx_port>```
 
 
-***Prometheus***
+- **Prometheus**
 
-Setting the [PROMETHEUS_METRICS_PORT]({{< ref "configuration/_index.md#example-configuration-file-with-comments" >}}) configuration will enable Prometheus to scrape metrics from Humio.
+    Setting the [PROMETHEUS_METRICS_PORT]({{< ref "configuration/_index.md#example-configuration-file-with-comments" >}}) configuration will enable Prometheus to scrape metrics from Humio.
 
-***Humio debug logs***
+- **Humio debug logs**
 
-The debug log of Humio also contains all the metrics. You can find
+    The debug log of Humio also contains all the metrics. You can find
 them in the `humio` repository or the special [humio-metrics]({{< ref "concepts/repositories.md#the-humio-metrics-repository" >}})
 repository
 
 
-## Metric types #########
+## Metric Types #########
 
 There are two types of metrics in Humio, [node level
 metrics](#node-level-metrics) and [objects level

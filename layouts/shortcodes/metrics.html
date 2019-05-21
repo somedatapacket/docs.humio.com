@@ -1,21 +1,21 @@
 {{ $metrics :=  .Site.Data.metrics }}
 
 <div class="metric-list">
-  <h3 id="node-level-metrics">Node level metrics</h3>
+  <h2 id="node-level-metrics">Node Level Metrics</h2>
   {{ range sort $metrics.nodeMetrics "name" }}
   <div class="metric" id="{{.name}}">
     <div class="metric__top">
-      <h5 class="metric__title" data-id="{{.name}}">{{ .name}}</h5>
+      <h3 class="metric__title" data-id="{{.name}}">{{ .name}}</h3>
     </div>
     <p>{{ .description | markdownify }}</p>
   </div>
   {{end}}
 
-  <h3 id="object-level-metrics">Object level metrics</h3>
+  <h2 id="object-level-metrics">Object Level Metrics</h2>
   {{ range sort $metrics.labelledMetrics "name" }}
   <div class="metric" id="{{.name}}">
     <div class="metric__top">
-      <h5 class="metric__title" data-id="{{.name}}">{{ .name}}</h5>
+      <h3 class="metric__title" data-id="{{.name}}">{{ .name}}</h3>
     </div>
     <p>{{ .description | markdownify }} </p>
   </div>
