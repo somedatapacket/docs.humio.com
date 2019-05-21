@@ -4,14 +4,14 @@ weight: 100
 show_functions_as_pages: true
 ---
 
-Humio outputs a number of metrics used to monitor and operating a
-Humio system.
+Humio outputs a number of metrics that can be used to monitor and
+operate Humio itself.
 
-The metrics are available in a number of ways:
+The metrics are available in different ways:
 
 ***JMX***
 
-Humio exposes all metris over JMX. To enable it, you need to set the
+Humio exposes all metrics over JMX. To enable it, you need to set the
 standard JMX options to your JVM by adding them to the
 [HUMIO_JVM_ARGS]({{< ref"configuration/_index.md#example-configuration-file-with-comments" >}}) configuration configuration.
 
@@ -33,9 +33,9 @@ repository
 
 There are two types of metrics in Humio, [node level
 metrics](#node-level-metrics) and [objects level
-metrics](#object-level-metrics) for objects such as a repository, an
-ingest listener, or a partition. An example of an object level metric
-is `ingest-bytes/<repo>`. Here `<repo>` is a placeholder for an actual
-repository in Humio.
+metrics](#object-level-metrics). The last type is for objects such as
+repositories, ingest listeners, or storage partitions. An example of
+an object level metric is `ingest-bytes/<repo>`. Here `<repo>` is a
+placeholder for a concrete repository in a given Humio system.
 
 {{% metrics %}}
