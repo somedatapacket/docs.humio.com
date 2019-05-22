@@ -1,6 +1,6 @@
 ---
 title: Digest Rules
-aliases: [ref/digest-rules]
+aliases: ["/ref/digest-rules"]
 related:
   - storage-rule.md
   - ingest-flow.md
