@@ -13,6 +13,7 @@ log / /var/log/humio-access.log "{combined}"
 proxy / http://127.0.0.1:8080 {
   health_check /api/v1/status
   transparent
+  websocket
 }
 ```
 
@@ -32,6 +33,7 @@ humio.example.com {
     policy header Humio-Query-Session
     health_check /api/v1/status
     transparent
+    websocket
   }
 }
 https://humio.example.com:9200 {
