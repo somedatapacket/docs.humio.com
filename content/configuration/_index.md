@@ -124,10 +124,10 @@ BLOCKS_PER_SEGMENT=2000
 #BLOCK_SIZE_KB=2048
 
 # Target fill percentage of pre-filter.
-# Percent of the bits to be set in the prefilters. Range: [10; 100].
+# Percent of the bits to be set in the pre-filters. Range: [10; 100].
 # Influences block size: Lower values may trigger smaller blocks.
 # From v1.5.14.
-#BLOOM_BIT_FILL=60
+#HASHFILTER_FILL=60
 
 # Select roles for node, with current options being "all" or
 # "httponly". The latter allows the node to avoid spending cpu time on
