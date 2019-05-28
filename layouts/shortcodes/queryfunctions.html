@@ -46,8 +46,8 @@
 <h3 id="{{ .name }}-examples">Examples</h3>
 {{range $index, $value := .examples}}
 <h4 id="{{ $value.name }}-examples-{{add $index 1}}">Example {{ add $index 1 }}</h4>
-<p>{{ $value.description }}</p>
-<pre><code class="language-humio">{{ $value.value }}</code></pre>
+<p>{{ $value.description | markdownify }}</p>
+<pre><code class="language-humio">{{ $value.value | safeHTML }}</code></pre>
 {{ end }}
 </div>
 {{ end }}

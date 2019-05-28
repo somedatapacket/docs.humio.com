@@ -117,6 +117,18 @@ BLOCKS_PER_SEGMENT=2000
 # Mini-segments will get closed earlier if expired due to FLUSH_BLOCK_SECONDS
 #BLOCKS_PER_MINISEGMENT=64
 
+# Desired number of KB as target block size. Range: [256; 8192]
+# Blocks may flush due to time, size of pre-filter bits.
+# Default value: 2MB, written as `BLOCK_SIZE_KB=2048`
+# From v1.5.14.
+#BLOCK_SIZE_KB=2048
+
+# Target fill percentage of pre-filter.
+# Percent of the bits to be set in the pre-filters. Range: [10; 100].
+# Influences block size: Lower values may trigger smaller blocks.
+# From v1.5.14.
+#HASHFILTER_FILL=60
+
 # Select roles for node, with current options being "all" or
 # "httponly". The latter allows the node to avoid spending cpu time on
 # tasks that are irrelevant to a nodes that has never had any local

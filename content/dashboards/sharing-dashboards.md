@@ -16,7 +16,7 @@ access to anyone that has the link.
 
 2. Click the "More" menu item (icon with three dots).
 
-![The more menu](/images/pages/dashboards/more-menu.png)
+![The more menu](/images/pages/dashboards/more-icon.png)
 
 3. Click "Wall Monitors & Shared URLs"
 

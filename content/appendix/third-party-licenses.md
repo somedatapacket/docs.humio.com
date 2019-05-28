@@ -126,6 +126,7 @@ License | Dependency | Attribution
 [Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html) | etherip.util.Hexdump | Derivative of single file. Copyright (c) 2012 Oak Ridge National Laboratory. Author: Kay Kasemir.
 [Go License](http://golang.org/LICENSE) | com.google.re2j # re2j # 1.2 | Copyright (C) 2018 by The Go Authors
 [BSD 3-Clause](https://github.com/ankurdave/part/blob/master/LICENSE) | com.ankurdave # part # 0.1 | Copyright (c) 2015, Armon Dadgar, Ankur Dave
+[Eclipse Public License v. 2.0](https://www.eclipse.org/legal/epl-2.0) | org.eclipse.lsp4j # org.eclipse.lsp4j # 0.7.0 | Copyright (c) 2016-2018 TypeFox and others.
 
 ## Elm/JS Dependencies
 

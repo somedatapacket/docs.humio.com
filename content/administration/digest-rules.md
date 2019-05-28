@@ -1,7 +1,7 @@
 ---
 title: Digest Rules
 weight: 40
-aliases: [ref/digest-rules]
+aliases: ["/ref/digest-rules"]
 related:
   - storage-rule.md
   - ingest-flow.md

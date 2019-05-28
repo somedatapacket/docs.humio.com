@@ -72,3 +72,44 @@ PRIMARY_STORAGE_PERCENTAGE=80
 ```
 
 
+### Adding a new primary and making the current primary disk be secondary
+
+Say you have a slow disk as your only (and thus primary) disk right
+now for Humio.  You add a new faster disk to the server, and want to
+use that disk as the primary, while leaving the bulk of the data on
+the old slow disk.
+
+While this is possible, there is a bit of work involved, as only
+completed segment files can reside n the secondary storage. All other
+support files, and segment files in progress need to reside on the
+primary disk. Humio must be shut down while this operation takes place.
+
+Basically only files matching `humiodata.*` (and `bloom5*`) can stay
+on the secondary storage, everything else must be on the primary. The
+tricky bit is moving the soft-links `humiodata.current` along with the
+file they point to.
+
+You will need to move some specific files from the "new secondary"
+onto the "new primary while the system is shut down for that to work,
+as some files must be on the primary. Here are their names, as they
+are below `/humio-data`. The directory structure must be preserved.
+
+• files matching `dataspace_*/datasource_*/humiodata.current`
+• For all the above `humiodata.current` soft-links, the file it points to as well.
+• `uploadedfiles` directory
+• `cluster_membership.uuid` file
+• `global-data-snapshot.json` file
+
+
+If the above files are moved from the secondary to the primary, it
+should work fine to leave the remaining segment files, and start out
+with almost all data being on secondary. Or, if you want, move
+selected parts of the completed segment files from secondary to
+primary as well, to get the improved performance from the new disk on
+searches that hit those. One could move e.g. all segments that are
+less than 7 days old if that matches the search typical search range
+for the system.
+
+Humio will not move files from secondary back to primary. Once the
+primary is full later on, Humio will start migrating segment file from
+primary to secondary.

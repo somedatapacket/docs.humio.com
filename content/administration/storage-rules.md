@@ -1,7 +1,7 @@
 ---
 title: Storage Rules
 weight: 80
-aliases: [ref/storage-rules]
+aliases: ["/ref/storage-rules"]
 ---
 
 In Humio data is distributed across the cluster nodes. Which nodes store what
