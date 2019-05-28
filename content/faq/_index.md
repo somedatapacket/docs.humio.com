@@ -31,7 +31,7 @@ deployment solutions.
 ## What common log shipping solutions does Humio use?
 
 While this list is not exhaustive, Humio recommends [Beats]({{< ref "integrations/data-shippers/beats/_index.md" >}}),
-[Logstash]({{< ref "logstash.md" >}}), or [Ryslog]({{< ref "rsyslog.md" >}}) for
+[Logstash]({{< ref "logstash.md" >}}), or [Rsyslog]({{< ref "rsyslog.md" >}}) for
 shipping your logs. We can take advantage of other solutions, but these are the
 most common we've experienced.
 
@@ -131,7 +131,7 @@ EOF
 ```
 
 
-## How is timezones handled when sharing queries with people in different timezones
+## How are timezones handled when sharing queries with people in different timezones
 
 The browser sends its timezone to the server and that determines
 cutoff for say `timechart(span=1day)`.  The timezone is not embedded
