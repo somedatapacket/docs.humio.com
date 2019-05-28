@@ -1,5 +1,6 @@
 ---
 title: "Blacklisting Queries"
+weight: 30
 aliases: ["configuration/blacklist"]
 ---
 

@@ -1,7 +1,7 @@
 RELEASE?=1.5.13
 
 clean:
-	rm -rf public test data/releases.yml data/functions.json
+	rm -rf public test data/releases.yml data/functions.json data/metrics.json
 
 run: deps
 	# CSS gets mashed if we don't use --disableFastRender
@@ -20,7 +20,10 @@ data/releases.yml: data
 data/functions.json:
 	curl -fs https://repo.humio.com/repository/maven-releases/com/humio/docs/queryfunctions/$(RELEASE)/queryfunctions-$(RELEASE).json > data/functions.json
 
-deps: data/releases.yml data/functions.json
+data/metrics.json:
+	curl -fs https://repo.humio.com/repository/maven-releases/com/humio/docs/metrics/$(RELEASE)/metrics-$(RELEASE).json > data/metrics.json	
+
+deps: data/releases.yml data/functions.json data/metrics.json
 
 public: deps
 	hugo

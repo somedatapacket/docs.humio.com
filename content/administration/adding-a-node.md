@@ -1,5 +1,6 @@
 ---
 title: Adding a New Node
+weight: 10
 related:
   - removing-a-node.md
   - instance-sizing.md

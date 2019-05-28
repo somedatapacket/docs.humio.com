@@ -4,4 +4,5 @@ public/
 test/
 data/releases.yml
 data/functions.json
+data/metrics.json
 *.swp

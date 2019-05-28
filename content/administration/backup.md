@@ -1,5 +1,6 @@
 ---
 title: "Backup"
+weight: 20
 aliases: ["configuration/backup"]
 ---
 
