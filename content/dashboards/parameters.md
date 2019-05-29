@@ -35,7 +35,7 @@ The query contains three parameters: `?host`, `?rackId` and `?zoneId`.
 Running the query produces a time chart widget with one series per log level. This allows
 us to see the activity level on servers and e.g. how many errors occur.
 
-![Parameters in a Query](/images/pages/dashboards/parameters-in-query.png)
+![Parameters in a Query](/images/pages/dashboards/query-parameters-in-query.png)
 
 As you can see, the screenshot shows an input field has appeared per parameter and its default value is set to `*` -
 meaning that it matches everything. We can now set the `?zone` parameter to e.g. `eu-1`
