@@ -5,7 +5,7 @@ category_title: Overview
 ---
 
 This section explains how to handle common tasks when running a Humio instance.
-Most of the content is mostly relevant for clustered setups.
+This content was created with a focus on clustered Humio environments.
 
 ## User Management
 
