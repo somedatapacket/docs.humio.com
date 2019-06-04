@@ -33,11 +33,10 @@ Check out Filebeat's [official documentation](https://www.elastic.co/guide/en/be
 
 ## Installation
 
-To download Filebeat, visit the [Filebeat OSS downloads page](https://www.elastic.co/downloads/beats/filebeat-oss)
+To download Filebeat, visit the [Filebeat OSS downloads page](https://www.elastic.co/downloads/beats/filebeat-oss). You can find installation documentation for Filebeat at [the Filebeat Installation page of the official Filebeat website](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html).
 
 {{% notice note %}}
-***Installation documentation***  
-You can find installation documentation for Filebeat at [the Filebeat Installation page of the official Filebeat website](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html).
+For Filebeat OSS 7.x+, you need to be running Humio 1.5.8 or higher.
 {{% /notice %}}
 
 ## Configuration
@@ -106,6 +105,30 @@ You must make the following changes to the sample configuration:
 * You may want to increase the number of worker instances (`worker`) from the default of 1 to (say) 5 or 10 to achieve more throughput if filebeat is not able to keep up with the inputs. To get higher throughput also increase queue.mem.events to (say) 32000 to allow buffering for more workers.
 
 An important next step is [choosing a parser for your filebeat events]({{< relref "filebeat.md#parsing-data" >}}).
+
+## Enabling debug logging
+
+When setting up Filebeat, it's helpful to see what's going on under the hood. To do that, you need to enable
+debug logging. Add this to the end of your `filebeat.yml` config file:
+
+```yaml
+logging:
+  level: debug
+  to_files: true
+  to_syslog: false
+  files:
+    path: /var/log/filebeat
+    name: filebeat.log
+    keepfiles: 3
+```
+
+{{% notice warning %}}
+If you're using Filebeat with systemd, more recent versions execute Filebeat with the `-e` flag
+by default. This will cause Filebeat to ignore many of these logging options. Notably, it will
+log to `/var/log/messages` regardless of what you've specified here. To fix this, you should remove
+`Environment="BEAT_LOG_OPTS=-e"` from Filebeats' systemd unit file. See
+[this GitHub issue](https://github.com/elastic/beats/issues/12024) for more details.
+{{% /notice %}}
 
 ## Running Filebeat {#running-filebeat}
 
