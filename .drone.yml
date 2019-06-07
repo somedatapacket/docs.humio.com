@@ -28,16 +28,19 @@ steps:
   when:
     branch: master
 
-#- name: deploy-master
-#  image: e20co/drone-marathon
-#  settings:
-#    server: http://marathon.mesos:8080
-#    marathonfile: marathon.json
-#    environment:
-#      - MARATHON_ID=docs
-#    values:
-#      - marathon_id
-#      - drone_branch
-#      - drone_build_number
-#    when:
-#      branch: master
+- name: deploy-master
+  image: e20co/drone-marathon
+  settings:
+    server: https://marathon.internal.humio.com
+    username: drone
+    password:
+      from_secret: marathon_password
+    marathonfile: marathon.json
+    environment:
+      - MARATHON_ID=docs
+    values:
+      - marathon_id
+      - drone_branch
+      - drone_build_number
+    when:
+      branch: master
