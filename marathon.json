@@ -31,13 +31,13 @@
       "timeoutSeconds": 20
     }
   ],
-  "id": "/humio/<<MARATHON_ID>>",
+  "id": "/humio/docs",
   "instances": 2,
   "killSelection": "YOUNGEST_FIRST",
   "labels": {
     "HAPROXY_0_REDIRECT_TO_HTTPS": "true",
     "HAPROXY_0_USE_HSTS": "true",
-    "HAPROXY_0_VHOST": "<<MARATHON_ID>>.humio.com",
+    "HAPROXY_0_VHOST": "docs.humio.com",
     "HAPROXY_GROUP": "external",
     "HUMIO_TYPE": "nginx-accesslog",
     "HAPROXY_0_BACKEND_HSTS_OPTIONS": "  rspadd  Strict-Transport-Security:\\ max-age=63072000\n"

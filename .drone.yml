@@ -36,10 +36,7 @@ steps:
     password:
       from_secret: marathon_password
     marathonfile: marathon.json
-    environment:
-      - MARATHON_ID=docs
     values:
-      - marathon_id
       - drone_branch
       - drone_build_number
     when:
