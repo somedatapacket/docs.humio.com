@@ -38,5 +38,13 @@ steps:
       from_secret: marathon_password
     id: "/humio/docs"
     docker_image: "humio/docs:${DRONE_BRANCH}-${DRONE_BUILD_NUMBER}"
+    cpus: 0.1
+    mem: 128
+    instances: 2
+    docker_port_mappings:
+      - "80"
+    backoff_factor: 1.15
+    docker_force_pull: true
+    max_launch_delay_seconds: 3600
     when:
       branch: master
