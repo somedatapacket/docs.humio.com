@@ -36,9 +36,7 @@ steps:
     username: drone
     password:
       from_secret: marathon_password
-    marathonfile: marathon.json
-    values:
-      - drone_branch
-      - drone_build_number
+    id: "/humio/docs"
+    docker_image: "humio/docs:${DRONE_BRANCH}-${DRONE_BUILD_NUMBER}"
     when:
       branch: master
