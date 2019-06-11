@@ -44,6 +44,7 @@ steps:
     docker_port_mappings:
       - container_port: 80
     backoff_factor: 1.15
+    backoff_seconds: 1
     docker_force_pull: true
     max_launch_delay_seconds: 3600
     when:
