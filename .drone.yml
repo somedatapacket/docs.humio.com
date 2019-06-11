@@ -29,7 +29,7 @@ steps:
     branch: master
 
 - name: deploy-master
-  image: e20co/drone-marathon
+  image: plugins/marathon
   settings:
     server: https://marathon.internal.humio.com
     username: drone
