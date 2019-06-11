@@ -31,6 +31,7 @@ steps:
 - name: deploy-master
   image: plugins/marathon
   settings:
+    debug: true
     server: https://marathon.internal.humio.com
     username: drone
     password:
