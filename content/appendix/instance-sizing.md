@@ -138,6 +138,12 @@ package on Ubuntu too:
 sudo apt install fio
 ```
 
+Run fio either with all options on the command line or through a "jobfile".
+
+```
+sudo fio --filename=/data/fio-test.tmp --filesize=1Gi --bs=256K -rw=read --time_based --runtime=5s --name=read_bandwidth_test --numjobs=8 --thread --direct=1
+```
+
 Here are a sample contents for a "jobfile" that somewhat mimics how
 Humio reads from the file system. Make sure to replace
 `/data/fio-tmp-dir` with the path to somewhere on the disk where your
@@ -147,8 +153,9 @@ Humio reads from the file system. Make sure to replace
 [global]
 thread
 rw=read
-bs=1Mi
+bs=256Ki
 directory=/data/fio-tmp-dir
+direct=1
 
 [read8]
 stonewall
