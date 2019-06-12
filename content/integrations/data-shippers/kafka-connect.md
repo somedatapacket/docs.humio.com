@@ -14,6 +14,11 @@ As Humio supports ingesting data using the ElasticSearch bulk api, data can be s
 
 The Kafka Connect framework is part of the standard Kafka download but the Confluent ElasticSearch Connector must be downloaded separately. It is available in the Docker image [confluentinc/cp-kafka-connect](https://hub.docker.com/r/confluentinc/cp-kafka-connect/).
 
+{{% notice note %}}
+***New & Improved Connector***  
+We've improved our Kafka connector and it's currently awaiting verification by Confluent.  The new `kafka-connect-hec-sink` has several new features including use of the HEC endpoint, metrics reporting, and more.  If you want to give it a try, check it out [here](https://github.com/humio/kafka-connect-hec-sink)!
+{{% /notice %}}
+
 We start with an outline of how to configure the Connector to send data to Humio.
 After the configuration section a longer example will follow showing how to get a Kafka connector installed and running.
 
