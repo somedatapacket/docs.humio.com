@@ -58,5 +58,4 @@ and run it yourself or create a free account in [Humio Cloud](https://cloud.humi
 {{% button href="https://cloud.humio.com/" icon="fa fa-cloud" %}}Free Cloud Account{{% /button %}}
 </p>
 
-Once you have access to running Humio instance, you can head over to
-the [tutorial]({{< ref "tutorial/_index.md" >}}).
+Once you have access to running Humio instance, you can head over to the [tutorial]({{< ref "tutorial/_index.md" >}}).
