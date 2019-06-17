@@ -51,7 +51,7 @@ available for use as filesystem page cache.
 
 A good rule of thumb calculation for memory allocation is as follows:
 
-(8GB baseline + 1GB per core) + that much again in off-heap memory
+* (8GB baseline + 1GB per core) + that much again in off-heap memory
 
 So, for a production installation on an 8 core VM, you would want about
 64GB of memory with JVM settings as follows:
