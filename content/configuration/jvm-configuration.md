@@ -95,6 +95,13 @@ The memory displayed in the `available` column is what's currently available
 for use as page cache. The `buff/cache` column displays how much of that memory
 is currently being used for page cache.
 
+{{% notice note %}}
+If you're installing on a system with two CPU sockets using our Ansible
+scripts, then you will end up with two Humio JVM processes running on
+your system. Under these conditions, the memory requirement will double,
+so keep that in mind when planning.
+{{% /notice %}}
+
 ## Garbage Collection
 
 Humio has been tested and run using the Garbage First (`-XX:+UseG1`)
