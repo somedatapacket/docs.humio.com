@@ -42,15 +42,65 @@ Humio.
  potentially other languages as well.  It is not yet supported for production use with Humio as it is only available
  for Java version 8.  We plan to investigate and support it as it matures and becomes available for Java 11.
 
-## Java Options
+## Java Memory Options
 
-We recommend systems running Humio have as much RAM as possible, but not for the JVM.  When running Humio it will
-operate comfortably within 10 GiB for most workloads.  The remainder of your RAM in the system should remain available
-for use as filesystem buffers.
+We recommend systems running Humio have as much RAM as possible, but not
+for the JVM.  When running Humio it will operate comfortably within 10 GiB
+for most workloads. The remainder of your RAM in the system should remain
+available for use as filesystem page cache.
+
+A good rule of thumb calculation for memory allocation is as follows:
+
+* (8GB baseline + 1GB per core) + that much again in off-heap memory
+
+So, for a production installation on an 8 core VM, you would want about
+64GB of memory with JVM settings as follows:
 
 ```bash
--server -Xms10g  -Xmx10g -Xss2M -XX:MaxDirectMemorySize=32G -XX:+AlwaysPreTouch
+-server -Xms16G  -Xmx16G -Xss2M -XX:MaxDirectMemorySize=16G
 ```
+
+This sets Humio to allocate a heap size of 16GB and further allocates
+16GB for direct memory access (which is used by direct byte buffers).
+That will leave a further 32GB of memory for OS processes and filesystem
+cache. For large installations, more memory for filesystem cache to use
+will translate into faster queries, so we recommend using as much memory
+as is economically feasible on your hardware.
+
+For a smaller, 2 core system that would look like this:
+
+```bash
+-server -Xms10G  -Xmx10G -Xss2M -XX:MaxDirectMemorySize=10G
+```
+
+That sets Humio to allocate a heap size of 10GB and further allocates
+10GB for direct memory access (as such, you would want a system with
+32GB of memory, most likely).
+
+It's definitely possible to run Humio on smaller systems with less memory
+than this, but we recommend a system with at least 32GB of memory for all
+but the smallest installations.
+
+To view how much memory is available for use as filesystem page cache, you
+can run the following command:
+
+```bash
+$ free -h
+              total        used        free      shared  buff/cache   available
+Mem:           125G         24G        1.7G        416K         99G         99G
+Swap:           33G         10M         33G
+```
+
+The memory displayed in the `available` column is what's currently available
+for use as page cache. The `buff/cache` column displays how much of that memory
+is currently being used for page cache.
+
+{{% notice note %}}
+If you're installing on a system with two CPU sockets using our Ansible
+scripts, then you will end up with two Humio JVM processes running on
+your system. Under these conditions, the memory requirement will double,
+so keep that in mind when planning.
+{{% /notice %}}
 
 ## Garbage Collection
 
@@ -82,7 +132,7 @@ full collection.
 -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC
 ```
 
-## Verify Physical Memory is Available for Filesystem Buffer Cache
+## Verify Physical Memory is Available for Filesystem Page Cache
 
 Once you have Humio (and perhaps also Kafka, Zookeeper and other software) running on your server, verify that there is
 ample memory remaining for caching files using the command `free -h`. On a server with e.g. 128 GB of RAM we usually
@@ -99,7 +149,7 @@ If you benefit from the page cache you will see a much faster response on the se
 first run.
 
 Another way to validate that the IO subsystem is fast is to inspect the output of `iostat -xm 2` while running a query
-after dropping filesystem buffer cached data as shown above.  If the NVMe-drives are close to a 100% utilized, then you
+after dropping filesystem page cached data as shown above.  If the NVMe-drives are close to a 100% utilized, then you
 will benefit from having memory for page caching.
 
 ## Helpful Java/JVM Resources
