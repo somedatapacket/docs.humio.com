@@ -47,7 +47,7 @@ Humio.
 We recommend systems running Humio have as much RAM as possible, but not
 for the JVM.  When running Humio it will operate comfortably within 10 GiB
 for most workloads. The remainder of your RAM in the system should remain
-available for use as filesystem buffers.
+available for use as filesystem page cache.
 
 A good rule of thumb calculation for memory allocation is as follows:
 
@@ -111,7 +111,7 @@ full collection.
 -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC
 ```
 
-## Verify Physical Memory is Available for Filesystem Buffer Cache
+## Verify Physical Memory is Available for Filesystem Page Cache
 
 Once you have Humio (and perhaps also Kafka, Zookeeper and other software) running on your server, verify that there is
 ample memory remaining for caching files using the command `free -h`. On a server with e.g. 128 GB of RAM we usually
@@ -128,7 +128,7 @@ If you benefit from the page cache you will see a much faster response on the se
 first run.
 
 Another way to validate that the IO subsystem is fast is to inspect the output of `iostat -xm 2` while running a query
-after dropping filesystem buffer cached data as shown above.  If the NVMe-drives are close to a 100% utilized, then you
+after dropping filesystem page cached data as shown above.  If the NVMe-drives are close to a 100% utilized, then you
 will benefit from having memory for page caching.
 
 ## Helpful Java/JVM Resources
