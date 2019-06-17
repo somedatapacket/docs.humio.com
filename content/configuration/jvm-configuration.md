@@ -42,15 +42,44 @@ Humio.
  potentially other languages as well.  It is not yet supported for production use with Humio as it is only available
  for Java version 8.  We plan to investigate and support it as it matures and becomes available for Java 11.
 
-## Java Options
+## Java Memory Options
 
-We recommend systems running Humio have as much RAM as possible, but not for the JVM.  When running Humio it will
-operate comfortably within 10 GiB for most workloads.  The remainder of your RAM in the system should remain available
-for use as filesystem buffers.
+We recommend systems running Humio have as much RAM as possible, but not
+for the JVM.  When running Humio it will operate comfortably within 10 GiB
+for most workloads. The remainder of your RAM in the system should remain
+available for use as filesystem buffers.
+
+A good rule of thumb calculation for memory allocation is as follows:
+
+(8GB baseline + 1GB per core) + that much again in off-heap memory
+
+So, for a production installation on an 8 core VM, you would want about
+64GB of memory with JVM settings as follows:
 
 ```bash
--server -Xms10g  -Xmx10g -Xss2M -XX:MaxDirectMemorySize=32G -XX:+AlwaysPreTouch
+-server -Xms16G  -Xmx16G -Xss2M -XX:MaxDirectMemorySize=16G
 ```
+
+This sets Humio to allocate a heap size of 16GB and further allocates
+16GB for direct memory access (which is used by direct byte buffers).
+That will leave a further 32GB of memory for OS processes and filesystem
+cache. For large installations, more memory for filesystem cache to use
+will translate into faster queries, so we recommend using as much memory
+as is economically feasible on your hardware.
+
+For a smaller, 2 core system that would look like this:
+
+```bash
+-server -Xms10G  -Xmx10G -Xss2M -XX:MaxDirectMemorySize=10G
+```
+
+That sets Humio to allocate a heap size of 10GB and further allocates
+10GB for direct memory access (as such, you would want a system with
+32GB of memory, most likely).
+
+It's definitely possible to run Humio on smaller systems with less memory
+than this, but we recommend a system with at least 32GB of memory for all
+but the smallest installations.
 
 ## Garbage Collection
 
