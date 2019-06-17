@@ -81,6 +81,22 @@ It's definitely possible to run Humio on smaller systems with less memory
 than this, but we recommend a system with at least 32GB of memory for all
 but the smallest installations.
 
+{{% notice note %}}
+To view how much memory is available for use as filesystem page cache, you
+can run the following command:
+
+```bash
+$ free -h
+              total        used        free      shared  buff/cache   available
+Mem:           125G         24G        1.7G        416K         99G         99G
+Swap:           33G         10M         33G
+```
+
+The memory displayed in the `available` column is what's currently available
+for use as page cache. The `buff/cache` column displays how much of that memory
+is currently being used for page cache.
+{{% /notice %}}
+
 ## Garbage Collection
 
 Humio has been tested and run using the Garbage First (`-XX:+UseG1`)
