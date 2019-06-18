@@ -58,11 +58,12 @@ a dropdown instead of manually typing.
 
 ## Configuring a Parameter
 
-There are three types of parameter:
+There are four types of parameter:
 
-- Free Text Parameters
-- Search Result Based Parameters
+- Free text parameters
+- Search result based parameters
 - Parameters with a fixed set of options
+- File based parameters
 
 To configure a parameter, take the dashboard into "Edit Mode" by clicking the "Edit Dashboard"
 button in the top menu.
@@ -107,8 +108,32 @@ and use e.g. the {{< function "match" >}} function and a file to lookup human re
 
 ### Fixed List Parameters
 
-If you have a fixed set of values you would like to use for possible values to select from you can use
-the "Fixed List of Values" parameter type.
+If you have a small set of known values you would like to select between for a parameter, these can be written into a "Fixed List of Values" parameter.
+If the set of values is an unwieldy size however, the "Values from Files" parameter may be a better fit.
+
+### File Based Parameters
+Humio supports uploading of CSV and JSON files for use with the {{< function "match" >}} function in queries, but those same files can also be used for populating parameters.
+Selecting the "Values from Files" parameter type lets you give the name of a file and specify which column to insert data into the parameter from, with the **File** and **Value Column** settings respectively.
+If you configure the **Label Column** field, those are the values that will appear in the UI when you select the value for the parameter, but it is still the value column that determines what data goes in the query.
+If no labelling column is configured, the UI will just display the actual values.
+
+Take this configuration as an example:
+
+![File based parameter configuration](/images/pages/dashboards/file-based-params-configuration.png)
+
+If `example.csv` has these contents:
+
+```csv
+id,name
+1,hello
+2,world
+```
+
+Then using the parameter in the dashboard looks like this:
+
+![File based parameter output](/images/pages/dashboards/file-based-params-output.png)
+
+Selecting the `hello` option will insert the value `1` into the parameter, and the same for `world` and `2`.
 
 ## URL
 
