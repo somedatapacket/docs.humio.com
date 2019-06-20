@@ -108,10 +108,11 @@ and use e.g. the {{< function "match" >}} function and a file to lookup human re
 
 ### Fixed List Parameters
 
-If you have a small set of known values you would like to select between for a parameter, these can be written into a "Fixed List of Values" parameter.
-If the set of values is an unwieldy size however, the "Values from Files" parameter may be a better fit.
+The "Fixed List of Values" parameter is good when you have a small set of fixed values that will fit into a dropdown menu.
+If the values are too many to use this parameter type however, the "Values from Files" parameter may be a better fit.
 
 ### File Based Parameters
+
 Humio supports uploading of CSV and JSON files for use with the {{< function "match" >}} function in queries, but those same files can also be used for populating parameters.
 Selecting the "Values from Files" parameter type lets you give the name of a file and specify which column to insert data into the parameter from, with the **File** and **Value Column** settings respectively.
 If you configure the **Label Column** field, those are the values that will appear in the UI when you select the value for the parameter, but it is still the value column that determines what data goes in the query.
