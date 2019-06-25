@@ -10,7 +10,7 @@ you need. This makes creating integrations and clients for Humio much easier.
 
 The GraphQL API is documented by our interactive API explorer:
 
-https://cloud.humio.com/docs/api-explorer _(Requires a [Humio Cloud Account](https://cloud.humio.com/))_
+https://cloud.humio.com/docs/api-explorer _(Requires a [Humio Cloud Account](https://cloud.humio.com/))_  
 $BASEURL/docs/api-explorer
 
 ## New to GraphQL?
