@@ -4,6 +4,8 @@ weight: 1
 featured-on: ["on-prem"]
 ---
 
+_This feature is not available on Humio Cloud. You will have to run your own Humio cluster to use Ingest Listeners._
+
 Ingest Listeners is a great way of shipping data to Humio through raw sockets, via either UDP or TCP. Example use cases are
 
 * syslog
