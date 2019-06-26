@@ -127,11 +127,13 @@ License | Dependency | Attribution
 [Go License](http://golang.org/LICENSE) | com.google.re2j # re2j # 1.2 | Copyright (C) 2018 by The Go Authors
 [BSD 3-Clause](https://github.com/ankurdave/part/blob/master/LICENSE) | com.ankurdave # part # 0.1 | Copyright (c) 2015, Armon Dadgar, Ankur Dave
 [Eclipse Public License v. 2.0](https://www.eclipse.org/legal/epl-2.0) | org.eclipse.lsp4j # org.eclipse.lsp4j # 0.7.0 | Copyright (c) 2016-2018 TypeFox and others.
+[MIT License](https://github.com/jcazevedo/moultingyaml/blob/master/LICENSE.md) | Moulting Yaml # 0.4.1 | Copyright (c) 2015 Joao Azevedo joao.c.azevedo@gmail.com
 
 ## Elm/JS Dependencies
 
 License | Module | Attribution
 --- | --- | ---
+[MIT License](https://github.com/eligrey/FileSaver.js/blob/master/LICENSE.md) | FileSaver.js | Copyright © 2016 Eli Grey.
 [BSD 3-Clause License](https://raw.githubusercontent.com/elm-tools/parser-primitives/master/LICENSE)  |  "elm-tools/parser-primitives": "1.0.0" | Copyright (c) 2017-present, Evan Czaplicki.
 [MIT License](https://raw.githubusercontent.com/krisajenkins/elm-exts/master/LICENSE) |    "krisajenkins/elm-exts": "26.5.0" | Copyright (c) 2017 Kris Andrew Jenkins
 [BSD 3-Clause License](https://github.com/elm-lang/navigation/blob/master/LICENSE) | "elm-lang/navigation": "2.1.0" | Copyright (c) 2016, Evan Czaplicki

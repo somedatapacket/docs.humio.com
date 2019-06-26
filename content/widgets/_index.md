@@ -4,8 +4,11 @@ category_title: "Overview"
 weight: 590
 ---
 
-Widgets are the UI elements that visualize query results. E.g. you can show
-results as a table or time chart.
+Widgets are the UI elements that make up dashboard. The most common widget is one that visualizes
+search results using e.g. charts, list and tables.
+
+[Note Widgets]({{< ref "note-widget.md" >}}) can contain usage descriptions, 
+user guides and dynamic links to other systems. 
 
 This section introduces each widget and give examples of queries that could
 be used along with them.
