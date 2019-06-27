@@ -2,6 +2,7 @@
 title: The Note Widget
 weight: 590
 menuTitle: Notes
+aliases: ["/ref/notes"]
 ---
 
 Using the Note Widget you can add descriptions, instructions, links and images to your dashboards.
