@@ -268,6 +268,17 @@ MAX_BUCKET_POINTS=10000
 SECONDARY_DATA_DIRECTORY=/secondaryMountPoint/humio-data2
 PRIMARY_STORAGE_PERCENTAGE=80
 
+# CACHE_STORAGE_DIRECTORY enables a local cache of segment files copied from the primary/secondary storage.
+# It really only makes sense if the local NVME is ephemeral while the primary data dir is trustworthy but slow.
+#
+# Enable caching of files from e.g. a "slow" EBS file system or for a file system on spinning disks.
+# The cache should be placed on local NVME or similar drives, providing more than 200 MB/s/core in the machine.
+# CACHE_STORAGE_PERCENTAGE Defaults to 90 and controls how full the cache file system is allowed to become.
+# Humio manages the files in the cache directory and will delete files when there is too little space remaining.
+# (Do not add a RAM-disk as cache: RAM is better kept for page cache)
+# Caching is disabled by default as the location of the cache needs to be known.
+CACHE_STORAGE_DIRECTORY=/humio-cache
+CACHE_STORAGE_PERCENTAGE=90
 
 # Humio will write threaddumps to humio-threaddumps.log with the interval specified here
 # If not specified Humio will write threaddumps every 10 seconds
