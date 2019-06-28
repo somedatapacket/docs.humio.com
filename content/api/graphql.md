@@ -10,18 +10,18 @@ you need. This makes creating integrations and clients for Humio much easier.
 
 The GraphQL API is documented by our interactive API explorer:
 
-https://cloud.humio.com/docs/api-explorer _(Requires a [Humio Cloud Account](https://cloud.humio.com/))_  
-$BASEURL/docs/api-explorer
+- https://cloud.humio.com/docs/api-explorer _(Requires a [Humio Cloud Account](https://cloud.humio.com/))_  
+- $BASEURL/docs/api-explorer _(Where `$BASEURL` is the hostname for on-prem install)
 
 ## New to GraphQL?
 
-If you are unfamiliar with GraphQL don't fret. You don't need GraphQL special
+If you are unfamiliar with GraphQL don't fret. You don't need any special GraphQL
 tools to use it. GraphQL is based on HTTP, and all you need is `curl` to send
-requests and returns JSON responses.
+requests and responses are returned as JSON.
 
 Industry leaders like:
 
-- Github
+- GitHub
 - Facebook
 - Twitter
 
@@ -35,15 +35,57 @@ have all based their newest APIs on GraphQL.
 
 ## API Explorer {#api-explorer}
 
-Humio has an built-in API explorer bundled with each installation. You can find
+Humio has a built-in API explorer bundled with each installation. You can find
 it under:
 
 `http://$HOST:$PORT/docs/api-explorer`
 
 There newest version is always available under:
 
-https://cloud.humio.com/docs/api-explorer _(Requires a [Humio Cloud Account](https://cloud.humio.com/))_
-$BASEURL/docs/api-explorer (for on premise installations)
+- https://cloud.humio.com/docs/api-explorer _(Requires a [Humio Cloud Account](https://cloud.humio.com/))_
+- $BASEURL/docs/api-explorer (for on premise installations)
+
+## Examples
+
+These examples are geared toward on-prem customers and assume they're being
+executed from a Humio server. You can also run them against the public Humio
+hostname using an actual user API token (which is obtained from the "Your Account"
+area from the menu on the right in the header). This is being done for simplicity's
+sake and the fact that it will work on any installation if executed from the
+server running Humio.
+
+
+**List Users**
+```
+curl -v -XPOST -H "Content-Type: application/json" \
+  -H "Authorization: bearer $(cat /data/humio-data/local-admin-token.txt)" \
+  http://127.0.0.1:8080/graphql \
+  -d '{ "query": "{ accounts { username } }" }'
+```
+
+**Add User**
+```
+curl -v -XPOST -H "Content-Type: application/json" \
+  -H "Authorization: bearer $(cat /data/humio-data/local-admin-token.txt)" \
+  http://127.0.0.1:8080/graphql \
+  -d '{ "query": "mutation { addUser(input: { username: \"user@example.com\" }) { user { id } } }" }'
+```
+
+**Remove User**
+```
+curl -v -XPOST -H "Content-Type: application/json" \
+  -H "Authorization: bearer $(cat /data/humio-data/local-admin-token.txt)" \
+  http://127.0.0.1:8080/graphql \
+  -d '{ "query": "mutation { removeUser(input: { username: \"user@example.com\" }) { clientMutationId } }" }'
+```
+
+**Add User to Repository**
+```
+curl -v -XPOST -H "Content-Type: application/json" \
+  -H "Authorization: bearer $(cat /data/humio-data/local-admin-token.txt)" \
+  http://127.0.0.1:8080/graphql \
+  -d '{ "query": "mutation { addMember(searchDomainName: \"your-repo-name-here\", username: \"user@example.com\", hasMembershipAdminRights:false, hasDeletionRights:false)  { clientMutationId } }" }'
+```
 
 ## Why use both GraphQL and REST?
 
