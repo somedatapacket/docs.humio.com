@@ -39,8 +39,8 @@ there is a fall-back solution: You can set `PROXY_PREFIX_URL` in
 your `/home/humio/humio-config.env`.
 
 {{% notice tip %}}
-The `proxy_read_timeout` setting above may be to low for longer operations like exporting
-query results from large queries involving aggregate data. If you find that requests like
+The `proxy_read_timeout` setting above may be too low for longer operations like exporting
+query results from large queries involving aggregate data. If you find requests like
 that are timing out after 25 seconds, then you should increase the `proxy_read_timeout`
 value to accomodate what you need.
 {{% /notice %}}
