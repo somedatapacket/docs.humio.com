@@ -42,7 +42,7 @@ your `/home/humio/humio-config.env`.
 The `proxy_read_timeout` setting above may be too low for longer operations like exporting
 query results from large queries involving aggregate data. If you find requests like
 that are timing out after 25 seconds, then you should increase the `proxy_read_timeout`
-value to accomodate what you need.
+value to accommodate what you need.
 {{% /notice %}}
 
 ## Example for a cluster with multiple hosts
