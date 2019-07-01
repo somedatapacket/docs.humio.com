@@ -420,25 +420,32 @@ import. These must be placed in the folder
 `/data/humio-data/ready_for_import_dataspaces` using the following
 structure:
 
-`/data/humio-data/ready_for_import_dataspaces/dataspace_$NAME`
+`/data/humio-data/ready_for_import_dataspaces/dataspace_$ID`
 
-You should copy the files for the repository to the server into another
-folder while the copying is happening, and then move it to the proper
-name once it's ready.
+You should copy the files for the repository to the server into
+another folder while the copying is happening, and then move it to the
+proper name once it's ready. Note the name of the directory uses the
+internal ID of the dataspace, which is the directory name in the
+source system.
 
 The folder `/data/humio-data/ready_for_import_dataspaces` must be
 read+writeable for the humio-user running the server, as it moves the
 files to another directory and deletes the imported files when it is
 done with them, one at a time.
 
-Example:
+Example: (Note that you need both NAME and ID of the repository)
 
 ```shell
 NAME="my-repository-name"
+ID="my-repository-id"
 sudo mkdir /data/humio-data/ready_for_import_dataspaces
-sudo mv /data/dataspaces-from-elsewhere/dataspace_$NAME /data/humio-data/ready_for_import_dataspaces
+sudo mv /data/from-other/dataspace_$ID /data/humio-data/ready_for_import_dataspaces
 sudo chown -R humio /data/humio-data/ready_for_import_dataspaces/
-curl -XPOST -d @from-elsewhere-global-data-snapshot.json  -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "$BASEURL/api/v1/importrepository/$NAME"
+curl -XPOST \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer $TOKEN" \
+     -d @from-other-global-data-snapshot.json \
+     "$BASEURL/api/v1/importrepository/$NAME"
 ```
 
 The `POST` imports the metadata, such as users and dashboards, and moves
