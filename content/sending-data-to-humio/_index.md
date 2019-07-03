@@ -184,3 +184,20 @@ output:
 # While doing so may increase throughput of ingest it has a negative impact on search performance of the resulting events in Humio.
 ```
 
+Filebeat needs a fresh directory for each instance and a separate
+configuration file too. For backfilling purposes filebeat should not
+run as a daemon but in the run-once mode. Here is an example command
+line to launch filebeat in this mode. It assumes that you have placed
+the (distinct) filebeat.yml config file in the confir directory named
+below.
+
+``` bash
+# Removing the registry will make filebeat ship from scratch again.
+rm -rf /path/to/filebeat-instance-dir/registry
+filebeat -e --once \
+ --path.config /path/to/filebeat-instance-dir/  \
+ --path.data   /path/to/filebeat-instance-dir/  \
+ --path.home   /path/to/filebeat-instance-dir/  \
+ --path.logs   /path/to/filebeat-instance-dir/logs
+```
+
