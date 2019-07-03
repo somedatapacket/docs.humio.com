@@ -174,7 +174,7 @@ queries to improve the readability of your queries.
 
 However, these pipe characters are not mandatory. The Humio query engine can
 recognize tag filters, and use this
-information to narrow  down the number of data sources to search.
+information to narrow  down the number of datasources to search.
 This feature decreases query time.
 
 See the [tags documentation]({{< ref "tagging.md" >}}) for more on tags.

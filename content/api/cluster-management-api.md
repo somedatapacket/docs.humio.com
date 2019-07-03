@@ -467,7 +467,7 @@ only. The new repository files will get copied at that point in time.
 
 A datasource is ultimately bounded by the volume that one CPU thread can manage
 to compress and write to the filesystem. This is typically in the 1-4 TB/day range.
-To handle more ingest traffic from a specific data source, you ned to provide more
+To handle more ingest traffic from a specific datasource, you ned to provide more
 variability in the set of tags. But in some cases it may not be possible or desirable to adjust
 the set of tags or tagged fields in the client. To solve this case, Humio supports
 adding a synthetic tag, that is assigned a random number for each (small bulk) of events.

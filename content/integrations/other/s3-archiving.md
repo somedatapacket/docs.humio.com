@@ -12,10 +12,10 @@ Archiving works by running a periodic job inside all Humio nodes which looks for
 An admin user needs to setup archiving per repository. After selecting a repository on the Humio front page the configuration page is available under Settings.
 
 {{% notice info %}}
-For slow moving data sources it can take some time before segments files are completed on disk and then made available for the archiving job. In the worst case a segment file must either contain a gigabyte of uncompressed data or 7 days must pass before it's completed. This limitation will be removed in a future version of Humio.
+For slow moving datasources it can take some time before segments files are completed on disk and then made available for the archiving job. In the worst case a segment file must either contain a gigabyte of uncompressed data or 7 days must pass before it's completed. This limitation will be removed in a future version of Humio.
 {{% /notice %}}
 
-More on [segments files]({{< relref "concepts/ingest-flow" >}}) and [data sources]({{< relref "concepts/datasources" >}}).
+More on [segments files]({{< relref "concepts/ingest-flow" >}}) and [datasources]({{< relref "concepts/datasources" >}}).
 
 ## S3 Layout
 

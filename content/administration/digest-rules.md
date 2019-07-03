@@ -130,7 +130,7 @@ desirable. But raising it reduces the number of small segments
 generated, since segments get flushed after at most that amount of
 time. Reducing to 30 minute interval to say 5 minutes would make the
 fail-over happoen much faster, but at the cost of normal operation, as
-there would be 12 * 24 = 288 segments in each data source per day,
+there would be 12 * 24 = 288 segments in each datasource per day,
 compared to the 2 * 24 = 48 with the current value. The cost of having
 all these extra segments would slow down normal operation somewhat.
 
