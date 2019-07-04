@@ -117,6 +117,7 @@ License | Dependency | Attribution
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.logging.log4j # log4j-1.2-api # 2.11.2 | Copyright 1999-2017 The Apache Software Foundation.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | org.apache.logging.log4j # log4j-slf4j-impl # 2.11.2 | Copyright 1999-2017 The Apache Software Foundation.
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) | com.lmax # disruptor # 3.4.2 | Copyright 2017 LMAX-Exchange
+[MIT License](http://www.opensource.org/licenses/mit-license.php) | net.jcazevedo # moultingyaml # 0.4.0 | Copyright (c) 2015 Joao Azevedo
 [MIT License](http://www.opensource.org/licenses/mit-license.php) | org.slf4j # slf4j-api # 1.7.26 | Copyright (c) 2004-2017 QOS.ch
 [MIT License](http://www.opensource.org/licenses/mit-license.php) | net.sf.jopt-simple # jopt-simple # 5.0.4 | Copyright (c) 2004-2016 Paul R. Holser, Jr.
 [MIT License](https://raw.githubusercontent.com/auth0/java-jwt/master/LICENSE) | com.auth0 # java-jwt # 3.8.1 | Copyright (c) 2015 Auth0, Inc.
