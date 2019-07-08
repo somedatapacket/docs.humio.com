@@ -119,7 +119,7 @@ The configuration file has these parameters:
 You can replace the parameters in the file or set them as ENV parameters when starting Filebeat.  
 You can [create an ingest token following the instructions here]({{< ref "ingest-tokens.md" >}}).
 
-Note that in the filebeat configuration we specify that Humio should use the built-in parser `bro-json` to parse the data in with:
+Note that in the filebeat configuration we specify that Humio should use the built-in parser `bro-json` to parse the data with:
 
 ```yaml
   fields:
@@ -137,7 +137,7 @@ Run Filebeat as described [here]({{< relref "filebeat.md#running-filebeat" >}}).
 An example of running Filebeat with the above parameters as environment variables:  
 
 ```shell
-ZEEK_LOG_DIR=/home/bro/logs REPOSITORY_NAME=bro HOST=localhost INGEST_TOKEN=none /usr/share/filebeat/bin/filebeat -c /etc/filebeat/filebeat.yml
+ZEEK_LOG_DIR=/home/bro/logs HOST=localhost INGEST_TOKEN=******************** /usr/share/filebeat/bin/filebeat -c /etc/filebeat/filebeat.yml
 ```
 
 {{% notice note %}}
