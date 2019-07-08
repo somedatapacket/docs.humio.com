@@ -73,9 +73,9 @@ running this command:
 /usr/lib/kafka/bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic humio-ingest --partitions 28
 ```
 {{% notice note %}}
-The path to `kafka-topics.sh` may vary depending on installation type. Docker containers may have this
-at `/products/kafka/bin`. Ansible-based installs will have it at the below path. If
-you installed this by hand, use whichever path kafka is installed to.
+The path to `kafka-topics.sh` may vary depending on installation type. Docker containers
+may have this at `/products/kafka/bin`. Ansible-based installs will have it at the above
+path. If you installed this by hand, use whichever path kafka is installed to.
 {{% /notice %}}
 
 If zookeeper is running on the kafka machine, use localhost for the zookeeper address,
