@@ -64,9 +64,10 @@ later decrease the number you're using.
 
 If additional digest nodes are added to a cluster down the road, you will likely
 want to increase the number of digest partitions to ensure all digest nodes are
-able to consume from at least one partition. To do this, you need to increase the
-number of partitions for the kafka `humio-ingest` topic. To do this, log into one
-of your kafka nodes and run this command:
+able to consume from at least one partition. To do this, you must first increase the
+number of partitions for the kafka `humio-ingest` topic. Increasing the number of
+kafka partitions for a topic involves logging into one of your kafka nodes and
+running this command:
 
 ```shell
 /usr/lib/kafka/bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic humio-ingest --partitions 28
