@@ -85,7 +85,7 @@ of partitions being added). After running the command, you should see output tha
 "Adding partitions succeeded!".
 
 Next you need to create the digest partitions in Humio using the Cluster Management API.
-Connect to a Humio node and run this command to get the current partition layout (be sur
+Connect to a Humio node and run this command to get the current partition layout (be sure
 you update the path to the local admin token if necessary):
 
 ```shell
