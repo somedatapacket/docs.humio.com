@@ -35,6 +35,7 @@ steps:
   settings:
     hugo_version: "0.55.6"
     validate: true
+    buildDrafts: true
 
 - name: docker-build
   image: plugins/docker
