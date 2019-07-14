@@ -2,14 +2,14 @@
 title: "User Management"
 ---
 
-You can configure Humio to run either with or without user authentication.
-If user authentication is disabled, then everyone with access to UI or API can
+You can configure Humio to run with or without user authentication.
+If user authentication is disabled, then everyone with access to the UI or the API can
 access everything!
 
 When you run Humio with authentication enabled, each repository has its own set of users.
-Humio identifies users by their email address. It validates each email address
-using an OAuth identity provider - either Google, Github, or Bitbucket. Humio
-can also check usernames and password using your local LDAP service.
+Humio identifies users by their email address, and validates each email address
+using an OAuth identity provider -- Google, GitHub, or Bitbucket. Humio
+can also check usernames and passwords using your local LDAP service.
 
 There are three levels of users: 'normal', 'administrator', and 'root':
 
