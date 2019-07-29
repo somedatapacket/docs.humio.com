@@ -5,7 +5,7 @@ weight: 590
 ---
 
 Widgets are the UI elements that make up dashboard. The most common widget is one that visualizes
-search results using e.g. charts, list and tables.
+search results using charts, lists, and tables.
 
 [Note Widgets]({{< ref "note-widget.md" >}}) can contain usage descriptions, 
 user guides and dynamic links to other systems. 
