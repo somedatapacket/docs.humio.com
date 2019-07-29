@@ -10,7 +10,7 @@ These events are designed with GDPR requirements in mind and come in two variant
 The purpose of the separation into these two groups is to make the audit trail trustworthy by making the sensitive actions not mutable through Humio.
 
 The sensitive kind is assignment of roles to users on repositories, changing retention settings on repositories,
-and deleting repositories and data sources and similar actions. See the list of all logged events below.
+and deleting repositories and datasources and similar actions. See the list of all logged events below.
 
 Sensitive events are tagged with `#sensitive="true"`, non-sensitive as `#sensitive="false"`.
 

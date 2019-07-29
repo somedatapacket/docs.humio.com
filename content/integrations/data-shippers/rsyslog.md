@@ -69,3 +69,7 @@ By now, your logs should start rolling into your repository and can be found wit
 ```
 syslogtag=*
 ```
+
+{{% notice note %}}
+If logs do not start rolling into your repository check the status of the `rsyslog` service (`sudo systemctl status rsyslog.service`) to see if the Elasticsearch module failed to load. In most cases this can be corrected by installing the module using `sudo apt-get install rsyslog-elasticsearch` on Ubuntu or `sudo yum install rsyslog-elasticsearch` on CentOS/RHEL.
+{{% /notice %}}

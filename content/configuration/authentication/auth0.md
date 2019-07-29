@@ -59,7 +59,7 @@ Using the _Auth0 Authorization Extension_ you can define Auth0 roles and have th
 
 > Note: The users/roles defined at top-level in the Auth0 dashboard do not work with this.  This only works for users/roles defined inside the _Auth0 Authroization Extension_, which is found in the left side _Extensions_ menu item.
 
-The _Auth0 Authorization Extension_  requires it's own _Auth0 Rule_ og it's own installed to work, and additionally you need to create a rule to copy the roles into the token returned by Auth0 to Humio.  This additional rule could look like this:
+The _Auth0 Authorization Extension_  requires an _Auth0 Rule_ of its own installed to work, and additionally you need to create a rule to copy the roles into the token returned by Auth0 to Humio.  This additional rule could look like this:
 
 ```
 // rule to copy user's roles into the returned token

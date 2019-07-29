@@ -10,7 +10,7 @@ This page lists the various limits that Humio has.
 
 | Description | Limit | Notes |
 |-------------|-------|-------|
-| Max number of fields in an event| 1000 |
+| Max number of fields in an event| 1000 | Can be changed using the `MAX_EVENT_FIELD_COUNT` configuration|
 | Max event size | 1M bytes |
 | Max length of query | 66k characters|
 | Max number of elements in a [groupby]({{< ref "/query-functions/_index.md#groupBy">}}) | 20k | Can be changed using the `MAX_STATE_LIMIT` configuration

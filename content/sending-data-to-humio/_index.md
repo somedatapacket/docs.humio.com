@@ -24,6 +24,14 @@ the [getting started: sending application logs]({{< ref "getting-started-applica
 
 Below is an overview of how the respective flows of sending data to Humio work:
 
+{{% notice note %}}
+Humio is optimized for live streaming of events in real time. If you
+ship data that are *not* live you need to observe some basic rules in order
+for the resulting events in Humio be stored as efficiently as if they
+had been live. See [Backfilling](#backfilling-guidelines)
+{{% /notice  %}}
+
+
 ## Data Shippers {#data-shippers}
 
 A Data Shipper is a small system tool that looks at files and system properties
@@ -100,3 +108,96 @@ graph LR;
 
 As you can see, this is by far the simplest flow, and is completely appropriate
 for some scenarios e.g. analytics.
+
+## Sending historial data (Backfilling events) {#backfilling-guidelines}
+
+The other sections were mostly concerned with "live" events that you
+want shipped to Humio as soon as it exists.  But perhaps you also have
+files with events from the latest month on disk and want them sent to
+Humio, along with the "live" events?
+
+There are some rules you should observe for optimal
+performance of the resulting data inside Humio and in order for this
+to not interfere with the live events already flowing, if any.
+
+* Make sure to ship the historical events in order by their timestamp
+  or at least very close to this ordering. A few seconds have little
+  consequence whereas hours or days is not good.
+
+* If there are also live events flowing into Humio then make sure the
+  historical events get an extra tag to separate them from the live
+  events. This makes them a separate stream that does not overlap the live ones.
+
+* If shipping data in parallel (e.g. running multiple filebeat
+  instances), then make sure to make those streams visible to Humio by
+  using distinct tags for each stream. This makes them visible as separate
+  streams that does not overlap the other historical streams.
+
+If those guide lines are not followed the result is likely to be an
+increase in the number of segment files and a much higher IO usage
+from that when searching time spans that overlap the historical events
+or the live events that were ingested while the the backfill was
+active. The segment files are likely to get large and overlapping time
+spans, leading to a large number of files being searched even when
+searching a short time interval.
+
+In short: Don't ship events into one datasource with timestamps (much) out of order.
+
+### Example: Using filebeat to ship historical events
+
+As an example, let's say you have one file of 10 GB of log for each
+day in the last month. You want to send all of them in parallel into
+Humio, and there is already a stream of live events flowing. In this
+case you should run one instance of the desired shipper
+(e.g. filebeat) for each file. Each shipper needs a configuration file
+that sets a distinct tag. In this example, lets use the filename being
+backfilled as the tag value. For filebeat this can be accomplished by
+making the `@source` field that is set by filebeat a tag in the parser
+in Humio. Or better yet, you can add or extend the `fields` section in
+the config:
+
+```
+filebeat:
+  inputs:
+    - paths:
+        - /var/log/need-backfilling/myapp.2019-06-17.log
+# section that adds the backfill tag:
+      fields:
+        "@backfill": "2019-06-17"
+        "@tags": ["@backfill", "@type"]
+
+queue.mem:
+  events: 8000
+  flush.min_events: 200
+  flush.timeout: 1s
+
+output:
+  elasticsearch:
+    hosts: ["https://$HUMIO_HOST:443/api/v1/ingest/elastic-bulk"]
+    username: $SENDER
+    password: $INGEST_TOKEN
+    compression_level: 5
+    bulk_max_size: 200
+    worker: 4
+
+# Don't raise bulk_max_size much: 100 - 300 is the appropriate range.
+# While doing so may increase throughput of ingest it has a negative impact on search performance of the resulting events in Humio.
+```
+
+Filebeat needs a fresh directory for each instance and a separate
+configuration file too. For backfilling purposes filebeat should not
+run as a daemon but in the run-once mode. Here is an example command
+line to launch filebeat in this mode. It assumes that you have placed
+the (distinct) filebeat.yml config file in the confir directory named
+below.
+
+``` bash
+# Removing the registry will make filebeat ship from scratch again.
+rm -rf /path/to/filebeat-instance-dir/registry
+filebeat -e --once \
+ --path.config /path/to/filebeat-instance-dir/  \
+ --path.data   /path/to/filebeat-instance-dir/  \
+ --path.home   /path/to/filebeat-instance-dir/  \
+ --path.logs   /path/to/filebeat-instance-dir/logs
+```
+

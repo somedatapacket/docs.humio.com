@@ -74,6 +74,8 @@ output:
     bulk_max_size: 200
     worker: 1
 
+# Don't raise bulk_max_size much: 100 - 300 is the appropriate range.
+# While doing so may increase throughput of ingest it has a negative impact on search performance of the resulting events in Humio.
 ```
 
 {{% notice note %}}
@@ -96,7 +98,7 @@ You must make the following changes to the sample configuration:
 * Specify the text encoding to use when reading files using the `encoding` field.
   If the log files use special, non-ASCII characters, then set the encoding here. For example, `utf-8` or `latin1`.
 
-* If all your events are fairly small, you can increase `bulk_max_size` from the default of 200. The default of 200 is fine for most use cases.
+* If all your events are fairly small, you can increase `bulk_max_size` from the default of 200 to 300. The default of 200 is fine for most use cases.
   The Humio server does not limit the size of the ingest request.
   But keep bulk_max_size low, as you may get the requests timed out if they get too large. In case of timeouts filebeat will back off, thus getting worse performance then with a lower bulk_max_size.
   (Note! The Humio cloud on cloud.humio.com does limit requests to 32 MB. If you go above this limit, you will get "Failed to perform any bulk index operations: 413 Request Entity Too Large"
@@ -201,7 +203,7 @@ See [the section on tags]({{< ref "tagging.md" >}}) for more information about t
 If a `type` is configured in Filebeat it's always used as tag. Other fields can be used
 as tags as well by defining the fields as `tagFields` in the
 [parser]({{< relref "parsers/_index.md" >}}) pointed to by the `type`.  
-In Humio tags always start with a #. When turning a field into a tag it will
+In Humio tags always start with a #. When turning a field into a tag the name of the field will
 be prepended with `#`.
 
 

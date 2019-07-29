@@ -40,7 +40,7 @@ Source is limited to approximately 5 MB/s on average. The exact
 amount depends on how much a single CPU core can "Digest". If a Data
 Source receives more data for a while, then Humio turns on "auto
 sharding". This adds a synthetic tag value for the tag
-"#humioAutoShard" to split the stream into multiple data sources. This
+"#humioAutoShard" to split the stream into multiple datasources. This
 process is fully managed by Humio.
 
 For optimal performance a Data Source should receive 1 KB/s or more on

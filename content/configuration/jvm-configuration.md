@@ -158,3 +158,4 @@ will benefit from having memory for page caching.
  * [Java GC Logging options](https://www.slideshare.net/PoonamBajaj5/lets-learn-to-talk-to-gc-logs-in-java-9)
  * [AdoptOpenJDK APT, RPM, YUM](https://medium.com/adoptopenjdk/adoptopenjdk-rpm-and-deb-files-7003ba38144e)
  * [BellSoft APT, RPM, YUM](https://apt.bell-sw.com/)
+ * [JVM Anatomy Quarks, Aleksey Shipilёv, JVM/Performance Geek at RedHat](https://shipilev.net/jvm/anatomy-quarks/)

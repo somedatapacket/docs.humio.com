@@ -239,7 +239,7 @@ completely blocks access to the audit log.
 | `canEditIngestListeners`|  Allow creating and updating ingest listeners  |
 | `canDeleteEvents`| The ability to be able to delete events  |
 | `canEditRetention`| Allow editing retention on a repository  |
-| `canDeleteDatasources`|  Allow deleting data sources |
+| `canDeleteDatasources`|  Allow deleting datasources |
 | `canDeleteDataspace`|  Allow deletion of repositories and views |
 | `canChangeDeleteEventsPermission`|  Special permission needed to be able to assign the  permissions (deleteEvent, deleteDatasource, deleteDataspace and editRetention).  |
 | `canEditSearchSettings`| Allow editing the default search query and time interval  |

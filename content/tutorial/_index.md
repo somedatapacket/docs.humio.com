@@ -4,8 +4,8 @@ weight: 95
 aliases: ["getting_started", "getting_started/tutorial"]
 ---
 
-This tutorial will teach you to search and send data to Humio.
-Before we get started make sure you have a running installation of Humio or
+This tutorial will teach you how to search and send data to Humio.
+Before we get started, make sure you have a running installation of Humio or
 a free Humio Cloud account:
 
 {{< figure src="/pages/welcome/eggs.svg" width="180px" >}}
@@ -17,7 +17,7 @@ a free Humio Cloud account:
 
 ## 1. Learning to Search
 
-The first thing you should do once you have a running instance is to go through
+Once you have a running instance, go through
 the interactive in-app tutorial.
 It is a 101-course that teaches you the basics of searching. You can find the
 tutorial in the __Help__ menu at the top of the UI:
@@ -25,14 +25,14 @@ tutorial in the __Help__ menu at the top of the UI:
 `Help` __→__ `Interactive Tutorial`
 
 While the tutorial panel is open it will continuously stream simulated log data
-from a web server and steps you through searching and visualizing the logs.
+from a web server and step you through searching and visualizing the logs.
 
 {{< figure src="/pages/hello-world/docs-hello-world-tutorial.png" >}}
 
 Once you have completed the tutorial move on to [step 2]({{< ref "#step-2" >}}).
 
 {{% notice tip %}}
-You can use the UI's built in function documentation by hitting {{% keybinding "alt+enter" %}} while
+You can use the UI's built-in function documentation by hitting {{% keybinding "alt+enter" %}} while
 focusing the search field. We also have documentation and examples for all
 functions in the [query function reference]({{< relref "query-functions/_index.md" >}}).
 {{% /notice %}}

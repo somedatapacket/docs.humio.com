@@ -65,7 +65,9 @@ output:
 {{< partial "common-rest-params" >}}
 
 {{% notice note %}}
-To optimize performance for the data volumes you want to send, and to keep shipping latency down, change the default settings for `compression_level`, `bulk_max_size` and `flush_interval`.
+To optimize performance for the data volumes you want to send, and to keep shipping latency down, change the default settings for `compression_level`, `worker`, `bulk_max_size` and `flush_interval`.
+Don't raise bulk_max_size much: 100 - 300 is the appropriate range. While doing so may increase throughput of ingest it has a negative impact on search performance of the resulting events in Humio.
+
 {{% /notice %}}
 
 ## Adding fields
@@ -78,6 +80,9 @@ fields:
     datacenter: dc-a
 ```
 
+Fields can be turned into tags by including a `@tags` field that lists
+the names of fields to turn into tags. This applies to fields both
+from the fields sections and from the events being shipped. Refer to [datasources]({{< relref "concepts/datasources" >}}) for information on tags.
 
 ### Ingesting to multiple repos using a single ingest token
 

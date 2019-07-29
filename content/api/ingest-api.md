@@ -176,8 +176,8 @@ This request contains three events. The first two are tagged with `server1` and 
 
 Tags are key-value pairs.
 
-Events are stored in data sources. A repository has a set of Data Sources.
-Data sources are defined by their tags. An event is stored in a data source
+Events are stored in datasources. A repository has a set of Data Sources.
+Datasources are defined by their tags. An event is stored in a datasource
 matching its tags. If no data source with the exact tags exists it is created.
 Tags are used to optimize searches by filtering out unwanted events.
 At least one tag must be specified.

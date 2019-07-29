@@ -96,7 +96,7 @@ queue.mem:
 #-------------------------- ElasticSearch output ------------------------------
 output.elasticsearch:
   hosts: ["http://${HOST}:8080/api/v1/ingest/elastic-bulk"]
-  username: "${INGEST_TOKEN}"
+  password: "${INGEST_TOKEN}"
   compression_level: 5
   bulk_max_size: 1000
   worker: 3
@@ -114,15 +114,17 @@ The configuration file has these parameters:
 
 * `$ZEEK_LOG_DIR`  
 * `$HOST`  
-* `$REPOSITORY_NAME`
 * `$INGEST_TOKEN`  
 
-You can replace them in the file or set them as ENV parameters when starting Filebeat.  
-If you are running without authentication leave out the whole line `username: ${INGEST_TOKEN}`.
-or set the `INGEST_TOKEN` to a dummy value.
-Otherwise [create an ingest token as described here]({{< ref "ingest-tokens.md" >}}).
+You can replace the parameters in the file or set them as ENV parameters when starting Filebeat.  
+You can [create an ingest token following the instructions here]({{< ref "ingest-tokens.md" >}}).
 
-Note, that in the filebeat configuration we specify that Humio should use the built-in parser `bro-json` to parse the data.
+Note that in the filebeat configuration we specify that Humio should use the built-in parser `bro-json` to parse the data with:
+
+```yaml
+  fields:
+    type: bro-json
+```
 
 As Zeek often generates a lot of data we have configured Filebeat to use 3 `workers`, a `bulk_max_size` of 1000 and then configured the in memory queue `queue.mem` accordingly. Experiment with increasing this if filebeat cannot keep up with sending data.
 
@@ -135,7 +137,7 @@ Run Filebeat as described [here]({{< relref "filebeat.md#running-filebeat" >}}).
 An example of running Filebeat with the above parameters as environment variables:  
 
 ```shell
-ZEEK_LOG_DIR=/home/bro/logs REPOSITORY_NAME=bro HOST=localhost INGEST_TOKEN=none /usr/share/filebeat/bin/filebeat -c /etc/filebeat/filebeat.yml
+ZEEK_LOG_DIR=/home/bro/logs HOST=localhost INGEST_TOKEN=******************** /usr/share/filebeat/bin/filebeat -c /etc/filebeat/filebeat.yml
 ```
 
 {{% notice note %}}

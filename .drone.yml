@@ -4,8 +4,9 @@ name: Verify
 
 steps:
 - name: make
-  image: golang
+  image: alpine
   commands:
+  - apk add make curl zip
   - make clean deps
 
 - name: hugo
@@ -23,8 +24,9 @@ name: Release
 
 steps:
 - name: make
-  image: golang
+  image: alpine
   commands:
+  - apk add make curl zip
   - make clean deps
 
 - name: hugo

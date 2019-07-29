@@ -1,4 +1,4 @@
-RELEASE?=1.5.16
+RELEASE?=1.5.22
 
 clean:
 	rm -rf public test data/releases.yml data/functions.json data/metrics.json
@@ -6,10 +6,6 @@ clean:
 run: deps
 	# CSS gets mashed if we don't use --disableFastRender
 	hugo server --disableFastRender
-
-run-docker: deps
-	# Runs hugo server in a docker container, container is automatically destroyed when stopped
-	bash run-hugo-docker.sh
 
 data:
 	mkdir data/
@@ -21,9 +17,13 @@ data/functions.json:
 	curl -fs https://repo.humio.com/repository/maven-releases/com/humio/docs/queryfunctions/$(RELEASE)/queryfunctions-$(RELEASE).json > data/functions.json
 
 data/metrics.json:
-	curl -fs https://repo.humio.com/repository/maven-releases/com/humio/docs/metrics/$(RELEASE)/metrics-$(RELEASE).json > data/metrics.json	
+	curl -fs https://repo.humio.com/repository/maven-releases/com/humio/docs/metrics/$(RELEASE)/metrics-$(RELEASE).json > data/metrics.json
 
-deps: data/releases.yml data/functions.json data/metrics.json
+public/zeek-files/corelight-dashboards.zip:
+	mkdir -p public/zeek-files
+	cd artefacts && zip -r ../public/zeek-files/corelight-dashboards.zip corelight-dashboards
+
+deps: data/releases.yml data/functions.json data/metrics.json public/zeek-files/corelight-dashboards.zip
 
 public: deps
 	hugo

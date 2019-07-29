@@ -9,7 +9,7 @@ rss:
 
 ## Disclosure Policy
 
-We are committed to provide responsible disclosure on security and privacy related incidents.  
+We are committed to providing responsible disclosure on security and privacy related incidents.  
 
 As such, we expect that security or privacy related incidents are reported directly to us via support@humio.com (or another direct communication channel) and in return we will verify the incident and report the problem as fast as possible.  This means that we will report the issue (and possible fixes) directly to affected customers so that they have time to mitigate the issue before we report the issue publicly.  For privacy-related incidents that affect users on our hosted services we will report the incident directly to the users and to relevant authorities.
 
