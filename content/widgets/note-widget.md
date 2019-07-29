@@ -5,7 +5,7 @@ menuTitle: Notes
 aliases: ["/ref/notes"]
 ---
 
-Using the Note Widget you can add descriptions, instructions, links and images to your dashboards.
+Using the Note Widget, you can add descriptions, instructions, links, and images to your dashboards.
 Notes are written in [markdown syntax](https://guides.github.com/features/mastering-markdown/) which
 allows you to style the text and insert HTML snippets and create links to other dashboards and external
 systems.
@@ -61,7 +61,7 @@ Usage: `{{ endTime }}`
 The _end_ of the current global dashboard time interval - as selected in the time selector.
 It does not matter if you have activated global time or not, this will always be available.
 
-It is formatted as a milliseconds instant, e.g. `1561584095932`. 
+It is formatted as a milliseconds instant, for example `1561584095932`. 
 
 This is very useful when if you want to use the dashboard's current time interval to look at
 details in another system or dashboard.
