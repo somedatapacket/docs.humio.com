@@ -1,5 +1,6 @@
 ---
 title: "Ingest Flow"
+aliases: ["/concepts/ingest-flow"]
 ---
 
 When data arrives at Humio it needs to be processed. The journey data takes from

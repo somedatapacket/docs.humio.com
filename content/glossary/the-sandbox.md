@@ -1,5 +1,6 @@
 ---
 title: Sandbox
+aliases: ["/concepts/the-sandbox"]
 ---
 In Humio all users have a private [Repository]({{< relref "repositories.md" >}}) called __The Sandbox__.
 

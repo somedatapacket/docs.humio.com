@@ -1,5 +1,6 @@
 ---
 title: Views
+aliases: ["/concepts/views"]
 ---
 
 A view is a special kind of repository. In most respects a view is just like an ordinary repository.

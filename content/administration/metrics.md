@@ -26,7 +26,7 @@ Setting the [PROMETHEUS_METRICS_PORT]({{< ref "configuration/_index.md#example-c
 ### Humio debug logs
 
 The debug log of Humio also contains all the metrics. You can find
-them in the `humio` repository or the special [humio-metrics]({{< ref "concepts/repositories.md#the-humio-metrics-repository" >}})
+them in the `humio` repository or the special [humio-metrics]({{< ref "glossary/repositories.md#the-humio-metrics-repository" >}})
 repository
 
 
