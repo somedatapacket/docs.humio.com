@@ -1,5 +1,6 @@
 ---
 title: Events
+aliases: ["/concepts/events"]
 ---
 
 The data stored in Humio are called events. An event is a piece of data and an

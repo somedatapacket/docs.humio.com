@@ -1,5 +1,6 @@
 ---
 title: Datasources
+aliases: ["/concepts/datasources"]
 ---
 
 A Data Source represents one stream of events from a log source. An example is the "syslog" from a server, or the access log from a web server.

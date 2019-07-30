@@ -1,5 +1,6 @@
 ---
 title: Queries
+aliases: ["/concepts/queries"]
 ---
 
 A Humio query is much like a query to an SQL database. You write search terms

@@ -82,7 +82,7 @@ fields:
 
 Fields can be turned into tags by including a `@tags` field that lists
 the names of fields to turn into tags. This applies to fields both
-from the fields sections and from the events being shipped. Refer to [datasources]({{< relref "concepts/datasources" >}}) for information on tags.
+from the fields sections and from the events being shipped. Refer to [datasources]({{< relref "glossary/datasources" >}}) for information on tags.
 
 ### Ingesting to multiple repos using a single ingest token
 
