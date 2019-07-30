@@ -30,6 +30,8 @@ COPY --from=DATA   /var/docs/data   /var/docs/data
 COPY --from=STATIC /var/docs/static /var/docs/static
 WORKDIR /var/docs
 RUN hugo
+EXPOSE 1313
+CMD hugo server --bind=0.0.0.0
 
 FROM openjdk:11 AS REDIRECTS
 COPY --from=HUGO /var/docs/public /var/docs/public
