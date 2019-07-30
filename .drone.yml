@@ -6,6 +6,7 @@ steps:
 - name: docker-build
   image: plugins/docker
   settings:
+    dry_run: true
     repo: humio/docs
 
 trigger:
