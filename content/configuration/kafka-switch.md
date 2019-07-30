@@ -29,24 +29,24 @@ If there is data on the ingest queue after closing Humio it will be lost as the 
 
 ### Switch Kafka and Zookeeper
 There are three options for switching Kafka and Zookeeper.
-Set up a new Kafka/Zookeeper cluster and configure Humio to use that.   
-You can reset the current Kafka and Zookeeper cluster by deleting thier data directories on the filesystem on each node. 
-This is the same as starting up a new and empty Kafka/Zookeeper cluster.
-Another option is to spin up new Zookeeper/Kafka clusters. Or let Humio use new queues/topics on the existing Kafka cluster.
-When reusing the same Kafka cluster, Humio must be configured with a new `HUMIO_KAFKA_TOPIC_PREFIX` to detect the changes.  
-The options are described below:
 
-##### Use a new Kafka/Zookeeper cluster
+1. Set up a new Kafka/Zookeeper cluster and configure Humio to use that.   
+2. You can reset the current Kafka and Zookeeper cluster by deleting thier data directories on the filesystem on each node. This is the same as starting up a new and empty Kafka/Zookeeper cluster.
+3. Another option is to spin up new Zookeeper/Kafka clusters. Or let Humio use new queues/topics on the existing Kafka cluster. When reusing the same Kafka cluster, Humio must be configured with a new `HUMIO_KAFKA_TOPIC_PREFIX` to detect the changes.
+
+These options are described in more detail below:
+
+##### **Option 1: Use a new Kafka/Zookeeper cluster**
 Configure Humio to use the new Kafka cluster.
 
-##### Delete Kafka and Zookeeper data and reuse the existing cluster
+##### **Option 2: Delete Kafka and Zookeeper data and reuse the existing cluster**
 First, delete everything inside Kafka's data directory.
 Then delete the folder `version-2` inside Zookeeper's data directory. 
-It is important to not delete the Zookeeper file `myid` in Zookeeper's data directory.
+It is important that you _not_ delete the Zookeeper file `myid` in Zookeeper's data directory.
 `myid` is a configuration file that contains the id of the Zookeeper node in the Zookeeper cluster and must be there at startup.
 Now we have actually created completely new Zookeeper and Kafka clusters.
 
-##### Create new Kafka queues/topics with new names on the existing Kafka cluster
+##### **Option 3: Create new Kafka queues/topics with new names on the existing Kafka cluster**
 Instead of resetting Kafka Zookeeper as described above, you can let Humio use a new set of queues in the existing Kafka cluster.
 For this to work, Humio must be configured with a new `HUMIO_KAFKA_TOPIC_PREFIX`. 
 It is important to note that it will not work to delete and recreate topics with the same names.
