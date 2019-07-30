@@ -18,6 +18,62 @@ steps:
 trigger:
   event:
     - pull_request
+
+---
+kind: pipeline
+name: Staging
+
+steps:
+- name: make
+  image: alpine
+  commands:
+  - apk add make curl zip
+  - make clean deps
+
+- name: hugo
+  image: plugins/hugo
+  settings:
+    hugo_version: "0.55.6"
+    validate: true
+    buildDrafts: true
+
+- name: docker-build
+  image: plugins/docker
+  settings:
+    secrets:
+    username: cihumio
+    password:
+      from_secret: docker_password
+    repo: humio/docs
+    tags:
+      - ${DRONE_BRANCH}-${DRONE_BUILD_NUMBER}
+
+- name: deploy
+  image: plugins/marathon
+  settings:
+    debug: true
+    server: https://marathon.internal.humio.com
+    username: drone
+    password:
+      from_secret: marathon_password
+    id: "/humio/docs-staging"
+    docker_image: "humio/docs:${DRONE_BRANCH}-${DRONE_BUILD_NUMBER}"
+    cpus: 0.1
+    mem: 128
+    instances: 1
+    docker_port_mappings:
+      - container_port: 80
+    backoff_factor: 1.15
+    backoff_seconds: 1
+    docker_force_pull: true
+    max_launch_delay_seconds: 3600
+
+trigger:
+  event:
+    - push
+  branch:
+    - staging
+
 ---
 kind: pipeline
 name: Release
@@ -35,7 +91,7 @@ steps:
     hugo_version: "0.55.6"
     validate: true
 
-- name: docker-build-master
+- name: docker-build
   image: plugins/docker
   settings:
     secrets:
@@ -47,7 +103,7 @@ steps:
       - latest
       - ${DRONE_BRANCH}-${DRONE_BUILD_NUMBER}
 
-- name: deploy-master
+- name: deploy
   image: plugins/marathon
   settings:
     debug: true
