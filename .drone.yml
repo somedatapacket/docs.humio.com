@@ -3,17 +3,10 @@ kind: pipeline
 name: Verify
 
 steps:
-- name: make
-  image: alpine
-  commands:
-  - apk add make curl zip
-  - make clean deps
-
-- name: hugo
-  image: plugins/hugo
+- name: docker-build
+  image: plugins/docker
   settings:
-    hugo_version: "0.55.6"
-    validate: true
+    repo: humio/docs
 
 trigger:
   event:
@@ -24,19 +17,6 @@ kind: pipeline
 name: Staging
 
 steps:
-- name: make
-  image: alpine
-  commands:
-  - apk add make curl zip
-  - make clean deps
-
-- name: hugo
-  image: plugins/hugo
-  settings:
-    hugo_version: "0.55.6"
-    validate: true
-    buildDrafts: true
-
 - name: docker-build
   image: plugins/docker
   settings:
@@ -79,18 +59,6 @@ kind: pipeline
 name: Release
 
 steps:
-- name: make
-  image: alpine
-  commands:
-  - apk add make curl zip
-  - make clean deps
-
-- name: hugo
-  image: plugins/hugo
-  settings:
-    hugo_version: "0.55.6"
-    validate: true
-
 - name: docker-build
   image: plugins/docker
   settings:

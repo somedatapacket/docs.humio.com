@@ -1,3 +1,4 @@
+.PHONY: public
 RELEASE?=1.5.22
 
 clean:
@@ -25,8 +26,7 @@ public/zeek-files/corelight-dashboards.zip:
 
 deps: data/releases.yml data/functions.json data/metrics.json public/zeek-files/corelight-dashboards.zip
 
-public: deps
-	hugo
+public:
 	docker build --tag="humio/docs:latest" .
 
 test: public
