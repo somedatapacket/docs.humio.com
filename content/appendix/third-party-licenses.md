@@ -124,6 +124,7 @@ License | Dependency | Attribution
 [Bouncy Castle Licence](http://www.bouncycastle.org/licence.html) | org.bouncycastle # bcprov-jdk15on # 1.62 | Copyright (c) 2000 - 2017 The Legion of the Bouncy Castle Inc. (https://www.bouncycastle.org)
 [JSON License](http://json.org/license.html) | org.json # json # 20180813 | Copyright (c) 2002 JSON.org
 [Go License](http://golang.org/LICENSE) | com.google.re2j # re2j # 1.2 | Copyright (C) 2018 by The Go Authors
+[MIT License](https://github.com/jcazevedo/moultingyaml/blob/master/LICENSE.md) | Moulting Yaml # 0.4.1 | Copyright (c) 2015 Joao Azevedo joao.c.azevedo@gmail.com
 [Eclipse Public License v. 2.0](https://www.eclipse.org/legal/epl-2.0) | org.eclipse.lsp4j # org.eclipse.lsp4j # 0.7.2 | Copyright (c) 2016-2018 TypeFox and others.
 [Eclipse Public License v. 2.0](https://www.eclipse.org/legal/epl-2.0) | org.eclipse.lsp4j # org.eclipse.lsp4j.generator # 0.7.2 | Copyright (c) 2016-2018 TypeFox and others.
 [Eclipse Public License v. 2.0](https://www.eclipse.org/legal/epl-2.0) | org.eclipse.lsp4j # org.eclipse.lsp4j.jsonrpc # 0.7.2 | Copyright (c) 2016-2018 TypeFox and others.
@@ -132,6 +133,7 @@ License | Dependency | Attribution
 
 License | Module | Attribution
 --- | --- | ---
+[MIT License](https://github.com/eligrey/FileSaver.js/blob/master/LICENSE.md) | FileSaver.js | Copyright © 2016 Eli Grey.
 [BSD 3-Clause License](https://raw.githubusercontent.com/elm-tools/parser-primitives/master/LICENSE)  |  "elm-tools/parser-primitives": "1.0.0" | Copyright (c) 2017-present, Evan Czaplicki.
 [MIT License](https://raw.githubusercontent.com/krisajenkins/elm-exts/master/LICENSE) |    "krisajenkins/elm-exts": "26.5.0" | Copyright (c) 2017 Kris Andrew Jenkins
 [BSD 3-Clause License](https://github.com/elm-lang/navigation/blob/master/LICENSE) | "elm-lang/navigation": "2.1.0" | Copyright (c) 2016, Evan Czaplicki
