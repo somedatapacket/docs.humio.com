@@ -1,6 +1,6 @@
 FROM alpine:3.10 AS DATA
 RUN apk add curl
-ENV HUMIO_RELEASE=1.5.22
+ENV HUMIO_RELEASE=1.5.23
 WORKDIR /var/docs
 RUN mkdir -p /var/docs/data && \
     curl -fs https://repo.humio.com/repository/maven-releases/com/humio/server/${HUMIO_RELEASE}/server-${HUMIO_RELEASE}.releases.yml > data/releases.yml && \
