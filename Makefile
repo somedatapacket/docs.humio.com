@@ -1,32 +1,14 @@
-RELEASE?=1.5.22
+.PHONY: public run
 
-clean:
-	rm -rf public test data/releases.yml data/functions.json data/metrics.json
+run:
+	docker build --target HUGO --tag="humio/docs-local" .
+ifdef HUMIO_SRC
+	docker run -it --rm -v ${PWD}/content:/var/docs/content -v $(HUMIO_SRC)/target/docs-data/queryfunctions.json:/var/docs/data/functions.json -p 1313:1313 humio/docs-local
+else
+	docker run -it --rm -v ${PWD}/content:/var/docs/content -p 1313:1313 humio/docs-local
+endif
 
-run: deps
-	# CSS gets mashed if we don't use --disableFastRender
-	hugo server --disableFastRender
-
-data:
-	mkdir data/
-
-data/releases.yml: data
-	curl -fs https://repo.humio.com/repository/maven-releases/com/humio/server/$(RELEASE)/server-$(RELEASE).releases.yml > data/releases.yml
-
-data/functions.json:
-	curl -fs https://repo.humio.com/repository/maven-releases/com/humio/docs/queryfunctions/$(RELEASE)/queryfunctions-$(RELEASE).json > data/functions.json
-
-data/metrics.json:
-	curl -fs https://repo.humio.com/repository/maven-releases/com/humio/docs/metrics/$(RELEASE)/metrics-$(RELEASE).json > data/metrics.json
-
-public/zeek-files/corelight-dashboards.zip:
-	mkdir -p public/zeek-files
-	cd artefacts && zip -r ../public/zeek-files/corelight-dashboards.zip corelight-dashboards
-
-deps: data/releases.yml data/functions.json data/metrics.json public/zeek-files/corelight-dashboards.zip
-
-public: deps
-	hugo
+public:
 	docker build --tag="humio/docs:latest" .
 
 test: public
