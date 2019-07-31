@@ -1,4 +1,4 @@
-FROM alpine:latest AS DATA
+FROM alpine:3.10 AS DATA
 RUN apk add curl
 ENV HUMIO_RELEASE=1.5.22
 WORKDIR /var/docs
@@ -7,14 +7,14 @@ RUN mkdir -p /var/docs/data && \
     curl -fs https://repo.humio.com/repository/maven-releases/com/humio/docs/queryfunctions/${HUMIO_RELEASE}/queryfunctions-${HUMIO_RELEASE}.json > data/functions.json && \
     curl -fs https://repo.humio.com/repository/maven-releases/com/humio/docs/metrics/${HUMIO_RELEASE}/metrics-${HUMIO_RELEASE}.json > data/metrics.json
 
-FROM alpine:latest AS STATIC
+FROM alpine:3.10 AS STATIC
 RUN apk add zip
 WORKDIR /var/docs
 COPY artefacts /var/docs/artefacts
 RUN mkdir -p /var/docs/static/zeek-files && \
     cd artefacts && zip -r ../static/zeek-files/corelight-dashboards.zip corelight-dashboards
 
-FROM alpine:latest AS HUGO
+FROM alpine:3.10 AS HUGO
 RUN apk add git
 ENV HUGO_VERSION=0.55.6
 ADD https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz /tmp/hugo.tar.gz
