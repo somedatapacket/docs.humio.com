@@ -27,6 +27,7 @@ steps:
       from_secret: docker_password
     repo: humio/docs
     tags:
+      - ${DRONE_BRANCH}-latest
       - ${DRONE_BRANCH}-${DRONE_BUILD_NUMBER}
 
 - name: deploy
