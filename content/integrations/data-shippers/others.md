@@ -30,6 +30,6 @@ Contact us if you have trouble getting this working e.g. getting errors when try
 to make a client work against the API.
 
 ## Graylog Extended Log Format (GELF) {#gelf-api}
-Humio is compatible with the [Graylog Extended Log Format (GELF)](http://docs.graylog.org/en/2.4/pages/gelf.html) using UDP or TCP as transport. Refer to [Ingest listeners]({{< ref "sending-data-to-humio/ingest-listeners.md" >}}) to setup such a listener.
+Humio is compatible with the [Graylog Extended Log Format (GELF)](http://docs.graylog.org/en/2.4/pages/gelf.html) using UDP or TCP as transport. Refer to [Ingest listeners]({{< ref "../../../operations-guide/configuration/sending-data-to-humio/ingest-listeners.md" >}}) to setup such a listener.
 
 GELF over HTTP is not yet implemented. Please get in touch with us if you need it.

@@ -49,7 +49,7 @@ Example sending 4 accesslog lines to Humio
 ]
 ```
 
-The above example sends 4 accesslog lines to Humio. In this case we have attached an `accesslog` parser to the [ingest token]({{< relref "sending-data-to-humio/ingest-tokens.md" >}}) we are using. See [parsing]({{< relref "parsers/_index.md" >}}) for details.
+The above example sends 4 accesslog lines to Humio. In this case we have attached an `accesslog` parser to the [ingest token]({{< relref "../operations-guide/configuration/sending-data-to-humio/ingest-tokens.md" >}}) we are using. See [parsing]({{< relref "parsers/_index.md" >}}) for details.
 The `fields` section is used to specify fields that should be added to each of the events when they are parsed. In the example all the accesslog events will get a host field telling the events came from `webhost1`.
 It is possible to send events of different types in the same request. That is done by adding a new element to the outer array in the example above.
 Tags can be specified through the parser.

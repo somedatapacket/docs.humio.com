@@ -94,15 +94,15 @@ _Tip: If you are already using ElasticSearch ELK you can also take a look at how
 ### 4.1 Extra: Custom Parsers
 
 While Humio has built in support for the most popular logging formats (e.g. AccessLog, JSON),
-and can rip out almost anything with the [`kv`]({{< relref "parsers/built-in-parsers/kv.md" >}}). parser, you 
+and can rip out almost anything with the [`kv`]({{< relref "../operations-guide/parsers/built-in-parsers/kv.md" >}}). parser, you 
 may have special needs for your custom application logs. Fortunately Humio allows you to 
-create your own custom parsers as documented here: [create your own custom parser]({{< relref "parsers/creating-a-parser.md" >}}).
+create your own custom parsers as documented here: [create your own custom parser]({{< relref "../operations-guide/parsers/creating-a-parser.md" >}}).
 
 
 ## 5. Next Steps
 
 - [Language Syntax]({{< ref "language-syntax/_index.md" >}})
 - [Query Function Reference]({{< ref "query-functions/_index.md" >}})
-- [Creating Custom Parsers]({{< ref "parsers/_index.md" >}})
+- [Creating Custom Parsers]({{< ref "../operations-guide/parsers/_index.md" >}})
 - [Using Views]({{< ref "views.md" >}})
 - [Controlling Retention]({{< ref "retention.md" >}})

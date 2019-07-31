@@ -10,8 +10,8 @@ account menu.
 
 ### Common Node Tasks
 
-- [Adding a cluster node]({{< ref "/administration/adding-a-node.md" >}})
-- [Removing a cluster node]({{< ref "/administration/removing-a-node.md" >}})
+- [Adding a cluster node]({{< ref "../operations-guide/administration/adding-a-node.md" >}})
+- [Removing a cluster node]({{< ref "../operations-guide/administration/removing-a-node.md" >}})
 - [Updating node's Humio version]({{< ref "updating-humio.md" >}})
 
 ## Node Roles
