@@ -175,6 +175,6 @@ graph LR;
 
 {{< /mermaid >}}
 <figcaption>
-<a id="figure-2">Figure 2</a>: Two external systems send data and logs to Humio. The incoming data is first parsed by one of the the Arrival Nodes. Then it is put on the ingest queue for the Digest Node to process and produce segment files, before finally being sent to the Storage Nodes to be saved to disk.
+<a id="figure-2">Figure 2</a>: The diagram shows a more detailed view of the ingestion process with two external systems sending data to Humio. The incoming data is first parsed by one of the Arrival Nodes then put on the ingest queue for a Digest Node. The Digest node writes the data to segment files and finally the segment files are sent to Storage Nodes to be saved to disk.
 </figcaption>
 </figure>
