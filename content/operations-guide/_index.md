@@ -6,7 +6,7 @@ category_title: Operations Guide
 
 This is the overall for installing and configuring Humio.
 
-* [Installating Humio]({{< ref "installation/" >}})
+* [Installing Humio]({{< ref "installation/" >}})
 * [Configuring Humio]({{< ref "configuration/" >}})
   - [Basic configuration]({{< ref "configuration/basic-configuration/" >}}) 
   - [Reverse proxy]({{< ref "configuration/reverse-proxy" >}}) 
