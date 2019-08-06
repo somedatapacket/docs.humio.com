@@ -1,7 +1,7 @@
 ---
 title: "Disabling Ingest"
 weight: 50
-aliases: ["/administration/disabling-ingest", " "]
+aliases: ["/administration/disabling-ingest"]
 ---
 
 Humio has the ability to pause ingestion of data into a repository when needed.
