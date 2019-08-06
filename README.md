@@ -1,17 +1,10 @@
 [![Build Status](https://drone.humio.cloud/api/badges/humio/docs.humio.com/status.svg)](https://drone.humio.cloud/humio/docs.humio.com)
 
 # docs.humio.com
-Official documentation for Humio
+Official documentation for Humio. Generated using [Hugo](gohugo.io).
 
 ## Prerequisites
-* [Docker](https://docs.docker.com/install/)
-* [Hugo](https://gohugo.io/)
-
-If using MacOS and [Homebrew](https://brew.sh/), simply run:
-
-```
-brew install docker hugo
-```
+* [Docker](https://docs.docker.com/install/) needs to be installed and running.
 
 ## Building docs
 Preview the documentation at [localhost:1313](http://localhost:1313) by running:
