@@ -90,7 +90,7 @@ style Digest fill:#2ac76d;
 
 After the events are placed in the `humio-ingest` queue a [Digest Node]({{< ref "cluster-nodes.md#digest-node" >}})
 will grab them off the queue as soon as possible. A queue in Kafka is configured with a number of partitions (parallel streams), and each such Kafka partition is consumed by a digest node.
-A single node can handle consume multiple partitions and exactly which node that
+A single node can consume multiple partitions and exactly which node that
 handles which digest partition is defined in the cluster's [Digest Rules]({{< ref "digest-rules.md" >}}).
 
 ### Constructing Segment Files {#segment-files}

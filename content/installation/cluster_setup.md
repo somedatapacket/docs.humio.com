@@ -144,7 +144,7 @@ run out of disk space and gets into a bad state, you can find recovery instructi
       --name humio-kafka "humio/kafka"
     ```
 
-### Verify that Zookeeper and Kafka is happy
+### Verify that Zookeeper and Kafka are happy
 
 1. Inspecting the log files:
 
