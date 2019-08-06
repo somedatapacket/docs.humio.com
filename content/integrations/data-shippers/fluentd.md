@@ -20,9 +20,9 @@ For the full documentation on FluentD please see the [official documentation](ht
 Some of the most commons parameters in the [Elasticsearch Output Plugin](https://docs.fluentd.org/v1.0/articles/out_elasticsearch) are
 
 * `host`: The hostname of your Humio instance.
-* `port`: The port of where Humio is exposing the Elastic Endpoint. Don't forget to enable `ELASTIC_PORT` the [Configuration parameter]({{< ref "configuration" >}}).
+* `port`: The port of where Humio is exposing the Elastic Endpoint. Don't forget to enable `ELASTIC_PORT` the [Configuration parameter]({{< ref "/operations-guide/configuration" >}}).
 * `scheme`, `ssl_version`: Depending on whether TLS is enabled on `host`:`port`, this should be set to either `https` or `http`. Humio Cloud has TLS enabled. In [some cases](https://github.com/uken/fluent-plugin-elasticsearch/issues/439) it is necessary to specify the SSL version.
-* `user` and `password`: while `password` can be ignore, but must be present, `user` should be set to an [ingest token]({{< ref "/sending-data-to-humio/ingest-tokens.md" >}}).
+* `user` and `password`: while `password` can be ignore, but must be present, `user` should be set to an [ingest token]({{< ref "../../operations-guide/configuration/sending-data-to-humio/ingest-tokens.md" >}}).
 
 
 ### Output Plugin configuration for [Humio Cloud](https://cloud.humio.com/)

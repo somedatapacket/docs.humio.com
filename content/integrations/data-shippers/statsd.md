@@ -20,7 +20,7 @@ The StatsD format is very simple. In it's simplest form it looks something like 
 <metricname>:<metricvalue>|<metrictype>
 ```
 
-Start by [creating a new parser]({{< ref "parsers/creating-a-parser" >}}) with the following regex
+Start by [creating a new parser]({{< ref "../../operations-guide/parsers/creating-a-parser" >}}) with the following regex
 
 ```regexp
 (?<metricname>\w+?):(?<metricvalue>[-+]?[\d\.]+?)\|(?<metrictype>\w+?)(\|@(?<metricsampling>[\d\.]+?))?
@@ -28,7 +28,7 @@ Start by [creating a new parser]({{< ref "parsers/creating-a-parser" >}}) with t
 
 And no _Parse timestamp_ and _Parse key values_. Finally give it a name, i.e. "statsd".
 
-Next, create an [ingest listener]({{< ref "sending-data-to-humio/ingest-listeners" >}}) with the statsd parser.
+Next, create an [ingest listener]({{< ref "../../../operations-guide/configuration/sending-data-to-humio/ingest-listeners" >}}) with the statsd parser.
 
 {{% notice note %}}
 We strongly recommend using an UDP ingest listener for non-aggregated StatsD data

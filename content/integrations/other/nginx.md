@@ -43,7 +43,7 @@ output.elasticsearch:
 
 See the page on [Filebeat]({{< ref "filebeat.md" >}}) for further details.
 
-The above Filebeat configuration uses the [built-in parser `accesslog`]({{< ref "/parsers/built-in-parsers/accesslog.md" >}}).
+The above Filebeat configuration uses the [built-in parser `accesslog`]({{< ref "../../operations-guide/parsers/built-in-parsers/accesslog.md" >}}).
 The parser can parse logs formatted in the default Nginx log configuration.
 If your log Nginx configuration is modified, create a [custom parser]({{< relref "parsers/_index.md" >}}), by copying the accesslog parser and modifying it.
 Then [connect the parser to the ingest token]({{< ref "assigning-parsers-to-ingest-tokens.md" >}}) or put its name as the value of the @type field in the Filebeat configuration.

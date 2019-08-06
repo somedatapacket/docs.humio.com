@@ -5,7 +5,7 @@ title: "Email"
 The email notifier sends alerts as emails.
 
 {{% notice tip %}}
-If you are hosting Humio yourself, you must [configure how emails are send]({{< ref "configuration/email_configuration.md" >}}).  
+If you are hosting Humio yourself, you must [configure how emails are send]({{< ref "../operations-guide/configuration/basic-configuration/email_configuration.md" >}}).  
 {{% /notice%}}
 
 This notifier will by default send out a nicely styled email with the most
