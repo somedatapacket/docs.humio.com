@@ -21,7 +21,7 @@ Your single server Humio installation requires a minimum of:
 * 16 GB of memory
 * 1 GB Network card
 
-Disk space depends on the amount of ingested data per day and the number of retention days..
+Disk space depends on the amount of ingested data per day and the number of retention days.
 
 _Retention days x GB injected = needed disk space for a single server_
 
@@ -107,7 +107,7 @@ Once the system has finished updating and the users are created, you can begin i
 
 Humio is a Scala-based application that requires a JVM version 11 or higher.
 
-Humio recommends using Azul’s JVM, as it is used for Humio Cloud, so is well-tested for compatibility.
+Humio recommends using Azul’s JVM, as it is used for Humio Cloud, and so it is well-tested for compatibility.
 
 For more information on how to configure the JVM, see [https://docs.humio.com/configuration/jvm-configuration/](https://docs.humio.com/configuration/jvm-configuration/) and [https://docs.humio.com/configuration/jvm-configuration/#which-jvm](https://docs.humio.com/configuration/jvm-configuration/#which-jvm)
 
