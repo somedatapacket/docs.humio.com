@@ -466,6 +466,8 @@ The following instructions cover the installation of Humio:
     ```
     # systemctl start humio
     ```
-11. Verify that Humio is up and running through a web browser: http://<server_IP_or_DNS_name>:8080
+11. Verify that Humio is up and running through a web browser: http://server_IP_or_hostname:8080
+
+{{< figure src="/pages/installation/Humio-Initial-Screen.png" >}}
 
 
