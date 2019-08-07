@@ -7,7 +7,7 @@ aliases: ["/installation/bare-metal"]
 
 ## Introduction
 
-This document shows you how to install Humio alongside Java, Zookeeper, and Kafka on a single Ubuntu Server 16.04 or later LTS node.
+This document shows you how to install Humio alongside Java, Zookeeper, and Kafka on a single Ubuntu Server 18.04 or later LTS node.
 
 Please note that Humio does not recommend this configuration for production purposes. Production environments should be clustered for failover and redundancy purposes. This set up is only provided for learning purposes and for proofs of concept. Single server and multi-server installations do have differences in their set up. 
 
@@ -51,7 +51,7 @@ Humio version 1.5.x requires:
 - Kafka 2.2+ (recommended)
 
 Supported operating systems:
-- Ubuntu 16.04 and higher
+- Ubuntu 18.04 and higher
 - RHEL 7
 
 ## Software Setup
@@ -68,7 +68,7 @@ Release: 18.04
 Codename: bionic
 ```
 
-**_NOTE:_** Humio will not install correctly on Ubuntu versions earlier than 16.04.
+**_NOTE:_** Humio will not install correctly on Ubuntu versions earlier than 18.04.
 
 As most of the following commands require root access, run sudo:
 ```
