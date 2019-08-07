@@ -55,7 +55,9 @@ Supported operating systems:
 - RHEL 7
 
 ## Software Setup
-**_NOTE_**: Where ‘x’ is used in filenames below, replace ‘x’ with the correct version number for the software you are installing.
+{{% notice note %}}
+Where ‘x’ is used in filenames below, replace ‘x’ with the correct version number for the software you are installing.
+{{% /notice %}}
 
 Confirm your Ubuntu version:
 
@@ -67,8 +69,9 @@ Description: Ubuntu 18.04.2 LTS
 Release: 18.04
 Codename: bionic
 ```
-
-**_NOTE:_** Humio will not install correctly on Ubuntu versions earlier than 18.04.
+{{% notice note %}}
+Humio will not install correctly on Ubuntu versions earlier than 18.04.
+{{% notice note %}}
 
 As most of the following commands require root access, run sudo:
 ```
@@ -141,7 +144,9 @@ For more information on how to configure the JVM, see [https://docs.humio.com/co
     ```
 4. Install version 11 or higher of Azul’s Zulu JVM. 
 
-    **_NOTE:_** Update the command to reflect the release desired, replacing the `x` with the version number: 
+    {{% notice note %}}
+    Update the command to reflect the release desired, replacing the `x` with the version number: 
+    {{% /notice %}}
 
     ```
     # apt-get install zulu-x
@@ -347,7 +352,9 @@ Humio uses Kafka to buffer ingest and sequence events among the nodes of a Humio
     ```
     # chown -R kafka:kafka /opt/kafka_x.x.x.x
     ```
-    **_NOTE: _** Changing the ownership of the link `/opt/kafka` does not change the ownership of the files in the directory.
+   {{% notice note %}}
+   Changing the ownership of the link `/opt/kafka` does not change the ownership of the files in the directory.
+   {{% /notice %}}
     
 10. Create a Kafka service file:
     ```
