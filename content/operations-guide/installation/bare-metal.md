@@ -11,7 +11,7 @@ This document shows you how to install Humio alongside Java, Zookeeper, and Kafk
 
 Please note that Humio does not recommend this configuration for production purposes. Production environments should be clustered for failover and redundancy purposes. This set up is only provided for learning purposes and for proofs of concept. Single server and multi-server installations do have differences in their set up. 
 
-For multi-server installations, please see [this cluster setup guide](cluster_setup).
+For multi-server installations, please see [this cluster setup guide]({{< ref "cluster_setup.md" >}}).
 
 ## Hardware Requirements
 
