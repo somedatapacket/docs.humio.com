@@ -8,7 +8,7 @@ categories_weight: 200
 aliases: ["/installation/ansible"]
 ---
 
-Ansible is a great way of managing a Humio cluster. Therefor we have provided a list of Ansible Galaxy roles, plus a few sample projects that demonstrates how they are used.
+Ansible is a great way of managing a Humio cluster. Therefore, we have provided a list of Ansible Galaxy roles, plus a few sample projects that demonstrate how they are used.
 
 ## Ansible Galaxy Roles
 
@@ -49,8 +49,8 @@ Both Zookeeper, Kafka and Humio require Java. The purpose of this role is to ins
 It has sensible defaults so no extra configuration is required.
 
 ### AnsibleShipyard.ansible-zookeeper
-This is a third-party role that we have a good experiences with.
-Configuring can be a bit cumbersome but unfortunately that's the nature of Zookeeper. At least the following variables should be configured for the Zookeeper role
+This is a third-party role that we have had good experiences with.
+Configuring can be a bit cumbersome, but unfortunately that's the nature of Zookeeper. The following variables should be configured for the Zookeeper role
 
 * `zookeeper_hosts`, array consisting of objects containing
   * `id`, the Zookeeper host id, usually a number between 1 and 3
@@ -61,9 +61,9 @@ There are several options for automating this list, please see the [Cluster exam
 We recommend having at least 3 Zookeeper nodes for high-availability.
 
 ### humio.kafka
-Kafka is in the heart of a Humio. Although the use of this exact role isn't strictly necessary, it's highly recommended since the Humio team will be maintaining sensible configuration defaults for Kafka.
+Kafka is at the heart of a Humio. Although the use of this exact role isn't strictly necessary, it's highly recommended since the Humio team will be maintaining sensible configuration defaults for Kafka.
 
-For performance it is a good idea to have one kafka instance per [Humio server](#humio-server) in your cluster.
+For performance, it is a good idea to have one kafka instance per [Humio server](#humio-server) in your cluster.
 
 The configuration of the role is very much similar to [Zookeeper](#ansibleshipyard-ansible-zookeeper), with only a few required variables
 
@@ -88,7 +88,7 @@ For more details on configuration, please take a look at the [GitHub repository]
 ### Ansible beats
 This is a third-party role maintained by the people behind the Beat shippers, Elastic Inc. Unfortunately, at this point it's not pushed to Ansible Galaxy as an official role.
 
-The configuration of the role is pretty straightforward but we strongly recommend reading it's [documentation](https://github.com/elastic/ansible-beats/)
+The configuration of the role is pretty straightforward but we strongly recommend reading its [documentation](https://github.com/elastic/ansible-beats/)
 
 We recommend the following configuration on Humio nodes
 ```yamlex
