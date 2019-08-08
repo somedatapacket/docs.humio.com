@@ -417,7 +417,7 @@ The following instructions cover the installation of Humio:
     ```
     # nano /etc/humio/server.conf
     ```
-6. Fill in the following contents, updating `<server-number>` with the number you assigned in `myid` above, and DNS names or IP addresses where appropriate:
+6. Fill in the following contents, updating with DNS names or IP addresses where appropriate:
     ```
     BOOTSTRAP_HOST_ID=1
     DIRECTORY=/var/humio/data
