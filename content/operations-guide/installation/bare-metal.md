@@ -19,15 +19,15 @@ Your single server Humio installation requires a minimum of:
 
 * 16 CPU cores
 * 16 GB of memory
-* 1 GB Network card
+* 1 GBit Network card
 
 Disk space depends on the amount of ingested data per day and the number of retention days.
 
-_Retention days x GB injected = needed disk space for a single server_
+_Retention days x GB injected / compression factor = needed disk space for a single server_
 
-For more information on retention in Humio, see [configuring data retention](../configuration/basic-configuration/retention/).
+For more information on retention in Humio, see [configuring data retention]({{< ref "retention.md" >}}). For more information on compression in Humio, see [index sizing]({{< ref "../../instance-sizing" >}}).
 
-On AWS, for a single server, start with Ubuntu M5.4XL. This image contains 16 vCPUs, 64 GB memory, up to 10 GBPS network).
+On AWS, for a single server, start with Ubuntu M5.4XL. This instance type contains 16 vCPUs, 64 GB memory, up to 10 Gbps network).
 
 ## Network Requirements
 
@@ -99,7 +99,7 @@ Not creating home directory `/home/humio'.
 ```
 
 {{% notice note %}}
-We recommend adding these three users to the DenyUsers section of your node’s ```/etc/ssh/sshd_config``` file to prevent them from being able to ssh or sftp into the node, and remember to restart the sshd daemon after making the change.
+We recommend adding these three users to the DenyUsers section of your node’s `/etc/ssh/sshd_config` file to prevent them from being able to ssh or sftp into the node, and remember to restart the sshd daemon after making the change.
 
 Once the system has finished updating and the users are created, you can begin installing and configuring the required components.
 {{% notice note %}}
@@ -110,7 +110,7 @@ Humio is a Scala-based application that requires a JVM version 11 or higher.
 
 Humio recommends using Azul’s JVM, as it is used for Humio Cloud, and so it is well-tested for compatibility.
 
-For more information on selecting and configuring the JVM, see [JVM configuration](../configuration/basic-configuration/jvm-configuration/).
+For more information on selecting and configuring the JVM, see [JVM configuration]({{< ref "../configuration/basic-configuration/jvm-configuration/" >}}).
 
 1. Import Azul’s public key:
     ```
@@ -258,7 +258,8 @@ Humio uses Kafka to buffer ingest and sequence events among the nodes of a Humio
     ```
     # chown -R zookeeper:zookeeper /opt/zookeeper-x.x.x
     ```
-    **_NOTE_**: Changing the ownership of the link `/opt/zookeeper` does not change the ownership of the files in the directory.
+    {{% notice note %}}Changing the ownership of the link `/opt/zookeeper` does not change the ownership of the files in the directory.
+    {{% /notice %}}
 
 14. Create a Zookeeper service file:
     ```
@@ -410,19 +411,19 @@ The following instructions cover the installation of Humio:
 
 1. Create the Humio system directories and give the `humio` user ownership:
     ```
-    # mkdir -p /usr/lib/humio /etc/humio/filebeat /var/log/humio /var/humio/data
+    # mkdir -p /opt/humio /etc/humio/filebeat /var/log/humio /var/humio/data
     ```
-2. Navigate to `/usr/lib/humio/`:
+2. Navigate to `/opt/humio/`:
     ```
-    # cd /usr/lib/humio/
+    # cd /opt/humio/
     ```
-3. Download latest release from[ https://repo.humio.com/service/rest/repository/browse/maven-releases/com/humio/server/](https://repo.humio.com/#browse/search/maven:2e47dda0f1b555e09a4c5ad8ff9b66db):
+3. Download latest release from [https://repo.humio.com/service/rest/repository/browse/maven-releases/com/humio/server/](https://repo.humio.com/service/rest/repository/browse/maven-releases/com/humio/server/):
     ```
     # wget https://repo.humio.com/repository/maven-releases/com/humio/server/x.x.x/server-x.x.x.jar
     ```
 4. Create a link to `server.jar`:
     ```
-    # ln -s /usr/lib/humio/server-x.x.x.jar /usr/lib/humio/server.jar
+    # ln -s /opt/humio/server-x.x.x.jar /opt/humio/server.jar
     ```
 5. Create the Humio configuration file:
     ```
@@ -461,14 +462,14 @@ The following instructions cover the installation of Humio:
     LimitNOFILE=250000:250000
     EnvironmentFile=/etc/humio/server.conf
     WorkingDirectory=/var/humio
-    ExecStart=/usr/bin/java -server -XX:+UseParallelOldGC -Xms4G -Xmx32G -XX:MaxDirectMemorySize=64G -Xss2M -Xlog:gc*,gc+jni=debug:file=/var/log/humio/gc_humio.log:time,tags:filecount=5,filesize=102400 -Dhumio.auditlog.dir=/var/log/humio -Dhumio.debuglog.dir=/var/log/humio -jar /usr/lib/humio/server.jar
+    ExecStart=/usr/bin/java -server -XX:+UseParallelOldGC -Xms4G -Xmx32G -XX:MaxDirectMemorySize=64G -Xss2M -Xlog:gc*,gc+jni=debug:file=/var/log/humio/gc_humio.log:time,tags:filecount=5,filesize=102400 -Dhumio.auditlog.dir=/var/log/humio -Dhumio.debuglog.dir=/var/log/humio -jar /opt/humio/server.jar
     
     [Install]
     WantedBy=default.target
     ```
 9. Change ownership of the humio files
     ```
-    # chown -R humio:humio /usr/lib/humio /etc/humio/filebeat /var/log/humio /var/humio/data
+    # chown -R humio:humio /opt/humio /etc/humio/filebeat /var/log/humio /var/humio/data
     ```
 10. Start the Humio service
     ```
