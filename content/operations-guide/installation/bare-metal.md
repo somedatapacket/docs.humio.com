@@ -52,6 +52,7 @@ Supported operating systems:
 - RHEL 7
 
 ## Software Setup
+
 {{% notice note %}}Where ‘x’ is used in filenames below, replace ‘x’ with the correct version number for the software you are installing.{{% /notice %}}
 
 Confirm your Ubuntu version:
@@ -64,7 +65,7 @@ Description: Ubuntu 18.04.2 LTS
 Release: 18.04
 Codename: bionic
 ```
-{{% notice note %}}Humio will not install correctly on Ubuntu versions earlier than 18.04.{{% notice note %}}
+{{% notice note %}}Humio will not install correctly on Ubuntu versions earlier than 18.04.{{% /notice %}}
 
 As most of the following commands require root access, run sudo:
 ```
@@ -94,7 +95,7 @@ Not creating home directory `/home/humio'.
 
 {{% notice note %}}We recommend adding these three users to the DenyUsers section of your node’s `/etc/ssh/sshd_config` file to prevent them from being able to ssh or sftp into the node, and remember to restart the sshd daemon after making the change.
 
-Once the system has finished updating and the users are created, you can begin installing and configuring the required components.{{% notice note %}}
+Once the system has finished updating and the users are created, you can begin installing and configuring the required components.{{% /notice %}}
 
 ### Installing the JVM
 
