@@ -25,7 +25,7 @@ Disk space depends on the amount of ingested data per day and the number of rete
 
 _Retention days x GB injected = needed disk space for a single server_
 
-For example, if you need to store 10GB for 30 days of retention, you would need 300 GB of disk space. With multi-server and long-term Humio installations, compression is also a factor in determining storage needs, but that discussion is out of scope for this document.
+For more information on retention in Humio, see [configuring data retention](../configuration/basic-configuration/retention/).
 
 On AWS, for a single server, start with Ubuntu M5.4XL. This image contains 16 vCPUs, 64 GB memory, up to 10 GBPS network).
 
@@ -36,13 +36,12 @@ In addition to port 22 (required to SSH into the server) the Humio node requires
 |Application|Protocol|Port|
 |---|---|---|
 |Humio|TCP|8080, 9200|
-|Kafka|TCP|9092|
-|SSHD|TCP|22|
-|Zookeeper|TCP|2181, 2888, 3888|
+
+{{% notice note %}}
+Port 9200 is optional.
+{{% /notice %}}
 
 ## System Requirements
-
-Humio uses Kafka to buffer ingest, as well as manage sharing cluster configuration and state to all nodes. Additionally, Kafka uses Zookeeper as a shared configuration manager. Kafka and Zookeeper, like Humio, run on a Java Virtual Machine (JVM).
 
 Humio version 1.5.x requires:
 
@@ -99,9 +98,11 @@ Not creating home directory `/home/humio'.
 # adduser kafka --shell=/bin/false --no-create-home --system --group
 ```
 
-**_NOTE_**: We recommend adding these three users to the DenyUsers section of your node’s ```/etc/ssh/sshd_config``` file to prevent them from being able to ssh or sftp into the node, and remember to restart the sshd daemon after making the change.
+{{% notice note %}}
+We recommend adding these three users to the DenyUsers section of your node’s ```/etc/ssh/sshd_config``` file to prevent them from being able to ssh or sftp into the node, and remember to restart the sshd daemon after making the change.
 
 Once the system has finished updating and the users are created, you can begin installing and configuring the required components.
+{{% notice note %}}
 
 ### Installing the JVM
 
@@ -109,7 +110,7 @@ Humio is a Scala-based application that requires a JVM version 11 or higher.
 
 Humio recommends using Azul’s JVM, as it is used for Humio Cloud, and so it is well-tested for compatibility.
 
-For more information on how to configure the JVM, see [https://docs.humio.com/configuration/jvm-configuration/](https://docs.humio.com/configuration/jvm-configuration/) and [https://docs.humio.com/configuration/jvm-configuration/#which-jvm](https://docs.humio.com/configuration/jvm-configuration/#which-jvm)
+For more information on selecting and configuring the JVM, see [JVM configuration](../configuration/basic-configuration/jvm-configuration/).
 
 1. Import Azul’s public key:
     ```
@@ -206,7 +207,7 @@ Humio uses Kafka to buffer ingest and sequence events among the nodes of a Humio
     ```
 6. Create a `data` directory for Zookeeper:
     ```
-    # mkdir data
+    # mkdir /var/zookeeper/data
     ```
 7. Create the `zoo.cfg` file: 
     ```
@@ -215,16 +216,16 @@ Humio uses Kafka to buffer ingest and sequence events among the nodes of a Humio
 8. Fill in the configuration with the following details:
     ```
     tickTime = 2000
-    dataDir = /opt/zookeeper/data
+    dataDir = /var/zookeeper/data
     clientPort = 2181
     initLimit = 5
     syncLimit = 2
     maxClientCnxns=60
-    server.1=<serverip or address>:2888:3888
+    server.1=127.0.0.1:2888:3888
     ```
-9. Create the `myid` file in the `/opt/zookeeper/data` directory. It will have the number `1` as its contents:
+9. Create the `myid` file in the `/var/zookeeper/data` directory. It will have the number `1` as its contents:
     ```
-    # bash -c 'echo 1 > data/myid'
+    # bash -c 'echo 1 > /var/zookeeper/data/myid'
     ```
 10. Start Zookeeper to verify that the configuration is working:
     ```
@@ -429,16 +430,16 @@ The following instructions cover the installation of Humio:
     ```
 6. Fill in the following contents, updating `<server-number>` with the number you assigned in `myid` above, and DNS names or IP addresses where appropriate:
     ```
-    BOOTSTRAP_HOST_ID=<server-number>
+    BOOTSTRAP_HOST_ID=1
     DIRECTORY=/var/humio/data
     HUMIO_AUDITLOG_DIR=/var/log/humio
     HUMIO_DEBUGLOG_DIR=/var/log/humio
     HUMIO_PORT=8080
     ELASTIC_PORT=9200
-    ZOOKEEPER_URL=<zookeeper-server-ip-or-name>:2181
-    KAFKA_SERVERS=<kafka-server-ip-or-name>:9092
-    EXTERNAL_URL=http://<server-ip-or-name>:8080
-    PUBLIC_URL=http://<server-ip-or-name>
+    ZOOKEEPER_URL=127.0.0.01:2181
+    KAFKA_SERVERS=127.0.0.1:9092
+    EXTERNAL_URL=http://127.0.0.1:8080
+    PUBLIC_URL=http://127.0.0.1
     HUMIO_SOCKET_BIND=0.0.0.0
     HUMIO_HTTP_BIND=0.0.0.0
     ```
