@@ -52,8 +52,7 @@ Supported operating systems:
 - RHEL 7
 
 ## Software Setup
-{{% notice note %}}
-Where ‘x’ is used in filenames below, replace ‘x’ with the correct version number for the software you are installing.{{% /notice %}}
+{{% notice note %}}Where ‘x’ is used in filenames below, replace ‘x’ with the correct version number for the software you are installing.{{% /notice %}}
 
 Confirm your Ubuntu version:
 
@@ -93,11 +92,9 @@ Not creating home directory `/home/humio'.
 # adduser kafka --shell=/bin/false --no-create-home --system --group
 ```
 
-{{% notice note %}}
-We recommend adding these three users to the DenyUsers section of your node’s `/etc/ssh/sshd_config` file to prevent them from being able to ssh or sftp into the node, and remember to restart the sshd daemon after making the change.
+{{% notice note %}}We recommend adding these three users to the DenyUsers section of your node’s `/etc/ssh/sshd_config` file to prevent them from being able to ssh or sftp into the node, and remember to restart the sshd daemon after making the change.
 
-Once the system has finished updating and the users are created, you can begin installing and configuring the required components.
-{{% notice note %}}
+Once the system has finished updating and the users are created, you can begin installing and configuring the required components.{{% notice note %}}
 
 ### Installing the JVM
 
@@ -140,9 +137,7 @@ For more information on selecting and configuring the JVM, see [JVM configuratio
     ```
 4. Install version 11 or higher of Azul’s Zulu JVM. 
 
-    {{% notice note %}}
-    Update the command to reflect the release desired, replacing the `x` with the version number: 
-    {{% /notice %}}
+    {{% notice note %}}Update the command to reflect the release desired, replacing the `x` with the version number.{{% /notice %}}
 
     ```
     # apt-get install zulu-x
@@ -175,7 +170,7 @@ For more information on selecting and configuring the JVM, see [JVM configuratio
     openjdk 11.0.3 2019-04-16 LTS
     OpenJDK Runtime Environment Zulu11.31+11-CA (build 11.0.3+7-LTS)
     OpenJDK 64-Bit Server VM Zulu11.31+11-CA (build 11.0.3+7-LTS, mixed mode)
-   ```
+    ```
 ### Installing Zookeeper
 
 Humio uses Kafka to buffer ingest and sequence events among the nodes of a Humio cluster. Kafka requires Zookeeper for coordination. To install Zookeeper:
@@ -253,8 +248,7 @@ Humio uses Kafka to buffer ingest and sequence events among the nodes of a Humio
     ```
     # chown -R zookeeper:zookeeper /opt/zookeeper-x.x.x
     ```
-    {{% notice note %}}Changing the ownership of the link `/opt/zookeeper` does not change the ownership of the files in the directory.
-    {{% /notice %}}
+    {{% notice note %}}Changing the ownership of the link `/opt/zookeeper` does not change the ownership of the files in the directory.{{% /notice %}}
 
 14. Create a Zookeeper service file:
     ```
@@ -349,9 +343,7 @@ Humio uses Kafka to buffer ingest and sequence events among the nodes of a Humio
     ```
     # chown -R kafka:kafka /opt/kafka_x.x.x.x
     ```
-   {{% notice note %}}
-   Changing the ownership of the link `/opt/kafka` does not change the ownership of the files in the directory.
-   {{% /notice %}}
+   {{% notice note %}}Changing the ownership of the link `/opt/kafka` does not change the ownership of the files in the directory.{{% /notice %}}
     
 10. Create a Kafka service file:
     ```
