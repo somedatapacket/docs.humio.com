@@ -37,9 +37,7 @@ In addition to port 22 (required to SSH into the server) the Humio node requires
 |---|---|---|
 |Humio|TCP|8080, 9200|
 
-{{% notice note %}}
-Port 9200 is optional.
-{{% /notice %}}
+{{% notice note %}}Port 9200 is optional.{{% /notice %}}
 
 ## System Requirements
 
