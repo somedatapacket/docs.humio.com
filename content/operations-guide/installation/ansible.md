@@ -8,7 +8,7 @@ categories_weight: 200
 aliases: ["/installation/ansible"]
 ---
 
-Ansible is a great way of managing a Humio cluster. Therefor we have provided a list of Ansible Galaxy roles, plus a few sample projects that demonstrates how they are used.
+Ansible is a great way of managing a Humio cluster. Therefore, we have provided a list of Ansible Galaxy roles, plus a few sample projects that demonstrates how they are used.
 
 ## Ansible Galaxy Roles
 
