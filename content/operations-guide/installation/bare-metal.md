@@ -180,7 +180,7 @@ For more information on selecting and configuring the JVM, see [JVM configuratio
     openjdk 11.0.3 2019-04-16 LTS
     OpenJDK Runtime Environment Zulu11.31+11-CA (build 11.0.3+7-LTS)
     OpenJDK 64-Bit Server VM Zulu11.31+11-CA (build 11.0.3+7-LTS, mixed mode)
-```
+   ```
 ### Installing Zookeeper
 
 Humio uses Kafka to buffer ingest and sequence events among the nodes of a Humio cluster. Kafka requires Zookeeper for coordination. To install Zookeeper:
