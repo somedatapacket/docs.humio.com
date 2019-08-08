@@ -55,8 +55,7 @@ Supported operating systems:
 
 ## Software Setup
 {{% notice note %}}
-Where ‘x’ is used in filenames below, replace ‘x’ with the correct version number for the software you are installing.
-{{% /notice %}}
+Where ‘x’ is used in filenames below, replace ‘x’ with the correct version number for the software you are installing.{{% /notice %}}
 
 Confirm your Ubuntu version:
 
@@ -68,9 +67,7 @@ Description: Ubuntu 18.04.2 LTS
 Release: 18.04
 Codename: bionic
 ```
-{{% notice note %}}
-Humio will not install correctly on Ubuntu versions earlier than 18.04.
-{{% notice note %}}
+{{% notice note %}}Humio will not install correctly on Ubuntu versions earlier than 18.04.{{% notice note %}}
 
 As most of the following commands require root access, run sudo:
 ```
