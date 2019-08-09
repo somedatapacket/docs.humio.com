@@ -58,7 +58,7 @@ Configuring can be a bit cumbersome, but unfortunately that's the nature of Zook
 
 There are several options for automating this list, please see the [Cluster example](https://github.com/AnsibleShipyard/ansible-zookeeper#cluster-example).
 
-We recommend having at least 3 Zookeeper nodes for high-availability.
+We recommend having at least three Zookeeper nodes for high-availability.
 
 ### humio.kafka
 Kafka is at the heart of a Humio. Although the use of this exact role isn't strictly necessary, it's highly recommended since the Humio team will be maintaining sensible configuration defaults for Kafka.
