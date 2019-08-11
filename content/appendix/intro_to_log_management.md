@@ -1,10 +1,10 @@
 ---
-title: "Intro to Log Management"
+title: "Introduction to Log Management"
 weight: 1
 ---
 
 Modern IT systems create a lot of operational data and it can be difficult to
-manage. Often, this data is stored in 'logs'.
+manage. Often, this data is stored in logs.
 
 The term 'log management' relates to producing, shipping, normalizing, and
 querying this data. It's a complex activity, with many moving
