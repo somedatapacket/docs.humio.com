@@ -15,6 +15,4 @@ This is the configuring the basic functionality in Humio.
 * [Configuring root access]({{< ref "root-access" >}})
 * [Configuring audit logging]({{< ref "audit-logging" >}})
 * [Configuring user authentication]({{< ref "user-authentication" >}}) 
-* Kafka configuration
-  - [Basic configuration for Kafka]({{< ref "kafka_configuration/" >}}) 
-  - [Changing Kafka servers]({{< ref "kafka-switch" >}}) 
+* [Basic configuration for Kafka]({{< ref "kafka_configuration/" >}}) 

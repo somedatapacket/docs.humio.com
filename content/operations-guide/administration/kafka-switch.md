@@ -1,6 +1,6 @@
 ---
 title: "Switching Kafka"
-aliases: ["/configuration/kafka-switch"]
+aliases: ["/configuration/kafka-switch","/configuration/basic-configuration/kafka-switch"]
 ---
 
 Humio uses Kafka for queuing incoming messages and for
