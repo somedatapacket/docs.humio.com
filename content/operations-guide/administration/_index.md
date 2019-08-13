@@ -23,7 +23,7 @@ This content was created with a focus on clustered Humio environments.
 - [Disabling Ingest]({{< ref "disabling-ingest.md" >}})
 - [Updating your license]({{< ref "license-management.md" >}})
 - [Metrics]({{< ref "metrics.md">}})
-- [Switching Kafka servers]({{< ref "kafka-switch" >}})
+- [Switching Kafka servers]({{< ref "kafka-switch.md" >}})
 
 ## Repository Management
 
