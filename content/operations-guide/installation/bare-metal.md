@@ -25,7 +25,7 @@ Disk space depends on the amount of ingested data per day and the number of rete
 
 _Retention days x GB injected / compression factor = needed disk space for a single server_
 
-For more information on retention in Humio, see [configuring data retention]({{< ref "retention.md" >}}). For more information on compression in Humio, see [index sizing]({{< ref "instance-sizing" >}}).
+For more information on retention in Humio, see [configuring data retention]({{< ref "retention.md" >}}). For more information on compression in Humio, see [index sizing]({{< ref "instance-sizing.md" >}}).
 
 On AWS, for a single server, start with Ubuntu M5.4XL. This instance type contains 16 vCPUs, 64 GB memory, up to 10 Gbps network).
 
