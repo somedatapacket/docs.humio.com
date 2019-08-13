@@ -50,9 +50,9 @@ for the JVM.  When running Humio it will operate comfortably within 10 GiB
 for most workloads. The remainder of your RAM in the system should remain
 available for use as filesystem page cache.
 
-A good rule of thumb calculation for memory allocation is as follows:
+A good rule of thumb calculation for memory allocation is as follows, per Humio (per socket):
 
-* (8GB baseline + 1GB per core) + that much again in off-heap memory
+* (8GB baseline + 1GB per core) heap size + (8GB baseline + 1GB per core) MaxDirectMemorySize
 
 So, for a production installation on an 8 core VM, you would want about
 64GB of memory with JVM settings as follows:
