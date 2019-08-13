@@ -55,7 +55,7 @@ Separate mount points help isolate Kafka from the other services. Kafka is notor
 consuming large amounts of disk space, so it's important to protect the other services from
 running out of disk by using a separate volume in production deployments.
 Make sure all volumes are being appropriately monitored as well. If your installation does
-run out of disk space and gets into a bad state, you can find recovery instructions about [Kafka switching]({{< ref "kafka-switch" >}}).
+run out of disk space and gets into a bad state, you can find recovery instructions about [Kafka switching]({{< ref "kafka-switch.md" >}}).
 {{% /notice %}}
 
 **Step 4**
